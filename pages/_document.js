@@ -14,22 +14,6 @@ class MyDocument extends Document {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
           <meta name="theme-color" content="#000000" />
-          <link rel="shortcut icon" href={require("public/img/favicon.png")} />
-          <link
-            rel="apple-touch-icon"
-            sizes="76x76"
-            href={require("public/img/apple-icon.png")}
-          />
-          {/* Fonts and icons */}
-          <link
-            rel="stylesheet"
-            type="text/css"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
-          />
-          <link
-            href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
-            rel="stylesheet"
-          />
         </Head>
         <body>
           <div id="page-transition" />
