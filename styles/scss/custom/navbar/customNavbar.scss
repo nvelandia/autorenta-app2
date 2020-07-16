@@ -1,0 +1,16 @@
+.bg-ar-navbar{
+  background-color: $ar-color-white-2;
+}
+
+.ar-nav-link-blue{
+  color: $ar-color-blue-0;
+  font-weight: bold;
+  &:hover{
+    color: $ar-color-red-0;
+  }
+}
+
+.ar-nav-link-red{
+  font-weight: bold;
+  color: $ar-color-red-0;
+}

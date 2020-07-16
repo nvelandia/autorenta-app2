@@ -1,6 +1,9 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as actions from '../../actions/homeActions';
+import CustomNavBar from "../Components/Molecules/Navbars/CustomNavBar";
+
 
 class Home extends React.Component {
     constructor(props) {
@@ -8,25 +11,25 @@ class Home extends React.Component {
         this.state = {
 
         }
-        this.dispatch
+        this.dispatch = props.dispatch;
     }
 
 
     render() {
         return(
             <>
-
+                <CustomNavBar/>
             </>
         )
     }
 }
 
 Home.propTypes = {
-
+    dispatch: PropTypes.func,
 }
 
 const mapStateToProps = state => {
-
+    return state.homeReducer
 }
 
 export default connect(mapStateToProps)(Home);

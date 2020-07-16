@@ -7,11 +7,11 @@ import {actionNames} from "./utils/constants/actionConstants";
 
 //es6promise.polyfill();
 
-const sagas = [
+const saga = [
     takeLatest(actionNames.incrementCounter, incrementCounter),
     takeLatest(actionNames.decrementCounter, decrementCounter),
 ]
 
 export default function* rootSaga() {
-    yield all(sagas);
+    yield all(saga);
 }
