@@ -16,7 +16,7 @@
 */
 import React from "react";
 // react library for routing
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 // reactstrap components
 import {
   UncontrolledCollapse,
@@ -42,7 +42,7 @@ class AdminNavbar extends React.Component {
           id="navbar-main"
         >
           <Container>
-            <NavbarBrand to="/" tag={Link}>
+            <NavbarBrand to="/" >
               <img
                 alt="..."
                 src={require("public/img/brand/argon-react-white.png")}
@@ -68,12 +68,12 @@ class AdminNavbar extends React.Component {
               <div className="navbar-collapse-header">
                 <Row>
                   <Col className="collapse-brand" xs="6">
-                    <Link to="/admin/dashboard">
+                    <a >
                       <img
                         alt="..."
                         src={require("public/img/brand/blue.png")}
                       />
-                    </Link>
+                    </a>
                   </Col>
                   <Col className="collapse-close" xs="6">
                     <button
@@ -94,27 +94,27 @@ class AdminNavbar extends React.Component {
               </div>
               <Nav className="mr-auto" navbar>
                 <NavItem>
-                  <NavLink to="/admin/dashboard" tag={Link}>
+                  <NavLink to="/admin/dashboard" >
                     <span className="nav-link-inner--text">Dashboard</span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to="/auth/pricing" tag={Link}>
+                  <NavLink to="/auth/pricing" >
                     <span className="nav-link-inner--text">Pricing</span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to="/auth/login" tag={Link}>
+                  <NavLink to="/auth/login" >
                     <span className="nav-link-inner--text">Login</span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to="/auth/register" tag={Link}>
+                  <NavLink to="/auth/register" >
                     <span className="nav-link-inner--text">Register</span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to="/auth/lock" tag={Link}>
+                  <NavLink to="/auth/lock" >
                     <span className="nav-link-inner--text">Lock</span>
                   </NavLink>
                 </NavItem>

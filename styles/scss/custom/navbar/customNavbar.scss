@@ -4,7 +4,7 @@
 
 .ar-nav-link-blue{
   color: $ar-color-blue-0;
-  font-weight: bold;
+  font-weight: 900;
   &:hover{
     color: $ar-color-red-0;
   }
@@ -13,4 +13,24 @@
 .ar-nav-link-red{
   font-weight: bold;
   color: $ar-color-red-0;
+}
+
+.ar-nav-link{
+  padding: 0.625rem 0.3rem !important;
+  font-size: 0.775rem !important;
+}
+
+.ar-nav-button{
+  font-size: 0.775rem;
+  .ar-button-blue{
+    background-color: $ar-color-blue-4;
+  }
+}
+
+.ar-nav-link-icon-button{
+  width: 1rem;
+}
+
+.ar-nav-brand{
+  height: 40px !important;
 }

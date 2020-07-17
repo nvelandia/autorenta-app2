@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'autorenta-font';
+  src: url('./font/autorenta-font.eot?84423185');
+  src: url('./font/autorenta-font.eot?84423185#iefix') format('embedded-opentype'),
+  url('./font/autorenta-font.woff2?84423185') format('woff2'),
+  url('./font/autorenta-font.woff?84423185') format('woff'),
+  url('./font/autorenta-font.ttf?84423185') format('truetype'),
+  url('./font/autorenta-font.svg?84423185#autorenta-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'autorenta-font';
+    src: url('../font/autorenta-font.svg?84423185#autorenta-font') format('svg');
+  }
+}
+*/
+
+[class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "autorenta-font";
+  font-style: normal;
+  font-weight: normal;
+  speak: never;
+
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+
+.icon-calendar-icon:before { content: '\e800'; } /* '' */
+.icon-chevron-right-solid:before { content: '\e801'; } /* '' */
+.icon-footer-facebook-logo:before { content: '\e802'; } /* '' */
+.icon-footer-instagram-logo:before { content: '\e803'; } /* '' */
+.icon-footer-linkedin-logo:before { content: '\e804'; } /* '' */
+.icon-footer-twitter-logo:before { content: '\e805'; } /* '' */
+.icon-footer-whatsapp-logo:before { content: '\e806'; } /* '' */
+.icon-home-icon:before { content: '\e807'; } /* '' */
+.icon-language-icon:before { content: '\e808'; } /* '' */
+.icon-location-icon:before { content: '\e809'; } /* '' */
+.icon-menu-down-arrow:before { content: '\e80a'; } /* '' */
+.icon-menu-up-arrow:before { content: '\e80b'; } /* '' */
+.icon-slider-left-arrow:before { content: '\e80c'; } /* '' */
+.icon-slider-right-arrow:before { content: '\e80d'; } /* '' */
