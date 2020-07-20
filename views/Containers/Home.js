@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/homeActions';
 import CustomNavBar from "../Components/Molecules/Navbars/CustomNavBar";
-
+import CarouselHeader from "../Components/Molecules/Headers/CarouselHeader";
+import MakeYourReservation from "../Components/Organism/Home/MakeYourReservation";
 
 class Home extends React.Component {
     constructor(props) {
@@ -19,6 +20,8 @@ class Home extends React.Component {
         return(
             <>
                 <CustomNavBar/>
+                <CarouselHeader/>
+                <MakeYourReservation/>
             </>
         )
     }

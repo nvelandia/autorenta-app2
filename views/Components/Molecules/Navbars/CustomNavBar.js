@@ -33,6 +33,7 @@ import {
 import {routes} from "../../../../utils/constants/routes";
 
 import homeIcon from "../../../../public/svg/home-icon.svg";
+import Flags from "../../Atoms/Flags";
 
 class CustomNavbar extends React.Component {
     render() {
@@ -132,22 +133,14 @@ class CustomNavbar extends React.Component {
                                         color="default"
                                         href=""
                                     >
-                                        <span className="nav-link-inner--text">Reservar</span>
+                                        <span className="nav-link-inner--text">Reservar </span>
                                         <span className="btn-inner--icon">
-                                          <span className="icon-chevron-right-solid"/>
+                                            <span className="icon-chevron-right-solid"/>
                                         </span>
                                     </Button>
                                 </NavItem>
                                 <NavItem className="d-none d-lg-block ml-lg-1">
-                                    <Button
-                                        className="btn-neutral btn-icon ar-round ar-nav-button"
-                                        color="default"
-                                        href=""
-                                    >
-                                        <span className="icon-language-icon"/>
-                                        <span className="nav-link-inner--text">Es</span>
-                                        <span className="icon-menu-down-arrow"/>
-                                    </Button>
+                                    <Flags/>
                                 </NavItem>
                             </Nav>
                         </UncontrolledCollapse>

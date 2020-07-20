@@ -1,3 +1,19 @@
 .ar-round{
   border-radius: 100px;
 }
+
+.ar-blue-button{
+  background-color: $ar-color-blue-4;
+  color: $ar-color-white-3;
+}
+
+.ar-white-button{
+  background-color: $ar-color-white-3;
+  border-color: $ar-color-white-3;
+  color: $ar-color-blue-0;
+  &:hover &:active{
+    color: $ar-color-blue-0;
+    background-color: $ar-color-white-3;
+    border-color: $ar-color-white-3;
+  }
+}

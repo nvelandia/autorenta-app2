@@ -6,7 +6,7 @@
   url('./font/autorenta-font.woff?84423185') format('woff'),
   url('./font/autorenta-font.ttf?84423185') format('truetype'),
   url('./font/autorenta-font.svg?84423185#autorenta-font') format('svg');
-  font-weight: normal;
+  font-weight: bolder;
   font-style: normal;
 }
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
@@ -23,7 +23,7 @@
 [class^="icon-"]:before, [class*=" icon-"]:before {
   font-family: "autorenta-font";
   font-style: normal;
-  font-weight: normal;
+  font-weight: bolder;
   speak: never;
 
   display: inline-block;
