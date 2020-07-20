@@ -1,3 +1,3 @@
-import Home from '../views/Containers/Home'
+import Home from '../views/Containers/Home';
 
 export default Home;

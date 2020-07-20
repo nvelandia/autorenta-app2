@@ -1,10 +1,14 @@
+.ar-container-navbar{
+  max-width: 1380px;
+}
+
 .bg-ar-navbar{
   background-color: $ar-color-white-2;
 }
 
 .ar-nav-link-blue{
   color: $ar-color-blue-0;
-  font-weight: 900;
+  font-weight: 500;
   &:hover{
     color: $ar-color-red-0;
   }
@@ -16,21 +20,34 @@
 }
 
 .ar-nav-link{
-  padding: 0.625rem 0.3rem !important;
-  font-size: 0.775rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+  font-size: 0.850rem !important;
+  margin: auto;
 }
 
-.ar-nav-button{
-  font-size: 0.775rem;
-  .ar-button-blue{
-    background-color: $ar-color-blue-4;
+.ar-nav-button-link{
+  display: flex !important;
+  .ar-nav-button{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 0.900rem;
+    .ar-button-blue{
+      background-color: $ar-color-blue-4;
+    }
   }
 }
+
 
 .ar-nav-link-icon-button{
   width: 1rem;
 }
 
 .ar-nav-brand{
-  height: 40px !important;
+  margin: 0.5rem;
+  height: 55px !important;
+}
+
+.ar-container-nav-link{
+  margin: 0.5rem;
 }
