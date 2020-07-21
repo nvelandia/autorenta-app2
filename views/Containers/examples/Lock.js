@@ -14,9 +14,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React from 'react';
 // nodejs library that concatenates classes
-import classnames from "classnames";
+import classnames from 'classnames';
 // reactstrap components
 import {
   Button,
@@ -30,10 +30,10 @@ import {
   InputGroup,
   Container,
   Row,
-  Col
-} from "reactstrap";
+  Col,
+} from 'reactstrap';
 // core components
-import AuthHeader from "components/Headers/AuthHeader.js";
+import AuthHeader from 'components/Headers/AuthHeader.js';
 
 class Lock extends React.Component {
   state = {};
@@ -48,11 +48,7 @@ class Lock extends React.Component {
                 <Row className="justify-content-center">
                   <Col className="order-lg-2" lg="3">
                     <div className="card-profile-image">
-                      <img
-                        alt="..."
-                        className="rounded-circle border-secondary"
-                        src={require("/theme/team-4.jpg")}
-                      />
+                      <img alt="..." className="rounded-circle border-secondary" src="/theme/team-4.jpg" />
                     </div>
                   </Col>
                 </Row>
@@ -63,7 +59,7 @@ class Lock extends React.Component {
                   <Form role="form">
                     <FormGroup
                       className={classnames({
-                        focused: this.state.focused
+                        focused: this.state.focused,
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative">

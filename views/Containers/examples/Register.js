@@ -14,9 +14,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React from 'react';
 // nodejs library that concatenates classes
-import classnames from "classnames";
+import classnames from 'classnames';
 // reactstrap components
 import {
   Button,
@@ -31,10 +31,10 @@ import {
   InputGroup,
   Container,
   Row,
-  Col
-} from "reactstrap";
+  Col,
+} from 'reactstrap';
 // core components
-import AuthHeader from "components/Headers/AuthHeader.js";
+import AuthHeader from 'components/Headers/AuthHeader.js';
 
 class Register extends React.Component {
   state = {};
@@ -58,13 +58,10 @@ class Register extends React.Component {
                       className="btn-neutral btn-icon mr-4"
                       color="default"
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       <span className="btn-inner--icon mr-1">
-                        <img
-                          alt="..."
-                          src={require("public/img/icons/common/github.svg")}
-                        />
+                        <img alt="..." src="/img/icons/common/github.svg" />
                       </span>
                       <span className="btn-inner--text">Github</span>
                     </Button>
@@ -72,13 +69,10 @@ class Register extends React.Component {
                       className="btn-neutral btn-icon"
                       color="default"
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       <span className="btn-inner--icon mr-1">
-                        <img
-                          alt="..."
-                          src={require("public/img/icons/common/google.svg")}
-                        />
+                        <img alt="..." src="public/img/icons/common/google.svg" />
                       </span>
                       <span className="btn-inner--text">Google</span>
                     </Button>
@@ -91,7 +85,7 @@ class Register extends React.Component {
                   <Form role="form">
                     <FormGroup
                       className={classnames({
-                        focused: this.state.focusedName
+                        focused: this.state.focusedName,
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative mb-3">
@@ -110,7 +104,7 @@ class Register extends React.Component {
                     </FormGroup>
                     <FormGroup
                       className={classnames({
-                        focused: this.state.focusedEmail
+                        focused: this.state.focusedEmail,
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative mb-3">
@@ -129,7 +123,7 @@ class Register extends React.Component {
                     </FormGroup>
                     <FormGroup
                       className={classnames({
-                        focused: this.state.focusedPassword
+                        focused: this.state.focusedPassword,
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative">
@@ -141,41 +135,24 @@ class Register extends React.Component {
                         <Input
                           placeholder="Password"
                           type="password"
-                          onFocus={() =>
-                            this.setState({ focusedPassword: true })
-                          }
-                          onBlur={() =>
-                            this.setState({ focusedPassword: false })
-                          }
+                          onFocus={() => this.setState({ focusedPassword: true })}
+                          onBlur={() => this.setState({ focusedPassword: false })}
                         />
                       </InputGroup>
                     </FormGroup>
                     <div className="text-muted font-italic">
                       <small>
-                        password strength:{" "}
-                        <span className="text-success font-weight-700">
-                          strong
-                        </span>
+                        password strength: <span className="text-success font-weight-700">strong</span>
                       </small>
                     </div>
                     <Row className="my-4">
                       <Col xs="12">
                         <div className="custom-control custom-control-alternative custom-checkbox">
-                          <input
-                            className="custom-control-input"
-                            id="customCheckRegister"
-                            type="checkbox"
-                          />
-                          <label
-                            className="custom-control-label"
-                            htmlFor="customCheckRegister"
-                          >
+                          <input className="custom-control-input" id="customCheckRegister" type="checkbox" />
+                          <label className="custom-control-label" htmlFor="customCheckRegister">
                             <span className="text-muted">
-                              I agree with the{" "}
-                              <a
-                                href="#pablo"
-                                onClick={e => e.preventDefault()}
-                              >
+                              I agree with the{' '}
+                              <a href="#pablo" onClick={(e) => e.preventDefault()}>
                                 Privacy Policy
                               </a>
                             </span>

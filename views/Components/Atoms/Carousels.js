@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption } from 'reactstrap';
+import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
 
 const Carousels = (props) => {
   const { items } = props;
@@ -33,7 +33,6 @@ const Carousels = (props) => {
         onExited={() => setAnimating(false)}
       >
         <img className="d-block w-100 ar-header-image" src={item.src} alt={item.altText} />
-        <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} />
       </CarouselItem>
     );
   });

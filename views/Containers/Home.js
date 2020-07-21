@@ -5,6 +5,7 @@ import * as actions from '../../actions/homeActions';
 import CustomNavBar from '../Components/Molecules/Navbars/CustomNavBar';
 import CarouselHeader from '../Components/Molecules/Headers/CarouselHeader';
 import MakeYourReservation from '../Components/Organism/Home/MakeYourReservation';
+import Main from '../Layouts/Main';
 
 class Home extends React.Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class Home extends React.Component {
         <CustomNavBar />
         <CarouselHeader />
         <MakeYourReservation />
-        <div> dñkasdkljasndkljasndlasnasldkjnasdlkjn</div>
       </>
     );
   }

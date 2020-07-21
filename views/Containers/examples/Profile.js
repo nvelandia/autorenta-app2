@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React from 'react';
 
 // reactstrap components
 import {
@@ -32,10 +32,10 @@ import {
   Progress,
   Container,
   Row,
-  Col
-} from "reactstrap";
+  Col,
+} from 'reactstrap';
 // core components
-import ProfileHeader from "components/Headers/ProfileHeader.js";
+import ProfileHeader from 'components/Headers/ProfileHeader.js';
 
 class Profile extends React.Component {
   render() {
@@ -46,40 +46,26 @@ class Profile extends React.Component {
           <Row>
             <Col className="order-xl-2" xl="4">
               <Card className="card-profile">
-                <CardImg
-                  alt="..."
-                  src={require("public/img/theme/img-1-1000x600.jpg")}
-                  top
-                />
+                <CardImg alt="..." src="/img/theme/img-1-1000x600.jpg" top />
                 <Row className="justify-content-center">
                   <Col className="order-lg-2" lg="3">
                     <div className="card-profile-image">
-                      <a href="#pablo" onClick={e => e.preventDefault()}>
-                        <img
-                          alt="..."
-                          className="rounded-circle"
-                          src={require("public/img/theme/team-4.jpg")}
-                        />
+                      <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                        <img alt="..." className="rounded-circle" src="/img/theme/team-4.jpg" />
                       </a>
                     </div>
                   </Col>
                 </Row>
                 <CardHeader className="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
                   <div className="d-flex justify-content-between">
-                    <Button
-                      className="mr-4"
-                      color="info"
-                      href="#pablo"
-                      onClick={e => e.preventDefault()}
-                      size="sm"
-                    >
+                    <Button className="mr-4" color="info" href="#pablo" onClick={(e) => e.preventDefault()} size="sm">
                       Connect
                     </Button>
                     <Button
                       className="float-right"
                       color="default"
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                       size="sm"
                     >
                       Message
@@ -136,125 +122,65 @@ class Profile extends React.Component {
                     <ListGroupItem className="px-0">
                       <Row className="align-items-center">
                         <Col className="col-auto">
-                          <a
-                            className="avatar rounded-circle"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                          >
-                            <img
-                              alt="..."
-                              src={require("public/img/theme/bootstrap.jpg")}
-                            />
+                          <a className="avatar rounded-circle" href="#pablo" onClick={(e) => e.preventDefault()}>
+                            <img alt="..." src="/img/theme/bootstrap.jpg" />
                           </a>
                         </Col>
                         <div className="col">
                           <h5>Argon Design System</h5>
-                          <Progress
-                            className="progress-xs mb-0"
-                            max="100"
-                            value="60"
-                            color="warning"
-                          />
+                          <Progress className="progress-xs mb-0" max="100" value="60" color="warning" />
                         </div>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem className="px-0">
                       <Row className="align-items-center">
                         <Col className="col-auto">
-                          <a
-                            className="avatar rounded-circle"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                          >
-                            <img
-                              alt="..."
-                              src={require("public/img/theme/angular.jpg")}
-                            />
+                          <a className="avatar rounded-circle" href="#pablo" onClick={(e) => e.preventDefault()}>
+                            <img alt="..." src="/img/theme/angular.jpg" />
                           </a>
                         </Col>
                         <div className="col">
                           <h5>Angular Now UI Kit PRO</h5>
-                          <Progress
-                            className="progress-xs mb-0"
-                            max="100"
-                            value="100"
-                            color="success"
-                          />
+                          <Progress className="progress-xs mb-0" max="100" value="100" color="success" />
                         </div>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem className="px-0">
                       <Row className="align-items-center">
                         <Col className="col-auto">
-                          <a
-                            className="avatar rounded-circle"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                          >
-                            <img
-                              alt="..."
-                              src={require("public/img/theme/sketch.jpg")}
-                            />
+                          <a className="avatar rounded-circle" href="#pablo" onClick={(e) => e.preventDefault()}>
+                            <img alt="..." src="/img/theme/sketch.jpg" />
                           </a>
                         </Col>
                         <div className="col">
                           <h5>Black Dashboard</h5>
-                          <Progress
-                            className="progress-xs mb-0"
-                            max="100"
-                            value="72"
-                            color="danger"
-                          />
+                          <Progress className="progress-xs mb-0" max="100" value="72" color="danger" />
                         </div>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem className="px-0">
                       <Row className="align-items-center">
                         <Col className="col-auto">
-                          <a
-                            className="avatar rounded-circle"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                          >
-                            <img
-                              alt="..."
-                              src={require("public/img/theme/react.jpg")}
-                            />
+                          <a className="avatar rounded-circle" href="#pablo" onClick={(e) => e.preventDefault()}>
+                            <img alt="..." src="/img/theme/react.jpg" />
                           </a>
                         </Col>
                         <div className="col">
                           <h5>React Material Dashboard</h5>
-                          <Progress
-                            className="progress-xs mb-0"
-                            max="100"
-                            value="90"
-                            color="info"
-                          />
+                          <Progress className="progress-xs mb-0" max="100" value="90" color="info" />
                         </div>
                       </Row>
                     </ListGroupItem>
                     <ListGroupItem className="px-0">
                       <Row className="align-items-center">
                         <Col className="col-auto">
-                          <a
-                            className="avatar rounded-circle"
-                            href="#pablo"
-                            onClick={e => e.preventDefault()}
-                          >
-                            <img
-                              alt="..."
-                              src={require("public/img/theme/vue.jpg")}
-                            />
+                          <a className="avatar rounded-circle" href="#pablo" onClick={(e) => e.preventDefault()}>
+                            <img alt="..." src="/img/theme/vue.jpg" />
                           </a>
                         </Col>
                         <div className="col">
                           <h5>Vue Paper UI Kit PRO</h5>
-                          <Progress
-                            className="progress-xs mb-0"
-                            max="100"
-                            value="100"
-                            color="success"
-                          />
+                          <Progress className="progress-xs mb-0" max="100" value="100" color="success" />
                         </div>
                       </Row>
                     </ListGroupItem>
@@ -269,15 +195,10 @@ class Profile extends React.Component {
                     <CardBody>
                       <Row>
                         <div className="col">
-                          <CardTitle
-                            className="text-uppercase text-muted mb-0 text-white"
-                            tag="h5"
-                          >
+                          <CardTitle className="text-uppercase text-muted mb-0 text-white" tag="h5">
                             Total traffic
                           </CardTitle>
-                          <span className="h2 font-weight-bold mb-0 text-white">
-                            350,897
-                          </span>
+                          <span className="h2 font-weight-bold mb-0 text-white">350,897</span>
                         </div>
                         <Col className="col-auto">
                           <div className="icon icon-shape bg-white text-dark rounded-circle shadow">
@@ -290,9 +211,7 @@ class Profile extends React.Component {
                           <i className="fa fa-arrow-up" />
                           3.48%
                         </span>
-                        <span className="text-nowrap text-light">
-                          Since last month
-                        </span>
+                        <span className="text-nowrap text-light">Since last month</span>
                       </p>
                     </CardBody>
                   </Card>
@@ -302,12 +221,8 @@ class Profile extends React.Component {
                     <CardBody>
                       <Row>
                         <div className="col">
-                          <CardTitle className="text-uppercase text-muted mb-0 text-white">
-                            Performance
-                          </CardTitle>
-                          <span className="h2 font-weight-bold mb-0 text-white">
-                            49,65%
-                          </span>
+                          <CardTitle className="text-uppercase text-muted mb-0 text-white">Performance</CardTitle>
+                          <span className="h2 font-weight-bold mb-0 text-white">49,65%</span>
                         </div>
                         <Col className="col-auto">
                           <div className="icon icon-shape bg-white text-dark rounded-circle shadow">
@@ -320,9 +235,7 @@ class Profile extends React.Component {
                           <i className="fa fa-arrow-up" />
                           3.48%
                         </span>
-                        <span className="text-nowrap text-light">
-                          Since last month
-                        </span>
+                        <span className="text-nowrap text-light">Since last month</span>
                       </p>
                     </CardBody>
                   </Card>
@@ -335,12 +248,7 @@ class Profile extends React.Component {
                       <h3 className="mb-0">Edit profile</h3>
                     </Col>
                     <Col className="text-right" xs="4">
-                      <Button
-                        color="primary"
-                        href="#pablo"
-                        onClick={e => e.preventDefault()}
-                        size="sm"
-                      >
+                      <Button color="primary" href="#pablo" onClick={(e) => e.preventDefault()} size="sm">
                         Settings
                       </Button>
                     </Col>
@@ -348,91 +256,53 @@ class Profile extends React.Component {
                 </CardHeader>
                 <CardBody>
                   <Form>
-                    <h6 className="heading-small text-muted mb-4">
-                      User information
-                    </h6>
+                    <h6 className="heading-small text-muted mb-4">User information</h6>
                     <div className="pl-lg-4">
                       <Row>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-username"
-                            >
+                            <label className="form-control-label" htmlFor="input-username">
                               Username
                             </label>
-                            <Input
-                              defaultValue="lucky.jesse"
-                              id="input-username"
-                              placeholder="Username"
-                              type="text"
-                            />
+                            <Input defaultValue="lucky.jesse" id="input-username" placeholder="Username" type="text" />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-email"
-                            >
+                            <label className="form-control-label" htmlFor="input-email">
                               Email address
                             </label>
-                            <Input
-                              id="input-email"
-                              placeholder="jesse@example.com"
-                              type="email"
-                            />
+                            <Input id="input-email" placeholder="jesse@example.com" type="email" />
                           </FormGroup>
                         </Col>
                       </Row>
                       <Row>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-first-name"
-                            >
+                            <label className="form-control-label" htmlFor="input-first-name">
                               First name
                             </label>
-                            <Input
-                              defaultValue="Lucky"
-                              id="input-first-name"
-                              placeholder="First name"
-                              type="text"
-                            />
+                            <Input defaultValue="Lucky" id="input-first-name" placeholder="First name" type="text" />
                           </FormGroup>
                         </Col>
                         <Col lg="6">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-last-name"
-                            >
+                            <label className="form-control-label" htmlFor="input-last-name">
                               Last name
                             </label>
-                            <Input
-                              defaultValue="Jesse"
-                              id="input-last-name"
-                              placeholder="Last name"
-                              type="text"
-                            />
+                            <Input defaultValue="Jesse" id="input-last-name" placeholder="Last name" type="text" />
                           </FormGroup>
                         </Col>
                       </Row>
                     </div>
                     <hr className="my-4" />
 
-                    <h6 className="heading-small text-muted mb-4">
-                      Contact information
-                    </h6>
+                    <h6 className="heading-small text-muted mb-4">Contact information</h6>
                     <div className="pl-lg-4">
                       <Row>
                         <Col md="12">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-address"
-                            >
+                            <label className="form-control-label" htmlFor="input-address">
                               Address
                             </label>
                             <Input
@@ -447,49 +317,26 @@ class Profile extends React.Component {
                       <Row>
                         <Col lg="4">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-city"
-                            >
+                            <label className="form-control-label" htmlFor="input-city">
                               City
                             </label>
-                            <Input
-                              defaultValue="New York"
-                              id="input-city"
-                              placeholder="City"
-                              type="text"
-                            />
+                            <Input defaultValue="New York" id="input-city" placeholder="City" type="text" />
                           </FormGroup>
                         </Col>
                         <Col lg="4">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-country"
-                            >
+                            <label className="form-control-label" htmlFor="input-country">
                               Country
                             </label>
-                            <Input
-                              defaultValue="United States"
-                              id="input-country"
-                              placeholder="Country"
-                              type="text"
-                            />
+                            <Input defaultValue="United States" id="input-country" placeholder="Country" type="text" />
                           </FormGroup>
                         </Col>
                         <Col lg="4">
                           <FormGroup>
-                            <label
-                              className="form-control-label"
-                              htmlFor="input-country"
-                            >
+                            <label className="form-control-label" htmlFor="input-country">
                               Postal code
                             </label>
-                            <Input
-                              id="input-postal-code"
-                              placeholder="Postal code"
-                              type="number"
-                            />
+                            <Input id="input-postal-code" placeholder="Postal code" type="number" />
                           </FormGroup>
                         </Col>
                       </Row>

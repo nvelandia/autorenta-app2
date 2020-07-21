@@ -419,7 +419,7 @@ class Notifications extends React.Component {
                                   <span className="btn-inner--icon mr-1">
                                     <img
                                       alt="..."
-                                      src={require("public/img/icons/common/github.svg")}
+                                      src={"/img/icons/common/github.svg")}
                                     />
                                   </span>
                                   <span className="btn-inner--text">
@@ -435,7 +435,7 @@ class Notifications extends React.Component {
                                   <span className="btn-inner--icon mr-1">
                                     <img
                                       alt="..."
-                                      src={require("public/img/icons/common/google.svg")}
+                                      src={"/img/icons/common/google.svg")}
                                     />
                                   </span>
                                   <span className="btn-inner--text">

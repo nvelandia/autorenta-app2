@@ -17,24 +17,18 @@ class Flags extends React.Component {
             </span>
           </DropdownToggle>
           <DropdownMenu>
-            <li>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                <img alt="..." src={require('public/img/icons/flags/DE.png')} />
-                Deutsch
-              </DropdownItem>
-            </li>
-            <li>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                <img alt="..." src={require('public/img/icons/flags/GB.png')} />
-                English(UK)
-              </DropdownItem>
-            </li>
-            <li>
-              <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                <img alt="..." src={require('public/img/icons/flags/US.png')} />
-                English
-              </DropdownItem>
-            </li>
+            <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+              <img alt="..." src={'/img/icons/flags/DE.png'} />
+              Deutsch
+            </DropdownItem>
+            <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+              <img alt="..." src={'/img/icons/flags/GB.png'} />
+              English(UK)
+            </DropdownItem>
+            <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+              <img alt="..." src={'/img/icons/flags/US.png'} />
+              English
+            </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
       </>

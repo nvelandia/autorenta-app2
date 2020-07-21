@@ -4,22 +4,25 @@ import Carousels from '../../Atoms/Carousels';
 
 const items = [
   {
-    src: require('public/img/custom/slide-home-1.jpg'),
+    src: '/img/custom/slide-home-1.jpg',
     altText: '',
     caption: '',
     header: '',
+    id: 1,
   },
   {
-    src: require('public/img/custom/slide-home-2.jpg'),
+    src: '/img/custom/slide-home-2.jpg',
     altText: '',
     caption: '',
     header: '',
+    id: 2,
   },
   {
-    src: require('public/img/custom/slide-home-3.jpg'),
+    src: '/img/custom/slide-home-3.jpg',
     altText: '',
     caption: '',
     header: '',
+    id: 3,
   },
 ];
 

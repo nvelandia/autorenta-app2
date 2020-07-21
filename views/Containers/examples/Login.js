@@ -14,9 +14,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React from 'react';
 // nodejs library that concatenates classes
-import classnames from "classnames";
+import classnames from 'classnames';
 // reactstrap components
 import {
   Button,
@@ -31,10 +31,10 @@ import {
   InputGroup,
   Container,
   Row,
-  Col
-} from "reactstrap";
+  Col,
+} from 'reactstrap';
 // core components
-import AuthHeader from "../../Components/Molecules/Headers/AuthHeader.js";
+import AuthHeader from '../../Components/Molecules/Headers/AuthHeader.js';
 
 class Login extends React.Component {
   state = {};
@@ -58,13 +58,10 @@ class Login extends React.Component {
                       className="btn-neutral btn-icon"
                       color="default"
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       <span className="btn-inner--icon mr-1">
-                        <img
-                          alt="..."
-                          src={require("public/img/icons/common/github.svg")}
-                        />
+                        <img alt="..." src="/img/icons/common/github.svg" />
                       </span>
                       <span className="btn-inner--text">Github</span>
                     </Button>
@@ -72,13 +69,10 @@ class Login extends React.Component {
                       className="btn-neutral btn-icon"
                       color="default"
                       href="#pablo"
-                      onClick={e => e.preventDefault()}
+                      onClick={(e) => e.preventDefault()}
                     >
                       <span className="btn-inner--icon mr-1">
-                        <img
-                          alt="..."
-                          src={require("public/img/icons/common/google.svg")}
-                        />
+                        <img alt="..." src="/img/icons/common/google.svg" />
                       </span>
                       <span className="btn-inner--text">Google</span>
                     </Button>
@@ -90,8 +84,8 @@ class Login extends React.Component {
                   </div>
                   <Form role="form">
                     <FormGroup
-                      className={classnames("mb-3", {
-                        focused: this.state.focusedEmail
+                      className={classnames('mb-3', {
+                        focused: this.state.focusedEmail,
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative">
@@ -110,7 +104,7 @@ class Login extends React.Component {
                     </FormGroup>
                     <FormGroup
                       className={classnames({
-                        focused: this.state.focusedPassword
+                        focused: this.state.focusedPassword,
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative">
@@ -122,25 +116,14 @@ class Login extends React.Component {
                         <Input
                           placeholder="Password"
                           type="password"
-                          onFocus={() =>
-                            this.setState({ focusedPassword: true })
-                          }
-                          onBlur={() =>
-                            this.setState({ focusedPassword: false })
-                          }
+                          onFocus={() => this.setState({ focusedPassword: true })}
+                          onBlur={() => this.setState({ focusedPassword: false })}
                         />
                       </InputGroup>
                     </FormGroup>
                     <div className="custom-control custom-control-alternative custom-checkbox">
-                      <input
-                        className="custom-control-input"
-                        id=" customCheckLogin"
-                        type="checkbox"
-                      />
-                      <label
-                        className="custom-control-label"
-                        htmlFor=" customCheckLogin"
-                      >
+                      <input className="custom-control-input" id=" customCheckLogin" type="checkbox" />
+                      <label className="custom-control-label" htmlFor=" customCheckLogin">
                         <span className="text-muted">Remember me</span>
                       </label>
                     </div>
@@ -154,20 +137,12 @@ class Login extends React.Component {
               </Card>
               <Row className="mt-3">
                 <Col xs="6">
-                  <a
-                    className="text-light"
-                    href="#pablo"
-                    onClick={e => e.preventDefault()}
-                  >
+                  <a className="text-light" href="#pablo" onClick={(e) => e.preventDefault()}>
                     <small>Forgot password?</small>
                   </a>
                 </Col>
                 <Col className="text-right" xs="6">
-                  <a
-                    className="text-light"
-                    href="#pablo"
-                    onClick={e => e.preventDefault()}
-                  >
+                  <a className="text-light" href="#pablo" onClick={(e) => e.preventDefault()}>
                     <small>Create new account</small>
                   </a>
                 </Col>

@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'autorenta-font';
-  src: url('./font/autorenta-font.eot?84423185');
-  src: url('./font/autorenta-font.eot?84423185#iefix') format('embedded-opentype'),
-  url('./font/autorenta-font.woff2?84423185') format('woff2'),
-  url('./font/autorenta-font.woff?84423185') format('woff'),
-  url('./font/autorenta-font.ttf?84423185') format('truetype'),
-  url('./font/autorenta-font.svg?84423185#autorenta-font') format('svg');
+  src: url('/font/font/autorenta-font.eot?84423185');
+  src: url('/font/font/autorenta-font.eot?84423185#iefix') format('embedded-opentype'),
+  url('/font/font/autorenta-font.woff2?84423185') format('woff2'),
+  url('/font/font/autorenta-font.woff?84423185') format('woff'),
+  url('/font/font/autorenta-font.ttf?84423185') format('truetype'),
+  url('/font/font/autorenta-font.svg?84423185#autorenta-font') format('svg');
   font-weight: bolder;
   font-style: normal;
 }

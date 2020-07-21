@@ -1,0 +1,3 @@
+Logo de Autorenta con letra en Times New Roman
+SVG de los íconos en lo posbile cuadrados para mejor manejo
+Widget de steps de renta

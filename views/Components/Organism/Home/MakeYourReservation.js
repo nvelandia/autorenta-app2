@@ -20,130 +20,178 @@ import {
 class MakeYourReservation extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      placeToPickUp: '',
+      placeToDeliver: '',
+      dateToPickUp: '',
+      dateToDeliver: '',
+      countrySelected: '',
+      ageSelected: '',
+      carTypeSelected: '',
+    };
   }
 
   render() {
     return (
-      <Container className="mt--9 pb-5">
+      <Container className="mt--10 pb-5">
         <Row className="justify-content-center">
           <Col lg="9" md="8">
-            <Card className="bg-secondary border-0">
-              <CardHeader className="bg-transparent pb-5">
-                <div className="text-muted text-center mt-2 mb-4">
-                  <small>Sign up with</small>
-                </div>
-                <div className="text-center">
-                  <Button
-                    className="btn-neutral btn-icon mr-4"
-                    color="default"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <span className="btn-inner--icon mr-1">
-                      <img alt="..." src={require('public/img/icons/common/github.svg')} />
-                    </span>
-                    <span className="btn-inner--text">Github</span>
-                  </Button>
-                  <Button
-                    className="btn-neutral btn-icon"
-                    color="default"
-                    href="#pablo"
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <span className="btn-inner--icon mr-1">
-                      <img alt="..." src={require('public/img/icons/common/google.svg')} />
-                    </span>
-                    <span className="btn-inner--text">Google</span>
-                  </Button>
-                </div>
-              </CardHeader>
+            <Row className="justify-content-center">
+              <Col lg="7" md="5" className="ar-card-header">
+                <CardHeader className=" p-3 ar-border-round">
+                  <Row className="text-muted text-center mb-0 justify-content-center">
+                    <h2 className="mb-0">Haz tu reserva en&nbsp;</h2>
+                    <h2 className="mb-0 ar-red-text">sólo 3 pasos</h2>
+                  </Row>
+                </CardHeader>
+              </Col>
+            </Row>
+            <Card className=" border-0 mb-0 ar-border-round">
               <CardBody className="px-lg-5 py-lg-5">
                 <div className="text-center text-muted mb-4">
-                  <small>Or sign up with credentials</small>
+                  <small>O--------------------------O------------------------O</small>
                 </div>
                 <Form role="form">
-                  <FormGroup
-                    className={classnames({
-                      //focused: this.state.focusedName
-                    })}
-                  >
-                    <InputGroup className="input-group-merge input-group-alternative mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="ni ni-hat-3" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        placeholder="Name"
-                        type="text"
-                        onFocus={() => this.setState({ focusedName: true })}
-                        onBlur={() => this.setState({ focusedName: false })}
-                      />
-                    </InputGroup>
-                  </FormGroup>
-                  <FormGroup
-                    className={classnames({
-                      //focused: this.state.focusedEmail
-                    })}
-                  >
-                    <InputGroup className="input-group-merge input-group-alternative mb-3">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="ni ni-email-83" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        placeholder="Email"
-                        type="email"
-                        onFocus={() => this.setState({ focusedEmail: true })}
-                        onBlur={() => this.setState({ focusedEmail: false })}
-                      />
-                    </InputGroup>
-                  </FormGroup>
-                  <FormGroup
-                    className={classnames({
-                      //focused: this.state.focusedPassword
-                    })}
-                  >
-                    <InputGroup className="input-group-merge input-group-alternative">
-                      <InputGroupAddon addonType="prepend">
-                        <InputGroupText>
-                          <i className="ni ni-lock-circle-open" />
-                        </InputGroupText>
-                      </InputGroupAddon>
-                      <Input
-                        placeholder="Password"
-                        type="password"
-                        onFocus={() => this.setState({ focusedPassword: true })}
-                        onBlur={() => this.setState({ focusedPassword: false })}
-                      />
-                    </InputGroup>
-                  </FormGroup>
-                  <div className="text-muted font-italic">
-                    <small>
-                      password strength: <span className="text-success font-weight-700">strong</span>
-                    </small>
-                  </div>
-                  <Row className="my-4">
-                    <Col xs="12">
-                      <div className="custom-control custom-control-alternative custom-checkbox">
-                        <input className="custom-control-input" id="customCheckRegister" type="checkbox" />
-                        <label className="custom-control-label" htmlFor="customCheckRegister">
-                          <span className="text-muted">
-                            I agree with the{' '}
-                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                              Privacy Policy
-                            </a>
-                          </span>
-                        </label>
-                      </div>
+                  <Row>
+                    <Col lg="6" md="6">
+                      <FormGroup
+                        className={classnames({
+                          focused: this.state.placeToPickUp,
+                        })}
+                      >
+                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-pin-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input
+                            placeholder="¿Dónde quieres retirar el vehículo?"
+                            type="text"
+                            onFocus={() => this.setState({ placeToPickUp: true })}
+                            onBlur={() => this.setState({ placeToPickUp: false })}
+                          />
+                        </InputGroup>
+                      </FormGroup>
+                      <FormGroup
+                        className={classnames({
+                          focused: this.state.placeToDeliver,
+                        })}
+                      >
+                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-pin-3" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input
+                            placeholder="¿Dónde quieres entregar el vehículo?"
+                            type="text"
+                            onFocus={() => this.setState({ placeToDeliver: true })}
+                            onBlur={() => this.setState({ placeToDeliver: false })}
+                          />
+                        </InputGroup>
+                      </FormGroup>
+                    </Col>
+                    <Col lg="6" md="6">
+                      <FormGroup
+                        className={classnames({
+                          focused: this.state.dateToPickUp,
+                        })}
+                      >
+                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-calendar-grid-58" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input
+                            placeholder="Fecha y hora de retiro"
+                            type="text"
+                            onFocus={() => this.setState({ dateToPickUp: true })}
+                            onBlur={() => this.setState({ dateToPickUp: false })}
+                          />
+                        </InputGroup>
+                      </FormGroup>
+                      <FormGroup
+                        className={classnames({
+                          focused: this.state.dateToDeliver,
+                        })}
+                      >
+                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="ni ni-calendar-grid-58" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input
+                            placeholder="Fecha y hora de entrega"
+                            type="text"
+                            onFocus={() => this.setState({ dateToDeliver: true })}
+                            onBlur={() => this.setState({ dateToDeliver: false })}
+                          />
+                        </InputGroup>
+                      </FormGroup>
                     </Col>
                   </Row>
-                  <div className="text-center">
-                    <Button className="mt-4" color="info" type="button">
-                      Create account
-                    </Button>
-                  </div>
+                  <Row>
+                    <Col lg="4" md="6">
+                      <FormGroup
+                        className={classnames({
+                          focused: this.state.countrySelected,
+                        })}
+                      >
+                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                          <Input
+                            placeholder="País de residencia"
+                            type="text"
+                            onFocus={() => this.setState({ countrySelected: true })}
+                            onBlur={() => this.setState({ countrySelected: false })}
+                          />
+                        </InputGroup>
+                      </FormGroup>
+                    </Col>
+                    <Col lg="2" md="6">
+                      <FormGroup
+                        className={classnames({
+                          focused: this.state.ageSelected,
+                        })}
+                      >
+                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                          <Input
+                            placeholder="Edad"
+                            type="text"
+                            onFocus={() => this.setState({ ageSelected: true })}
+                            onBlur={() => this.setState({ ageSelected: false })}
+                          />
+                        </InputGroup>
+                      </FormGroup>
+                    </Col>
+                    <Col lg="4" md="6">
+                      <FormGroup
+                        className={classnames({
+                          focused: this.state.carTypeSelected,
+                        })}
+                      >
+                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                          <Input
+                            placeholder="Tipo de vehículo"
+                            type="text"
+                            onFocus={() => this.setState({ carTypeSelected: true })}
+                            onBlur={() => this.setState({ carTypeSelected: false })}
+                          />
+                        </InputGroup>
+                      </FormGroup>
+                    </Col>
+                    <Col lg="2" md="6" className="p-0">
+                      <Button className=" btn-icon ar-round ar-nav-button ar-button-blue" color="default" href="">
+                        <span className="nav-link-inner--text">Buscar </span>
+                        <span className="btn-inner--icon">
+                          <span className="icon-chevron-right-solid" />
+                        </span>
+                      </Button>
+                    </Col>
+                  </Row>
                 </Form>
               </CardBody>
             </Card>
