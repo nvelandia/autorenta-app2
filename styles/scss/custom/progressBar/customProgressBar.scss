@@ -1,0 +1,31 @@
+.ar-circle{
+  font-size: 0.9rem;
+  color: $ar-color-white-0;
+  font-weight: bolder;
+  text-align: center;
+  border: solid;
+  border-width: 0.4rem;
+  border-radius: 50px;
+  border-color: $ar-color-white-3;
+  width: 2.3rem;
+  height: 2.3rem;
+  display: block;
+  background-color: $ar-color-light-blue-0;
+  .ar-done{
+
+  }
+}
+
+.ar-active{
+  background-color: $ar-color-red-0;
+}
+
+.ar-bar{
+  margin-top: -1.9rem;
+}
+
+.ar-title-bar{
+  padding-left: 12%;
+  font-size: 0.9rem;
+  font-weight: bold;
+}

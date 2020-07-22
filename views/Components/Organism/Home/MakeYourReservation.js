@@ -16,6 +16,7 @@ import {
   InputGroupText,
   Row,
 } from 'reactstrap';
+import ProgressBar from '../../Atoms/ProgressBar';
 
 class MakeYourReservation extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class MakeYourReservation extends React.Component {
             <Card className=" border-0 mb-0 ar-border-round">
               <CardBody className="px-lg-5 py-lg-5">
                 <div className="text-center text-muted mb-4">
-                  <small>O--------------------------O------------------------O</small>
+                  <ProgressBar />
                 </div>
                 <Form role="form">
                   <Row>
@@ -59,13 +60,14 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.placeToPickUp,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                           <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-pin-3" />
+                            <InputGroupText className="ar-round-input-left">
+                              <i className="icon-location-icon ar-round-input-left" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
+                            className="ar-round-input-right"
                             placeholder="¿Dónde quieres retirar el vehículo?"
                             type="text"
                             onFocus={() => this.setState({ placeToPickUp: true })}
@@ -78,13 +80,14 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.placeToDeliver,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                           <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-pin-3" />
+                            <InputGroupText className="ar-round-input-left">
+                              <i className="icon-location-icon ar-round-input-left" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
+                            className="ar-round-input-right"
                             placeholder="¿Dónde quieres entregar el vehículo?"
                             type="text"
                             onFocus={() => this.setState({ placeToDeliver: true })}
@@ -99,13 +102,14 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.dateToPickUp,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                           <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-calendar-grid-58" />
+                            <InputGroupText className="ar-round-input-left">
+                              <i className="icon-calendar-icon ar-round-input-left" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
+                            className="ar-round-input-right"
                             placeholder="Fecha y hora de retiro"
                             type="text"
                             onFocus={() => this.setState({ dateToPickUp: true })}
@@ -118,13 +122,14 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.dateToDeliver,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                           <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-calendar-grid-58" />
+                            <InputGroupText className="ar-round-input-left">
+                              <i className="icon-calendar-icon ar-round-input-left" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
+                            className="ar-round-input-right"
                             placeholder="Fecha y hora de entrega"
                             type="text"
                             onFocus={() => this.setState({ dateToDeliver: true })}
@@ -141,8 +146,9 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.countrySelected,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                           <Input
+                            className="ar-round-input bg-ar-white-1"
                             placeholder="País de residencia"
                             type="text"
                             onFocus={() => this.setState({ countrySelected: true })}
@@ -157,8 +163,9 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.ageSelected,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                           <Input
+                            className="ar-round-input bg-ar-white-1"
                             placeholder="Edad"
                             type="text"
                             onFocus={() => this.setState({ ageSelected: true })}
@@ -173,8 +180,9 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.carTypeSelected,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3">
+                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                           <Input
+                            className="ar-round-input bg-ar-white-1"
                             placeholder="Tipo de vehículo"
                             type="text"
                             onFocus={() => this.setState({ carTypeSelected: true })}
@@ -187,7 +195,7 @@ class MakeYourReservation extends React.Component {
                       <Button className=" btn-icon ar-round ar-nav-button ar-button-blue" color="default" href="">
                         <span className="nav-link-inner--text">Buscar </span>
                         <span className="btn-inner--icon">
-                          <span className="icon-chevron-right-solid" />
+                          <span className="icon-chevron-right" />
                         </span>
                       </Button>
                     </Col>

@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'autorenta-font';
-  src: url('/font/font/autorenta-font.eot?84423185');
-  src: url('/font/font/autorenta-font.eot?84423185#iefix') format('embedded-opentype'),
-  url('/font/font/autorenta-font.woff2?84423185') format('woff2'),
-  url('/font/font/autorenta-font.woff?84423185') format('woff'),
-  url('/font/font/autorenta-font.ttf?84423185') format('truetype'),
-  url('/font/font/autorenta-font.svg?84423185#autorenta-font') format('svg');
-  font-weight: bolder;
+  font-family: 'auto-renta-font';
+  src: url('/font/font/auto-renta-font.eot?5294203');
+  src: url('/font/font/auto-renta-font.eot?5294203#iefix') format('embedded-opentype'),
+  url('/font/font/auto-renta-font.woff2?5294203') format('woff2'),
+  url('/font/font/auto-renta-font.woff?5294203') format('woff'),
+  url('/font/font/auto-renta-font.ttf?5294203') format('truetype'),
+  url('/font/font/auto-renta-font.svg?5294203#auto-renta-font') format('svg');
+  font-weight: normal;
   font-style: normal;
 }
 /* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
@@ -14,16 +14,16 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'autorenta-font';
-    src: url('../font/autorenta-font.svg?84423185#autorenta-font') format('svg');
+    font-family: 'auto-renta-font';
+    src: url('../font/auto-renta-font.svg?5294203#auto-renta-font') format('svg');
   }
 }
 */
 
 [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "autorenta-font";
+  font-family: "auto-renta-font";
   font-style: normal;
-  font-weight: bolder;
+  font-weight: normal;
   speak: never;
 
   display: inline-block;
@@ -56,16 +56,15 @@
 }
 
 .icon-calendar-icon:before { content: '\e800'; } /* '' */
-.icon-chevron-right-solid:before { content: '\e801'; } /* '' */
-.icon-footer-facebook-logo:before { content: '\e802'; } /* '' */
-.icon-footer-instagram-logo:before { content: '\e803'; } /* '' */
-.icon-footer-linkedin-logo:before { content: '\e804'; } /* '' */
-.icon-footer-twitter-logo:before { content: '\e805'; } /* '' */
-.icon-footer-whatsapp-logo:before { content: '\e806'; } /* '' */
-.icon-home-icon:before { content: '\e807'; } /* '' */
-.icon-language-icon:before { content: '\e808'; } /* '' */
-.icon-location-icon:before { content: '\e809'; } /* '' */
-.icon-menu-down-arrow:before { content: '\e80a'; } /* '' */
-.icon-menu-up-arrow:before { content: '\e80b'; } /* '' */
-.icon-slider-left-arrow:before { content: '\e80c'; } /* '' */
-.icon-slider-right-arrow:before { content: '\e80d'; } /* '' */
+.icon-chevron-down:before { content: '\e801'; } /* '' */
+.icon-chevron-left:before { content: '\e802'; } /* '' */
+.icon-chevron-right:before { content: '\e803'; } /* '' */
+.icon-chevron-up:before { content: '\e804'; } /* '' */
+.icon-footer-facebook-logo:before { content: '\e805'; } /* '' */
+.icon-footer-instagram-logo:before { content: '\e806'; } /* '' */
+.icon-footer-linkedin-logo:before { content: '\e807'; } /* '' */
+.icon-footer-twitter-logo:before { content: '\e808'; } /* '' */
+.icon-footer-whatsapp-logo:before { content: '\e809'; } /* '' */
+.icon-home-icon:before { content: '\e80a'; } /* '' */
+.icon-language-icon:before { content: '\e80b'; } /* '' */
+.icon-location-icon:before { content: '\e80c'; } /* '' */

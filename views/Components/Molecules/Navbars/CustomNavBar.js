@@ -125,7 +125,7 @@ class CustomNavbar extends React.Component {
                 <Button className=" btn-icon ar-round ar-nav-button ar-button-blue" color="default" href="">
                   <span className="nav-link-inner--text">Reservar </span>
                   <span className="btn-inner--icon">
-                    <span className="icon-chevron-right-solid" />
+                    <span className="icon-chevron-right" />
                   </span>
                 </Button>
               </NavItem>

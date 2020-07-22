@@ -1,0 +1,25 @@
+.ar-round-input{
+  color: #dc0023;
+  border-radius: 2rem;
+  border: solid;
+  border-color: $ar-color-white-4;
+  border-width: thin;
+}
+
+.ar-round-input-right{
+  color: #32325d !important;
+  background-color: inherit;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+
+.ar-round-input-left{
+  color: $ar-color-light-blue-1;
+  background-color: inherit;
+  padding-left: 0.5rem;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  i{
+    font-size: 1.1rem;
+  }
+}

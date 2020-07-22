@@ -1,3 +1,66 @@
 .ar-red-text{
   color: $ar-color-red-0;
 }
+
+.ar-red-1-text{
+  color: $ar-color-red-1;
+}
+
+.ar-blue-1-text{
+  color: $ar-color-blue-1;
+}
+
+.ar-blue-3-text{
+  color: $ar-color-blue-3;
+}
+
+.ar-orange-text{
+  color: $ar-color-orange-0;
+}
+
+.bg-ar-red-0{
+  background-color: $ar-color-red-0;
+}
+
+.bg-ar-red-1{
+  background-color: $ar-color-red-1;
+}
+
+.bg-ar-white-1{
+  background-color: $ar-color-white-1;
+}
+
+.bg-ar-white-3{
+  background-color: $ar-color-white-3;
+}
+
+//Margins
+
+.m--10 {
+  margin: -13rem !important; }
+
+.mt--10,
+.my--10 {
+  margin-top: -13rem !important; }
+
+.mr--10,
+.mx--10 {
+  margin-right: -13rem !important; }
+
+.mb--10,
+.my--10 {
+  margin-bottom: -13rem !important; }
+
+.ml--10,
+.mx--10 {
+  margin-left: -13rem !important; }
+
+//Widths
+
+.w-20{
+  width: 20%
+}
+
+.w-23{
+  width: 23%
+}

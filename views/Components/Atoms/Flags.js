@@ -13,7 +13,7 @@ class Flags extends React.Component {
             </span>{' '}
             ES{' '}
             <span className="btn-inner--icon">
-              <span className="icon-menu-down-arrow" />
+              <span className="icon-chevron-down" />
             </span>
           </DropdownToggle>
           <DropdownMenu>
