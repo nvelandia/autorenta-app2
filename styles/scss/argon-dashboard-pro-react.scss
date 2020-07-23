@@ -73,17 +73,18 @@
 @import 'react/react-differences';
 
 // Custom Font
-@import "custom/font/customFont";
+@import "custom/customFont";
 
 // Custom Colors
 @import "custom/colors";
 
 // Custom Styles
-@import "custom/navbar/customNavbar";
-@import "custom/button/customButton";
-@import "custom/carousel/customCarousel";
-@import "custom/container/customContainer";
-@import "custom/general/customGeneral";
-@import "custom/input/customInputs";
-@import "custom/progressBar/customProgressBar";
-@import "custom/cards/customCards";
+@import "custom/customNavbar";
+@import "custom/customButton";
+@import "custom/customCarousel";
+@import "custom/customContainer";
+@import "custom/customGeneral";
+@import "custom/customInputs";
+@import "custom/customProgressBar";
+@import "custom/customCards";
+@import "custom/customBanner";

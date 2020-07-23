@@ -6,7 +6,9 @@ class CustomFooter extends React.Component {
     return (
       <>
         <Row>
-          <Col></Col>
+          <Col>
+              
+          </Col>
         </Row>
       </>
     );

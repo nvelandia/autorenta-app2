@@ -8,6 +8,7 @@ import MakeYourReservation from '../Components/Organism/Home/MakeYourReservation
 import Main from '../Layouts/Main';
 import Offer from '../Components/Organism/Home/Offer';
 import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
+import Banner from "../Components/Molecules/banners/Banner";
 
 class Home extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Home extends React.Component {
         <CarouselHeader />
         <MakeYourReservation />
         <Offer />
+        <Banner />
         <CustomFooter />
       </>
     );

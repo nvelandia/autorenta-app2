@@ -1,0 +1,29 @@
+.ar-banner{
+  height: 90px;
+  margin-top: 80px;
+  .ar-banner-container{
+    height: 100%;
+  }
+}
+
+.ar-store-logo{
+  width: 8vw;
+}
+
+.ar-app-logo{
+  width: 100%;
+  position: absolute;
+  top: -93%;
+}
+
+.ar-logo-text-container{
+  display: flex;
+  justify-content: center;
+  padding: 0px;
+  align-items: center;
+  height: 100%;
+}
+
+.ar-app-logo-container{
+  display: flex;
+}
