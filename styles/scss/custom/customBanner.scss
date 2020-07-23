@@ -7,23 +7,25 @@
 }
 
 .ar-store-logo{
-  width: 8vw;
+  width: 100%;
 }
 
 .ar-app-logo{
   width: 100%;
-  position: absolute;
-  top: -93%;
 }
 
 .ar-logo-text-container{
   display: flex;
   justify-content: center;
-  padding: 0px;
+  padding: 5px;
   align-items: center;
   height: 100%;
 }
 
 .ar-app-logo-container{
   display: flex;
+  align-items: end;
+  div{
+    position: absolute;
+  }
 }

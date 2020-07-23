@@ -11,18 +11,16 @@ class Banner extends React.Component {
               <Col className="ar-logo-text-container" lg="6" md="6" xs="12">
                 <h3 className="m-0">¿Ya conoces nuestra nueva App? Descárgala para iPhone y Android</h3>
               </Col>
-              <Col lg="6" md="6">
-                <Row className="ar-banner-container">
-                  <Col className="ar-logo-text-container ml-2 mr-2" lg="3" xs="6">
-                    <img className="ar-store-logo" src={'/img/custom/google-play-logo.png'} />
-                  </Col>
-                  <Col className="ar-logo-text-container ml-2 mr-2" lg="3" xs="6">
-                    <img className="ar-store-logo" src={'/img/custom/google-play-logo.png'} />
-                  </Col>
-                  <Col className="ar-app-logo-container p-0">
-                    <img className="ar-app-logo" src={'/img/custom/app-autorenta-image.png'} />
-                  </Col>
-                </Row>
+              <Col className="ar-logo-text-container ml-3 mr-3">
+                <img className="ar-store-logo" src={'/img/custom/google-play-logo.png'} />
+              </Col>
+              <Col className="ar-logo-text-container ml-3 mr-3">
+                <img className="ar-store-logo" src={'/img/custom/google-play-logo.png'} />
+              </Col>
+              <Col className="ar-app-logo-container p-0" lg="2">
+                <div>
+                  <img className="ar-app-logo" src={'/img/custom/app-autorenta-image.png'} />
+                </div>
               </Col>
             </Row>
           </Col>
