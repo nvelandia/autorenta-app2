@@ -9,7 +9,7 @@ class Banner extends React.Component {
           <Col lg="9">
             <Row className="justify-content-between ar-banner-container">
               <Col className="ar-logo-text-container" lg="6" md="6" xs="12">
-                <h3 className="m-0">¿Ya conoces nuestra nueva App? Descárgala para iPhone y Android</h3>
+                <h3 className="m-0 ar-blue-8-text">¿Ya conoces nuestra nueva App? Descárgala para iPhone y Android</h3>
               </Col>
               <Col className="ar-logo-text-container ml-3 mr-3">
                 <img className="ar-store-logo" src={'/img/custom/google-play-logo.png'} />

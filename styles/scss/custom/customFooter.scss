@@ -1,0 +1,32 @@
+.ar-footer{
+  .ar-footer-up{
+    height: 300px;
+    .ar-subscribe{
+      height: 40%;
+      width: 100%;
+      border-bottom: solid;
+      border-bottom-color: $ar-color-blue-7;
+      border-width: thin;
+      div{
+        display: flex;
+        align-items: center;
+      }
+    }
+    .ar-links{
+      height: 60%;
+      .ar-group-links{
+        .ar-link{
+          color: $ar-color-white-1;
+          font-size: 0.80rem;
+        }
+      }
+
+      .ar-logo-footer{
+        width: 100%;
+      }
+    }
+  }
+  .ar-footer-down{
+    height: 100px;
+  }
+}
