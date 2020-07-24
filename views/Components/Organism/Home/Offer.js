@@ -39,17 +39,19 @@ class Offer extends React.Component {
   renderCards = () => {
     return this.state.cards.map((card) => {
       return (
-        <Card className="w-23">
-          <CardImg alt="..." src={card.img} top />
-          <CardBody>
-            <CardTitle className={`ar-title ${card.color}`}>{card.title}</CardTitle>
-            <Row className="justify-content-center">
-              <Button className={`ar-round  ar-promo-button ${card.button} w-100 ml-4 mr-4`}>
-                Ver mas información <i className="icon-chevron-right" />
-              </Button>
-            </Row>
-          </CardBody>
-        </Card>
+        <Col className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
+          <Card className="w-auto m-2">
+            <CardImg alt="..." src={card.img} top />
+            <CardBody>
+              <CardTitle className={`ar-card-title ${card.color}`}>{card.title}</CardTitle>
+              <Row className="justify-content-center">
+                <Button className={`ar-round  ar-promo-button ${card.button} w-100 ml-4 mr-4`}>
+                  Ver mas información <i className="icon-chevron-right" />
+                </Button>
+              </Row>
+            </CardBody>
+          </Card>
+        </Col>
       );
     });
   };
@@ -63,7 +65,7 @@ class Offer extends React.Component {
               <h2>Descubre todas las ofertas y promociones</h2>
             </Col>
           </Row>
-          <Row className="justify-content-lg-between mt-5">{this.renderCards()}</Row>
+          <Row className="justify-content-md-around justify-content-sm-center  mt-5">{this.renderCards()}</Row>
         </Col>
       </Row>
     );
