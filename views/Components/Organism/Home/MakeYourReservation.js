@@ -20,6 +20,7 @@ import {
 } from 'reactstrap';
 import ProgressBar from '../../Atoms/ProgressBar';
 import RangeDatePicker from '../../Atoms/RangeDatePicker';
+import CustomDropDown from '../../Atoms/CustomDropDown';
 
 class MakeYourReservation extends React.Component {
   constructor(props) {
@@ -124,52 +125,34 @@ class MakeYourReservation extends React.Component {
                     <Col lg="4" md="6">
                       <FormGroup
                         className={classnames({
-                          focused: this.state.countrySelectedFocus,
+                          focused: this.state.ageSelected,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
-                          <Input
-                            className="ar-round-input bg-ar-white-1"
-                            placeholder="País de residencia"
-                            type="text"
-                            onFocus={() => this.setState({ countrySelectedFocus: true })}
-                            onBlur={() => this.setState({ countrySelectedFocus: false })}
-                          />
-                        </InputGroup>
+                        <CustomDropDown
+                          title={'País de residencia'}
+                          items={['Argentina', 'Brasil', 'Estados Unidos']}
+                        />
                       </FormGroup>
                     </Col>
-                    <Col lg="2" md="6">
+                    <Col lg="2" md="6" className="pl-lg-0">
                       <FormGroup
                         className={classnames({
                           focused: this.state.ageSelected,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
-                          <Input
-                            className="ar-round-input bg-ar-white-1"
-                            placeholder="Edad"
-                            type="text"
-                            onFocus={() => this.setState({ ageSelected: true })}
-                            onBlur={() => this.setState({ ageSelected: false })}
-                          />
-                        </InputGroup>
+                        <CustomDropDown title={'Edad'} items={['-18', '+18', '+25']} />
                       </FormGroup>
                     </Col>
                     <Col lg="4" md="6">
                       <FormGroup
                         className={classnames({
-                          focused: this.state.carTypeSelected,
+                          focused: this.state.ageSelected,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
-                          <Input
-                            className="ar-round-input bg-ar-white-1"
-                            placeholder="Tipo de vehículo"
-                            type="text"
-                            onFocus={() => this.setState({ carTypeSelected: true })}
-                            onBlur={() => this.setState({ carTypeSelected: false })}
-                          />
-                        </InputGroup>
+                        <CustomDropDown
+                          title={'País de residencia'}
+                          items={['Argentina', 'Brasil', 'Estados Unidos']}
+                        />
                       </FormGroup>
                     </Col>
                     <Col lg="2" md="6" className="p-0">
