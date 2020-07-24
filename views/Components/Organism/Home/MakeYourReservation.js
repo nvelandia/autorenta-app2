@@ -14,23 +14,42 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText,
+  ListGroup,
+  ListGroupItem,
   Row,
 } from 'reactstrap';
 import ProgressBar from '../../Atoms/ProgressBar';
+import RangeDatePicker from '../../Atoms/RangeDatePicker';
 
 class MakeYourReservation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      placeToPickUp: '',
-      placeToDeliver: '',
-      dateToPickUp: '',
-      dateToDeliver: '',
+      placeToPickUpFocus: '',
+      placeToDeliverFocus: '',
+      dateToPickUpFocus: '',
+      dateToDeliverFocus: '',
       countrySelected: '',
       ageSelected: '',
       carTypeSelected: '',
     };
   }
+
+  renderListGroup = () => {
+    const placeToPickUpOptions = ['San Juan', 'San Francisco'];
+
+    return (
+      <ListGroup className="ar-list-group">
+        {placeToPickUpOptions.map((option) => {
+          return (
+            <ListGroupItem tag="button" action>
+              {option}
+            </ListGroupItem>
+          );
+        })}
+      </ListGroup>
+    );
+  };
 
   render() {
     return (
@@ -57,7 +76,7 @@ class MakeYourReservation extends React.Component {
                     <Col lg="6" md="6">
                       <FormGroup
                         className={classnames({
-                          focused: this.state.placeToPickUp,
+                          focused: this.state.placeToPickUpFocus,
                         })}
                       >
                         <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
@@ -70,14 +89,15 @@ class MakeYourReservation extends React.Component {
                             className="ar-round-input-right"
                             placeholder="¿Dónde quieres retirar el vehículo?"
                             type="text"
-                            onFocus={() => this.setState({ placeToPickUp: true })}
-                            onBlur={() => this.setState({ placeToPickUp: false })}
+                            onFocus={() => this.setState({ placeToPickUpFocus: true })}
+                            onBlur={() => this.setState({ placeToPickUpFocus: false })}
                           />
                         </InputGroup>
+                        {this.state.placeToPickUpFocus === 's' ? this.renderListGroup() : null}
                       </FormGroup>
                       <FormGroup
                         className={classnames({
-                          focused: this.state.placeToDeliver,
+                          focused: this.state.placeToDeliverFocus,
                         })}
                       >
                         <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
@@ -90,60 +110,21 @@ class MakeYourReservation extends React.Component {
                             className="ar-round-input-right"
                             placeholder="¿Dónde quieres entregar el vehículo?"
                             type="text"
-                            onFocus={() => this.setState({ placeToDeliver: true })}
-                            onBlur={() => this.setState({ placeToDeliver: false })}
+                            onFocus={() => this.setState({ placeToDeliverFocus: true })}
+                            onBlur={() => this.setState({ placeToDeliverFocus: false })}
                           />
                         </InputGroup>
                       </FormGroup>
                     </Col>
                     <Col lg="6" md="6">
-                      <FormGroup
-                        className={classnames({
-                          focused: this.state.dateToPickUp,
-                        })}
-                      >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText className="ar-round-input-left">
-                              <i className="icon-calendar-icon ar-round-input-left" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            className="ar-round-input-right"
-                            placeholder="Fecha y hora de retiro"
-                            type="text"
-                            onFocus={() => this.setState({ dateToPickUp: true })}
-                            onBlur={() => this.setState({ dateToPickUp: false })}
-                          />
-                        </InputGroup>
-                      </FormGroup>
-                      <FormGroup
-                        className={classnames({
-                          focused: this.state.dateToDeliver,
-                        })}
-                      >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText className="ar-round-input-left">
-                              <i className="icon-calendar-icon ar-round-input-left" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            className="ar-round-input-right"
-                            placeholder="Fecha y hora de entrega"
-                            type="text"
-                            onFocus={() => this.setState({ dateToDeliver: true })}
-                            onBlur={() => this.setState({ dateToDeliver: false })}
-                          />
-                        </InputGroup>
-                      </FormGroup>
+                      <RangeDatePicker />
                     </Col>
                   </Row>
                   <Row>
                     <Col lg="4" md="6">
                       <FormGroup
                         className={classnames({
-                          focused: this.state.countrySelected,
+                          focused: this.state.countrySelectedFocus,
                         })}
                       >
                         <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
@@ -151,8 +132,8 @@ class MakeYourReservation extends React.Component {
                             className="ar-round-input bg-ar-white-1"
                             placeholder="País de residencia"
                             type="text"
-                            onFocus={() => this.setState({ countrySelected: true })}
-                            onBlur={() => this.setState({ countrySelected: false })}
+                            onFocus={() => this.setState({ countrySelectedFocus: true })}
+                            onBlur={() => this.setState({ countrySelectedFocus: false })}
                           />
                         </InputGroup>
                       </FormGroup>

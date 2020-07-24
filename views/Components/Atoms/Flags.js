@@ -17,17 +17,14 @@ class Flags extends React.Component {
             </span>
           </DropdownToggle>
           <DropdownMenu>
-            <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-              <img alt="..." src={'/img/icons/flags/DE.png'} />
-              Deutsch
+            <DropdownItem href="#EN" onClick={(e) => e.preventDefault()}>
+              EN
             </DropdownItem>
-            <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-              <img alt="..." src={'/img/icons/flags/GB.png'} />
-              English(UK)
+            <DropdownItem href="#ES" onClick={(e) => e.preventDefault()}>
+              ES
             </DropdownItem>
-            <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-              <img alt="..." src={'/img/icons/flags/US.png'} />
-              English
+            <DropdownItem href="#PT" onClick={(e) => e.preventDefault()}>
+              PT
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>

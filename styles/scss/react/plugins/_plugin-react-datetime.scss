@@ -54,23 +54,8 @@
   text-align: center;
   padding: 10px;
   border-radius: 4px;
-  visibility: hidden;
+  visibility: visible;
   position: relative;
-  &:before {
-    visibility: visible;
-    width: 100%;
-    height: 100%;
-    border-radius: 3px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font: normal normal normal 1em/1 "Nucleo";
-    font-size: 18px;
-    content: "\EA5E";
-  }
 }
 
 .rdtPicker table {
@@ -103,7 +88,7 @@
   &.start-date:hover,
   &.end-date:hover,
   &.middle-date:hover {
-    background-color: $info !important;
+    background-color: $ar-color-red-0 !important;
     color: $white !important;
   }
   &.start-date{
@@ -299,9 +284,9 @@ td.rdtYear:hover {
 .rdtCounters {
   .rdtCounter:last-child {
     .rdtCount {
-      color: $info;
+      color: $ar-color-red-0;
       border-radius: 50%;
-      border: 1px solid $info;
+      border: 1px solid $ar-color-red-0;
     }
   }
 }

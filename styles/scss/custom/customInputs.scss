@@ -1,5 +1,4 @@
 .ar-round-input{
-  color: #dc0023;
   border-radius: 2rem;
   border: solid;
   border-color: $ar-color-white-4;
@@ -25,4 +24,11 @@
   i{
     font-size: 1.1rem;
   }
+}
+
+.ar-list-group{
+  margin-top: -1rem;
+  position: absolute;
+  z-index: 5;
+  width: 92%;
 }
