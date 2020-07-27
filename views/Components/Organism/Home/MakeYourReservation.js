@@ -149,10 +149,7 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.ageSelected,
                         })}
                       >
-                        <CustomDropDown
-                          title={'País de residencia'}
-                          items={['Argentina', 'Brasil', 'Estados Unidos']}
-                        />
+                        <CustomDropDown title={'Tipo de vehículo'} items={['Deportivo', 'Exótico', 'Familiar']} />
                       </FormGroup>
                     </Col>
                     <Col lg="2" md="6" className="p-0">

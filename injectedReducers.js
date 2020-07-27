@@ -1,7 +1,7 @@
-import exampleReducer from "./reducers/counterReducer";
-import homeReducer from "./reducers/homeReducer";
+import homeReducer from './reducers/homeReducer';
+import generalReducer from './reducers/generalReducer';
 
 export default {
-    counter: exampleReducer,
-    homeReducer: homeReducer,
-}
+  homeReducer: homeReducer,
+  generalReducer: generalReducer,
+};
