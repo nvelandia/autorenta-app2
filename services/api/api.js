@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { handler } from './handlerErrors';
 // eslint-disable-next-line import/no-cycle
-import authStorage from '../localStorage/authStorage';
+//import authStorage from '../localStorage/authStorage';
 import { config } from '../../config/configuration';
 
 class ApiFetch {
   constructor() {
     this.apiUrl = () => {
-      return config('http://pg01.cubiq.digital:8000/api/');
+      return 'http://pg01.cubiq.digital:8000/api/';
     };
   }
 
@@ -78,13 +78,14 @@ class ApiFetch {
   }
 
   makeRequest(requestData) {
+    console.log(requestData);
     return new Promise(async (resolve, reject) => {
       const response = await axios({
         method: requestData.method,
         baseURL: this.apiUrl(),
         url: `${requestData.endpoint}`,
         data: requestData.body ? requestData.body : null,
-        headers: { ...requestData.customHeaders, authorization: authStorage.getSession() },
+        headers: { ...requestData.customHeaders },
       }).catch((error) => {
         handler(error.response);
         reject(error.response);

@@ -1,14 +1,22 @@
 import { isError } from '../../utils/helpers/isError';
+import successfullyResponsesPresenter from '../../utils/helpers/successfullyResponsesPresenter';
+import errorResponsesPresenter from '../../utils/helpers/errorResponsesPresenter';
+import { actionNames } from '../../utils/constants/actionConstants';
 
 class homeAdapter {
-  search = (response, body) => {
+  searchLocation = (response, body) => {
     const { status, data } = response;
 
     if (!isError(status)) {
-      return successWithMessageAndData(actionNames.createdSuccesful, 'rooftopper', data, 'Rooftopper created');
+      return successfullyResponsesPresenter.listResponse(
+        actionNames.searchLocationSuccessfully,
+        'locations',
+        data.response,
+        'Locations found',
+      );
     }
 
-    return errorRooftopperProfile(data, status, body, actionNames.createdFail);
+    return errorResponsesPresenter.listError(data, status, body, actionNames.searchLocationUnsuccessfully);
   };
 }
 

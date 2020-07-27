@@ -6,17 +6,16 @@ class Flags extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      direction: '',
+      direction: 'down',
     };
   }
 
   componentDidMount() {
-    if (this.state.direction === '')
-      if (window.innerWidth < 450) {
-        this.setState({ direction: 'right' });
-      } else {
-        this.setState({ direction: 'down' });
-      }
+    if (this.state.direction !== 'right' && window.innerWidth < 450) {
+      this.setState({ direction: 'right' });
+    } else {
+      this.setState({ direction: 'down' });
+    }
   }
 
   render() {

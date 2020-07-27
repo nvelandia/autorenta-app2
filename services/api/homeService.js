@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-cycle
 import Api from './api';
-//import authAdapter from '../adapters/authAdapter';
+import homeAdapter from '../adapter/homeAdapter';
 
 class homeService {
   searchLocation = async (body) => {
@@ -10,7 +10,6 @@ class homeService {
     } catch (err) {
       searchResponse = err;
     }
-    console.log(searchResponse);
 
     return homeAdapter.searchLocation(searchResponse);
   };

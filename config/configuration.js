@@ -18,6 +18,4 @@ export const config = (route, defaultValue = null) => {
   }
 };
 
-const configValues = {
-
-};
+const configValues = {};

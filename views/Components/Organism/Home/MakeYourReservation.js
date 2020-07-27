@@ -28,10 +28,12 @@ class MakeYourReservation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      placeToPickUpFocus: '',
-      placeToDeliverFocus: '',
-      dateToPickUpFocus: '',
-      dateToDeliverFocus: '',
+      placeToPickUp: '',
+      placeToPickUpFocus: false,
+      placeToDeliver: '',
+      placeToDeliverFocus: false,
+      dateToPickUpFocus: false,
+      dateToDeliverFocus: false,
       countrySelected: '',
       ageSelected: '',
       carTypeSelected: '',
@@ -39,17 +41,20 @@ class MakeYourReservation extends React.Component {
     this.dispatch = props.dispatch;
   }
 
-  handleChange = (event) => {};
+  handleOnChange = (event) => {
+    this.dispatch(this.props.searchLocation(event.target.value));
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   renderListGroup = () => {
-    const placeToPickUpOptions = ['San Juan', 'San Francisco'];
+    const placeToPickUpOptions = this.props.pickUpLocations;
 
     return (
       <ListGroup className="ar-list-group">
         {placeToPickUpOptions.map((option) => {
           return (
             <ListGroupItem tag="button" action>
-              {option}
+              {option.region}
             </ListGroupItem>
           );
         })}
@@ -92,6 +97,8 @@ class MakeYourReservation extends React.Component {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
+                            name="placeToPickUp"
+                            onChange={this.handleOnChange}
                             className="ar-round-input-right"
                             placeholder="¿Dónde quieres retirar el vehículo?"
                             type="text"
@@ -113,6 +120,8 @@ class MakeYourReservation extends React.Component {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
+                            name="placeToPickUp"
+                            onChange={this.handleOnChange}
                             className="ar-round-input-right"
                             placeholder="¿Dónde quieres entregar el vehículo?"
                             type="text"
@@ -178,6 +187,7 @@ class MakeYourReservation extends React.Component {
 
 MakeYourReservation.propTypes = {
   dispatch: PropTypes.func,
+  searchLocation: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

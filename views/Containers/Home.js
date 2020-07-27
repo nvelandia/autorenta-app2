@@ -23,7 +23,7 @@ class Home extends React.Component {
       <>
         <CustomNavBar />
         <CarouselHeader />
-        <MakeYourReservation />
+        <MakeYourReservation searchLocation={actions.searchLocation} />
         <Offer />
         <Banner />
         <CustomFooter />
