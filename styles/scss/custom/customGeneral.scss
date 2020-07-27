@@ -65,11 +65,16 @@
 //Margins
 
 .m--10 {
-  margin: -13rem !important; }
+  margin: -13rem !important;
+}
 
 .mt--10,
 .my--10 {
-  margin-top: -13rem !important; }
+  margin-top: -13rem !important;
+
+  @media (max-width: 450px) {
+    margin-top: -3rem !important;
+  }}
 
 .mr--10,
 .mx--10 {

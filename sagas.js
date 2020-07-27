@@ -1,17 +1,14 @@
-import { all, call, delay, put, take, takeLatest } from 'redux-saga/effects'
+import { all, call, delay, put, take, takeLatest } from 'redux-saga/effects';
 //import es6promise from 'es6-promise'
 //import 'isomorphic-unfetch'
 
-import {incrementCounter, decrementCounter} from './actions/counterActions';
-import {actionNames} from "./utils/constants/actionConstants";
+import { actionNames } from './utils/constants/actionConstants';
+import { searchLocation } from './redux-saga/HomeSaga';
 
 //es6promise.polyfill();
 
-const saga = [
-    takeLatest(actionNames.incrementCounter, incrementCounter),
-    takeLatest(actionNames.decrementCounter, decrementCounter),
-]
+const saga = [takeLatest(actionNames.searchLocation, searchLocation)];
 
 export default function* rootSaga() {
-    yield all(saga);
+  yield all(saga);
 }

@@ -3,10 +3,26 @@ import React from 'react';
 import { DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown, Button } from 'reactstrap';
 
 class Flags extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      direction: '',
+    };
+  }
+
+  componentDidMount() {
+    if (this.state.direction === '')
+      if (window.innerWidth < 450) {
+        this.setState({ direction: 'right' });
+      } else {
+        this.setState({ direction: 'down' });
+      }
+  }
+
   render() {
     return (
       <>
-        <UncontrolledDropdown>
+        <UncontrolledDropdown direction={this.state.direction}>
           <DropdownToggle color="asd" className="ar-round ar-white-button">
             <span className="btn-inner--icon">
               <span className="icon-language-icon" />

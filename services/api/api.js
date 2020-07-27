@@ -7,7 +7,7 @@ import { config } from '../../config/configuration';
 class ApiFetch {
   constructor() {
     this.apiUrl = () => {
-      return config('url.api');
+      return config('http://pg01.cubiq.digital:8000/api/');
     };
   }
 
@@ -85,7 +85,7 @@ class ApiFetch {
         url: `${requestData.endpoint}`,
         data: requestData.body ? requestData.body : null,
         headers: { ...requestData.customHeaders, authorization: authStorage.getSession() },
-      }).catch(error => {
+      }).catch((error) => {
         handler(error.response);
         reject(error.response);
       });

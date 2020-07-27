@@ -21,6 +21,8 @@ import {
 import ProgressBar from '../../Atoms/ProgressBar';
 import RangeDatePicker from '../../Atoms/RangeDatePicker';
 import CustomDropDown from '../../Atoms/CustomDropDown';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class MakeYourReservation extends React.Component {
   constructor(props) {
@@ -34,7 +36,10 @@ class MakeYourReservation extends React.Component {
       ageSelected: '',
       carTypeSelected: '',
     };
+    this.dispatch = props.dispatch;
   }
+
+  handleChange = (event) => {};
 
   renderListGroup = () => {
     const placeToPickUpOptions = ['San Juan', 'San Francisco'];
@@ -171,4 +176,12 @@ class MakeYourReservation extends React.Component {
   }
 }
 
-export default MakeYourReservation;
+MakeYourReservation.propTypes = {
+  dispatch: PropTypes.func,
+};
+
+const mapStateToProps = (state) => {
+  return state.homeReducer;
+};
+
+export default connect(mapStateToProps)(MakeYourReservation);

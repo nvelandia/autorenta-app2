@@ -5,6 +5,7 @@ export const actionNames = {
   handleError: 'HANDLE_ERROR',
   //Home
   nextPageHome: 'NEXT_PAGE_HOME',
+  searchLocation: 'SEARCH_LOCATION',
   //General
   showLoader: 'SHOW_LOADER',
   hideLoader: 'HIDE-LOADER',
