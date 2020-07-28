@@ -34,5 +34,22 @@
   &.payless{
     background-color: $ar-color-blue-3;
   }
+
+  //Mobile
+  @media (max-width: 451px){
+    font-size: 0.9rem;
+  }
+
+  //Normal Monitor
+  @media (min-width: 1471px) and (max-width: 1750px) {
+    font-size: 0.7rem;
+  }
+
+  //Big Monitor
+  @media (min-width: 1751px){
+    font-size: 0.9rem;
+  }
+
+
 }
 
