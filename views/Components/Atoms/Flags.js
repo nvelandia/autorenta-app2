@@ -22,7 +22,7 @@ class Flags extends React.Component {
     return (
       <>
         <UncontrolledDropdown direction={this.state.direction}>
-          <DropdownToggle color="asd" className="ar-round ar-white-button">
+          <DropdownToggle color="asd" className="ar-round-button ar-white-button">
             <span className="btn-inner--icon">
               <span className="icon-language-icon" />
             </span>{' '}

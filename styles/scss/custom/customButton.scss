@@ -1,10 +1,14 @@
-.ar-round{
+.ar-round-button{
   border-radius: 100px;
+  white-space: pre;
 }
 
 .ar-blue-button{
   background-color: $ar-color-blue-4;
   color: $ar-color-white-3;
+  &:hover{
+    background-color: $ar-color-blue-4;
+  }
 }
 
 .ar-white-button{
@@ -21,18 +25,28 @@
 
 .ar-promo-button{
   color: $ar-color-white-1;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  white-space: pre;
+  &:hover{
+    color: $ar-color-white-0;
+  }
+
   &.avis{
     background-color: $ar-color-red-1;
+    border-color: $ar-color-red-1;
   }
   &.alamo{
     background-color: $ar-color-blue-1;
+    border-color: $ar-color-blue-1;
   }
   &.budget{
     background-color: $ar-color-orange-0;
+    border-color: $ar-color-orange-0;
+
   }
   &.payless{
     background-color: $ar-color-blue-3;
+    border-color: $ar-color-blue-3;
   }
 
   //Mobile
@@ -42,14 +56,30 @@
 
   //Normal Monitor
   @media (min-width: 1471px) and (max-width: 1750px) {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
   }
 
   //Big Monitor
   @media (min-width: 1751px){
     font-size: 0.9rem;
   }
+}
 
-
+.ar-up-to-top-button{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: $ar-color-red-0;
+  color: $ar-color-white-1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  position: fixed;
+  top: 80vh;
+  left: 90vw;
+  &:hover{
+    cursor: pointer;
+  }
 }
 

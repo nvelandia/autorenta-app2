@@ -36,7 +36,7 @@ import Flags from '../../Atoms/Flags';
 class CustomNavbar extends React.Component {
   render() {
     return (
-      <Navbar className="navbar-horizontal navbar-main bg-ar-navbar" expand="lg" id="navbar-main">
+      <Navbar className="sticky-top navbar-horizontal navbar-main bg-ar-navbar" expand="lg" id="navbar-main">
         <Container className="ar-container-navbar">
           <NavbarBrand>
             <img className="ar-nav-brand" alt="..." src={'/svg/autorenta-logo.svg'} />
@@ -51,7 +51,7 @@ class CustomNavbar extends React.Component {
             id="navbar-collapse"
             type="button"
           >
-            <span className="navbar-toggler-icon" />
+            <span className="icon-chevron-down" />
           </button>
           <UncontrolledCollapse
             className="navbar-custom-collapse ar-container-nav-link"
@@ -60,7 +60,7 @@ class CustomNavbar extends React.Component {
           >
             <div className="navbar-collapse-header">
               <Row>
-                <Col className="collapse-brand" xs="6"></Col>
+                <Col className="collapse-brand" xs="6" />
                 <Col className="collapse-close" xs="6">
                   <button
                     aria-controls="navbar-collapse"
@@ -80,7 +80,7 @@ class CustomNavbar extends React.Component {
             </div>
             <Nav className="ml-lg-auto" navbar>
               <NavItem>
-                <NavLink className=" ar-nav-link ar-nav-link-blue " href={routes.HOME}>
+                <NavLink className="ar-nav-link ar-nav-link-blue " href={routes.HOME}>
                   <a className="ar-nav-link-blue">
                     <span className="icon-home-icon" />
                   </a>
@@ -122,7 +122,7 @@ class CustomNavbar extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem className="d-none d-lg-block ml-lg-1 ar-nav-button-link">
-                <Button className=" btn-icon ar-round ar-nav-button ar-button-blue" color="default" href="">
+                <Button className=" btn-icon ar-round-button ar-nav-button ar-button-blue" color="default" href="">
                   <span className="nav-link-inner--text">Reservar </span>
                   <span className="btn-inner--icon">
                     <span className="icon-chevron-right" />

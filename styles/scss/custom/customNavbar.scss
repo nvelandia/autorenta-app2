@@ -10,7 +10,7 @@
   color: $ar-color-blue-0;
   font-weight: 500;
   &:hover{
-    color: $ar-color-red-0;
+    color: $ar-color-red-0 !important;
   }
 }
 
@@ -24,15 +24,20 @@
   padding-right: 0.5rem !important;
   font-size: 0.850rem !important;
   margin: auto;
+
+  @media (max-width: 1380px) and (min-width: 1260px) {
+    font-size: 0.70rem !important;
+  }
 }
 
 .ar-nav-button-link{
   display: flex !important;
   .ar-nav-button{
+    white-space: pre;
     margin-top: auto;
     margin-bottom: auto;
     font-size: 0.900rem;
-    .ar-button-blue{
+    &.ar-button-blue{
       background-color: $ar-color-blue-4;
     }
   }

@@ -8,15 +8,15 @@ class ProgressBar extends React.Component {
       <>
         <div className="progress-info">
           <Col className="justify-content-center p-0">
-            <span className="ar-title-bar">Inicia tu búsqueda</span>
+            <p className="ar-title-bar">Inicia tu búsqueda</p>
             <span className="ar-circle ar-active">1</span>
           </Col>
           <Col className="justify-content-center p-0">
-            <span className="ar-title-bar">Selecciona tu plan</span>
+            <p className="ar-title-bar">Selecciona tu plan</p>
             <span className="ar-circle">2</span>
           </Col>
           <Col className="justify-content-center p-0">
-            <span className="ar-title-bar">Confirma tu reserva</span>
+            <p className="ar-title-bar">Confirma tu reserva</p>
             <span className="ar-circle">3</span>
           </Col>
         </div>

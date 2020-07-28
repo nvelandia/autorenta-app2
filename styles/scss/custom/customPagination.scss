@@ -1,0 +1,13 @@
+.ar-pagination-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  .ar-active{
+    background-color: $ar-color-blue-9;
+    border-color: $ar-color-blue-9;
+  }
+  .ar-inactive{
+    background-color: $ar-color-white-6;
+    border-color: $ar-color-white-6;
+  }
+}

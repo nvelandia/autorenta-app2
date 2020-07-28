@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 import { Button, Card, CardBody, CardImg, CardTitle, CardText, CardHeader, Col, Container, Row } from 'reactstrap';
+import Pagination from '../../Atoms/Pagination';
 
 class Offer extends React.Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class Offer extends React.Component {
             <CardBody>
               <CardTitle className={`ar-card-title ${card.color}`}>{card.title}</CardTitle>
               <Row className="justify-content-center">
-                <Button className={`ar-round  ar-promo-button ${card.button} w-100 ml-3 mr-3`}>
+                <Button className={`ar-round-button  ar-promo-button ${card.button} w-100 ml-3 mr-3`}>
                   Ver más información <i className="icon-chevron-right" />
                 </Button>
               </Row>
@@ -58,16 +59,21 @@ class Offer extends React.Component {
 
   render() {
     return (
-      <Row className="justify-content-center">
-        <Col className="justify-content-center" lg="9">
-          <Row>
-            <Col className="justify-content-center text-center">
-              <h2>Descubre todas las ofertas y promociones</h2>
-            </Col>
-          </Row>
-          <Row className="justify-content-md-around justify-content-sm-center  mt-5">{this.renderCards()}</Row>
-        </Col>
-      </Row>
+      <div>
+        <Row className="justify-content-center">
+          <Col className="justify-content-center" lg="9">
+            <Row>
+              <Col className="justify-content-center text-center">
+                <h2>Descubre todas las ofertas y promociones</h2>
+              </Col>
+            </Row>
+            <Row className="justify-content-md-around justify-content-sm-center  mt-5">{this.renderCards()}</Row>
+          </Col>
+        </Row>
+        <div className="ar-pagination-container">
+          <Pagination />
+        </div>
+      </div>
     );
   }
 }

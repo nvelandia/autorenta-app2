@@ -1,8 +1,17 @@
-.ar-card-header{
-  margin-bottom: -2rem;
-  z-index: 5;
-}
 .ar-border-round{
   box-shadow: $card-box-shadow;
   border-radius: 10px !important;
+}
+
+.ar-make-your-reservation-button-container{
+  display: flex;
+
+  @media (max-width: 5200px) {
+    justify-content: center;
+  }
+
+  @media (min-width: 1200px) {
+    align-items: start;
+    justify-content: start;
+  }
 }

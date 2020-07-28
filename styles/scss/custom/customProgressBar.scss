@@ -25,7 +25,22 @@
 }
 
 .ar-title-bar{
+  margin-bottom: 2px;
   padding-left: 12%;
   font-size: 0.9rem;
   font-weight: bold;
+  @media (max-width: 520px) {
+    font-size: 0.7rem;
+    text-align: center;
+    padding-left: 30%;
+    padding-right: 6%;
+  }
+
+}
+
+.ar-steps-bar{
+
+  @media (max-width: 520px) {
+    margin-top: 15px;
+  }
 }

@@ -66,9 +66,9 @@ class MakeYourReservation extends React.Component {
     return (
       <Container className="mt--10 pb-5">
         <Row className="justify-content-center">
-          <Col lg="9" md="8">
+          <Col lg="9" md="10">
             <Row className="justify-content-center">
-              <Col lg="7" md="5" className="ar-card-header">
+              <Col lg="7" md="8" sm="8" xs="11" className="ar-card-header">
                 <CardHeader className=" p-3 ar-border-round">
                   <Row className="text-muted text-center mb-0 justify-content-center">
                     <h2 className="mb-0">Haz tu reserva en&nbsp;</h2>
@@ -79,7 +79,7 @@ class MakeYourReservation extends React.Component {
             </Row>
             <Card className=" border-0 mb-0 ar-border-round">
               <CardBody className="px-lg-5 py-lg-5">
-                <div className="text-center text-muted mb-4">
+                <div className="text-center mb-4 ar-steps-bar">
                   <ProgressBar />
                 </div>
                 <Form role="form">
@@ -166,8 +166,8 @@ class MakeYourReservation extends React.Component {
                         <CustomDropDown title={'Tipo de vehículo'} items={['Deportivo', 'Exótico', 'Familiar']} />
                       </FormGroup>
                     </Col>
-                    <Col lg="2" md="6" className="p-0">
-                      <Button className=" btn-icon ar-round ar-nav-button ar-button-blue" color="default" href="">
+                    <Col lg="2" md="6" className="p-0 ar-make-your-reservation-button-container">
+                      <Button className=" btn-icon ar-round-button ar-blue-button" color="default" href="">
                         <span className="nav-link-inner--text">Buscar </span>
                         <span className="btn-inner--icon">
                           <span className="icon-chevron-right" />
