@@ -41,6 +41,10 @@ class MakeYourReservation extends React.Component {
     this.dispatch = props.dispatch;
   }
 
+  handleOnSelect = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   handleOnChange = (event) => {
     this.dispatch(this.props.searchLocation(event.target.value));
     this.setState({ [event.target.name]: event.target.value });
@@ -49,12 +53,21 @@ class MakeYourReservation extends React.Component {
   renderListGroup = () => {
     const placeToPickUpOptions = this.props.pickUpLocations;
 
+    //Ver de como hacer para el tema de guardar el valor que se seleccione del list group en el input sin invocar la otra call
+
     return (
       <ListGroup className="ar-list-group">
         {placeToPickUpOptions.map((option) => {
           return (
-            <ListGroupItem tag="button" action>
-              {option.region}
+            <ListGroupItem name={'placeToPickUp'} tag="button" action onClick={this.handleOnSelect}>
+              <div className="d-flex align-items-center" name={'placeToPickUp'}>
+                {option.airport ? (
+                  <img src={'/svg/plane-icon.svg'} width={'15px'} />
+                ) : (
+                  <img src={'/svg/office-icon.svg'} width={'15px'} />
+                )}
+                &nbsp;{' ' + option.label}
+              </div>
             </ListGroupItem>
           );
         })}
@@ -106,7 +119,7 @@ class MakeYourReservation extends React.Component {
                             onBlur={() => this.setState({ placeToPickUpFocus: false })}
                           />
                         </InputGroup>
-                        {this.state.placeToPickUpFocus === 's' ? this.renderListGroup() : null}
+                        {true ? this.renderListGroup() : null}
                       </FormGroup>
                       <FormGroup
                         className={classnames({
