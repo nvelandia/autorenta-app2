@@ -21,7 +21,7 @@ class Flags extends React.Component {
   render() {
     return (
       <>
-        <UncontrolledDropdown direction={this.state.direction}>
+        <UncontrolledDropdown className="ar-button-flag" direction={this.state.direction}>
           <DropdownToggle color="asd" className="ar-round-button ar-white-button">
             <span className="btn-inner--icon">
               <span className="icon-language-icon" />
@@ -31,14 +31,14 @@ class Flags extends React.Component {
               <span className="icon-chevron-down" />
             </span>
           </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem href="#EN" onClick={(e) => e.preventDefault()}>
+          <DropdownMenu className="ar-dropdown-menu">
+            <DropdownItem className="ar-dropdown-item" href="#EN" onClick={(e) => e.preventDefault()}>
               EN
             </DropdownItem>
-            <DropdownItem href="#ES" onClick={(e) => e.preventDefault()}>
+            <DropdownItem className="ar-dropdown-item" href="#ES" onClick={(e) => e.preventDefault()}>
               ES
             </DropdownItem>
-            <DropdownItem href="#PT" onClick={(e) => e.preventDefault()}>
+            <DropdownItem className="ar-dropdown-item" href="#PT" onClick={(e) => e.preventDefault()}>
               PT
             </DropdownItem>
           </DropdownMenu>

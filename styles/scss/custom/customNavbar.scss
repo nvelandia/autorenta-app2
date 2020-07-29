@@ -56,3 +56,18 @@
 .ar-container-nav-link{
   margin: 0.5rem;
 }
+
+.ar-button-flag{
+  .ar-dropdown-menu{
+    transform: translate3d(12px, 60px, 0px) !important;
+    min-width: 5rem;
+    max-width: 8rem;
+    &::before{
+      display: none !important;
+    }
+    .ar-dropdown-item{
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
