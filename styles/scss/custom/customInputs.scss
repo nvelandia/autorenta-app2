@@ -32,4 +32,17 @@
   position: absolute;
   z-index: 5;
   width: 100%;
+  .ar-list-item{
+    border-radius: 0;
+    background-color: $ar-color-white-0;
+    border-color: $ar-color-white-0;
+    &:first-child{
+      border-radius: inherit;
+    }
+    &:hover{
+      background-color: $ar-color-white-1;
+      border-color: $ar-color-white-1;
+      transform: none !important;
+    }
+  }
 }

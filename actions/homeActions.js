@@ -12,3 +12,9 @@ export const searchLocation = (query) => {
     query,
   };
 };
+
+export const loadCountries = () => {
+  return {
+    type: actionNames.loadCountries,
+  };
+};

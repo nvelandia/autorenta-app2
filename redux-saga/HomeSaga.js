@@ -28,3 +28,24 @@ export function* searchLocation(action) {
     ]);
   }
 }
+
+export function* loadCountries(action) {
+  const body = {
+    language: 'es',
+  };
+
+  //yield put(generalActions.showLoader());
+  const res = yield call(homeService.loadCountries, body);
+  if (res.error) {
+    if (res.error.code === 401 || res.error.code === 403) {
+      yield all([put({ type: actionNames.handleError, error: res.error })]);
+      redirectTo(pages.error);
+    }
+    yield all([put(res), put(generalActions.hideLoader()), put(generalActions.showNotification('', res.error))]);
+  } else {
+    yield all([
+      put(res),
+      //put(generalActions.hideLoader()),
+    ]);
+  }
+}

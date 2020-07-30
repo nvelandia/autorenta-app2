@@ -17,11 +17,11 @@ class CustomDropDown extends React.Component {
   };
 
   render() {
-    const { items, title } = this.props;
+    const { items, title, classes } = this.props;
     return (
       <>
         <UncontrolledDropdown className="w-100">
-          <DropdownToggle className="w-100 ar-round-input bg-ar-white-1 ar-light-blue-1-text" color="asdas">
+          <DropdownToggle className="w-100 ar-round-input bg-ar-white-1" color="asdas">
             <Row className="justify-content-between pl-3 pr-3">
               {this.state.value}&nbsp;
               <span className="btn-inner--icon">
@@ -29,7 +29,7 @@ class CustomDropDown extends React.Component {
               </span>
             </Row>
           </DropdownToggle>
-          <DropdownMenu>
+          <DropdownMenu className={classes}>
             {items.map((item, index) => {
               return (
                 <DropdownItem key={index} id={index} value={item} onClick={this.handleOnSelect}>

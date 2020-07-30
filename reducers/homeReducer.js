@@ -2,7 +2,8 @@ import { actionNames } from '../utils/constants/actionConstants';
 
 const defaultState = {
   page: 1,
-  pickUpLocations: [],
+  locations: [],
+  countries: [],
 };
 
 const homeReducer = (state = defaultState, action) => {
@@ -10,7 +11,9 @@ const homeReducer = (state = defaultState, action) => {
     case actionNames.nextPageHome:
       return { ...state, page: state.page + 1 };
     case actionNames.searchLocationSuccessfully:
-      return { ...state, pickUpLocations: action.locations };
+      return { ...state, locations: action.locations };
+    case actionNames.loadCountriesSuccessfully:
+      return { ...state, countries: action.countries };
     default:
       return state;
   }

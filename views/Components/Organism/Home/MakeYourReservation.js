@@ -39,35 +39,45 @@ class MakeYourReservation extends React.Component {
       carTypeSelected: '',
     };
     this.dispatch = props.dispatch;
+    this.handleOnLoad();
   }
 
+  handleOnLoad = () => {
+    this.dispatch(this.props.loadCountries());
+  };
+
   handleOnSelect = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value, placeToPickUpFocus: false });
   };
 
   handleOnChange = (event) => {
-    this.dispatch(this.props.searchLocation(event.target.value));
-    this.setState({ [event.target.name]: event.target.value });
+    if (this.state.placeToPickUpFocus || this.state.placeToDeliverFocus) {
+      this.dispatch(this.props.searchLocation(event.target.value));
+      this.setState({ [event.target.name]: event.target.value });
+    }
   };
 
-  renderListGroup = () => {
-    const placeToPickUpOptions = this.props.pickUpLocations;
-
-    //Ver de como hacer para el tema de guardar el valor que se seleccione del list group en el input sin invocar la otra call
+  renderListGroup = (name) => {
+    const placesOptions = this.props.locations;
 
     return (
       <ListGroup className="ar-list-group">
-        {placeToPickUpOptions.map((option) => {
+        {placesOptions.map((option) => {
           return (
-            <ListGroupItem name={'placeToPickUp'} tag="button" action onClick={this.handleOnSelect}>
-              <div className="d-flex align-items-center" name={'placeToPickUp'}>
+            <ListGroupItem className="p-0" action>
+              <Button
+                className="ar-list-item d-flex align-items-center p-3 w-100"
+                name={name}
+                value={option.label}
+                onMouseDown={this.handleOnSelect}
+              >
                 {option.airport ? (
                   <img src={'/svg/plane-icon.svg'} width={'15px'} />
                 ) : (
                   <img src={'/svg/office-icon.svg'} width={'15px'} />
                 )}
                 &nbsp;{' ' + option.label}
-              </div>
+              </Button>
             </ListGroupItem>
           );
         })}
@@ -114,12 +124,13 @@ class MakeYourReservation extends React.Component {
                             onChange={this.handleOnChange}
                             className="ar-round-input-right"
                             placeholder="¿Dónde quieres retirar el vehículo?"
+                            value={this.state.placeToPickUp}
                             type="text"
                             onFocus={() => this.setState({ placeToPickUpFocus: true })}
                             onBlur={() => this.setState({ placeToPickUpFocus: false })}
                           />
                         </InputGroup>
-                        {true ? this.renderListGroup() : null}
+                        {this.state.placeToPickUpFocus ? this.renderListGroup('placeToPickUp') : null}
                       </FormGroup>
                       <FormGroup
                         className={classnames({
@@ -133,15 +144,17 @@ class MakeYourReservation extends React.Component {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            name="placeToPickUp"
+                            name="placeToDeliver"
                             onChange={this.handleOnChange}
                             className="ar-round-input-right"
                             placeholder="¿Dónde quieres entregar el vehículo?"
                             type="text"
+                            value={this.state.placeToDeliver}
                             onFocus={() => this.setState({ placeToDeliverFocus: true })}
                             onBlur={() => this.setState({ placeToDeliverFocus: false })}
                           />
                         </InputGroup>
+                        {this.state.placeToDeliverFocus ? this.renderListGroup('placeToDeliver') : null}
                       </FormGroup>
                     </Col>
                     <Col lg="6" md="6">
@@ -157,7 +170,8 @@ class MakeYourReservation extends React.Component {
                       >
                         <CustomDropDown
                           title={'País de residencia'}
-                          items={['Argentina', 'Brasil', 'Estados Unidos']}
+                          items={this.props.countries}
+                          classes={'ar-dropdown-menu-overflow'}
                         />
                       </FormGroup>
                     </Col>
@@ -167,7 +181,7 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.ageSelected,
                         })}
                       >
-                        <CustomDropDown title={'Edad'} items={['-18', '+18', '+25']} />
+                        <CustomDropDown title={'Edad'} items={['-18', '+18', '+25']} classes={'ar-dropdown-menu-age'} />
                       </FormGroup>
                     </Col>
                     <Col lg="4" md="6">
@@ -176,7 +190,11 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.ageSelected,
                         })}
                       >
-                        <CustomDropDown title={'Tipo de vehículo'} items={['Deportivo', 'Exótico', 'Familiar']} />
+                        <CustomDropDown
+                          title={'Tipo de vehículo'}
+                          items={['Deportivo', 'Exótico', 'Familiar']}
+                          classes={'ar-dropdown-menu-car-type'}
+                        />
                       </FormGroup>
                     </Col>
                     <Col lg="2" md="6" className="p-0 ar-make-your-reservation-button-container">
@@ -201,6 +219,7 @@ class MakeYourReservation extends React.Component {
 MakeYourReservation.propTypes = {
   dispatch: PropTypes.func,
   searchLocation: PropTypes.func,
+  loadCountries: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

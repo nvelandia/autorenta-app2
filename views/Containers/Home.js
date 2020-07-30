@@ -24,7 +24,7 @@ class Home extends React.Component {
       <>
         <CustomNavBar />
         <CarouselHeader />
-        <MakeYourReservation searchLocation={actions.searchLocation} />
+        <MakeYourReservation searchLocation={actions.searchLocation} loadCountries={actions.loadCountries} />
         <Offer />
         <Banner />
         <CustomFooter />

@@ -18,6 +18,30 @@ class homeAdapter {
 
     return errorResponsesPresenter.listError(data, status, body, actionNames.searchLocationUnsuccessfully);
   };
+
+  loadCountries = (response, body) => {
+    const { status, data } = response;
+
+    if (!isError(status)) {
+      const countries = data.response
+        .map((country) => {
+          return country.name;
+        })
+        .filter((country) => country !== null)
+        .sort();
+
+      console.log(countries);
+
+      return successfullyResponsesPresenter.listResponse(
+        actionNames.loadCountriesSuccessfully,
+        'countries',
+        countries,
+        'Countries loaded',
+      );
+    }
+
+    return errorResponsesPresenter.listError(data, status, body, actionNames.loadCountriesUnsuccessfully);
+  };
 }
 
 export default new homeAdapter();
