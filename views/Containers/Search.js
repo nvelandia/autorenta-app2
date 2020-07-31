@@ -11,35 +11,20 @@ import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
 import Banner from '../Components/Molecules/banners/Banner';
 import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
+import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
+import ActiveSearch from '../Components/Organism/Search/ActiveSearch';
 
 const items = [
   {
-    src: '/img/custom/slide-home-1.jpg',
+    src: '/img/custom/top-image-bg.jpg',
     altText: '',
     caption: '',
     header: '',
     id: 1,
-    style: 'ar-header-image',
-  },
-  {
-    src: '/img/custom/slide-home-2.jpg',
-    altText: '',
-    caption: '',
-    header: '',
-    id: 2,
-    style: 'ar-header-image',
-  },
-  {
-    src: '/img/custom/slide-home-3.jpg',
-    altText: '',
-    caption: '',
-    header: '',
-    id: 3,
-    style: 'ar-header-image',
   },
 ];
 
-class Home extends React.Component {
+class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -50,9 +35,8 @@ class Home extends React.Component {
     return (
       <>
         <CustomNavBar />
-        <CarouselHeader items={items} />
-        <MakeYourReservation searchLocation={actions.searchLocation} loadCountries={actions.loadCountries} />
-        <Offer />
+        <StepsHeader />
+        <ActiveSearch />
         <Banner />
         <CustomFooter />
         <UpToTop />
@@ -62,12 +46,12 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = {
+Search.propTypes = {
   dispatch: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
-  return state.homeReducer;
+  return state.searchReducer;
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Search);

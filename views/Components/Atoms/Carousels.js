@@ -32,7 +32,7 @@ const Carousels = (props) => {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
-        <img className="d-block w-100 ar-header-image" src={item.src} alt={item.altText} />
+        <img className={'d-block w-100 ' + item.style} src={item.src} alt={item.altText} />
       </CarouselItem>
     );
   });

@@ -1,0 +1,20 @@
+.ar-label{
+  border-radius: 2rem;
+  color: $ar-color-blue-0;
+  p{
+    padding: 0.625rem 0.75rem;
+    margin: 0;
+  }
+  &.ar-label-common{
+    border: solid;
+    border-color: $ar-color-white-4;
+    border-width: thin;
+    background-color: $ar-color-white-1;
+  }
+  .ar-label-text{
+    font-weight: bold;
+  }
+  .ar-label-title{
+    font-weight: normal;
+  }
+}

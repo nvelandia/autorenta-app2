@@ -29,13 +29,16 @@
   padding-left: 12%;
   font-size: 0.9rem;
   font-weight: bold;
+  &.ar-steps-header{
+    margin-bottom: -8px;
+    color: $ar-color-white-0;
+  }
   @media (max-width: 520px) {
     font-size: 0.7rem;
     text-align: center;
     padding-left: 30%;
     padding-right: 6%;
   }
-
 }
 
 .ar-steps-bar{

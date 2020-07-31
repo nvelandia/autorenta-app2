@@ -4,19 +4,20 @@ import { Progress, Row, Col } from 'reactstrap';
 
 class ProgressBar extends React.Component {
   render() {
+    const { classes } = this.props;
     return (
       <>
         <div className="progress-info">
           <Col className="justify-content-center p-0">
-            <p className="ar-title-bar">Inicia tu búsqueda</p>
+            <p className={'ar-title-bar ' + classes}>Inicia tu búsqueda</p>
             <span className="ar-circle ar-active">1</span>
           </Col>
           <Col className="justify-content-center p-0">
-            <p className="ar-title-bar">Selecciona tu plan</p>
+            <p className={'ar-title-bar ' + classes}>Selecciona tu plan</p>
             <span className="ar-circle">2</span>
           </Col>
           <Col className="justify-content-center p-0">
-            <p className="ar-title-bar">Confirma tu reserva</p>
+            <p className={'ar-title-bar ' + classes}>Confirma tu reserva</p>
             <span className="ar-circle">3</span>
           </Col>
         </div>
