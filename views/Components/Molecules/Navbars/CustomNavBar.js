@@ -36,7 +36,7 @@ import Flags from '../../Atoms/Flags';
 class CustomNavbar extends React.Component {
   render() {
     return (
-      <Navbar className="sticky-top navbar-horizontal navbar-main bg-ar-navbar" expand="lg" id="navbar-main">
+      <Navbar className="sticky-top navbar-horizontal navbar-main bg-ar-navbar" expand="xl" id="navbar-main">
         <Container className="ar-container-navbar">
           <NavbarBrand>
             <img className="ar-nav-brand" alt="..." src={'/svg/autorenta-logo.svg'} />
@@ -129,7 +129,7 @@ class CustomNavbar extends React.Component {
                   </span>
                 </Button>
               </NavItem>
-              <NavItem className="d-none d-lg-block ml-lg-1 ar-nav-button-link">
+              <NavItem className="d-none d-lg-block ml-lg-1 ar-nav-button-link mr-0">
                 <Flags className="ar-nav-button-link" />
               </NavItem>
             </Nav>

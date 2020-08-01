@@ -1,5 +1,5 @@
 .ar-container-navbar{
-  max-width: 1380px;
+  max-width: 90%x;
 }
 
 .bg-ar-navbar{
@@ -22,7 +22,7 @@
 .ar-nav-link{
   padding-left: 0.5rem !important;
   padding-right: 0.5rem !important;
-  font-size: 0.850rem !important;
+  font-size: 0.750rem !important;
   margin: auto;
 
   @media (max-width: 1380px) and (min-width: 1260px) {
@@ -36,7 +36,7 @@
     white-space: pre;
     margin-top: auto;
     margin-bottom: auto;
-    font-size: 0.900rem;
+    font-size: 0.700rem;
     &.ar-button-blue{
       background-color: $ar-color-blue-4;
     }
@@ -49,8 +49,7 @@
 }
 
 .ar-nav-brand{
-  margin: 0.5rem;
-  height: 55px !important;
+  height: 40px !important;
 }
 
 .ar-container-nav-link{
@@ -70,4 +69,9 @@
       justify-content: center;
     }
   }
+}
+
+.ar-language{
+  margin-top: -0.2rem;
+  font-size: 1.1rem;
 }
