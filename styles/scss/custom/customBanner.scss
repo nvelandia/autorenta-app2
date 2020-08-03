@@ -29,3 +29,31 @@
     position: absolute;
   }
 }
+
+.ar-search-banner{
+  .ar-modify-button{
+    font-size: 0.7rem;
+    color: $ar-color-white-1;
+    padding: 0.425rem 1.25rem;
+  }
+  .ar-search-date-and-place{
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    .ar-search-icon{
+      margin-right: 10px;
+      color: $ar-color-red-0;
+    }
+    .ar-search-date{
+      font-size: 0.9rem;
+      margin:0 0 0 0;
+      font-weight: 600;
+    }
+    .ar-search-place{
+      font-size: 0.6rem;
+      margin:0 0 0 0;
+      font-weight: 600;
+    }
+  }
+
+}

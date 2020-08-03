@@ -13,6 +13,7 @@ import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
 import ActiveSearch from '../Components/Organism/Search/ActiveSearch';
+import Result from '../Components/Organism/Search/Result';
 
 const items = [
   {
@@ -37,6 +38,7 @@ class Search extends React.Component {
         <CustomNavBar />
         <StepsHeader />
         <ActiveSearch />
+        <Result />
         <Banner />
         <CustomFooter />
         <UpToTop />

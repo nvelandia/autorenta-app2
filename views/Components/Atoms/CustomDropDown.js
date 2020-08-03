@@ -17,7 +17,7 @@ class CustomDropDown extends React.Component {
   };
 
   render() {
-    const { items, title, classes } = this.props;
+    const { items, classes } = this.props;
     return (
       <>
         <UncontrolledDropdown className="w-100">

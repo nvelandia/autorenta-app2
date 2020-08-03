@@ -47,7 +47,7 @@ class MakeYourReservation extends React.Component {
   };
 
   handleOnSelect = (event) => {
-    this.setState({ [event.target.name]: event.target.value, placeToPickUpFocus: false });
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleOnChange = (event) => {

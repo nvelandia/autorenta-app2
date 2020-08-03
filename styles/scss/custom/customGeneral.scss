@@ -6,6 +6,10 @@
   color: $ar-color-red-1;
 }
 
+.ar-blue-0-text{
+  color: $ar-color-blue-0;
+}
+
 .ar-blue-1-text{
   color: $ar-color-blue-1;
 }
@@ -92,6 +96,10 @@
 .mx--10 {
   margin-left: -13rem !important; }
 
+.ar-m-1 {
+  margin: 0.2rem 0.5rem;
+}
+
 //Widths
 
 .w-20{
@@ -102,3 +110,12 @@
   width: 23%
 }
 
+.w-90{
+  width: 80%;
+}
+
+//Text
+
+.ws-pre{
+  white-space: pre;
+}

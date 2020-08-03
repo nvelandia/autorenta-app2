@@ -9,7 +9,8 @@
 		cursor: pointer;
 
 		&:after {
-			content: "\ea0f";
+			content: escape-svg(url("/svg/chevron-down.svg"));
+			width: 0.65rem;
 			position: absolute;
 			right: 1.5rem;
 			top: 50%;
@@ -22,13 +23,13 @@
 
 	.card-header[aria-expanded="false"] {
 		&:after {
-			content: "\ea0f";
+			content: escape-svg(url("/svg/chevron-down.svg"));
 		}
 	}
 
 	.card-header[aria-expanded="true"] {
 		&:after {
-			transform: rotate(180deg);
+			content: escape-svg(url("/svg/chevron-up.svg"));
 		}
 
 		.heading {

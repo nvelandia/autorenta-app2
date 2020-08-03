@@ -60,29 +60,42 @@ class ActiveSearch extends React.Component {
 
   render() {
     return (
-      <Row className="justify-content-around bg-ar-white-0 align-items-center">
-        <div>
-          <h2>Búsqueda activa</h2>
-        </div>
-        <div>
-          <h2>26 de Septiembre de 2020, 12:00 hs.</h2>
-          <h5>Miami International Airpot (MIA)</h5>
-        </div>
-        <div>
-          <h2>23 de Octubre de 2020, 18:00 hs.</h2>
-          <h5>Miami International Airpot (MIA)</h5>
-        </div>
-        <div>
-          <Label classes={'ar-label-common'} title={'Edad:'} value={' +25 años'} />
-        </div>
-        <div>
-          <Button className=" btn-icon ar-round-button ar-nav-button  ar-white-1-text" color="red-0" href="">
-            <span className="nav-link-inner--text">Modificar </span>
-            <span className="btn-inner--icon">
-              <span className="icon-chevron-right" />
-            </span>
-          </Button>
-        </div>
+      <Row className="justify-content-center bg-ar-white-0 ar-search-banner p-4">
+        <Row className="justify-content-around bg-ar-white-0 align-items-center w-90">
+          <div>
+            <h3>Búsqueda activa</h3>
+          </div>
+          <div className="ar-search-date-and-place">
+            <div className="ar-search-icon">
+              <icon className="icon-calendar-icon" />
+            </div>
+            <div>
+              <p className="ar-search-date">26 de Septiembre de 2020, 12:00 hs.</p>
+              <p className="ar-search-place">Miami International Airpot (MIA)</p>
+            </div>
+          </div>
+          <div>
+            <img src={'/svg/searchView/next-arrow.svg'} width={'20px'} />
+          </div>
+          <div className="ar-search-date-and-place">
+            <div className="ar-search-icon">
+              <icon className="icon-calendar-icon" />
+            </div>
+            <div>
+              <p className="ar-search-date">23 de Octubre de 2020, 18:00 hs.</p>
+              <p className="ar-search-place">Miami International Airpot (MIA)</p>
+            </div>
+          </div>
+          <div className="d-flex justify-content-between">
+            <Label classes={'ar-label-common ar-m-1'} title={'Edad:'} value={' +25 años'} />
+            <Button className=" btn-icon ar-round-button ar-nav-button ar-m-1 ar-modify-button" color="red-0" href="">
+              <span className="nav-link-inner--text">Modificar </span>
+              <span className="btn-inner--icon">
+                <span className="icon-chevron-right" />
+              </span>
+            </Button>
+          </div>
+        </Row>
       </Row>
     );
   }
