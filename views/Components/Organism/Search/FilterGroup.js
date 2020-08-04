@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 import {
+  Badge,
   Button,
   Card,
   CardBody,
@@ -20,9 +21,6 @@ import {
   ListGroupItem,
   Row,
 } from 'reactstrap';
-import ProgressBar from '../../Atoms/ProgressBar';
-import RangeDatePicker from '../../Atoms/RangeDatePicker';
-import CustomDropDown from '../../Atoms/CustomDropDown';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Sliders from '../../Atoms/Sliders';
@@ -78,11 +76,16 @@ class FilterGroup extends React.Component {
             {!priceRange ? (
               items.map((item) => {
                 return (
-                  <div className="custom-control custom-checkbox mr-3">
-                    <input className="custom-control-input" id={title + item} type="checkbox" />
-                    <label className="custom-control-label ws-pre" htmlFor={title + item}>
-                      {item}
-                    </label>
+                  <div className="d-flex m-2">
+                    <div className="custom-control custom-checkbox mr-3">
+                      <input className="custom-control-input" id={title + item} type="checkbox" />
+                      <label className="custom-control-label ws-pre" htmlFor={title + item}>
+                        {item}
+                      </label>
+                    </div>
+                    <Badge color="gray-1" pill>
+                      40
+                    </Badge>
                   </div>
                 );
               })

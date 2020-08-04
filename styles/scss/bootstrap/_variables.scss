@@ -94,6 +94,8 @@ $theme-colors: map-merge(
     "light-blue-0": $ar-color-light-blue-0,
     "light-blue-1": $ar-color-light-blue-1,
     "light-blue-2": $ar-color-light-blue-2,
+    "gray-0":       $ar-color-gray-0,
+    "gray-1":       $ar-color-gray-1,
     "blue-0":       $ar-color-blue-0,
     "blue-1":       $ar-color-blue-1,
     "blue-2":       $ar-color-blue-2,
@@ -111,7 +113,7 @@ $theme-colors: map-merge(
     "white-4":      $ar-color-white-4,
     "white-5":      $ar-color-white-5,
     "white-6":      $ar-color-white-6,
-    "white-7":      $ar-color-white-7
+    "white-7":      $ar-color-white-7,
   ),
   $theme-colors
 );
@@ -581,7 +583,7 @@ $custom-control-indicator-active-box-shadow:    none !default;
 $custom-control-indicator-active-border-color:  $custom-control-indicator-active-bg !default;
 
 $custom-checkbox-indicator-border-radius:       $border-radius !default;
-$custom-checkbox-indicator-icon-checked:        url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'><path fill='#{$custom-control-indicator-checked-color}' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/></svg>") !default;
+$custom-checkbox-indicator-icon-checked:        url("/svg/searchView/check-solid.svg") !default;
 
 $custom-checkbox-indicator-indeterminate-bg:           $component-active-bg !default;
 $custom-checkbox-indicator-indeterminate-color:        $custom-control-indicator-checked-color !default;

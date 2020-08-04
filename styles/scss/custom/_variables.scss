@@ -121,6 +121,8 @@ $theme-colors: map-merge((
   "light-blue-0": $ar-color-light-blue-0,
   "light-blue-1": $ar-color-light-blue-1,
   "light-blue-2": $ar-color-light-blue-2,
+  "gray-0":       $ar-color-gray-0,
+  "gray-1":       $ar-color-gray-1,
   "blue-0":       $ar-color-blue-0,
   "blue-1":       $ar-color-blue-1,
   "blue-2":       $ar-color-blue-2,
@@ -160,6 +162,8 @@ $brand-colors: map-merge((
   "light-blue-0": $ar-color-light-blue-0,
   "light-blue-1": $ar-color-light-blue-1,
   "light-blue-2": $ar-color-light-blue-2,
+  "gray-0":       $ar-color-gray-0,
+  "gray-1":       $ar-color-gray-1,
   "blue-0":       $ar-color-blue-0,
   "blue-1":       $ar-color-blue-1,
   "blue-2":       $ar-color-blue-2,
@@ -370,8 +374,8 @@ $box-shadow-lg:               0 0 3rem rgba($gray-600, .175) !default;
 // Component - main styles for most of the components
 
 $component-active-color:        $white !default;
-$component-active-bg:           theme-color("primary") !default;
-$component-active-border-color: theme-color("primary") !default;
+$component-active-bg:           theme-color("red-0") !default;
+$component-active-border-color: theme-color("red-0") !default;
 
 $component-hover-color:        $gray-300 !default;
 $component-hover-bg:           $gray-300 !default;
