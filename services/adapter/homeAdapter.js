@@ -42,6 +42,21 @@ class homeAdapter {
 
     return errorResponsesPresenter.listError(data, status, body, actionNames.loadCountriesUnsuccessfully);
   };
+
+  loadOffers = (response, body) => {
+    const { status, data } = response;
+
+    if (!isError(status)) {
+      return successfullyResponsesPresenter.listResponse(
+        actionNames.loadOffersSuccessfully,
+        'offers',
+        data.response,
+        'Offers loaded',
+      );
+    }
+
+    return errorResponsesPresenter.listError(data, status, body, actionNames.loadOffersUnsuccessfully);
+  };
 }
 
 export default new homeAdapter();

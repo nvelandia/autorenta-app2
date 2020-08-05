@@ -18,3 +18,9 @@ export const loadCountries = () => {
     type: actionNames.loadCountries,
   };
 };
+
+export const loadOffers = () => {
+  return {
+    type: actionNames.loadOffers,
+  };
+};

@@ -21,12 +21,13 @@ class CustomDropDown extends React.Component {
     return (
       <>
         <UncontrolledDropdown className="w-100">
-          <DropdownToggle className="w-100 ar-round-input bg-ar-white-1" color="asdas">
+          <DropdownToggle
+            className="w-100 ar-round-input bg-ar-white-1 ar-last-row-make-your-reservation"
+            color="asdas"
+          >
             <Row className="justify-content-between pl-3 pr-3">
-              {this.state.value}&nbsp;
-              <span className="btn-inner--icon">
-                <span className="icon-chevron-down" />
-              </span>
+              {this.state.value}
+              <span className="icon-chevron-down" />
             </Row>
           </DropdownToggle>
           <DropdownMenu className={classes}>

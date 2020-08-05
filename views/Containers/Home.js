@@ -52,7 +52,7 @@ class Home extends React.Component {
         <CustomNavBar />
         <CarouselHeader items={items} />
         <MakeYourReservation searchLocation={actions.searchLocation} loadCountries={actions.loadCountries} />
-        <Offer />
+        <Offer loadOffers={actions.loadOffers} />
         <Banner />
         <CustomFooter />
         <UpToTop />

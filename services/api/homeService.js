@@ -24,6 +24,17 @@ class homeService {
 
     return homeAdapter.loadCountries(loadResponse);
   };
+
+  loadOffers = async (body) => {
+    let loadResponse;
+    try {
+      loadResponse = await Api.post('common/offers', body);
+    } catch (err) {
+      loadResponse = err;
+    }
+
+    return homeAdapter.loadOffers(loadResponse);
+  };
 }
 
 export default new homeService();

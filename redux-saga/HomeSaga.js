@@ -49,3 +49,24 @@ export function* loadCountries(action) {
     ]);
   }
 }
+
+export function* loadOffers(action) {
+  const body = {
+    language: 'es',
+  };
+
+  //yield put(generalActions.showLoader());
+  const res = yield call(homeService.loadOffers, body);
+  if (res.error) {
+    if (res.error.code === 401 || res.error.code === 403) {
+      yield all([put({ type: actionNames.handleError, error: res.error })]);
+      redirectTo(pages.error);
+    }
+    yield all([put(res), put(generalActions.hideLoader()), put(generalActions.showNotification('', res.error))]);
+  } else {
+    yield all([
+      put(res),
+      //put(generalActions.hideLoader()),
+    ]);
+  }
+}

@@ -3,13 +3,15 @@ import { all, call, delay, put, take, takeLatest } from 'redux-saga/effects';
 //import 'isomorphic-unfetch'
 
 import { actionNames } from './utils/constants/actionConstants';
-import { loadCountries, searchLocation } from './redux-saga/HomeSaga';
+import { loadCountries, searchLocation, loadOffers } from './redux-saga/HomeSaga';
 
 //es6promise.polyfill();
 
 const saga = [
+  //Home
   takeLatest(actionNames.searchLocation, searchLocation),
   takeLatest(actionNames.loadCountries, loadCountries),
+  takeLatest(actionNames.loadOffers, loadOffers),
 ];
 
 export default function* rootSaga() {

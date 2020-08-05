@@ -23,6 +23,7 @@ import RangeDatePicker from '../../Atoms/RangeDatePicker';
 import CustomDropDown from '../../Atoms/CustomDropDown';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import FilterGroup from '../Search/FilterGroup';
 
 class MakeYourReservation extends React.Component {
   constructor(props) {
@@ -59,30 +60,33 @@ class MakeYourReservation extends React.Component {
 
   renderListGroup = (name) => {
     const placesOptions = this.props.locations;
-
-    return (
-      <ListGroup className="ar-list-group">
-        {placesOptions.map((option) => {
-          return (
-            <ListGroupItem className="p-0" action>
-              <Button
-                className="ar-list-item d-flex align-items-center p-3 w-100"
-                name={name}
-                value={option.label}
-                onMouseDown={this.handleOnSelect}
-              >
-                {option.airport ? (
-                  <img src={'/svg/plane-icon.svg'} width={'15px'} />
-                ) : (
-                  <img src={'/svg/office-icon.svg'} width={'15px'} />
-                )}
-                &nbsp;{' ' + option.label}
-              </Button>
-            </ListGroupItem>
-          );
-        })}
-      </ListGroup>
-    );
+    if (Array.isArray(placesOptions)) {
+      return (
+        <ListGroup className="ar-list-group">
+          {placesOptions.map((option) => {
+            return (
+              <ListGroupItem className="p-0 ar-list-item" action>
+                <Button
+                  className="ar-list-item d-flex align-items-center p-3 w-100 ws-pre"
+                  name={name}
+                  value={option.label}
+                  onMouseDown={this.handleOnSelect}
+                >
+                  {option.airport ? (
+                    <img src={'/svg/plane-icon.svg'} width={'15px'} />
+                  ) : (
+                    <img src={'/svg/office-icon.svg'} width={'15px'} />
+                  )}
+                  &nbsp;{' ' + option.label}
+                </Button>
+              </ListGroupItem>
+            );
+          })}
+        </ListGroup>
+      );
+    } else {
+      return null;
+    }
   };
 
   render() {
@@ -181,7 +185,11 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.ageSelected,
                         })}
                       >
-                        <CustomDropDown title={'Edad'} items={['-18', '+18', '+25']} classes={'ar-dropdown-menu-age'} />
+                        <CustomDropDown
+                          title={'Edad'}
+                          items={['18', '19', '20', '21', '22', '23', '24', '+25']}
+                          classes={'ar-dropdown-menu-age'}
+                        />
                       </FormGroup>
                     </Col>
                     <Col lg="4" md="6">
@@ -192,13 +200,27 @@ class MakeYourReservation extends React.Component {
                       >
                         <CustomDropDown
                           title={'Tipo de vehículo'}
-                          items={['Deportivo', 'Exótico', 'Familiar']}
+                          items={[
+                            'Pequeño/Económico',
+                            'Compacto',
+                            'Intermedio',
+                            'Standar',
+                            'Grande',
+                            'Premiun/De Lujo',
+                            'Deportivo/Convertible',
+                            'Minivan/Maxivan',
+                            'SUV/Todoterreno',
+                          ]}
                           classes={'ar-dropdown-menu-car-type'}
                         />
                       </FormGroup>
                     </Col>
                     <Col lg="2" md="6" className="p-0 ar-make-your-reservation-button-container">
-                      <Button className=" btn-icon ar-round-button ar-blue-button" color="default" href="">
+                      <Button
+                        className=" btn-icon ar-round-button ar-blue-button ar-last-row-make-your-reservation"
+                        color="default"
+                        href=""
+                      >
                         <span className="nav-link-inner--text">Buscar </span>
                         <span className="btn-inner--icon">
                           <span className="icon-chevron-right" />

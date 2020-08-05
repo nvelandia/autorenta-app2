@@ -31,13 +31,23 @@
   margin-top: -1rem;
   position: absolute;
   z-index: 5;
-  width: 100%;
+  width: auto;
+  border: solid;
+  border-width: thin;
+  border-color: $ar-color-white-3;
+  border-radius: 1rem;
   .ar-list-item{
+    box-shadow: none;
     border-radius: 0;
     background-color: $ar-color-white-0;
-    border-color: $ar-color-white-0;
+    border: none !important;
     &:first-child{
-      border-radius: inherit;
+      border-top-left-radius: inherit;
+      border-top-right-radius: inherit;
+    }
+    &:last-child{
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
     }
     &:hover{
       background-color: $ar-color-white-1;

@@ -18,3 +18,27 @@
     font-size: 18px;
   }
 }
+
+.ar-card-image{
+  overflow: none;
+  .ar-image{
+    width: 100%;
+    border-radius: 0.4rem;
+  }
+  .ar-logo{
+    width: 28%;
+    position: absolute;
+    top: 2%;
+    left: 3%;
+  }
+  .ar-border-image-offer{
+    width: 120%;
+    display: block;
+    background-color: white;
+    height: 20%;
+    position: absolute;
+    transform: rotate(6deg);
+    top: 40%;
+    left: -2%;
+  }
+}
