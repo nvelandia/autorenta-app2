@@ -20,10 +20,13 @@
 }
 
 .ar-card-image{
-  overflow: none;
+  overflow: hidden;
+  display: flex;
+  align-items: end;
   .ar-image{
     width: 100%;
-    border-radius: 0.4rem;
+    border-top-left-radius: 0.4rem;
+    border-top-right-radius: 0.4rem;
   }
   .ar-logo{
     width: 28%;
@@ -32,13 +35,20 @@
     left: 3%;
   }
   .ar-border-image-offer{
-    width: 120%;
-    display: block;
-    background-color: white;
-    height: 20%;
+    width: 100%;
+    padding-bottom: 12%;
     position: absolute;
-    transform: rotate(6deg);
-    top: 40%;
-    left: -2%;
+    overflow: hidden;
+    &:before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -5%;
+      width: 120%;
+      height: 100%;
+      background-color: $ar-color-white-0;
+      transform-origin: 0 100%;
+      transform: rotate(6deg);
+    }
   }
 }

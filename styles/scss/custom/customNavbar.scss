@@ -55,7 +55,10 @@
 }
 
 .ar-nav-brand{
-  height: 40px !important;
+    height: 40px !important;
+  @media (min-width: 1400px) {
+    height: 50px !important;
+  }
 }
 
 .ar-container-nav-link{
