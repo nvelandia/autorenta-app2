@@ -12,11 +12,11 @@
 }
 
 .ar-language-button{
+  font-size: 0.8vw;
   display: flex;
   align-items: center;
-  margin-top:0.3rem;
   color: $ar-color-blue-0;
-  padding: 0.4rem 0.5rem;
+  padding: 0.45rem 0.5rem;
   &:hover &:active{
     color: $ar-color-blue-0;
     background-color: $ar-color-white-3;
