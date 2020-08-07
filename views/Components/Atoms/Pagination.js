@@ -7,30 +7,35 @@ import { connect } from 'react-redux';
 class Paginations extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      active: 1,
+    };
     this.dispatch = props.dispatch;
   }
 
   render() {
+    const { totalPages, active } = this.props;
+    if (this.state.active !== active) {
+      this.setState({ active });
+    }
+    const pages = Array.from(Array(totalPages).keys());
     return (
       <>
         <nav aria-label="...">
           <Pagination className="pagination pagination-sm" listClassName="pagination-sm">
-            <PaginationItem>
-              <PaginationLink className="ar-active" href="#pablo" onClick={(e) => e.preventDefault()} tabIndex="-1">
-                {' '}
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink className="ar-inactive" href="#pablo" onClick={(e) => e.preventDefault()}>
-                {' '}
-              </PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink className="ar-inactive" href="#pablo" onClick={(e) => e.preventDefault()}>
-                {' '}
-              </PaginationLink>
-            </PaginationItem>
+            {pages.map((item, index) => {
+              return (
+                <PaginationItem>
+                  <PaginationLink
+                    className={this.state.active === index + 1 ? 'ar-active' : 'ar-inactive'}
+                    href=""
+                    onClick={() => this.props.selectPage(index + 1)}
+                  >
+                    {' '}
+                  </PaginationLink>
+                </PaginationItem>
+              );
+            })}
           </Pagination>
         </nav>
       </>
@@ -40,6 +45,7 @@ class Paginations extends React.Component {
 
 Paginations.propTypes = {
   dispatch: PropTypes.func,
+  selectPage: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

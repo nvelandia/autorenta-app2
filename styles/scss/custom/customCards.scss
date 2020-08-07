@@ -22,13 +22,15 @@
 .ar-card-image{
   overflow: hidden;
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   .ar-image{
     width: 100%;
     border-top-left-radius: 0.4rem;
     border-top-right-radius: 0.4rem;
   }
   .ar-logo{
+    border-radius: 6px;
+    background-color: #ffffff;
     width: 28%;
     position: absolute;
     top: 2%;

@@ -10,6 +10,8 @@ class Offer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      totalPages: 1,
+      selectedPage: 1,
       cards: [
         {
           title: 'Recorre Europa con un 15% de descuento por reserva anticipada.',
@@ -49,6 +51,10 @@ class Offer extends React.Component {
     this.dispatch(this.props.loadOffers());
   };
 
+  selectPage = (page) => {
+    this.setState({ selectedPage: page });
+  };
+
   renderCards = () => {
     return this.state.cards.map((card, index) => {
       return (
@@ -73,6 +79,35 @@ class Offer extends React.Component {
     });
   };
 
+  // metodo con lo que viene del back
+  //
+  // renderCards = () => {
+  //   return this.props.offers.map((offer, index) => {
+  //     return (
+  //       <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
+  //         <Card className="w-auto m-2">
+  //           <div className="ar-card-image">
+  //             <img className="ar-image" src={offer.thumb} />
+  //             <img className="ar-logo" src={offer.company.logo} />
+  //             <div className="ar-border-image-offer" />
+  //           </div>
+  //           <CardBody>
+  //             <CardTitle className={`ar-card-title ${offer.color}`}>{offer.title}</CardTitle>
+  //             <Row className="justify-content-center">
+  //               <Button
+  //                 className={`ar-round-button  ar-promo-button ${offer.button} w-100 ml-3 mr-3`}
+  //                 style={{ backgroundColor: offer.company.color, borderColor: offer.company.color }}
+  //               >
+  //                 Ver más información <i className="icon-chevron-right" />
+  //               </Button>
+  //             </Row>
+  //           </CardBody>
+  //         </Card>
+  //       </Col>
+  //     );
+  //   });
+  // };
+
   render() {
     const { dataCards } = this.props;
     return (
@@ -88,7 +123,11 @@ class Offer extends React.Component {
           </Col>
         </Row>
         <div className="ar-pagination-container">
-          <Pagination />
+          <Pagination
+            totalPages={Math.ceil(this.props.offers.length / 4)}
+            selectPage={this.selectPage}
+            active={this.state.selectedPage}
+          />
         </div>
       </div>
     );

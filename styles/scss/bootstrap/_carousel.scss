@@ -84,10 +84,10 @@
 // Left/right controls for nav
 //
 .carousel-control-prev{
-  justify-content: end; // 3. horizontally center contents
+  justify-content: flex-end; // 3. horizontally center contents
 }
 .carousel-control-next {
-  justify-content: start; // 3. horizontally center contents
+  justify-content: flex-start; // 3. horizontally center contents
 }
 .carousel-control-prev,
 .carousel-control-next {
