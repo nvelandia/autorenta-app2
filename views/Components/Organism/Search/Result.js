@@ -45,7 +45,7 @@ class Result extends React.Component {
   render() {
     return (
       <Row className="m-4 justify-content-center">
-        <Col xl="10" lg="10" md="11">
+        <Col xl="9" lg="10" md="11" className="pl-0 pr-0">
           <Row className="justify-content-end">
             <div className="d-flex align-items-center">
               <div className="custom-control custom-checkbox mr-3">
@@ -58,7 +58,7 @@ class Result extends React.Component {
             </div>
           </Row>
           <Row>
-            <Col xl="3" lg="3">
+            <Col xl="3" lg="3" className="pl-0">
               <FilterList />
             </Col>
             <Col xl="9" lg="9">
