@@ -35,6 +35,17 @@ class homeService {
 
     return homeAdapter.loadOffers(loadResponse);
   };
+
+  searchFleet = async (body) => {
+    let searchResponse;
+    try {
+      searchResponse = await Api.post('fleet/find', body);
+    } catch (err) {
+      searchResponse = err;
+    }
+
+    return homeAdapter.searchFleet(searchResponse);
+  };
 }
 
 export default new homeService();

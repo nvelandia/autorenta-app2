@@ -25,12 +25,18 @@ class homeAdapter {
     if (!isError(status)) {
       const countries = data.response
         .map((country) => {
-          return country.name;
+          return { name: country.name, id: country.country_id };
         })
-        .filter((country) => country !== null)
-        .sort();
-
-      console.log(countries);
+        .filter((country) => country.name !== null)
+        .sort(function (country1, country2) {
+          if (country1.name > country2.name) {
+            return 1;
+          }
+          if (country1.name < country2.name) {
+            return -1;
+          }
+          return 0;
+        });
 
       return successfullyResponsesPresenter.listResponse(
         actionNames.loadCountriesSuccessfully,
@@ -56,6 +62,20 @@ class homeAdapter {
     }
 
     return errorResponsesPresenter.listError(data, status, body, actionNames.loadOffersUnsuccessfully);
+  };
+
+  searchFleet = (response, body) => {
+    const { status, data } = response;
+
+    if (!isError(status)) {
+      return successfullyResponsesPresenter.fleetResponse(
+        actionNames.searchFleetSuccessfully,
+        data.response,
+        'Fleet found',
+      );
+    }
+
+    return errorResponsesPresenter.listError(data, status, body, actionNames.searchFleetUnsuccessfully);
   };
 }
 

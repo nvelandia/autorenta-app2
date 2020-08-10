@@ -1,19 +1,24 @@
 import { actionNames } from '../utils/constants/actionConstants';
 
 const defaultState = {
-  page: 1,
   locations: [],
-  countries: [],
+  cars: [],
+  companies: [],
+  carFeatures: [],
+  rates: [],
 };
 
 const searchReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case actionNames.nextPageHome:
-      return { ...state, page: state.page + 1 };
-    case actionNames.searchLocationSuccessfully:
-      return { ...state, locations: action.locations };
-    case actionNames.loadCountriesSuccessfully:
-      return { ...state, countries: action.countries };
+    case actionNames.searchFleetSuccessfully:
+      return {
+        ...state,
+        cars: action.cars,
+        locations: action.locations,
+        companies: action.companies,
+        carFeatures: action.carFeatures,
+        rates: action.rates,
+      };
     default:
       return state;
   }

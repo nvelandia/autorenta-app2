@@ -24,3 +24,10 @@ export const loadOffers = () => {
     type: actionNames.loadOffers,
   };
 };
+
+export const searchFleet = (body) => {
+  return {
+    type: actionNames.searchFleet,
+    body,
+  };
+};

@@ -14,6 +14,7 @@ import UpToTop from '../Components/Atoms/UpToTop';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
 import ActiveSearch from '../Components/Organism/Search/ActiveSearch';
 import Result from '../Components/Organism/Search/Result';
+import { actionNames } from '../../utils/constants/actionConstants';
 
 const items = [
   {
@@ -30,7 +31,24 @@ class Search extends React.Component {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
+    this.mock();
   }
+
+  mock = () => {
+    this.dispatch({
+      type: actionNames.searchFleet,
+      body: {
+        pickup_location: 'MIA',
+        pickup_date: '2020-08-11',
+        pickup_time: '12:00',
+        dropoff_location: 'MIA',
+        dropoff_date: '2020-08-12',
+        dropoff_time: '12:00',
+        passenger_country_id: 1,
+        passenger_age: 22,
+      },
+    });
+  };
 
   render() {
     return (

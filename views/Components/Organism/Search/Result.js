@@ -62,7 +62,11 @@ class Result extends React.Component {
               <FilterList />
             </Col>
             <Col xl="9" lg="9">
-              <CarsResult />
+              {this.props.cars.length !== 0
+                ? this.props.cars.map((car) => {
+                    return <CarsResult car={car} />;
+                  })
+                : null}
             </Col>
           </Row>
         </Col>

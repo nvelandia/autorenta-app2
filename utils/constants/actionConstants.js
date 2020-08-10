@@ -8,6 +8,7 @@ export const actionNames = {
   searchLocation: 'SEARCH_LOCATION',
   loadCountries: 'LOAD_COUNTRIES',
   loadOffers: 'LOAD_OFFERS',
+  searchFleet: 'SEARCH_FLEET',
   //Home-Service
   searchLocationSuccessfully: 'SEARCH_LOCATION_SUCCESSFULLY',
   searchLocationUnsuccessfully: 'SEARCH_LOCATION_UNSUCCESSFULLY',
@@ -15,6 +16,8 @@ export const actionNames = {
   loadCountriesUnsuccessfully: 'COUNTRIES_LOADED_UNSUCCESSFULLY',
   loadOffersSuccessfully: 'OFFERS_LOADED_SUCCESSFULLY',
   loadOffersUnsuccessfully: 'OFFERS_LOADED_UNSUCCESSFULLY',
+  searchFleetSuccessfully: 'SEARCH_FLEET_SUCCESSFULLY',
+  searchFleetUnsuccessfully: 'SEARCH_FLEET_UNSUCCESSFULLY',
   //General
   showLoader: 'SHOW_LOADER',
   hideLoader: 'HIDE-LOADER',

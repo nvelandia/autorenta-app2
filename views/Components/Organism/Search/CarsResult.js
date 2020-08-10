@@ -43,14 +43,61 @@ class CarsResult extends React.Component {
   };
 
   render() {
-    return <div className="ar-border-round">asd</div>;
+    const { car } = this.props;
+    return (
+      <Card className="card-frame">
+        <CardBody>
+          <Row>
+            <Col xl="2" lg="2">
+              <img src={car.company.logo} alt={'Company logo'} />
+            </Col>
+            <Col xl="3" lg="3">
+              <h4 className="ar-red-text">{car.typeCar.name}</h4>
+              <h6>{car.name}</h6>
+            </Col>
+            <Col xl="7" lg="7">
+              <Row>
+                <Col>
+                  <h6>{car.seats} Asientos</h6>
+                  <h6>{car.doors} Puertas</h6>
+                </Col>
+                <Col>
+                  <h6>{car.bags_big} maleta grande</h6>
+                  <h6>{car.bags_small} maleta pequeña</h6>
+                </Col>
+                <Col>
+                  <h6>Transmisión {car.gear}</h6>
+                  <h6>{car.doors ? 'Aire Acondicionado' : null}</h6>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row>
+            <Col xl="5" lg="5">
+              <Row>
+                <Col xl="6" lg="6">
+                  <img width="100%" src={car.image} alt="Car image" />
+                </Col>
+                <Col xl="6" lg="6">
+                  <h6>Cancela gratis tu reserva con 45hs de anticipación.</h6>
+                  <h6>Algunas rentadoras cobran un cargo extra a conductores menores de 25 años.</h6>
+                </Col>
+              </Row>
+              <Row></Row>
+            </Col>
+            <Col xl="7" lg="7">
+              prices
+            </Col>
+          </Row>
+        </CardBody>
+      </Card>
+    );
   }
 }
 
 CarsResult.propTypes = {
   dispatch: PropTypes.func,
-  searchLocation: PropTypes.func,
-  loadCountries: PropTypes.func,
+  image: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {

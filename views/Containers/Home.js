@@ -51,7 +51,11 @@ class Home extends React.Component {
       <>
         <CustomNavBar />
         <CarouselHeader items={items} />
-        <MakeYourReservation searchLocation={actions.searchLocation} loadCountries={actions.loadCountries} />
+        <MakeYourReservation
+          searchLocation={actions.searchLocation}
+          loadCountries={actions.loadCountries}
+          searchfleet={actions.searchFleet}
+        />
         <Offer loadOffers={actions.loadOffers} />
         <Banner />
         <CustomFooter />

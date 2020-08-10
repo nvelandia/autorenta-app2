@@ -7,7 +7,15 @@ import { FormGroup, InputGroupAddon, InputGroupText, InputGroup, Col, Row, Input
 
 class RangeDatePicker extends React.Component {
   state = {};
+
+  handleOnBlur = (handleDate) => {
+    if (this.state.startDate && this.state.endDate) {
+      handleDate(this.state.startDate, this.state.endDate);
+    }
+  };
+
   render() {
+    const { handleDate } = this.props;
     return (
       <>
         <Row>
@@ -24,7 +32,7 @@ class RangeDatePicker extends React.Component {
                     className: 'form-control ar-round-input-right',
                     placeholder: 'Fecha y hora de retiro',
                   }}
-                  timeFormat={true}
+                  timeFormat={'H:mm'}
                   renderDay={(props, currentDate, selectedDate) => {
                     let classes = props.className;
                     if (
@@ -50,6 +58,7 @@ class RangeDatePicker extends React.Component {
                     );
                   }}
                   onChange={(e) => this.setState({ startDate: e })}
+                  onBlur={() => this.handleOnBlur(handleDate)}
                 />
               </InputGroup>
             </FormGroup>
@@ -67,7 +76,7 @@ class RangeDatePicker extends React.Component {
                     className: 'form-control ar-round-input-right',
                     placeholder: 'Fecha y hora de entrega',
                   }}
-                  timeFormat={true}
+                  timeFormat={'H:mm'}
                   renderDay={(props, currentDate, selectedDate) => {
                     let classes = props.className;
                     if (
@@ -87,12 +96,13 @@ class RangeDatePicker extends React.Component {
                       classes += ' end-date';
                     }
                     return (
-                      <td {...props} className={classes + ' Ddddddddddddddddddddddddddddd'}>
+                      <td {...props} className={classes}>
                         {currentDate.date()}
                       </td>
                     );
                   }}
                   onChange={(e) => this.setState({ endDate: e })}
+                  onBlur={() => this.handleOnBlur(handleDate)}
                 />
               </InputGroup>
             </FormGroup>

@@ -12,12 +12,22 @@ class CustomDropDown extends React.Component {
     };
   }
 
+  handleOnSelectObject = (event, item) => {
+    if (this.props.handleSelect) {
+      this.props.handleSelect(event);
+    }
+    this.setState({ value: item.name });
+  };
+
   handleOnSelect = (event) => {
+    if (this.props.handleSelect) {
+      this.props.handleSelect(event);
+    }
     this.setState({ value: event.target.value });
   };
 
   render() {
-    const { items, classes } = this.props;
+    const { items, classes, name } = this.props;
     return (
       <>
         <UncontrolledDropdown className="w-100">
@@ -32,11 +42,25 @@ class CustomDropDown extends React.Component {
           </DropdownToggle>
           <DropdownMenu className={classes}>
             {items.map((item, index) => {
-              return (
-                <DropdownItem key={index} id={index} value={item} onClick={this.handleOnSelect}>
-                  {item}
-                </DropdownItem>
-              );
+              if (typeof item === 'object') {
+                return (
+                  <DropdownItem
+                    key={index}
+                    id={index}
+                    name={name}
+                    value={item.id}
+                    onClick={(e) => this.handleOnSelectObject(e, item)}
+                  >
+                    {item.name}
+                  </DropdownItem>
+                );
+              } else {
+                return (
+                  <DropdownItem key={index} id={index} name={name} value={item} onClick={this.handleOnSelect}>
+                    {item}
+                  </DropdownItem>
+                );
+              }
             })}
           </DropdownMenu>
         </UncontrolledDropdown>
@@ -48,6 +72,7 @@ class CustomDropDown extends React.Component {
 CustomDropDown.propTypes = {
   items: PropTypes.array,
   title: PropTypes.string,
+  handleSelect: PropTypes.func,
 };
 
 export default CustomDropDown;
