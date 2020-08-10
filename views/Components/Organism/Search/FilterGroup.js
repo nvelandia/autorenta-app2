@@ -61,29 +61,29 @@ class FilterGroup extends React.Component {
   render() {
     const { title, items, priceRange } = this.props;
     return (
-      <div className={'accordion'}>
+      <div className={'accordion ar-filters-collapse'}>
         <CardHeader
           role="tab"
           onClick={() => this.collapsesToggle('collapseOne')}
           aria-expanded={this.state.openedCollapses.includes('collapseOne')}
-          className="bg-ar-white-3 ar-filters-collapse"
+          className="bg-ar-white-3 ar-filter-title"
         >
-          <h5 className="mb-0 ar-blue-0-text">{title}</h5>
+          <h5>{title}</h5>
         </CardHeader>
 
         <Collapse role="tabpanel" isOpen={this.state.openedCollapses.includes('collapseOne')}>
-          <CardBody>
+          <CardBody className="pl-3">
             {!priceRange ? (
               items.map((item) => {
                 return (
-                  <div className="d-flex m-2">
-                    <div className="custom-control custom-checkbox mr-3">
+                  <div className="d-flex m-1">
+                    <div className="custom-control custom-checkbox mr-2">
                       <input className="custom-control-input" id={title + item} type="checkbox" />
-                      <label className="custom-control-label ws-pre" htmlFor={title + item}>
+                      <label className="custom-control-label ar-filter-items" htmlFor={title + item}>
                         {item}
                       </label>
                     </div>
-                    <Badge color="gray-1" pill>
+                    <Badge className={item === 'Todos' || item === 'All' ? 'ar-badge-total' : 'ar-badge'} pill>
                       40
                     </Badge>
                   </div>

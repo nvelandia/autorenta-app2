@@ -1,8 +1,26 @@
 .ar-filters-collapse{
+
   h5{
     font-size: 0.75rem;
+    margin-bottom: 0;
   }
-  padding: 0.8rem 2rem;
-  cursor: pointer;
   border-radius: 0 !important;
+
+    .ar-filter-title{
+      border-radius: 0 !important;
+
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      margin-bottom: 0;
+      color: $ar-color-blue-0;
+    }
+    .ar-filter-items{
+      color: $ar-color-gray-2;
+      white-space: pre;
+      font-size: 0.6rem;
+    }
+
+
 }
+
+
