@@ -43,7 +43,7 @@ class CustomFooter extends React.Component {
                 </InputGroup>
               </Col>
               <div>
-                <Button className=" btn-icon ar-round-button ar-nav-button bg-ar-red-0" color="default" href="">
+                <Button className=" btn-icon ar-round-button" color="red-0" href="">
                   <span className="nav-link-inner--text">Regístrate </span>
                   <span className="btn-inner--icon">
                     <span className="icon-chevron-right" />

@@ -54,3 +54,148 @@
     }
   }
 }
+
+.ar-car-result{
+  border-radius: 0.5rem;
+  .ar-car-top{
+    border-bottom: solid;
+    border-bottom-color: $ar-color-white-7;
+    border-bottom-width: thin;
+    .ar-car-top-left{
+      display: flex;
+      .ar-car-company-logo{
+        width: 45%;
+        border-right: solid;
+        border-right-color: $ar-color-white-7;
+        border-right-width: thin;
+        padding-right: 1rem;
+        img{
+          width: 100%;
+          margin: 0.7rem  0;
+        }
+      }
+      .ar-car-type{
+        padding-left: 2rem;
+        width: 55%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        h3{
+          margin: 0;
+        }
+      }
+    }
+
+    .ar-car-features{
+      margin: 1rem 0;
+      padding-left: 0;
+      .ar-car-features-group{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        .ar-car-feature-item{
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          margin: auto;
+          width: 100%;
+          h6{
+            color: $ar-color-blue-0;
+            margin: 0 0 0 0.4rem;
+          }
+          img{
+            width: 1rem;
+            margin-right: 0.3rem;
+          }
+        }
+      }
+    }
+  }
+  .ar-car-bottom{
+    .ar-car-left{
+      border-right: solid;
+      border-right-color: $ar-color-white-7;
+      border-right-width: thin;
+      padding: 1rem 0;
+    }
+    .ar-car-right{
+      .ar-car-chevron{
+        position: absolute;
+        width: calc(100% + 1rem);
+        margin-left: - 2rem;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.5rem;
+        span{
+          padding: 0.5rem;
+          border-radius: 50%;
+          -webkit-box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
+          -moz-box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
+          box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
+          margin-right: -0.8rem;
+          background-color: $ar-color-white-0;
+          &.ar-price-enabled{
+            color: $ar-color-white-0;
+            cursor: pointer;
+            background-color: $ar-color-red-0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ar-car-price{
+  margin: 0.5rem 0;
+  z-index: 10;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(200,200,200,1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(200,200,200,1);
+  box-shadow: 0px 0px 5px 0px rgba(200,200,200,1);
+  .ar-car-price-title{
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $ar-color-gray-2;
+    vertical-align: center;
+    padding: 1rem 0;
+  }
+  .ar-car-price-body{
+    padding:  0 0 1rem 0 ;
+    .ar-car-price-details{
+      margin: 1.2rem 0 0.5rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p{
+        margin: 0;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: $ar-color-red-0;
+      }
+      img{
+        margin-right: 0.5rem;
+        width: 1rem;
+      }
+    }
+    .ar-car-price-price{
+      font-weight: 700;
+      color: $ar-color-red-0;
+      &:before{
+        margin-right: 0.4rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: $ar-color-gray-2;
+        vertical-align: middle;
+        content:"USD "
+      }
+    }
+    .ar-car-price-button{
+      font-size: 0.75rem;
+      font-weight: 700;
+      width: 85%;
+    }
+  }
+}
