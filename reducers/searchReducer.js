@@ -6,6 +6,12 @@ const defaultState = {
   companies: [],
   carFeatures: [],
   rates: [],
+  filters: {
+    companies: [],
+    type: [],
+    passengers: [],
+    gear: [],
+  },
 };
 
 const searchReducer = (state = defaultState, action) => {

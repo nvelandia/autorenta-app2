@@ -119,6 +119,55 @@
       border-right-color: $ar-color-white-7;
       border-right-width: thin;
       padding: 1rem 0;
+      .ar-car-image{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        img{
+          width: 100%;
+        }
+        .ar-car-featured{
+          padding-bottom: 1rem;
+          margin-left: -1rem;
+          text-align: left;
+          .ar-car-featured-label-empty{
+            height: 2rem;
+          }
+          .ar-car-featured-label{
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: $ar-color-white-0;
+            background-color: $ar-color-yellow-0;
+            border-top-right-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            padding:0.625rem 1.25rem 0.625rem 0.625rem ;
+            span{
+              color: $ar-color-yellow-1;
+            }
+          }
+        }
+      }
+      .ar-car-data{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .ar-car-data-text{
+          margin-top: 0.5rem;
+          padding: 0.5rem;
+        }
+        .ar-car-data-button{
+          margin-bottom: 1rem;
+          font-size: 0.75rem;
+          font-weight: 700;
+          margin-left: -1rem;
+          background-color: $ar-color-white-0;
+          border-color: $ar-color-green-0;
+          border-width: 3px;
+          color: $ar-color-green-0;
+        }
+      }
     }
     .ar-car-right{
       .ar-car-chevron{
@@ -165,7 +214,7 @@
   .ar-car-price-body{
     padding:  0 0 1rem 0 ;
     .ar-car-price-details{
-      margin: 1.2rem 0 0.5rem 0;
+      margin: 1rem 0 0.25rem 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -183,6 +232,7 @@
     .ar-car-price-price{
       font-weight: 700;
       color: $ar-color-red-0;
+      margin-bottom: 0.25rem;
       &:before{
         margin-right: 0.4rem;
         font-size: 0.8rem;

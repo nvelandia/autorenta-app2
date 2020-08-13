@@ -46,7 +46,7 @@ class CustomFooter extends React.Component {
                 <Button className=" btn-icon ar-round-button" color="red-0" href="">
                   <span className="nav-link-inner--text">Regístrate </span>
                   <span className="btn-inner--icon">
-                    <span className="icon-chevron-right" />
+                    <span className="ar-icon-chevron-right va-middle" />
                   </span>
                 </Button>
               </div>

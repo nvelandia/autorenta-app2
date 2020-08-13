@@ -69,7 +69,7 @@ class Offer extends React.Component {
               <CardTitle className={`ar-card-title ${card.color}`}>{card.title}</CardTitle>
               <Row className="justify-content-center">
                 <Button className={`ar-round-button  ar-promo-button ${card.button} w-100 ml-3 mr-3`}>
-                  Ver más información <i className="icon-chevron-right" />
+                  Ver más información <i className="ar-icon-chevron-right va-middle" />
                 </Button>
               </Row>
             </CardBody>
@@ -98,7 +98,7 @@ class Offer extends React.Component {
   //                 className={`ar-round-button  ar-promo-button ${offer.button} w-100 ml-3 mr-3`}
   //                 style={{ backgroundColor: offer.company.color, borderColor: offer.company.color }}
   //               >
-  //                 Ver más información <i className="icon-chevron-right" />
+  //                 Ver más información <i className="ar-icon-chevron-right" />
   //               </Button>
   //             </Row>
   //           </CardBody>

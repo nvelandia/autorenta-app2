@@ -91,7 +91,7 @@ class ActiveSearch extends React.Component {
             <Button className=" btn-icon ar-round-button ar-nav-button ar-m-1 ar-modify-button" color="red-0" href="">
               <span className="nav-link-inner--text">Modificar </span>
               <span className="btn-inner--icon">
-                <span className="icon-chevron-right" />
+                <span className="ar-icon-chevron-right" />
               </span>
             </Button>
           </div>

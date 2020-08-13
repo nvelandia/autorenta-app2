@@ -58,6 +58,14 @@ class FilterGroup extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  renderBadge = (item) => {
+    return (
+      <Badge className={item === 'Todos' || item === 'All' ? 'ar-badge-total' : 'ar-badge'} pill>
+        40
+      </Badge>
+    );
+  };
+
   render() {
     const { title, items, priceRange } = this.props;
     return (
@@ -83,9 +91,7 @@ class FilterGroup extends React.Component {
                         {item}
                       </label>
                     </div>
-                    <Badge className={item === 'Todos' || item === 'All' ? 'ar-badge-total' : 'ar-badge'} pill>
-                      40
-                    </Badge>
+                    {this.renderBadge(item)}
                   </div>
                 );
               })

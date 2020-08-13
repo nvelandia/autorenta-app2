@@ -23,7 +23,7 @@ class Flags extends React.Component {
       <>
         <UncontrolledDropdown className="ar-button-flag mt-auto mb-auto" direction={this.state.direction}>
           <DropdownToggle color="white-3" className="ar-round-button ar-language-button m-0">
-            <span className="icon-language-icon ar-language" /> ES <span className="icon-chevron-down" />
+            <span className="ar-icon-language ar-language" /> ES <span className="ar-icon-chevron-down mt-1" />
           </DropdownToggle>
           <DropdownMenu className="ar-dropdown-menu">
             <DropdownItem className="ar-dropdown-item" href="#EN" onClick={(e) => e.preventDefault()}>

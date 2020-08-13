@@ -11,7 +11,7 @@ class UpToTop extends React.Component {
     return (
       <div className="ar-up-to-top-button">
         <a onClick={this.handleClick}>
-          <span className="icon-chevron-up" />
+          <span className="ar-icon-chevron-up" />
         </a>
       </div>
     );

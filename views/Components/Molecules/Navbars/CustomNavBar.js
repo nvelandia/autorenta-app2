@@ -51,7 +51,7 @@ class CustomNavbar extends React.Component {
             id="navbar-collapse"
             type="button"
           >
-            <span className="icon-chevron-down" />
+            <span className="ar-icon-chevron-down" />
           </button>
           <UncontrolledCollapse
             className="navbar-custom-collapse ar-container-nav-link"
@@ -82,7 +82,7 @@ class CustomNavbar extends React.Component {
               <NavItem>
                 <NavLink className="ar-nav-link ar-nav-link-blue " href={routes.HOME}>
                   <a className="ar-nav-link-blue">
-                    <span className="icon-home-icon" />
+                    <span className="ar-icon-home" />
                   </a>
                 </NavLink>
               </NavItem>
@@ -125,7 +125,7 @@ class CustomNavbar extends React.Component {
                 <Button className=" btn-icon ar-round-button ar-nav-button" color="blue-4" href="">
                   <span className="nav-link-inner--text">Reservar </span>
                   <span className="btn-inner--icon">
-                    <span className="icon-chevron-right" />
+                    <span className="ar-icon-chevron-right va-middle" />
                   </span>
                 </Button>
               </NavItem>

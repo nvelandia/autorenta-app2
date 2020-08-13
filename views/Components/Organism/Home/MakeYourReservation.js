@@ -108,11 +108,16 @@ class MakeYourReservation extends React.Component {
                   onMouseDown={(e) => this.handleOnSelect(e, option.iata)}
                 >
                   {option.airport ? (
-                    <img src={'/svg/plane-icon.svg'} width={'15px'} />
+                    <>
+                      <span className="ar-icon-plane ar-red-text fs-2" />
+                      &nbsp;{option.label}
+                    </>
                   ) : (
-                    <img src={'/svg/office-icon.svg'} width={'15px'} />
+                    <>
+                      <span className="ar-icon-office ar-red-text fs-2" />
+                      &nbsp;{option.label}
+                    </>
                   )}
-                  &nbsp;{' ' + option.label}
                 </Button>
               </ListGroupItem>
             );
@@ -155,7 +160,7 @@ class MakeYourReservation extends React.Component {
                         <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText className="ar-round-input-left">
-                              <i className="icon-location-icon ar-round-input-left" />
+                              <i className="ar-icon-location ar-round-input-left" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
@@ -179,7 +184,7 @@ class MakeYourReservation extends React.Component {
                         <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText className="ar-round-input-left">
-                              <i className="icon-location-icon ar-round-input-left" />
+                              <i className="ar-icon-location ar-round-input-left" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
@@ -256,14 +261,14 @@ class MakeYourReservation extends React.Component {
                     </Col>
                     <Col lg="2" md="6" className="p-0 ar-make-your-reservation-button-container">
                       <Button
-                        className=" btn-icon ar-round-button ar-blue-button ar-last-row-make-your-reservation"
+                        className=" btn-icon ar-round-button ar-blue-button ar-last-row-make-your-reservation fs--1"
                         color="default"
                         type="button"
                         onClick={this.handleSearchClick}
                       >
                         <span className="nav-link-inner--text">Buscar </span>
                         <span className="btn-inner--icon">
-                          <span className="icon-chevron-right" />
+                          <span className="ar-icon-chevron-right va-middle " />
                         </span>
                       </Button>
                     </Col>

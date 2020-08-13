@@ -37,7 +37,7 @@ class CustomDropDown extends React.Component {
           >
             <Row className="justify-content-between pl-3 pr-3">
               {this.state.value}
-              <span className="icon-chevron-down" />
+              <span className="ar-icon-chevron-down va-middle" />
             </Row>
           </DropdownToggle>
           <DropdownMenu className={classes}>

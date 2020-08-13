@@ -63,7 +63,7 @@ class FilterList extends React.Component {
         />
         <FilterGroup
           title={'CANTIDAD DE PASAJEROS'}
-          items={['Todos', '4 personas', '5 personas', '7 personas', '8 personas', '12 ó más personas']}
+          items={['4 personas', '5 personas', '7 personas', '8 personas', '12 ó más personas']}
         />
         <FilterGroup title={'TIPO DE TRANSMISIÓN'} items={['Transmisión automática', 'Transmisión manual']} />
         <FilterGroup title={'RANGO DE PRECIO'} priceRange={true} />

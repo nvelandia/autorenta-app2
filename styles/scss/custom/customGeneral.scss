@@ -39,9 +39,26 @@
   color: $ar-color-light-blue-1;
 }
 
+.ar-light-blue-3-text{
+  color: $ar-color-light-blue-3;
+}
+
 .ar-gray-2-text{
   color: $ar-color-gray-2;
 }
+
+.ar-yellow-text{
+  color: $ar-color-yellow-0;
+}
+
+.ar-yellow-1-text{
+  color: $ar-color-yellow-1;
+}
+
+.ar-green-text{
+  color: $ar-color-green-0;
+}
+
 
 //Backgroudns
 
@@ -128,6 +145,26 @@
 
 //Text
 
+.va-middle{
+  vertical-align: middle;
+}
+
 .ws-pre{
   white-space: pre;
+}
+
+.fs--2{
+  font-size: 0.6rem;
+}
+
+.fs--1{
+  font-size: 0.8rem;
+}
+
+.fs-1{
+  font-size: 1rem;
+}
+
+.fs-2{
+  font-size: 1.2rem;
 }
