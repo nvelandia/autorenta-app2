@@ -61,12 +61,12 @@ class CarsResult extends React.Component {
     const prices = car.rates.map((rate) => {
       return (
         <Col className="p-2">
-          <Card className="text-center ar-car-price">
+          <Card className="text-center ar-car-price shadow">
             <CardHeader className="bg-transparent ar-car-price-title">
               <h4 className="mb-0">{rate.name}</h4>
             </CardHeader>
             <CardBody className="ar-car-price-body">
-              <div className="ar-car-price-details">
+              <div className="ar-car-price-details" onClick={() => this.props.showInformationModal(rate.charges)}>
                 <p>
                   <i className="ar-icon-info va-middle" /> Ver detalle de esta tarifa
                 </p>
@@ -74,7 +74,7 @@ class CarsResult extends React.Component {
               <CardText className="mb-2">
                 <h1 className="ar-car-price-price">{rate.price}</h1>
               </CardText>
-              <Button className=" btn-icon ar-round-button ar-car-price-button" color="red-0" href="">
+              <Button className=" btn-icon ar-round-button ar-car-price-button ws-nowrap" color="red-0" href="">
                 <span className="nav-link-inner--text">Reservar ahora </span>
                 <span className="btn-inner--icon">
                   <span className="ar-icon-chevron-right va-middle" />
@@ -221,6 +221,7 @@ class CarsResult extends React.Component {
 CarsResult.propTypes = {
   dispatch: PropTypes.func,
   image: PropTypes.string,
+  showInformationModal: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

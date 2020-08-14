@@ -58,16 +58,12 @@ class FilterGroup extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  renderBadge = (item) => {
-    return (
-      <Badge className={item === 'Todos' || item === 'All' ? 'ar-badge-total' : 'ar-badge'} pill>
-        40
-      </Badge>
-    );
-  };
-
   render() {
-    const { title, items, priceRange } = this.props;
+    const { title, items, priceRange, badge, type, text } = this.props;
+    let filters;
+    if (items) {
+      filters = Object.keys(items);
+    }
     return (
       <div className={'accordion ar-filters-collapse'}>
         <CardHeader
@@ -82,16 +78,30 @@ class FilterGroup extends React.Component {
         <Collapse role="tabpanel" isOpen={this.state.openedCollapses.includes('collapseOne')}>
           <CardBody className="pl-3">
             {!priceRange ? (
-              items.map((item) => {
+              filters.map((key) => {
                 return (
-                  <div className="d-flex m-1">
-                    <div className="custom-control custom-checkbox mr-2">
-                      <input className="custom-control-input" id={title + item} type="checkbox" />
-                      <label className="custom-control-label ar-filter-items" htmlFor={title + item}>
-                        {item}
-                      </label>
-                    </div>
-                    {this.renderBadge(item)}
+                  <div className="d-flex m-1 align-items-center">
+                    {type === 'check' ? (
+                      <div className="custom-control custom-checkbox mr-2">
+                        <input className="custom-control-input" id={title + key} type="checkbox" />
+                        <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
+                          {key.charAt(0).toUpperCase() + key.slice(1) + `  ${text}`}
+                        </label>
+                      </div>
+                    ) : null}
+                    {type === 'radio' ? (
+                      <div className="custom-control custom-radio mr-2">
+                        <input className="custom-control-input" name={title} id={title + key} type="radio" />
+                        <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
+                          {key + '  ó  más  maletas'}
+                        </label>
+                      </div>
+                    ) : null}
+                    {badge ? (
+                      <Badge className={key === 'total' ? 'ar-badge-total' : 'ar-badge'} pill>
+                        &nbsp;{`${items[key]}`}&nbsp;
+                      </Badge>
+                    ) : null}
                   </div>
                 );
               })
@@ -109,6 +119,9 @@ FilterGroup.propTypes = {
   dispatch: PropTypes.func,
   searchLocation: PropTypes.func,
   loadCountries: PropTypes.func,
+  badge: PropTypes.bool,
+  type: PropTypes.string,
+  items: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

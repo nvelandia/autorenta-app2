@@ -147,7 +147,7 @@ class MakeYourReservation extends React.Component {
             <Card className=" border-0 mb-0 ar-border-round">
               <CardBody className="px-lg-5 py-lg-5">
                 <div className="text-center mb-4 ar-steps-bar">
-                  <ProgressBar />
+                  <ProgressBar step={0} />
                 </div>
                 <Form role="form">
                   <Row>

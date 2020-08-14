@@ -155,7 +155,7 @@
 
   .custom-control-input:checked ~ .custom-control-label {
     &::after {
-      background-image: escape-svg($custom-radio-indicator-icon-checked);
+      background-image: escape-svg($custom-radio-indicator-icon-checked) !important;
     }
   }
 

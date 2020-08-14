@@ -10,15 +10,18 @@
   width: 2.3rem;
   height: 2.3rem;
   display: block;
-  background-color: $ar-color-light-blue-0;
-  .ar-done{
-
+  &.ar-done{
+    background-color: $ar-color-blue-2;
+  }
+  &.ar-active{
+    background-color: $ar-color-red-0;
+  }
+  &.ar-pendant{
+    background-color: $ar-color-light-blue-0;
   }
 }
 
-.ar-active{
-  background-color: $ar-color-red-0;
-}
+
 
 .ar-bar{
   margin-top: -1.9rem;
@@ -31,7 +34,6 @@
   font-weight: bold;
   &.ar-steps-header{
     margin-bottom: -8px;
-    color: $ar-color-white-0;
   }
   @media (max-width: 520px) {
     font-size: 0.7rem;

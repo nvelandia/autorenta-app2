@@ -31,8 +31,16 @@
   color: $ar-color-orange-0;
 }
 
+.ar-white-text{
+  color: $ar-color-white-0;
+}
+
 .ar-white-1-text{
   color: $ar-color-white-1;
+}
+
+.ar-light-blue-text{
+  color: $ar-color-light-blue-0;
 }
 
 .ar-light-blue-1-text{
@@ -153,6 +161,10 @@
   white-space: pre;
 }
 
+.ws-nowrap{
+  white-space: nowrap;
+}
+
 .fs--2{
   font-size: 0.6rem;
 }
@@ -167,4 +179,12 @@
 
 .fs-2{
   font-size: 1.2rem;
+}
+
+.fs-4{
+  font-size: 2rem;
+}
+
+.tx-bold{
+  font-weight: 700;
 }

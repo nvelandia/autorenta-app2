@@ -23,7 +23,7 @@ class StepsHeader extends React.Component {
           </Row>
           <Row className="justify-content-center mt-3">
             <Col lg="7" className="text-center mb-0 ar-steps-bar">
-              <ProgressBar classes={'ar-steps-header'} />
+              <ProgressBar classes={'ar-steps-header'} step={2} />
             </Col>
           </Row>
         </Col>

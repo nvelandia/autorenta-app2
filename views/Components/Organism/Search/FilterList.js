@@ -42,30 +42,15 @@ class FilterList extends React.Component {
   };
 
   render() {
+    const { gears, companies, types, seats, bags } = this.props.items;
     return (
       <Card>
         <CardHeader className="ar-blue-0-text font-weight-600">Filtrar resultados</CardHeader>
-        <FilterGroup title={'COMPAÑÍA RENTADORA'} items={['Todos', 'Avis', 'Budget', 'Payless', 'Alamo']} />
-        <FilterGroup
-          title={'TIPOS DE VEHÍCULO'}
-          items={[
-            'Todos',
-            'Pequeños / Económicos',
-            'Compactos',
-            'Intermedios',
-            'Standars',
-            'Grandes',
-            'Premiuns / De Lujo',
-            'Deportivos /Convertibles',
-            'Minivans / Maxivans',
-            'SUVs / Todoterrenos',
-          ]}
-        />
-        <FilterGroup
-          title={'CANTIDAD DE PASAJEROS'}
-          items={['4 personas', '5 personas', '7 personas', '8 personas', '12 ó más personas']}
-        />
-        <FilterGroup title={'TIPO DE TRANSMISIÓN'} items={['Transmisión automática', 'Transmisión manual']} />
+        <FilterGroup title={'COMPAÑÍA RENTADORA'} items={companies} type={'check'} badge={true} text={''} />
+        <FilterGroup title={'TIPOS DE VEHÍCULO'} items={types} type={'check'} badge={true} text={''} />
+        <FilterGroup title={'CANTIDAD DE PASAJEROS'} items={seats} type={'check'} badge={false} text={'pasajeros'} />
+        <FilterGroup title={'CAPACIDAD DE MALETAS'} items={bags} type={'radio'} badge={false} text={''} />
+        <FilterGroup title={'TIPO DE TRANSMISIÓN'} items={gears} type={'check'} badge={false} text={''} />
         <FilterGroup title={'RANGO DE PRECIO'} priceRange={true} />
       </Card>
     );
@@ -76,6 +61,7 @@ FilterList.propTypes = {
   dispatch: PropTypes.func,
   searchLocation: PropTypes.func,
   loadCountries: PropTypes.func,
+  items: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
