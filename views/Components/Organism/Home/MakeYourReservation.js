@@ -209,7 +209,7 @@ class MakeYourReservation extends React.Component {
                     <Col lg="4" md="6">
                       <FormGroup
                         className={classnames({
-                          focused: this.state.ageSelected,
+                          focused: this.state.countrySelected,
                         })}
                       >
                         <CustomDropDown

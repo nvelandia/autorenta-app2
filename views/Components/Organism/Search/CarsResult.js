@@ -66,7 +66,7 @@ class CarsResult extends React.Component {
               <h4 className="mb-0">{rate.name}</h4>
             </CardHeader>
             <CardBody className="ar-car-price-body">
-              <div className="ar-car-price-details" onClick={() => this.props.showInformationModal(rate.charges)}>
+              <div className="ar-car-price-details" onClick={() => this.props.showDetailModal(rate.charges)}>
                 <p>
                   <i className="ar-icon-info va-middle" /> Ver detalle de esta tarifa
                 </p>
@@ -184,7 +184,12 @@ class CarsResult extends React.Component {
                       </h6>
                     </div>
                   </div>
-                  <Button className="btn-icon ar-round-button ar-car-data-button" color="blue-4" type="button">
+                  <Button
+                    className="btn-icon ar-round-button ar-car-data-button"
+                    color="blue-4"
+                    type="button"
+                    onClick={this.props.showAditionalModal}
+                  >
                     <span className="btn-inner--text">Información adicional</span>
                   </Button>
                 </Col>
@@ -221,7 +226,8 @@ class CarsResult extends React.Component {
 CarsResult.propTypes = {
   dispatch: PropTypes.func,
   image: PropTypes.string,
-  showInformationModal: PropTypes.func,
+  showDetailModal: PropTypes.func,
+  showAditionalModal: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

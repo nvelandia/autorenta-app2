@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/homeActions';
+import * as homeActions from '../../actions/homeActions';
+//import * as actions from '../../actions/searchActions';
 import CustomNavBar from '../Components/Molecules/Navbars/CustomNavBar';
 import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
 import Banner from '../Components/Molecules/banners/Banner';
@@ -51,7 +52,7 @@ class Search extends React.Component {
       <>
         <CustomNavBar />
         <StepsHeader />
-        <ActiveSearch />
+        <ActiveSearch searchLocation={homeActions.searchLocation} />
         <Result />
         <Banner />
         <CustomFooter />

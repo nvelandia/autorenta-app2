@@ -1,43 +1,24 @@
 import React from 'react';
-import classnames from 'classnames';
-
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  ListGroup,
-  ListGroupItem,
-  Row,
-} from 'reactstrap';
-import CustomDropDown from '../../Atoms/CustomDropDown';
+import { Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CarsResult from './CarsResult';
 import FilterList from './FilterList';
 import Dropdown from '../../Atoms/Dropdown';
+import ModalDetailInformation from './ModalDetailInformation';
 import ModalAditionalInformation from './ModalAditionalInformation';
 
 class Result extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false,
+      showDetailModal: false,
+      showAditionalModal: false,
+      showModifyModal: false,
       information: [],
     };
     this.dispatch = props.dispatch;
-    this.handleOnLoad();
   }
-
-  handleOnLoad = () => {};
 
   handleOnSelect = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -47,20 +28,29 @@ class Result extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  showInformationModal = (information) => {
-    this.setState({ showModal: true, information });
+  showAditionalModal = () => {
+    this.setState({ showAditionalModal: true });
+  };
+
+  showDetailModal = (information) => {
+    this.setState({ showDetailModal: true, information });
   };
 
   hideModal = () => {
-    this.setState({ showModal: false, information: [] });
+    this.setState({ showDetailModal: false, showAditionalModal: false, information: [] });
   };
 
   render() {
     return (
       <Row className="m-4 justify-content-center">
+        <ModalDetailInformation
+          information={this.state.information}
+          showModal={this.state.showDetailModal}
+          hideModal={this.hideModal}
+        />
         <ModalAditionalInformation
           information={this.state.information}
-          showModal={this.state.showModal}
+          showModal={this.state.showAditionalModal}
           hideModal={this.hideModal}
         />
         <Col xl="9" lg="10" md="11" className="pl-0 pr-0">
@@ -80,9 +70,15 @@ class Result extends React.Component {
               {Object.entries(this.props.filters).length !== 0 ? <FilterList items={this.props.filters} /> : null}
             </Col>
             <Col xl="9" lg="9" className="pl-0">
-              {this.props.cars.length !== 0
-                ? this.props.cars.map((car) => {
-                    return <CarsResult car={car} showInformationModal={this.showInformationModal} />;
+              {this.props.result.cars.length !== 0
+                ? this.props.result.cars.map((car) => {
+                    return (
+                      <CarsResult
+                        car={car}
+                        showDetailModal={this.showDetailModal}
+                        showAditionalModal={this.showAditionalModal}
+                      />
+                    );
                   })
                 : null}
             </Col>
