@@ -10,6 +10,10 @@ const generalReducer = (state = defaultState, action) => {
       return { ...state, loader: true };
     case actionNames.hideLoader:
       return { ...state, loader: false };
+    case actionNames.subscribedSuccessfully:
+      return { ...state };
+    case actionNames.subscribedUnsuccessfully:
+      return { ...state };
     default:
       return state;
   }

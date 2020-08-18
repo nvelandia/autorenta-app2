@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Row, Col, FormGroup, InputGroup, InputGroupAddon, InputGroupText, Input, Button } from 'reactstrap';
-import classnames from 'classnames';
+import { connect } from 'react-redux';
 
 class CustomFooter extends React.Component {
   constructor(props) {
@@ -8,8 +9,19 @@ class CustomFooter extends React.Component {
     this.state = {
       name: '',
       email: '',
+      nameFocus: false,
+      emailFocus: false,
     };
+    this.dispatch = props.dispatch;
   }
+
+  handleOnClick = () => {
+    this.dispatch(this.props.subscribeToNewsletter(this.state.name, this.state.email));
+  };
+
+  handleOnChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   render() {
     return (
@@ -26,8 +38,10 @@ class CustomFooter extends React.Component {
                     className="ar-round-input h-auto"
                     placeholder="Nombre y apellido"
                     type="text"
-                    onFocus={() => this.setState({ name: true })}
-                    onBlur={() => this.setState({ name: false })}
+                    name="name"
+                    onFocus={() => this.setState({ nameFocus: true })}
+                    onBlur={() => this.setState({ nameFocus: false })}
+                    onChange={this.handleOnChange}
                   />
                 </InputGroup>
               </Col>
@@ -37,13 +51,15 @@ class CustomFooter extends React.Component {
                     className="ar-round-input h-auto"
                     placeholder="Direccion de E-mail"
                     type="email"
-                    onFocus={() => this.setState({ email: true })}
-                    onBlur={() => this.setState({ email: false })}
+                    name="email"
+                    onFocus={() => this.setState({ emailFocus: true })}
+                    onBlur={() => this.setState({ emailFocus: false })}
+                    onChange={this.handleOnChange}
                   />
                 </InputGroup>
               </Col>
               <div>
-                <Button className=" btn-icon ar-round-button" color="red-0" href="">
+                <Button className=" btn-icon ar-round-button" color="red-0" onClick={this.handleOnClick}>
                   <span className="nav-link-inner--text">Regístrate </span>
                   <span className="btn-inner--icon">
                     <span className="ar-icon-chevron-right va-middle" />
@@ -135,4 +151,13 @@ class CustomFooter extends React.Component {
   }
 }
 
-export default CustomFooter;
+CustomFooter.propTypes = {
+  dispatch: PropTypes.func,
+  subscribeToNewsletter: PropTypes.func,
+};
+
+const mapStateToProps = (state) => {
+  return state.generalReducer;
+};
+
+export default connect(mapStateToProps)(CustomFooter);

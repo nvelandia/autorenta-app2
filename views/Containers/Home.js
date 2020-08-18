@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/homeActions';
+import * as generalAction from '../../actions/generalActions';
 import CustomNavBar from '../Components/Molecules/Navbars/CustomNavBar';
 import CarouselHeader from '../Components/Molecules/Headers/CarouselHeader';
 import MakeYourReservation from '../Components/Organism/Home/MakeYourReservation';
@@ -58,7 +59,7 @@ class Home extends React.Component {
         />
         <Offer loadOffers={actions.loadOffers} />
         <Banner />
-        <CustomFooter />
+        <CustomFooter subscribeToNewsletter={generalAction.subscribeNewsletter} />
         <UpToTop />
         <AutorentaLoader />
       </>

@@ -4,6 +4,7 @@ import { all, call, delay, put, take, takeLatest } from 'redux-saga/effects';
 
 import { actionNames } from './utils/constants/actionConstants';
 import { loadCountries, searchLocation, loadOffers, searchFleet } from './redux-saga/HomeSaga';
+import { subscribeToNewsletter } from './redux-saga/GeneralSagas';
 
 //es6promise.polyfill();
 
@@ -13,6 +14,8 @@ const saga = [
   takeLatest(actionNames.loadCountries, loadCountries),
   takeLatest(actionNames.loadOffers, loadOffers),
   takeLatest(actionNames.searchFleet, searchFleet),
+  //General
+  takeLatest(actionNames.subscribeNewsletter, subscribeToNewsletter),
 ];
 
 export default function* rootSaga() {

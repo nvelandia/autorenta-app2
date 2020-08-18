@@ -21,4 +21,8 @@ export const actionNames = {
   //General
   showLoader: 'SHOW_LOADER',
   hideLoader: 'HIDE-LOADER',
+  subscribeNewsletter: 'SUBSCRIBE_TO_NEWSLETTER',
+  //General-Service
+  subscribedSuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_SUCCESSFULLY',
+  subscribedUnsuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_UNSUCCESSFULLY',
 };

@@ -15,3 +15,11 @@ export const hideLoader = () => {
 export const showNotification = () => {
   return null;
 };
+
+export const subscribeNewsletter = (name, email) => {
+  return {
+    type: actionNames.subscribeNewsletter,
+    name,
+    email,
+  };
+};
