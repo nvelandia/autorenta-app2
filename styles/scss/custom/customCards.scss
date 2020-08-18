@@ -61,6 +61,7 @@
     border-bottom: solid;
     border-bottom-color: $ar-color-white-7;
     border-bottom-width: thin;
+    margin: 0;
     .ar-car-top-left{
       display: flex;
       height: 100%;
@@ -245,6 +246,115 @@
       font-size: 0.75rem;
       font-weight: 700;
       width: 85%;
+    }
+  }
+}
+
+.ar-car-selected{
+  border-radius: 0.5rem;
+  .ar-car-top{
+    border-bottom: solid;
+    border-bottom-color: $ar-color-white-7;
+    border-bottom-width: thin;
+    margin: 0;
+
+    p{
+      font-size: 0.7rem;
+      line-height: normal;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    .ar-car-company-logo{
+      display: flex;
+      border-right: solid;
+      border-right-color: $ar-color-white-7;
+      border-right-width: thin;
+      padding-right: 1rem;
+      width: 27%;
+      img{
+        margin: auto;
+        width: 40%;
+      }
+    }
+    .ar-car-data-left{
+      display: flex;
+      align-items: center;
+      width: 47%;
+      padding: 1.5rem 2rem 1.5rem 1.5rem;
+    }
+    .ar-car-data-right{
+      display: flex;
+      align-items: center;
+      width: 26%;
+      padding: 1rem;
+    }
+    .ar-data-icon{
+      display: flex;
+      font-size: 0.7rem;
+      &:before{
+        margin-top: 0.2rem;
+      }
+    }
+  }
+
+  .ar-car-bottom{
+    margin-top: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    .ar-car-bottom-left{
+      width: 67%;
+      .ar-car-type{
+        padding-left: 2rem;
+        width: 55%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        h3{
+          margin: 0;
+        }
+        .ar-car-type-key{
+          color: $ar-color-red-0;
+        }
+      }
+      .ar-car-features{
+        margin: 1rem 0;
+        padding-left: 2rem;
+        .ar-car-features-group{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          .ar-car-feature-item{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin: auto;
+            width: 100%;
+            h6{
+              color: $ar-color-blue-0;
+              margin: 0 0 0 0.4rem;
+            }
+            img{
+              width: 1rem;
+              margin-right: 0.3rem;
+            }
+          }
+        }
+      }
+    }
+    .ar-car-image{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 33%;
+      img{
+        width: 100%;
+      }
     }
   }
 }

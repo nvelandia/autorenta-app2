@@ -1,27 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  CardText,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  ListGroup,
-  ListGroupItem,
-  Row,
-} from 'reactstrap';
-import ProgressBar from '../../Atoms/ProgressBar';
-import RangeDatePicker from '../../Atoms/RangeDatePicker';
-import CustomDropDown from '../../Atoms/CustomDropDown';
+import { Button, Card, CardBody, CardHeader, CardText, Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -108,7 +86,7 @@ class CarsResult extends React.Component {
     return (
       <Card className="card-frame ar-car-result">
         <CardBody className="p-0">
-          <Row className="ar-car-top m-0">
+          <Row className="ar-car-top">
             <Col xl="5" lg="5">
               <div className="ar-car-top-left">
                 <div className="ar-car-company-logo">

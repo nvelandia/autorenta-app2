@@ -23,7 +23,7 @@ import RangeDatePicker from '../../Atoms/RangeDatePicker';
 import CustomDropDown from '../../Atoms/CustomDropDown';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import FilterGroup from '../Search/FilterGroup';
+import FilterGroup from '../Step1/FilterGroup';
 import { isoStringToString, isoStringToStringTime } from '../../../../utils/helpers/dateHelpers';
 
 class MakeYourReservation extends React.Component {

@@ -9,26 +9,17 @@ import Banner from '../Components/Molecules/banners/Banner';
 import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
-import ActiveSearch from '../Components/Organism/Search/ActiveSearch';
-import Result from '../Components/Organism/Search/Result';
 import { actionNames } from '../../utils/constants/actionConstants';
+import CarSelected from '../Components/Organism/Step2/CarSelected';
+import Details from '../Components/Organism/Step2/Details';
+import { Row, Col } from 'reactstrap';
 
-const items = [
-  {
-    src: '/img/custom/top-image-bg.jpg',
-    altText: '',
-    caption: '',
-    header: '',
-    id: 1,
-  },
-];
-
-class Search extends React.Component {
+class Step2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
-    this.mock();
+    //this.mock();
   }
 
   mock = () => {
@@ -48,12 +39,34 @@ class Search extends React.Component {
   };
 
   render() {
+    const car = {
+      image: '/img/custom/searchView/mitsubishi-mirage-alamo.jpg',
+      doors: 5,
+      gear: 'Manual',
+      bags_small: 3,
+      bags_big: 2,
+      seats: 5,
+      name: 'Ford Fiesta',
+      typeCar: {
+        name: 'Económico / Pequeño',
+      },
+      company: {
+        logo: '/svg/searchView/avis-logo.svg',
+      },
+    };
     return (
       <>
         <CustomNavBar />
-        <StepsHeader />
-        <ActiveSearch searchLocation={homeActions.searchLocation} />
-        <Result />
+        <StepsHeader step={3} />
+        <Row className="justify-content-center mt-2">
+          <Col xl="6" lg="6" className="pr-0">
+            <CarSelected car={car} />
+          </Col>
+          <Col xl="3" lg="3">
+            <Details />
+          </Col>
+        </Row>
+
         <Banner />
         <CustomFooter />
         <UpToTop />
@@ -63,7 +76,7 @@ class Search extends React.Component {
   }
 }
 
-Search.propTypes = {
+Step2.propTypes = {
   dispatch: PropTypes.func,
 };
 
@@ -71,4 +84,4 @@ const mapStateToProps = (state) => {
   return state.searchReducer;
 };
 
-export default connect(mapStateToProps)(Search);
+export default connect(mapStateToProps)(Step2);

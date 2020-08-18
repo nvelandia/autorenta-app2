@@ -8,6 +8,7 @@ class StepsHeader extends React.Component {
   }
 
   render() {
+    const { step } = this.props;
     return (
       <Row className="ar-step-header align-items-center">
         <Col>
@@ -23,7 +24,7 @@ class StepsHeader extends React.Component {
           </Row>
           <Row className="justify-content-center mt-3">
             <Col lg="7" className="text-center mb-0 ar-steps-bar">
-              <ProgressBar classes={'ar-steps-header'} step={2} />
+              <ProgressBar classes={'ar-steps-header'} step={step} />
             </Col>
           </Row>
         </Col>
