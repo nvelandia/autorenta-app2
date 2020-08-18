@@ -7,7 +7,7 @@ import { config } from '../../config/configuration';
 class ApiFetch {
   constructor() {
     this.apiUrl = () => {
-      return 'http://pg01.cubiq.digital:8000/api/';
+      return 'https://pg01.cubiq.digital/api/';
     };
   }
 
