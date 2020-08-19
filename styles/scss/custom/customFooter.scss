@@ -2,26 +2,44 @@
   .ar-footer-up{
     height: 300px;
     .ar-subscribe{
-      padding: 2rem;
+      padding: 2rem 0.5rem 2rem 1.5rem;
       height: 40%;
       width: 100%;
+      margin: 0;
       border-bottom: solid;
       border-bottom-color: $ar-color-blue-7;
       border-width: thin;
+      .ar-subscribe-text{
+        margin-left: -0.7rem!important;
+        margin-right: 1rem;
+        h2{
+          font-size: 1.05rem;
+          letter-spacing: 0.3px;
+        }
+        @media (min-width: $ar-big-size){
+          h2{
+            font-size: 1.25rem;
+            letter-spacing: 0.3px;
+          }
+        }
+      }
       div{
         display: flex;
         align-items: center;
       }
     }
     .ar-links{
-      padding-left: 2rem;
-      padding-right: 2rem;
+      padding-left: 1.4rem;
       height: 60%;
       width: 100%;
       .ar-group-links{
+        h3{
+          margin-bottom: 10px;
+        }
         .ar-link{
           color: $ar-color-white-1;
           font-size: 0.80rem;
+          letter-spacing: 0.2px;
         }
       }
       .ar-group-logos{
@@ -30,8 +48,24 @@
         justify-content: space-between;
         padding: 0;
         .ar-social-logos{
-          padding-right: 0.6rem;
-          padding-left: 0.6rem;
+          text-align: center;
+          padding: 0;
+          margin-bottom: 5px;
+          @media (min-width: $ar-small-size) and (max-width:$ar-normal-size ) {
+            img{
+              width: 17px;
+            }
+          }
+          @media (min-width: $ar-normal-size) and (max-width:$ar-big-size ) {
+            img{
+              width: 20px;
+            }
+          }
+          @media (min-width: $ar-big-size) {
+            img{
+              width: 23px;
+            }
+          }
         }
         .ar-logo-footer{
           width: 100%;
@@ -47,6 +81,7 @@
     color: $ar-color-white-1;
     p{
       font-size: 0.8rem;
+      margin-top: 10px;
     }
   }
 }

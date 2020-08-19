@@ -29,7 +29,7 @@ class CustomFooter extends React.Component {
         <Row className="ar-footer-up bg-ar-blue-2 justify-content-center">
           <Col lg="9">
             <Row className="ar-subscribe">
-              <div className="p-3 ">
+              <div className="ar-subscribe-text">
                 <h2 className="m-0 ar-white-1-text">Suscríbete y recibe todas nuestras ofertas</h2>
               </div>
               <Col>
@@ -62,7 +62,7 @@ class CustomFooter extends React.Component {
                 <Button className=" btn-icon ar-round-button" color="red-0" onClick={this.handleOnClick}>
                   <span className="nav-link-inner--text">Regístrate </span>
                   <span className="btn-inner--icon">
-                    <span className="ar-icon-chevron-right va-middle" />
+                    <span className="ar-icon-chevron-right va-middle fs-i--1" />
                   </span>
                 </Button>
               </div>
@@ -72,21 +72,21 @@ class CustomFooter extends React.Component {
                 <Row className="justify-content-between ar-links">
                   <Col xl="2" lg="3" className="ar-group-logos">
                     <img className="ar-logo-footer" src={'/svg/autorenta-logo-footer.svg'} />
-                    <Row className="justify-content-between">
+                    <Row className="justify-content-between pl-1">
                       <Col className="ar-social-logos">
-                        <img className="ar-logo-footer" src={'/svg/footer-instagram-logo.svg'} />
+                        <img src={'/svg/footer-instagram-logo.svg'} />
                       </Col>
                       <Col className="ar-social-logos">
-                        <img className="ar-logo-footer" src={'/svg/footer-whatsapp-logo.svg'} />
+                        <img src={'/svg/footer-whatsapp-logo.svg'} />
                       </Col>
                       <Col className="ar-social-logos">
-                        <img className="ar-logo-footer" src={'/svg/footer-facebook-logo.svg'} />
+                        <img src={'/svg/footer-facebook-logo.svg'} />
                       </Col>
                       <Col className="ar-social-logos">
-                        <img className="ar-logo-footer" src={'/svg/footer-linkedin-logo.svg'} />
+                        <img src={'/svg/footer-linkedin-logo.svg'} />
                       </Col>
                       <Col className="ar-social-logos">
-                        <img className="ar-logo-footer" src={'/svg/footer-twitter-logo.svg'} />
+                        <img src={'/svg/footer-twitter-logo.svg'} />
                       </Col>
                     </Row>
                   </Col>

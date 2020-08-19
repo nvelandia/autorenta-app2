@@ -38,7 +38,7 @@ const Carousels = (props) => {
   });
 
   return (
-    <div className="ar-carousel-header">
+    <div>
       <style>{`.custom-tag { max-width: 100%; height: 25vw; }`}</style>
       <Carousel activeIndex={activeIndex} next={next} previous={previous}>
         {slides}

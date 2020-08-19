@@ -2,8 +2,18 @@
   margin-top: -7vw;
 }
 
-.ar-carousel-header{
-  border-bottom: solid;
-  border-width: 30px;
-  border-color: $ar-color-blue-2;
+.ar-carousel-header-border{
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    .ar-carousel-border-left, .ar-carousel-border-right{
+        background-color: $ar-color-blue-2;
+        width: calc(50% - 450px);
+    }
+    .ar-carousel-border-center{
+        width: 900px;
+        background-color: $ar-color-blue-9;
+    }
 }
+

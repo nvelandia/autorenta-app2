@@ -1,32 +1,85 @@
 .ar-banner{
-  height: 90px;
+  height: 100px;
   margin-top: 30px;
   .ar-banner-container{
     height: 100%;
   }
 }
 
-.ar-store-logo{
-  width: 100%;
-}
-
-.ar-app-logo{
-  width: 100%;
-}
-
-.ar-logo-text-container{
+.ar-banner-text-container{
   display: flex;
-  justify-content: center;
-  padding: 5px;
   align-items: center;
   height: 100%;
+  padding-right: 0;
+  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size) {
+    h3{
+      font-size: 0.95rem;
+    }
+  }
+  @media (min-width: $ar-normal-size) and (max-width: $ar-big-size) {
+    h3{
+      font-size: 1rem;
+    }
+  }
+  @media (min-width: $ar-big-size) {
+    h3{
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.ar-banner-logo-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding-right: 0;
+  width: 25%;
+  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size) {
+    h3{
+      font-size: 0.95rem;
+    }
+    img{
+      width: 45%;
+    }
+  }
+  @media (min-width: $ar-normal-size) and (max-width: $ar-big-size) {
+    h3{
+      font-size: 1rem;
+    }
+    img{
+      width: 45%;
+    }
+  }
+  @media (min-width: $ar-big-size) {
+    h3{
+      font-size: 1.3rem;
+    }
+    img{
+      width: 45%;
+    }
+  }
 }
 
 .ar-app-logo-container{
   display: flex;
+  width: 20%;
   align-items: flex-end;
   div{
     position: absolute;
+  }
+  .ar-app-logo{
+    width: 95%;
+  }
+  @media (min-width: $ar-big-size) {
+    .ar-app-logo{
+      width: 80%;
+    }
+    div{
+      display: flex;
+      justify-content: center;
+      position: absolute;
+    }
   }
 }
 

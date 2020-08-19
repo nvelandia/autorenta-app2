@@ -25,6 +25,8 @@
 }
 
 .ar-promo-button{
+  display: flex;
+  align-items: center;
   color: $ar-color-white-1;
   font-size: 0.8rem;
   white-space: pre;
@@ -55,6 +57,11 @@
     font-size: 0.9rem;
   }
 
+  //Small Monitor
+  @media (min-width: 1200px) and (max-width: 1471px) {
+    font-size: 0.7rem;
+  }
+
   //Normal Monitor
   @media (min-width: 1490px) and (max-width: 1750px) {
     font-size: 0.9rem;
@@ -62,7 +69,7 @@
 
   //Big Monitor
   @media (min-width: 1751px){
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 }
 

@@ -7,15 +7,21 @@
 
 .ar-card-title{
   font-size: 14px;
-  padding: 0 10px 0 10px;
+  padding: 0;
   font-weight: 600;
-  
+
+  @media (min-width: 1200px) and (max-width: 1471px) {
+    font-size: 13px;
+    margin-bottom: 0.8rem;
+  }
+
   @media (min-width: 1471px) and (max-width: 1750px) {
     font-size: 15px;
   }
 
   @media (min-width: 1751px){
     font-size: 18px;
+    padding: 0 10px 0 10px;
   }
 }
 
@@ -56,7 +62,15 @@
 }
 
 .ar-card-body-offer{
-  padding: 1.8rem 1.8rem 2.2rem 1.8rem;
+  padding: 1.8rem 1.8rem 1.8rem 1.8rem;
+
+  @media (min-width: 1200px) and (max-width: 1471px) {
+    padding: 1.8rem 1.8rem 1.4rem 1.8rem;
+  }
+
+  @media (min-width: 1700px){
+    padding: 1.8rem 1.8rem 2.2rem 1.8rem;
+  }
 }
 
 .ar-car-result{

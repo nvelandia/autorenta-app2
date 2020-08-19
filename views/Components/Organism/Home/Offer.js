@@ -10,7 +10,7 @@ class Offer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalPages: 1,
+      totalPages: 3,
       selectedPage: 1,
       cards: [
         {
@@ -41,6 +41,69 @@ class Offer extends React.Component {
           image: '/img/custom/payless-promo-thumb-4.jpg',
           button: 'payless',
         },
+        {
+          title: 'Recibe un ascenso de categoría en tu reserva para Estados Unidos.',
+          thumb: '/img/custom/logo-budget.png',
+          color: 'ar-orange-text',
+          image: '/img/custom/budget-promo-thumb-3.jpg',
+          button: 'budget',
+        },
+        {
+          title: '20% de descuento prepagando tu reserva para Estados Unidos.',
+          thumb: '/img/custom/logo-payless.png',
+          color: 'ar-blue-3-text',
+          image: '/img/custom/payless-promo-thumb-4.jpg',
+          button: 'payless',
+        },
+        {
+          title: 'Recorre Europa con un 15% de descuento por reserva anticipada.',
+          thumb: '/img/custom/logo-avis.png',
+          color: 'ar-red-1-text',
+          image: '/img/custom/avis-promo-thumb-1.jpg',
+          button: 'avis',
+        },
+        {
+          title: 'Latinoamérica y el Caribe te esperan con un 10% de descuento.',
+          thumb: '/img/custom/logo-alamo.png',
+          color: 'ar-blue-1-text',
+          image: '/img/custom/alamo-promo-thumb-2.jpg',
+          button: 'alamo',
+        },
+        {
+          title: 'Latinoamérica y el Caribe te esperan con un 10% de descuento.',
+          thumb: '/img/custom/logo-alamo.png',
+          color: 'ar-blue-1-text',
+          image: '/img/custom/alamo-promo-thumb-2.jpg',
+          button: 'alamo',
+        },
+        {
+          title: 'Recibe un ascenso de categoría en tu reserva para Estados Unidos.',
+          thumb: '/img/custom/logo-budget.png',
+          color: 'ar-orange-text',
+          image: '/img/custom/budget-promo-thumb-3.jpg',
+          button: 'budget',
+        },
+        {
+          title: 'Recorre Europa con un 15% de descuento por reserva anticipada.',
+          thumb: '/img/custom/logo-avis.png',
+          color: 'ar-red-1-text',
+          image: '/img/custom/avis-promo-thumb-1.jpg',
+          button: 'avis',
+        },
+        {
+          title: '20% de descuento prepagando tu reserva para Estados Unidos.',
+          thumb: '/img/custom/logo-payless.png',
+          color: 'ar-blue-3-text',
+          image: '/img/custom/payless-promo-thumb-4.jpg',
+          button: 'payless',
+        },
+        {
+          title: 'Recibe un ascenso de categoría en tu reserva para Estados Unidos.',
+          thumb: '/img/custom/logo-budget.png',
+          color: 'ar-orange-text',
+          image: '/img/custom/budget-promo-thumb-3.jpg',
+          button: 'budget',
+        },
       ],
     };
     this.dispatch = props.dispatch;
@@ -56,7 +119,7 @@ class Offer extends React.Component {
   };
 
   renderCards = () => {
-    return this.state.cards.map((card, index) => {
+    const cards = this.state.cards.map((card, index) => {
       return (
         <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
           <Card className="w-auto m-2">
@@ -69,7 +132,7 @@ class Offer extends React.Component {
               <CardTitle className={`ar-card-title ${card.color}`}>{card.title}</CardTitle>
               <Row className="justify-content-center">
                 <Button className={`ar-round-button  ar-promo-button ${card.button} w-100 ml-3 mr-3`}>
-                  Ver más información <i className="ar-icon-chevron-right va-middle" />
+                  Ver más información <i className="ar-icon-chevron-right mt-i-1 fs-i--1" />
                 </Button>
               </Row>
             </CardBody>
@@ -77,6 +140,7 @@ class Offer extends React.Component {
         </Col>
       );
     });
+    return cards.slice(this.state.selectedPage * 4 - 4, this.state.selectedPage * 4);
   };
 
   // metodo con lo que viene del back
@@ -124,7 +188,8 @@ class Offer extends React.Component {
         </Row>
         <div className="ar-pagination-container">
           <Pagination
-            totalPages={Math.ceil(this.props.offers.length / 4)}
+            //totalPages={Math.ceil(this.props.offers.length / 4)}
+            totalPages={this.state.totalPages}
             selectPage={this.selectPage}
             active={this.state.selectedPage}
           />
