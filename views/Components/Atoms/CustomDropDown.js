@@ -35,9 +35,9 @@ class CustomDropDown extends React.Component {
             className="w-100 ar-round-input bg-ar-white-1 ar-last-row-make-your-reservation"
             color="asdas"
           >
-            <Row className="justify-content-between pl-3 pr-3">
+            <Row className="justify-content-between pl-3 pr-3 align-items-center">
               {this.state.value}
-              <span className="ar-icon-chevron-down va-middle" />
+              <span className="ar-icon-chevron-down fs-i--1 mt-i-1" />
             </Row>
           </DropdownToggle>
           <DropdownMenu className={classes}>
@@ -56,7 +56,14 @@ class CustomDropDown extends React.Component {
                 );
               } else {
                 return (
-                  <DropdownItem key={index} id={index} name={name} value={item} onClick={this.handleOnSelect}>
+                  <DropdownItem
+                    className="ls-3"
+                    key={index}
+                    id={index}
+                    name={name}
+                    value={item}
+                    onClick={this.handleOnSelect}
+                  >
                     {item}
                   </DropdownItem>
                 );

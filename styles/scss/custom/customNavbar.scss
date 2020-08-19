@@ -2,7 +2,6 @@
   @media (min-width: 1200px){
     max-width: 77%;
   }
-
 }
 
 .bg-ar-navbar{
@@ -12,29 +11,25 @@
 .ar-nav-link-blue{
   color: $ar-color-blue-0;
   font-weight: 500;
+  margin: 0 !important;
+  font-size: .9em;
+  letter-spacing: 0.2px;
   &:hover{
     color: $ar-color-red-0 !important;
   }
 }
 
 .ar-nav-link-red{
-  font-weight: bold;
   color: $ar-color-red-0;
 }
 
 .ar-nav-link{
-  padding-left: 0.1rem !important;
-  padding-right: 0.1rem !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   font-size: 0.750rem !important;
-  margin: auto;
   white-space: pre;
-  @media (min-width: 1200px) {
+  @media (min-width: 1500px) {
     font-size: 0.8vw !important;
-  }
-  @media (min-width: 1400px) {
-    font-size: 0.8vw !important;
-    padding-left: 0.2vw !important;
-    padding-right: 0.2vw !important;
   }
 }
 
@@ -49,7 +44,6 @@
   }
 }
 
-
 .ar-nav-link-icon-button{
   width: 1rem;
 }
@@ -59,10 +53,6 @@
   @media (min-width: 1400px) {
     height: 50px !important;
   }
-}
-
-.ar-container-nav-link{
-  margin: 0.5rem;
 }
 
 .ar-button-flag{

@@ -21,7 +21,7 @@ class RangeDatePicker extends React.Component {
         <Row>
           <Col xs={12}>
             <FormGroup>
-              <InputGroup className="input-group-alternative ar-round-input bg-ar-white-1">
+              <InputGroup className="input-group-alternative shadow-none ar-round-input bg-ar-white-1">
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText className="ar-round-input-left">
                     <i className="ar-icon-calendar ar-round-input-left" />
@@ -65,7 +65,7 @@ class RangeDatePicker extends React.Component {
           </Col>
           <Col xs={12}>
             <FormGroup>
-              <InputGroup className="input-group-alternative ar-round-input bg-ar-white-1">
+              <InputGroup className="input-group-alternative shadow-none ar-round-input bg-ar-white-1">
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText className="ar-round-input-left">
                     <i className="ar-icon-calendar ar-round-input-left" />

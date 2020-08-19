@@ -65,7 +65,7 @@ class Offer extends React.Component {
               <img className="ar-logo" src={card.thumb} />
               <div className="ar-border-image-offer" />
             </div>
-            <CardBody>
+            <CardBody className="ar-card-body-offer">
               <CardTitle className={`ar-card-title ${card.color}`}>{card.title}</CardTitle>
               <Row className="justify-content-center">
                 <Button className={`ar-round-button  ar-promo-button ${card.button} w-100 ml-3 mr-3`}>
@@ -114,7 +114,7 @@ class Offer extends React.Component {
       <div>
         <Row className="justify-content-center">
           <Col className="justify-content-center" lg="9">
-            <Row>
+            <Row className="mb--3">
               <Col className="justify-content-center text-center">
                 <h2>Descubre todas las ofertas y promociones</h2>
               </Col>

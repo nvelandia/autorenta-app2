@@ -29,12 +29,12 @@
     border-top-right-radius: 0.4rem;
   }
   .ar-logo{
-    border-radius: 6px;
+    border-radius: 10px;
     background-color: #ffffff;
     width: 28%;
     position: absolute;
-    top: 2%;
-    left: 3%;
+    top: 4%;
+    left: 4%;
   }
   .ar-border-image-offer{
     width: 100%;
@@ -53,6 +53,10 @@
       transform: rotate(6deg);
     }
   }
+}
+
+.ar-card-body-offer{
+  padding: 1.8rem 1.8rem 2.2rem 1.8rem;
 }
 
 .ar-car-result{

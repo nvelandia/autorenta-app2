@@ -157,7 +157,7 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.placeToPickUpFocus,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
+                        <InputGroup className="input-group-merge input-group-alternative shadow-none mb-3 ar-round-input bg-ar-white-1">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText className="ar-round-input-left">
                               <i className="ar-icon-location ar-round-input-left" />
@@ -181,7 +181,7 @@ class MakeYourReservation extends React.Component {
                           focused: this.state.placeToDropOffFocus,
                         })}
                       >
-                        <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
+                        <InputGroup className="input-group-merge input-group-alternative shadow-none mb-3 ar-round-input bg-ar-white-1">
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText className="ar-round-input-left">
                               <i className="ar-icon-location ar-round-input-left" />
@@ -208,9 +208,12 @@ class MakeYourReservation extends React.Component {
                   <Row>
                     <Col lg="4" md="6">
                       <FormGroup
-                        className={classnames({
-                          focused: this.state.countrySelected,
-                        })}
+                        className={classnames(
+                          {
+                            focused: this.state.countrySelected,
+                          },
+                          'mb-0',
+                        )}
                       >
                         <CustomDropDown
                           name={'countrySelected'}
@@ -223,14 +226,17 @@ class MakeYourReservation extends React.Component {
                     </Col>
                     <Col lg="2" md="6" className="pl-lg-0">
                       <FormGroup
-                        className={classnames({
-                          focused: this.state.ageSelected,
-                        })}
+                        className={classnames(
+                          {
+                            focused: this.state.ageSelected,
+                          },
+                          'mb-0',
+                        )}
                       >
                         <CustomDropDown
                           name={'ageSelected'}
                           title={'Edad'}
-                          items={['18', '19', '20', '21', '22', '23', '24', '+25']}
+                          items={['+25', '24', '23', '22', '21', '20', '19', '18']}
                           classes={'ar-dropdown-menu-age'}
                           handleSelect={this.handleOnSelect}
                         />
@@ -238,22 +244,25 @@ class MakeYourReservation extends React.Component {
                     </Col>
                     <Col lg="4" md="6">
                       <FormGroup
-                        className={classnames({
-                          focused: this.state.ageSelected,
-                        })}
+                        className={classnames(
+                          {
+                            focused: this.state.ageSelected,
+                          },
+                          'mb-0',
+                        )}
                       >
                         <CustomDropDown
                           title={'Tipo de vehículo'}
                           items={[
-                            'Pequeño/Económico',
+                            'Pequeño / Económico',
                             'Compacto',
                             'Intermedio',
                             'Standar',
                             'Grande',
-                            'Premiun/De Lujo',
-                            'Deportivo/Convertible',
-                            'Minivan/Maxivan',
-                            'SUV/Todoterreno',
+                            'Premiun / De Lujo',
+                            'Deportivo / Convertible',
+                            'Minivan / Maxivan',
+                            'SUV / Todoterreno',
                           ]}
                           classes={'ar-dropdown-menu-car-type'}
                         />
@@ -266,9 +275,9 @@ class MakeYourReservation extends React.Component {
                         type="button"
                         onClick={this.handleSearchClick}
                       >
-                        <span className="nav-link-inner--text">Buscar </span>
+                        <span className="nav-link-inner--text text-sm">Buscar </span>
                         <span className="btn-inner--icon">
-                          <span className="ar-icon-chevron-right va-middle " />
+                          <span className="ar-icon-chevron-right va-middle fs-i--1" />
                         </span>
                       </Button>
                     </Col>

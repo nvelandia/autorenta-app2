@@ -53,11 +53,7 @@ class CustomNavbar extends React.Component {
           >
             <span className="ar-icon-chevron-down" />
           </button>
-          <UncontrolledCollapse
-            className="navbar-custom-collapse ar-container-nav-link"
-            navbar
-            toggler="#navbar-collapse"
-          >
+          <UncontrolledCollapse className="navbar-custom-collapse m-2" navbar toggler="#navbar-collapse">
             <div className="navbar-collapse-header">
               <Row>
                 <Col className="collapse-brand" xs="6" />
@@ -78,58 +74,58 @@ class CustomNavbar extends React.Component {
                 </Col>
               </Row>
             </div>
-            <Nav className="ml-lg-auto" navbar>
-              <NavItem>
+            <Nav className="d-flex justify-content-between ml-4 w-100" navbar>
+              <NavItem className="m-0">
                 <NavLink className="ar-nav-link ar-nav-link-blue " href={routes.HOME}>
                   <a className="ar-nav-link-blue">
                     <span className="ar-icon-home" />
                   </a>
                 </NavLink>
               </NavItem>
-              <NavItem>
+              <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={routes.PROMOTIONS}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
                     <strong>Promociones</strong>
                   </span>
                 </NavLink>
               </NavItem>
-              <NavItem>
+              <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={routes.SEARCH}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
                     <strong>Buscar reservación</strong>
                   </span>
                 </NavLink>
               </NavItem>
-              <NavItem>
+              <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={routes.AGENTS}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
                     <strong>Agentes de viaje</strong>
                   </span>
                 </NavLink>
               </NavItem>
-              <NavItem>
+              <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={routes.BUSINESS}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
-                    <strong>Autorenta Business</strong>
+                    <strong>AutoRenta Business</strong>
                   </span>
                 </NavLink>
               </NavItem>
-              <NavItem>
+              <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={routes.ON_THE_GO}>
                   <span className="nav-link-inner--text ar-nav-link-red">
-                    <strong>Autorenta ON THE GO</strong>
+                    <strong>AutoRenta ON THE GO</strong>
                   </span>
                 </NavLink>
               </NavItem>
-              <NavItem className="d-none d-lg-block ml-lg-1 ar-nav-button-link">
+              <NavItem className="d-none d-lg-block ar-nav-button-link ml-3 mr-0">
                 <Button className=" btn-icon ar-round-button ar-nav-button" color="blue-4" href="">
                   <span className="nav-link-inner--text">Reservar </span>
                   <span className="btn-inner--icon">
-                    <span className="ar-icon-chevron-right va-middle" />
+                    <span className="ar-icon-chevron-right va-middle fs-i--1" />
                   </span>
                 </Button>
               </NavItem>
-              <NavItem className="d-none d-lg-block ml-lg-1 ar-nav-button-link mr-0">
+              <NavItem className="d-none d-lg-block ar-nav-button-link mr-0">
                 <Flags className="ar-nav-button-link" />
               </NavItem>
             </Nav>

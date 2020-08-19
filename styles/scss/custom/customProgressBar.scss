@@ -3,10 +3,8 @@
   color: $ar-color-white-0;
   font-weight: bolder;
   text-align: center;
-  border: solid;
-  border-width: 0.4rem;
   border-radius: 50px;
-  border-color: $ar-color-white-3;
+  border: 0.45rem solid $ar-color-white-3;
   width: 2.3rem;
   height: 2.3rem;
   display: block;
@@ -25,13 +23,15 @@
 
 .ar-bar{
   margin-top: -1.9rem;
+  margin-bottom: 2.3rem;
 }
 
 .ar-title-bar{
   margin-bottom: 2px;
   padding-left: 12%;
   font-size: 0.9rem;
-  font-weight: bold;
+  font-weight: 600;
+  letter-spacing: 0.3px;
   &.ar-steps-header{
     margin-bottom: -8px;
   }
