@@ -84,10 +84,20 @@
 }
 
 .ar-search-banner{
+  background-color: $ar-color-white-0;
+  @media (min-width: $ar-big-size) {
+    h3{
+      font-size: 1.3rem;
+    }
+  }
   .ar-modify-button{
     font-size: 0.7rem;
     color: $ar-color-white-1;
     padding: 0.425rem 1.25rem;
+    @media (min-width:$ar-big-size) {
+      padding: 0.625rem 1.65rem;
+      font-size: 0.9rem;
+    }
   }
   .ar-search-date-and-place{
     margin: 5px;
@@ -99,13 +109,30 @@
     }
     .ar-search-date{
       font-size: 0.9rem;
-      margin:0 0 0 0;
+      margin:0;
       font-weight: 600;
     }
     .ar-search-place{
       font-size: 0.6rem;
-      margin:0 0 0 0;
+      margin:0;
       font-weight: 600;
+    }
+    @media (min-width: $ar-big-size){
+      .ar-search-icon{
+        margin-right: 20px;
+        color: $ar-color-red-0;
+        font-size: 1.3rem;
+      }
+      .ar-search-date{
+        font-size: 1.1rem;
+        margin:0;
+        font-weight: 600;
+      }
+      .ar-search-place{
+        font-size: 0.8rem;
+        margin:0;
+        font-weight: 600;
+      }
     }
   }
 

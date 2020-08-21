@@ -1,32 +1,11 @@
 import React from 'react';
-import classnames from 'classnames';
 
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  ListGroup,
-  ListGroupItem,
-  Row,
-} from 'reactstrap';
-import ProgressBar from '../../Atoms/ProgressBar';
-import RangeDatePicker from '../../Atoms/RangeDatePicker';
-import CustomDropDown from '../../Atoms/CustomDropDown';
+import { Button, Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Label from '../../Atoms/Label';
 import { isoStringToDateWithTimeInText } from '../../../../utils/helpers/dateHelpers';
 import ModalModifySearch from './ModalModifySearch';
-import ModalDetailInformation from './ModalDetailInformation';
 
 class ActiveSearch extends React.Component {
   constructor(props) {
@@ -66,7 +45,7 @@ class ActiveSearch extends React.Component {
           hideModal={this.hideModal}
           searchLocation={this.props.searchLocation}
         />
-        <Row className="justify-content-center bg-ar-white-0 ar-search-banner p-4 mx-0">
+        <Row className="justify-content-center ar-search-banner p-4 mx-0">
           <Col xl="9" className="p-0">
             <Row className="justify-content-between bg-ar-white-0 align-items-center ">
               <div>
@@ -92,7 +71,7 @@ class ActiveSearch extends React.Component {
                   ) : null}
                 </div>
               </div>
-              <div>
+              <div className="mr--4 ml--4">
                 <img src={'/svg/searchView/next-arrow.svg'} width={'20px'} />
               </div>
               <div className="ar-search-date-and-place">
@@ -116,7 +95,7 @@ class ActiveSearch extends React.Component {
                   ) : null}
                 </div>
               </div>
-              <div className="d-flex justify-content-between pr-xl-2">
+              <div className="d-flex justify-content-between">
                 <Label classes={'ar-label-common ar-m-1'} title={'Edad:'} value={' +25 años'} />
                 <Button
                   className=" btn-icon ar-round-button ar-nav-button ar-m-1 ar-modify-button"
@@ -125,7 +104,7 @@ class ActiveSearch extends React.Component {
                 >
                   <span className="nav-link-inner--text">Modificar </span>
                   <span className="btn-inner--icon">
-                    <span className="ar-icon-chevron-right" />
+                    <span className="ar-icon-chevron-right va-middle" />
                   </span>
                 </Button>
               </div>

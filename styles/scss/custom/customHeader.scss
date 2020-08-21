@@ -2,5 +2,97 @@
   background-image: url("/img/custom/searchView/top-image-bg.jpg");
   background-position: center;
   background-size: cover;
-  height: 220px;
+  height: 170px;
+  @media (min-width: $ar-big-size) {
+    height: 220px;
+  }
+  .ar-card-header-header{
+    margin: 0.9rem 0 0.4rem 0;
+    z-index: 5;
+    white-space: pre;
+    width: 330px;
+    height: 43px;
+    background-color: $ar-color-white-0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h4{
+      font-size: 0.9rem;
+    }
+    @media (min-width: $ar-big-size) {
+      margin: 0.5rem 0;
+      width: 430px;
+      height: 60px;
+      h4{
+        font-size: 1.1rem;
+      }
+    }
+  }
+  .ar-steps-bar{
+    width: 620px;
+    @media (min-width: $ar-big-size) {
+      width: 900px;
+    }
+    @media (max-width: 520px) {
+      margin-top: 15px;
+    }
+  }
+  .ar-circle{
+    font-size: 0.7rem;
+    color: $ar-color-white-0;
+    font-weight: bolder;
+    text-align: center;
+    border-radius: 50px;
+    border: 0.35rem solid $ar-color-white-3;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &.ar-done{
+      background-color: $ar-color-blue-2;
+    }
+    &.ar-active{
+      background-color: $ar-color-red-0;
+    }
+    &.ar-pendant{
+      background-color: $ar-color-light-blue-0;
+    }
+    @media (min-width: $ar-big-size) {
+      border: 0.45rem solid $ar-color-white-3;
+      width: 2.3rem;
+      height: 2.3rem;
+      font-size: 0.8rem;
+    }
+  }
+  .ar-bar{
+    margin-top: -1.6rem;
+    margin-bottom: 2.3rem;
+    height: 0.25rem;
+    @media (min-width: $ar-big-size) {
+      margin-top: -1.75rem;
+      margin-bottom: 2.3rem;
+      height: 0.35rem;
+    }
+  }
+  .ar-title-bar{
+    margin-bottom: 2px;
+    padding-left: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    &.ar-steps-header{
+      margin-bottom: -8px;
+    }
+    @media (min-width: $ar-big-size) {
+      font-size: 0.9rem;
+    }
+    @media (max-width: 520px) {
+      font-size: 0.7rem;
+      text-align: center;
+      padding-left: 30%;
+      padding-right: 6%;
+    }
+  }
+
 }

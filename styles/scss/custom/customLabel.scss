@@ -6,6 +6,12 @@
     margin: 0;
     font-size: 0.7rem;
   }
+  @media (min-width: $ar-big-size){
+    p{
+      padding: 0.625rem 1.65rem;
+      font-size: 0.9rem;
+    }
+  }
   &.ar-label-common{
     border: solid;
     border-color: $ar-color-white-4;
