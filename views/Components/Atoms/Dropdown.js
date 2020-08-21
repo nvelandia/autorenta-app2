@@ -24,9 +24,9 @@ class Dropdown extends React.Component {
     return (
       <UncontrolledDropdown group>
         <DropdownToggle color={color} className="ar-round-button">
-          <Row className="justify-content-between pl-3 pr-3 fs--1">
+          <Row className="justify-content-between pl-3 pr-3 fs--1 align-items-center">
             {this.state.value}
-            <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron ml-1" />
+            <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron ml-1 fs-i--1" />
           </Row>
         </DropdownToggle>
         <DropdownMenu>

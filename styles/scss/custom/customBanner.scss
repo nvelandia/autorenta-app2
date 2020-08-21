@@ -92,10 +92,7 @@
   }
   .ar-modify-button{
     font-size: 0.7rem;
-    color: $ar-color-white-1;
-    padding: 0.425rem 1.25rem;
     @media (min-width:$ar-big-size) {
-      padding: 0.625rem 1.65rem;
       font-size: 0.9rem;
     }
   }

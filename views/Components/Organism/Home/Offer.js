@@ -144,32 +144,34 @@ class Offer extends React.Component {
   };
 
   // metodo con lo que viene del back
-  //
+
   // renderCards = () => {
-  //   return this.props.offers.map((offer, index) => {
-  //     return (
-  //       <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
-  //         <Card className="w-auto m-2">
-  //           <div className="ar-card-image">
-  //             <img className="ar-image" src={offer.thumb} />
-  //             <img className="ar-logo" src={offer.company.logo} />
-  //             <div className="ar-border-image-offer" />
-  //           </div>
-  //           <CardBody>
-  //             <CardTitle className={`ar-card-title ${offer.color}`}>{offer.title}</CardTitle>
-  //             <Row className="justify-content-center">
-  //               <Button
-  //                 className={`ar-round-button  ar-promo-button ${offer.button} w-100 ml-3 mr-3`}
-  //                 style={{ backgroundColor: offer.company.color, borderColor: offer.company.color }}
-  //               >
-  //                 Ver más información <i className="ar-icon-chevron-right" />
-  //               </Button>
-  //             </Row>
-  //           </CardBody>
-  //         </Card>
-  //       </Col>
-  //     );
-  //   });
+  //   return this.props.offers
+  //     .map((offer, index) => {
+  //       return (
+  //         <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
+  //           <Card className="w-auto m-2">
+  //             <div className="ar-card-image">
+  //               <img className="ar-image" src={offer.thumb} />
+  //               <img className="ar-logo" src={offer.company.logo} />
+  //               <div className="ar-border-image-offer" />
+  //             </div>
+  //             <CardBody>
+  //               <CardTitle className={`ar-card-title ${offer.color}`}>{offer.title}</CardTitle>
+  //               <Row className="justify-content-center">
+  //                 <Button
+  //                   className={`ar-round-button  ar-promo-button ${offer.button} w-100 ml-3 mr-3`}
+  //                   style={{ backgroundColor: offer.company.color, borderColor: offer.company.color }}
+  //                 >
+  //                   Ver más información <i className="ar-icon-chevron-right" />
+  //                 </Button>
+  //               </Row>
+  //             </CardBody>
+  //           </Card>
+  //         </Col>
+  //       );
+  //     })
+  //     .slice(0, 4);
   // };
 
   render() {
@@ -188,7 +190,7 @@ class Offer extends React.Component {
         </Row>
         <div className="ar-pagination-container">
           <Pagination
-            //totalPages={Math.ceil(this.props.offers.length / 4)}
+            // totalPages={Math.ceil(this.props.offers.length / 4)}
             totalPages={this.state.totalPages}
             selectPage={this.selectPage}
             active={this.state.selectedPage}

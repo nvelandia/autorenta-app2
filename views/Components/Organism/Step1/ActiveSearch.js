@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Label from '../../Atoms/Label';
 import { isoStringToDateWithTimeInText } from '../../../../utils/helpers/dateHelpers';
 import ModalModifySearch from './ModalModifySearch';
+import CustomButton from '../../Atoms/CustomButton';
 
 class ActiveSearch extends React.Component {
   constructor(props) {
@@ -95,18 +96,16 @@ class ActiveSearch extends React.Component {
                   ) : null}
                 </div>
               </div>
-              <div className="d-flex justify-content-between">
-                <Label classes={'ar-label-common ar-m-1'} title={'Edad:'} value={' +25 años'} />
-                <Button
-                  className=" btn-icon ar-round-button ar-nav-button ar-m-1 ar-modify-button"
-                  color="red-0"
-                  onClick={this.showModifyModal}
-                >
-                  <span className="nav-link-inner--text">Modificar </span>
-                  <span className="btn-inner--icon">
-                    <span className="ar-icon-chevron-right va-middle" />
-                  </span>
-                </Button>
+              <div className="d-flex justify-content-between ">
+                <Label classes={'ar-label-common fs--25 mr-3'} title={'Edad:'} value={' +25 años'} />
+                <CustomButton
+                  text={'Modificar'}
+                  event={this.showModifyModal}
+                  color={'red-0'}
+                  icon={'ar-icon-chevron-right'}
+                  fontSize={'fs--25'}
+                  name={'ar-modify-button'}
+                />
               </div>
             </Row>
           </Col>
