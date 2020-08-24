@@ -982,7 +982,7 @@ $pagination-disabled-border-color:  $gray-300 !default;
 $card-spacer-y:                     1.25rem !default;
 $card-spacer-x:                     1.5rem !default;
 $card-border-width:                 $border-width !default;
-$card-border-radius:                $border-radius !default;
+$card-border-radius:                $border-radius-xl !default;
 $card-border-color:                 rgba($black, .05) !default;
 $card-inner-border-radius:          calc(#{$card-border-radius} - #{$card-border-width}) !default;
 $card-cap-bg:                       $white !default;

@@ -73,24 +73,33 @@
 }
 
 .ar-car-result{
-  border-radius: 0.5rem;
   .ar-car-top{
     border-bottom: solid;
     border-bottom-color: $ar-color-white-7;
     border-bottom-width: thin;
     margin: 0;
+    height: 80px;
+    @media (min-width: $ar-big-size){
+      height: 110px;
+    }
     .ar-car-top-left{
+      padding: 0;
+      width: 47%;
       display: flex;
       height: 100%;
       .ar-car-company-logo{
-        width: 45%;
+        display: flex;
+        align-items: center;
+        width: 46%;
         border-right: solid;
         border-right-color: $ar-color-white-7;
         border-right-width: thin;
-        padding-right: 1rem;
+        padding: 0 2.65rem;
         img{
           width: 100%;
-          margin: 0.7rem  0;
+        }
+        @media (min-width: $ar-big-size){
+          padding: 0 3.5rem;
         }
       }
       .ar-car-type{
@@ -100,70 +109,142 @@
         align-items: flex-start;
         justify-content: center;
         flex-direction: column;
+        text-transform: capitalize;
         h3{
           margin: 0;
+        }
+        h6{
+          text-transform: capitalize;
+        }
+        @media (min-width: $ar-big-size){
+          h3{
+            margin: 0;
+            font-size: 1.4rem;
+          }
+          h6{
+            text-transform: capitalize;
+            font-size: 0.8rem;
+          }
         }
       }
     }
 
     .ar-car-features{
-      margin: 1rem 0;
-      padding-left: 0;
+      padding: 1rem 0;
+      width: 53%;
+      @media (min-width: $ar-big-size){
+        padding: 1.4rem 0;
+      }
       .ar-car-features-group{
+        padding: 0 1rem;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        .ar-car-feature-item{
+        @media (min-width: $ar-big-size){
+          padding: 0 1.4rem;
+        }
+        .ar-car-feature-item {
           display: flex;
           flex-direction: row;
           justify-content: flex-start;
           align-items: center;
-          margin: auto;
           width: 100%;
-          h6{
+
+          h6 {
             color: $ar-color-blue-0;
             margin: 0 0 0 0.4rem;
+            font-weight: 500;
           }
-          img{
-            width: 1rem;
-            margin-right: 0.3rem;
+
+          i {
+            font-size: 0.9rem;
+            font-weight: 800;
+          }
+
+          @media (min-width: $ar-big-size) {
+            h6 {
+              color: $ar-color-blue-0;
+              margin: 0 0 0 0.4rem;
+              font-weight: 500;
+              font-size: 0.9rem;
+            }
+            i {
+              font-size: 1.2rem;
+              font-weight: 800;
+            }
           }
         }
       }
     }
   }
   .ar-car-bottom{
+    margin: 0;
+    @media (min-width: $ar-big-size) {
+      height: 300px;
+    }
     .ar-car-left{
+      width: 47%;
       border-right: solid;
       border-right-color: $ar-color-white-7;
       border-right-width: thin;
       padding: 1rem 0;
+      @media (min-width: $ar-big-size){
+        padding: 1.4rem 0;
+      }
       .ar-car-image{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: flex-start;
-
+        .ar-car-rate{
+          margin-bottom: 0.5rem;
+          margin-left: 1rem;
+          font-size: 0.5rem;
+          @media (min-width: $ar-big-size){
+            margin-bottom: 0.7rem;
+            margin-left: 1.4rem;
+            font-size: 0.7rem;
+          }
+        }
         img{
           width: 100%;
+          max-height: 110px;
+          @media (min-width: $ar-big-size){
+            width: 100%;
+            max-height: 140px;
+          }
         }
         .ar-car-featured{
-          padding-bottom: 1rem;
+          padding-bottom: 1.3rem;
           margin-left: -1rem;
           text-align: left;
           .ar-car-featured-label-empty{
             height: 2rem;
           }
           .ar-car-featured-label{
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: $ar-color-white-0;
             background-color: $ar-color-yellow-0;
             border-top-right-radius: 2rem;
             border-bottom-right-radius: 2rem;
-            padding:0.625rem 1.25rem 0.625rem 0.625rem ;
+            padding:0.4rem 1.5rem 0.4rem 0.625rem ;
             span{
               color: $ar-color-yellow-1;
+              font-size: 0.8rem;
+            }
+            @media (min-width: $ar-big-size){
+              font-size: 0.9rem;
+              font-weight: 700;
+              color: $ar-color-white-0;
+              background-color: $ar-color-yellow-0;
+              border-top-right-radius: 2rem;
+              border-bottom-right-radius: 2rem;
+              padding:0.45rem 2rem 0.45rem 1rem ;
+              span{
+                color: $ar-color-yellow-1;
+                font-size: 1.4rem;
+              }
             }
           }
         }
@@ -174,38 +255,72 @@
         justify-content: space-between;
         .ar-car-data-text{
           margin-top: 0.5rem;
-          padding: 0.5rem;
+          padding-right: 0.5rem;
+          @media (min-width: $ar-big-size){
+            h6{
+              font-size: 0.9rem;
+              margin-top: 0.5rem;
+              padding-right: 0.5rem;
+              font-weight: 500;
+            }
+          }
         }
-        .ar-car-data-button{
+        .ar-car-data-button-container{
           margin-bottom: 1rem;
-          font-size: 0.75rem;
-          font-weight: 700;
-          margin-left: -1rem;
-          background-color: $ar-color-white-0;
-          border-color: $ar-color-green-0;
-          border-width: 3px;
-          color: $ar-color-green-0;
+          @media (min-width: $ar-big-size){
+            margin-bottom: 1.4rem;
+          }
+          .ar-car-data-button{
+            width: 100%;
+            font-size: 0.6rem;
+            font-weight: 700;
+            background-color: $ar-color-white-0;
+            border-color: $ar-color-green-0;
+            border-width: 3px;
+            color: $ar-color-green-0;
+            text-align: center;
+            @media (min-width: $ar-big-size){
+              text-align: center;
+              width: 100%;
+              font-size: 0.9rem;
+              font-weight: 700;
+              background-color: $ar-color-white-0;
+              border-color: $ar-color-green-0;
+              border-width: 3px;
+              color: $ar-color-green-0;
+            }
+          }
         }
       }
     }
     .ar-car-right{
+      width: 53%;
       .ar-car-chevron{
         position: absolute;
-        width: calc(100% + 1rem);
-        margin-left: - 2rem;
+        width: calc(53% + 1rem);
+        margin-left: - 1rem;
         height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 0.5rem;
+        @media (min-width: $ar-big-size){
+          margin-left: - 1.8rem;
+        }
         span{
-          padding: 0.5rem;
+          padding: 0.65rem;
           border-radius: 50%;
           -webkit-box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
           -moz-box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
           box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
-          margin-right: -0.8rem;
+          margin-right: -1rem;
           background-color: $ar-color-white-0;
+          z-index: 50;
+          @media (min-width: $ar-big-size){
+            padding: 0.9rem;
+            font-size: 0.7rem;
+            margin-right: -1.8rem;
+          }
           &.ar-price-enabled{
             color: $ar-color-white-0;
             cursor: pointer;
@@ -217,52 +332,86 @@
   }
 }
 
-.ar-car-price{
-  margin: 0.5rem 0;
-  z-index: 10;
-  .ar-car-price-title{
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: $ar-color-gray-2;
-    vertical-align: center;
-    padding: 1rem 0;
+.ar-car-price-container{
+  display: flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  justify-content: center;
+  @media (min-width: $ar-big-size) {
+    padding: 0 1rem;
   }
-  .ar-car-price-body{
-    padding:  0 0 1rem 0 ;
-    .ar-car-price-details{
-      cursor: pointer;
-      margin: 1rem 0 0.25rem 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      p{
-        margin: 0;
-        font-size: 0.75rem;
-        font-weight: 600;
+  .ar-car-price{
+    padding: 1rem 0.75rem;
+    z-index: 10;
+    @media (min-width: $ar-big-size) {
+      padding: 1.2rem 1rem;
+    }
+    .ar-car-price-title{
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: $ar-color-gray-2;
+      vertical-align: center;
+      padding: 1rem 0;
+      @media (min-width: $ar-big-size) {
+        h4{
+          font-size: 1rem;
+        }
+        padding: 1.45rem 0;
+      }
+    }
+    .ar-car-price-body{
+      padding:  0 0 1rem 0 ;
+      @media (min-width: $ar-big-size) {
+        padding:  0 0 1.4rem 0 ;
+      }
+      .ar-car-price-details{
+        cursor: pointer;
+        margin: 1rem 0 0.25rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p{
+          margin: 0;
+          font-size: 0.65rem;
+          font-weight: 600;
+          color: $ar-color-red-0;
+          @media (min-width: $ar-big-size) {
+            margin: 0.4rem 0 0 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+          }
+        }
+      }
+      .ar-car-price-price{
+        font-weight: 700;
         color: $ar-color-red-0;
+        margin-bottom: 0.25rem;
+        @media (min-width: $ar-big-size) {
+          font-size: 2.2rem !important;
+          margin-bottom: 0.9rem;
+        }
+        &:before{
+          margin-right: 0.4rem;
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: $ar-color-gray-2;
+          vertical-align: middle;
+          content:"USD ";
+          @media (min-width: $ar-big-size) {
+            font-size: 1rem;
+          }
+        }
       }
-      img{
-        margin-right: 0.5rem;
-        width: 1rem;
+      .ar-car-price-button{
+        font-size: 0.7rem;
+        font-weight: 700;
+        width: 85%;
+        @media (min-width: $ar-big-size) {
+          font-size: 0.9rem;
+          font-weight: 700;
+          width: 85%;
+        }
       }
-    }
-    .ar-car-price-price{
-      font-weight: 700;
-      color: $ar-color-red-0;
-      margin-bottom: 0.25rem;
-      &:before{
-        margin-right: 0.4rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: $ar-color-gray-2;
-        vertical-align: middle;
-        content:"USD "
-      }
-    }
-    .ar-car-price-button{
-      font-size: 0.75rem;
-      font-weight: 700;
-      width: 85%;
     }
   }
 }
@@ -373,5 +522,17 @@
         width: 100%;
       }
     }
+  }
+}
+
+.ar-card-filters{
+  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+    width: 200px;
+  }
+  @media (min-width: $ar-normal-size) and (max-width: $ar-big-size){
+    width: 240px;
+  }
+  @media (min-width: $ar-big-size){
+    width: 300px;
   }
 }

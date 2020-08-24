@@ -82,7 +82,7 @@ class FilterGroup extends React.Component {
                 return (
                   <div className="d-flex m-1 align-items-center">
                     {type === 'check' ? (
-                      <div className="custom-control custom-checkbox mr-2">
+                      <div className="custom-control custom-checkbox mr-1">
                         <input className="custom-control-input" id={title + key} type="checkbox" />
                         <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
                           {key.charAt(0).toUpperCase() + key.slice(1) + `  ${text}`}
@@ -90,7 +90,7 @@ class FilterGroup extends React.Component {
                       </div>
                     ) : null}
                     {type === 'radio' ? (
-                      <div className="custom-control custom-radio mr-2">
+                      <div className="custom-control custom-radio mr-1">
                         <input className="custom-control-input" name={title} id={title + key} type="radio" />
                         <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
                           {key + '  ó  más  maletas'}

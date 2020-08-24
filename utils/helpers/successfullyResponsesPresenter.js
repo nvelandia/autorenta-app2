@@ -18,6 +18,7 @@ class successfullyResponsesPresenter {
       const typeCar = data.car_features.find((carFeature) => carFeature.code === car.typeLetter);
       car.company = company;
       car.typeCar = typeCar;
+      console.log(car);
       if (!companies[car.company.name]) {
         companies[car.company.name] = 1;
       } else {

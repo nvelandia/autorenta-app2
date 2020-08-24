@@ -62,14 +62,18 @@ class Result extends React.Component {
                   Mostrar vehículos destacados primero
                 </label>
               </div>
-              <Dropdown items={['Ordenar por']} title={'Ordenar por'} color={'white-3'} />
+              <Dropdown
+                items={['De menor a mayor precio', 'De mayor a menor precio']}
+                title={'Ordenar por'}
+                color={'white-3'}
+              />
             </div>
           </Row>
           <Row>
-            <Col xl="3" lg="3" className="pl-0">
+            <div className="ar-card-filters">
               {Object.entries(this.props.filters).length !== 0 ? <FilterList items={this.props.filters} /> : null}
-            </Col>
-            <Col xl="9" lg="9" className="pl-0">
+            </div>
+            <Col className="px-3">
               {this.props.result.cars.length !== 0
                 ? this.props.result.cars.map((car) => {
                     return (

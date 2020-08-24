@@ -23,12 +23,14 @@ import { Button, ButtonGroup, Card, CardHeader, CardBody, Container, Row, Col, D
 class CustomButton extends React.Component {
   render() {
     const { text, icon, event, color, name } = this.props;
-    const fontSize = this.props.fontSize ? this.props.fontSize : 'fs--1';
+    const pl = this.props.pl ? this.props.pl : 'pl-3';
+    const pr = this.props.pr ? this.props.pr : 'pr-3';
+    const justify = this.props.justify ? this.props.justify : 'justify-content-between';
     if (text && icon) {
       return (
         <div>
-          <Button className="btn-icon ar-round-button" color={color} type="button" onClick={event}>
-            <Row className={`justify-content-between pl-3 pr-3 ${fontSize} align-items-center ${name}`}>
+          <Button className={`btn-icon ar-round-button ${name}`} type="button" color={color} onClick={event}>
+            <Row className={`${justify} ${pl} ${pr} ws-nowrap align-items-center`}>
               {text}
               <span className={`${icon} va-middle mt-i-1 ml-1 fs-i--1`} />
             </Row>
@@ -38,8 +40,8 @@ class CustomButton extends React.Component {
     } else if (text) {
       return (
         <div>
-          <Button className="btn-icon ar-round-button" color={color} type="button" onClick={event}>
-            <Row className={`justify-content-between pl-3 pr-3 ${fontSize} align-items-center`}>{text}</Row>
+          <Button className={`btn-icon ar-round-button ${name}`} type="button" color={color} onClick={event}>
+            <Row className={`justify-content-center pl-3 pr-3 ws-nowrap align-items-center`}>{text}</Row>
           </Button>
         </div>
       );

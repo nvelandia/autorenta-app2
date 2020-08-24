@@ -26,7 +26,7 @@ class FilterList extends React.Component {
     const { gears, companies, types, seats, bags } = this.props.items;
     return (
       <Card>
-        <CardHeader className="ar-blue-0-text font-weight-600">Filtrar resultados</CardHeader>
+        <CardHeader className=" ar-filter-main-title">Filtrar resultados</CardHeader>
         <FilterGroup title={'COMPAÑÍA RENTADORA'} items={companies} type={'check'} badge={true} text={''} />
         <FilterGroup title={'TIPOS DE VEHÍCULO'} items={types} type={'check'} badge={true} text={''} />
         <FilterGroup title={'CANTIDAD DE PASAJEROS'} items={seats} type={'check'} badge={false} text={'pasajeros'} />

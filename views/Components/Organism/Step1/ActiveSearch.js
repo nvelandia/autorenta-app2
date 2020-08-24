@@ -96,14 +96,14 @@ class ActiveSearch extends React.Component {
                   ) : null}
                 </div>
               </div>
-              <div className="d-flex justify-content-between ">
-                <Label classes={'ar-label-common fs--25 mr-3'} title={'Edad:'} value={' +25 años'} />
+              <div className="d-flex justify-content-between pr-3">
+                <Label classes={'ar-label-common fs--15 mr-3'} title={'Edad:'} value={' +25 años'} />
                 <CustomButton
                   text={'Modificar'}
                   event={this.showModifyModal}
                   color={'red-0'}
                   icon={'ar-icon-chevron-right'}
-                  fontSize={'fs--25'}
+                  fontSize={'fs--15'}
                   name={'ar-modify-button'}
                 />
               </div>
