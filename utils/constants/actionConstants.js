@@ -25,4 +25,6 @@ export const actionNames = {
   //General-Service
   subscribedSuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_SUCCESSFULLY',
   subscribedUnsuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_UNSUCCESSFULLY',
+  //Step1
+  addFilter: 'ADD_FILTER',
 };

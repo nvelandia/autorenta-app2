@@ -59,7 +59,7 @@ class FilterGroup extends React.Component {
   };
 
   render() {
-    const { title, items, priceRange, badge, type, text } = this.props;
+    const { title, items, priceRange, badge, type, text, category } = this.props;
     let filters;
     if (items) {
       filters = Object.keys(items);
@@ -83,7 +83,12 @@ class FilterGroup extends React.Component {
                   <div className="d-flex m-1 align-items-center">
                     {type === 'check' ? (
                       <div className="custom-control custom-checkbox mr-1">
-                        <input className="custom-control-input" id={title + key} type="checkbox" />
+                        <input
+                          className="custom-control-input"
+                          id={title + key}
+                          type="checkbox"
+                          onClick={(e) => this.props.handleOnSelect(key, category)}
+                        />
                         <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
                           {key.charAt(0).toUpperCase() + key.slice(1) + `  ${text}`}
                         </label>
@@ -91,7 +96,13 @@ class FilterGroup extends React.Component {
                     ) : null}
                     {type === 'radio' ? (
                       <div className="custom-control custom-radio mr-1">
-                        <input className="custom-control-input" name={title} id={title + key} type="radio" />
+                        <input
+                          className="custom-control-input"
+                          name={title}
+                          id={title + key}
+                          type="radio"
+                          onClick={(e) => this.props.handleOnChange(key)}
+                        />
                         <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
                           {key + '  ó  más  maletas'}
                         </label>
@@ -106,7 +117,7 @@ class FilterGroup extends React.Component {
                 );
               })
             ) : (
-              <Sliders />
+              <Sliders handlePriceChange={this.props.handlePriceChange} />
             )}
           </CardBody>
         </Collapse>
@@ -122,6 +133,9 @@ FilterGroup.propTypes = {
   badge: PropTypes.bool,
   type: PropTypes.string,
   items: PropTypes.object,
+  handleOnSelect: PropTypes.func,
+  handleOnChange: PropTypes.func,
+  handlePriceChange: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

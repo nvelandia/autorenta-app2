@@ -2,6 +2,3 @@ Tarjetas de precios en las cards de result
 notificaciones al enviar data o mostrar errores
 data de offers (mostrar la que recibo contra la mock)
 preguntar sobre los steps (progress bar)
-cuerpos para modificar busqueda
-endpoint para los filtros
-cuerpo de newsletter contra vista

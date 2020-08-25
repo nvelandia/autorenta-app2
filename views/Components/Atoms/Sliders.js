@@ -1,6 +1,8 @@
 import React from 'react';
 // plugin that creates slider
 import Slider from 'nouislider';
+import PropTypes from 'prop-types';
+
 import { Row, Col } from 'reactstrap';
 
 class Sliders extends React.Component {
@@ -17,6 +19,7 @@ class Sliders extends React.Component {
     }).on(
       'update',
       function (values, handle) {
+        this.props.handlePriceChange(values[0], values[1]);
         this.setState({
           slider2Values: [values[0], values[1]],
         });
@@ -40,5 +43,9 @@ class Sliders extends React.Component {
     );
   }
 }
+
+Sliders.propTypes = {
+  handlePriceChange: PropTypes.func,
+};
 
 export default Sliders;

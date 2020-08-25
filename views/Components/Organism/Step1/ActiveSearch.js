@@ -45,6 +45,7 @@ class ActiveSearch extends React.Component {
           showModal={this.state.showModifyModal}
           hideModal={this.hideModal}
           searchLocation={this.props.searchLocation}
+          searchFleet={this.props.searchFleet}
         />
         <Row className="justify-content-center ar-search-banner p-4 mx-0">
           <Col xl="9" className="p-0">
@@ -97,7 +98,11 @@ class ActiveSearch extends React.Component {
                 </div>
               </div>
               <div className="d-flex justify-content-between pr-3">
-                <Label classes={'ar-label-common fs--15 mr-3'} title={'Edad:'} value={' +25 años'} />
+                <Label
+                  classes={'ar-label-common fs--15 mr-3'}
+                  title={'Edad: '}
+                  value={this.props.searchParams.passenger_age + ' años'}
+                />
                 <CustomButton
                   text={'Modificar'}
                   event={this.showModifyModal}
@@ -119,6 +124,7 @@ ActiveSearch.propTypes = {
   dispatch: PropTypes.func,
   searchLocation: PropTypes.func,
   loadCountries: PropTypes.func,
+  searchFleet: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

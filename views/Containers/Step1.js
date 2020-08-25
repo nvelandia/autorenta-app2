@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as homeActions from '../../actions/homeActions';
-//import * as actions from '../../actions/searchActions';
+import * as actions from '../../actions/step1Actions';
 import CustomNavBar from '../Components/Molecules/Navbars/CustomNavBar';
 import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
 import Banner from '../Components/Molecules/banners/Banner';
@@ -26,7 +26,7 @@ class Step1 extends React.Component {
       type: actionNames.searchFleet,
       body: {
         pickup_location: 'MIA',
-        pickup_date: '2020-08-22',
+        pickup_date: '2020-08-25',
         pickup_time: '12:00',
         dropoff_location: 'MIA',
         dropoff_date: '2020-08-28',
@@ -42,8 +42,8 @@ class Step1 extends React.Component {
       <>
         <CustomNavBar />
         <StepsHeader step={1} />
-        <ActiveSearch searchLocation={homeActions.searchLocation} />
-        <Result />
+        <ActiveSearch searchLocation={homeActions.searchLocation} searchFleet={homeActions.searchFleet} />
+        <Result addFitlter={actions.addFilter} />
         <Banner />
         <CustomFooter />
         <UpToTop />

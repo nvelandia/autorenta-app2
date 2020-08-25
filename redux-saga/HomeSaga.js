@@ -84,6 +84,7 @@ export function* searchFleet(action) {
     }
     yield all([put(res), put(generalActions.hideLoader()), put(generalActions.showNotification('', res.error))]);
   } else {
+    res.searchParams = body;
     yield all([put(res), redirectTo(pages.step1), put(generalActions.hideLoader())]);
   }
 }

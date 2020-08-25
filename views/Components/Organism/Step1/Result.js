@@ -71,7 +71,9 @@ class Result extends React.Component {
           </Row>
           <Row>
             <div className="ar-card-filters">
-              {Object.entries(this.props.filters).length !== 0 ? <FilterList items={this.props.filters} /> : null}
+              {Object.entries(this.props.filters).length !== 0 ? (
+                <FilterList items={this.props.filters} addFitlter={this.props.addFitlter} />
+              ) : null}
             </div>
             <Col className="px-3">
               {this.props.result.cars.length !== 0
@@ -97,6 +99,7 @@ Result.propTypes = {
   dispatch: PropTypes.func,
   searchLocation: PropTypes.func,
   loadCountries: PropTypes.func,
+  addFitlter: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

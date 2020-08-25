@@ -5,10 +5,6 @@ import {
   Modal,
   Row,
   Col,
-  Card,
-  CardBody,
-  CardTitle,
-  CardHeader,
   Form,
   FormGroup,
   InputGroup,
@@ -19,7 +15,6 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'reactstrap';
-import MakeYourReservation from '../Home/MakeYourReservation';
 import classnames from 'classnames';
 import RangeDatePicker from '../../Atoms/RangeDatePicker';
 import CustomDropDown from '../../Atoms/CustomDropDown';
@@ -79,10 +74,10 @@ class ModalModifySearch extends React.Component {
       dropoff_location: this.state.iataToDropOff,
       dropoff_date: this.state.dateToDropOff,
       dropoff_time: this.state.timeToDropOff,
-      passenger_country_id: this.state.countrySelected,
+      passenger_country_id: this.props.searchParams.passenger_country_id,
       passenger_age: this.state.ageSelected,
     };
-    this.dispatch(this.props.searchfleet(body));
+    this.dispatch(this.props.searchFleet(body));
   };
 
   renderListGroup = (name) => {
@@ -151,7 +146,7 @@ class ModalModifySearch extends React.Component {
                     focused: this.state.placeToPickUpFocus,
                   })}
                 >
-                  <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
+                  <InputGroup className="input-group-merge shadow-none input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText className="ar-round-input-left">
                         <i className="ar-icon-location ar-round-input-left" />
@@ -175,7 +170,7 @@ class ModalModifySearch extends React.Component {
                     focused: this.state.placeToDropOffFocus,
                   })}
                 >
-                  <InputGroup className="input-group-merge input-group-alternative mb-3 ar-round-input bg-ar-white-1">
+                  <InputGroup className="input-group-merge shadow-none input-group-alternative mb-3 ar-round-input bg-ar-white-1">
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText className="ar-round-input-left">
                         <i className="ar-icon-location ar-round-input-left" />
@@ -207,7 +202,7 @@ class ModalModifySearch extends React.Component {
                   <CustomDropDown
                     name={'ageSelected'}
                     title={'Edad'}
-                    items={['18', '19', '20', '21', '22', '23', '24', '+25']}
+                    items={['+25', '24', '23', '22', '21', '20', '19', '18']}
                     classes={'ar-dropdown-menu-age'}
                     handleSelect={this.handleOnSelect}
                   />
@@ -215,7 +210,7 @@ class ModalModifySearch extends React.Component {
                 <Button
                   className=" btn-icon ar-round-button w-100 ar-modify-search"
                   color="red-0"
-                  onClick={this.showModifyModal}
+                  onClick={this.handleSearchClick}
                 >
                   <span className="nav-link-inner--text">Modificar </span>
                   <span className="btn-inner--icon">
@@ -237,6 +232,7 @@ ModalModifySearch.propTypes = {
   hideModal: PropTypes.func,
   modifySearch: PropTypes.func,
   searchLocation: PropTypes.func,
+  searchFleet: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

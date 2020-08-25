@@ -18,16 +18,17 @@ class successfullyResponsesPresenter {
       const typeCar = data.car_features.find((carFeature) => carFeature.code === car.typeLetter);
       car.company = company;
       car.typeCar = typeCar;
-      console.log(car);
       if (!companies[car.company.name]) {
         companies[car.company.name] = 1;
       } else {
         companies[car.company.name] = companies[car.company.name] + 1;
       }
-      if (!types[car.typeCar.name]) {
-        types[car.typeCar.name] = 1;
-      } else {
-        types[car.typeCar.name] = types[car.typeCar.name] + 1;
+      if (car.typeCar) {
+        if (!types[car.typeCar.name]) {
+          types[car.typeCar.name] = 1;
+        } else {
+          types[car.typeCar.name] = types[car.typeCar.name] + 1;
+        }
       }
       if (!seats[car.seats]) {
         seats[car.seats] = 1;
@@ -51,7 +52,9 @@ class successfullyResponsesPresenter {
 
     return {
       type,
-      cars: data.cars,
+      cars: data.cars.filter((car) => {
+        return car.typeCar !== undefined;
+      }),
       companies: data.companies,
       carFeatures: data.car_features,
       rates: data.rates,

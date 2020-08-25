@@ -57,7 +57,7 @@ class Step2 extends React.Component {
     return (
       <>
         <CustomNavBar />
-        <StepsHeader step={3} />
+        <StepsHeader step={2} />
         <Row className="justify-content-center mt-2">
           <Col xl="6" lg="6" className="pr-0">
             <CarSelected car={car} />
