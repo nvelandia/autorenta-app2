@@ -6,3 +6,21 @@ export const addFilter = (filter) => {
     filter,
   };
 };
+
+export const orderByMinToMax = () => {
+  return {
+    type: actionNames.orderByMinToMax,
+  };
+};
+
+export const orderByMaxToMin = () => {
+  return {
+    type: actionNames.orderByMaxToMin,
+  };
+};
+
+export const toggleShowFeaturedFirst = () => {
+  return {
+    type: actionNames.toggleShowFeaturedFirst,
+  };
+};

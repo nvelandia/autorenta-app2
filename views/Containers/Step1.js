@@ -26,7 +26,12 @@ class Step1 extends React.Component {
         <CustomNavBar />
         <StepsHeader step={1} />
         <ActiveSearch searchLocation={homeActions.searchLocation} searchFleet={homeActions.searchFleet} />
-        <Result addFitlter={actions.addFilter} />
+        <Result
+          addFitlter={actions.addFilter}
+          orderByMinToMax={actions.orderByMinToMax}
+          orderByMaxToMin={actions.orderByMaxToMin}
+          toggleShowFeaturedFirst={actions.toggleShowFeaturedFirst}
+        />
         <Banner />
         <CustomFooter />
         <UpToTop />

@@ -12,15 +12,15 @@ class Dropdown extends React.Component {
     };
   }
 
-  handleOnSelect = (event) => {
-    if (this.props.handleSelect) {
-      this.props.handleSelect(event);
+  handleOnSelect = (event, actions) => {
+    if (actions) {
+      this.props.dispatch(actions());
     }
     this.setState({ value: event.target.value });
   };
 
   render() {
-    const { items, classes, name, color } = this.props;
+    const { items, classes, name, color, actions } = this.props;
     return (
       <UncontrolledDropdown group>
         <DropdownToggle color={color} className="ar-round-button">
@@ -32,7 +32,13 @@ class Dropdown extends React.Component {
         <DropdownMenu>
           {items.map((item, index) => {
             return (
-              <DropdownItem key={index} id={index} name={name} value={item} onClick={this.handleOnSelect}>
+              <DropdownItem
+                key={index}
+                id={index}
+                name={name}
+                value={item}
+                onClick={(e) => this.handleOnSelect(e, actions[index])}
+              >
                 {item}
               </DropdownItem>
             );
@@ -48,7 +54,7 @@ Dropdown.propTypes = {
   title: PropTypes.string,
   name: PropTypes.string,
   color: PropTypes.string,
-  handleSelect: PropTypes.func,
+  dispatch: PropTypes.func,
 };
 
 export default Dropdown;

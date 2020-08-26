@@ -48,8 +48,39 @@ class Result extends React.Component {
     this.setState({ showDetailModal: false, showAditionalModal: false, information: [] });
   };
 
+  calculatePriceRange = () => {
+    let minPrice = 9999999;
+    let maxPrice = 0;
+    for (const car of this.props.result.cars) {
+      if (parseFloat(car.rates[0].price) > maxPrice) {
+        maxPrice = parseFloat(car.rates[0].price);
+      }
+      if (parseFloat(car.rates[0].price) < minPrice) {
+        minPrice = parseFloat(car.rates[0].price);
+      }
+    }
+    return { minPrice, maxPrice };
+  };
+
+  showFeaturedFirst = () => {
+    this.dispatch(this.props.toggleShowFeaturedFirst());
+  };
+
   renderCarsResult = () => {
-    return this.props.result.cars.map((car) => {
+    let cars = this.props.result.cars;
+    if (this.props.showFeaturedFirst) {
+      let simple = [];
+      let featured = [];
+      cars.forEach((car) => {
+        if (car.featured) {
+          featured.push(car);
+        } else {
+          simple.push(car);
+        }
+      });
+      cars = simple.concat(featured);
+    }
+    return cars.map((car) => {
       if (
         filterByType(this.props.filterBy.types, car.typeCar.name) &&
         filterBySeats(this.props.filterBy.seats, car.seats) &&
@@ -63,22 +94,6 @@ class Result extends React.Component {
         );
       }
     });
-  };
-
-  calculatePriceRange = () => {
-    const priceRange = {
-      minPrice: 999999999,
-      maxPrice: 0,
-    };
-    for (const car of this.props.result.cars) {
-      if (car.rates[0].price > priceRange.maxPrice) {
-        priceRange.maxPrice = car.rates[0].price;
-      }
-      if (car.rates[0].price < priceRange.minPrice) {
-        priceRange.minPrice = car.rates[0].price;
-      }
-    }
-    return priceRange;
   };
 
   render() {
@@ -100,7 +115,12 @@ class Result extends React.Component {
           <Row className="justify-content-end m-0 mb-3">
             <div className="d-flex align-items-center">
               <div className="custom-control custom-checkbox mr-3">
-                <input className="custom-control-input" id="customCheck1" type="checkbox" />
+                <input
+                  className="custom-control-input"
+                  id="customCheck1"
+                  type="checkbox"
+                  onClick={this.showFeaturedFirst}
+                />
                 <label className="custom-control-label ws-pre tx-bold mr-xl-4 mr-lg-4" htmlFor="customCheck1">
                   Mostrar vehículos destacados primero
                 </label>
@@ -109,6 +129,8 @@ class Result extends React.Component {
                 items={['De menor a mayor precio', 'De mayor a menor precio']}
                 title={'Ordenar por'}
                 color={'white-3'}
+                actions={[this.props.orderByMinToMax, this.props.orderByMaxToMin]}
+                dispatch={this.props.dispatch}
               />
             </div>
           </Row>
@@ -131,6 +153,9 @@ Result.propTypes = {
   searchLocation: PropTypes.func,
   loadCountries: PropTypes.func,
   addFitlter: PropTypes.func,
+  orderByMinToMax: PropTypes.func,
+  orderByMaxToMin: PropTypes.func,
+  toggleShowFeaturedFirst: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

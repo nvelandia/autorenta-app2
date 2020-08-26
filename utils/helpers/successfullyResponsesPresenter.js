@@ -50,6 +50,17 @@ class successfullyResponsesPresenter {
     companies.total = data.cars.length;
     types.total = data.cars.length;
 
+    data.cars.sort((a, b) => {
+      if (parseFloat(a.rates[0].price) < parseFloat(b.rates[0].price)) {
+        return -1;
+      }
+      if (parseFloat(a.rates[0].price) > parseFloat(b.rates[0].price)) {
+        return 1;
+      }
+      // a debe ser igual b
+      return 0;
+    });
+
     return {
       type,
       cars: data.cars.filter((car) => {

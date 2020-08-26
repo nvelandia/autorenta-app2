@@ -19,5 +19,5 @@ export const filterByGears = (gears, gear) => {
 };
 
 export const filterByPrice = (prices, price) => {
-  return prices[0] <= price && price <= prices[1];
+  return parseFloat(prices[0]) <= parseFloat(price) && parseFloat(price) <= parseFloat(prices[1]);
 };

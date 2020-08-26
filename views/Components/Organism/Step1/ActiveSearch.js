@@ -55,7 +55,7 @@ class ActiveSearch extends React.Component {
               </div>
               <div className="ar-search-date-and-place">
                 <div className="ar-search-icon">
-                  <icon className="ar-icon-calendar" />
+                  <i className="ar-icon-calendar" />
                 </div>
                 <div>
                   {this.props.result.locations.pickup ? (
@@ -78,7 +78,7 @@ class ActiveSearch extends React.Component {
               </div>
               <div className="ar-search-date-and-place">
                 <div className="ar-search-icon">
-                  <icon className="ar-icon-calendar" />
+                  <i className="ar-icon-calendar" />
                 </div>
                 <div>
                   {this.props.result.locations.dropoff ? (

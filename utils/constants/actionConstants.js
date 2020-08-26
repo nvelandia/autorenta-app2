@@ -27,4 +27,7 @@ export const actionNames = {
   subscribedUnsuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_UNSUCCESSFULLY',
   //Step1
   addFilter: 'ADD_FILTER',
+  orderByMinToMax: 'ORDER_BY_MIN_TO_MAX',
+  orderByMaxToMin: 'ORDER_BY_MAX_TO_MIN',
+  toggleShowFeaturedFirst: 'TOGGLE_SHOW_FEATURED_FIRST',
 };
