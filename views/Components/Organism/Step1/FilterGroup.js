@@ -58,6 +58,16 @@ class FilterGroup extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  isChecked = (category, value) => {
+    if (value === 'total' && this.props.filterBy[category].length === 0) {
+      return true;
+    }
+    if (this.props.filterBy[category].includes(value) && value !== 'total') {
+      return true;
+    }
+    return false;
+  };
+
   render() {
     const { title, items, priceRange, badge, type, text, category } = this.props;
     let filters;
@@ -87,6 +97,7 @@ class FilterGroup extends React.Component {
                           className="custom-control-input"
                           id={title + key}
                           type="checkbox"
+                          checked={this.isChecked(category, key)}
                           onClick={(e) => this.props.handleOnSelect(key, category)}
                         />
                         <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
@@ -117,7 +128,7 @@ class FilterGroup extends React.Component {
                 );
               })
             ) : (
-              <Sliders handlePriceChange={this.props.handlePriceChange} />
+              <Sliders priceRange={this.props.priceRange} handlePriceChange={this.props.handlePriceChange} />
             )}
           </CardBody>
         </Collapse>
@@ -136,6 +147,7 @@ FilterGroup.propTypes = {
   handleOnSelect: PropTypes.func,
   handleOnChange: PropTypes.func,
   handlePriceChange: PropTypes.func,
+  priceRange: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

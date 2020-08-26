@@ -128,8 +128,14 @@ class CarsResult extends React.Component {
                   <h6>Transmisión {car.gear}</h6>
                 </div>
                 <div className="ar-car-feature-item">
-                  <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
-                  <h6>{car.doors ? 'Aire acondicionado' : null}</h6>
+                  {car.air ? (
+                    <>
+                      <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
+                      <h6>Aire acondicionado</h6>
+                    </>
+                  ) : (
+                    <i>&nbsp;</i>
+                  )}
                 </div>
               </div>
             </Row>

@@ -18,24 +18,7 @@ class Step1 extends React.Component {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
-    //this.mock();
   }
-
-  mock = () => {
-    this.dispatch({
-      type: actionNames.searchFleet,
-      body: {
-        pickup_location: 'MIA',
-        pickup_date: '2020-08-25',
-        pickup_time: '12:00',
-        dropoff_location: 'MIA',
-        dropoff_date: '2020-08-28',
-        dropoff_time: '12:00',
-        passenger_country_id: 1,
-        passenger_age: 22,
-      },
-    });
-  };
 
   render() {
     return (

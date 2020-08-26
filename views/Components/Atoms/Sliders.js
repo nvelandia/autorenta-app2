@@ -10,12 +10,13 @@ class Sliders extends React.Component {
     slider2Values: ['200.00', '400.00'],
   };
   componentDidMount() {
+    console.log(this.props.priceRange);
     var slider2 = this.refs.slider2;
     Slider.create(slider2, {
-      start: [200.0, 400.0],
+      start: [parseFloat(this.props.priceRange.minPrice), parseFloat(this.props.priceRange.maxPrice)],
       connect: [false, true, false],
       step: 0.01,
-      range: { min: 100.0, max: 500.0 },
+      range: { min: parseFloat(this.props.priceRange.minPrice), max: parseFloat(this.props.priceRange.maxPrice) },
     }).on(
       'update',
       function (values, handle) {
@@ -46,6 +47,7 @@ class Sliders extends React.Component {
 
 Sliders.propTypes = {
   handlePriceChange: PropTypes.func,
+  priceRange: PropTypes.object,
 };
 
 export default Sliders;

@@ -7,6 +7,14 @@ import FilterList from './FilterList';
 import Dropdown from '../../Atoms/Dropdown';
 import ModalDetailInformation from './ModalDetailInformation';
 import ModalAditionalInformation from './ModalAditionalInformation';
+import {
+  filterByBags,
+  filterByCompany,
+  filterByGears,
+  filterByPrice,
+  filterBySeats,
+  filterByType,
+} from '../../../../utils/helpers/filterByHelper';
 
 class Result extends React.Component {
   constructor(props) {
@@ -40,7 +48,42 @@ class Result extends React.Component {
     this.setState({ showDetailModal: false, showAditionalModal: false, information: [] });
   };
 
+  renderCarsResult = () => {
+    return this.props.result.cars.map((car) => {
+      if (
+        filterByType(this.props.filterBy.types, car.typeCar.name) &&
+        filterBySeats(this.props.filterBy.seats, car.seats) &&
+        filterByBags(this.props.filterBy.bags, car.bags_total) &&
+        filterByCompany(this.props.filterBy.companies, car.company.name) &&
+        filterByGears(this.props.filterBy.gears, car.gear) &&
+        filterByPrice(this.props.filterBy.price, car.rates[0].price)
+      ) {
+        return (
+          <CarsResult car={car} showDetailModal={this.showDetailModal} showAditionalModal={this.showAditionalModal} />
+        );
+      }
+    });
+  };
+
+  calculatePriceRange = () => {
+    const priceRange = {
+      minPrice: 999999999,
+      maxPrice: 0,
+    };
+    for (const car of this.props.result.cars) {
+      if (car.rates[0].price > priceRange.maxPrice) {
+        priceRange.maxPrice = car.rates[0].price;
+      }
+      if (car.rates[0].price < priceRange.minPrice) {
+        priceRange.minPrice = car.rates[0].price;
+      }
+    }
+    return priceRange;
+  };
+
   render() {
+    const priceRange = this.calculatePriceRange();
+
     return (
       <Row className="m-4 justify-content-center">
         <ModalDetailInformation
@@ -72,22 +115,10 @@ class Result extends React.Component {
           <Row>
             <div className="ar-card-filters">
               {Object.entries(this.props.filters).length !== 0 ? (
-                <FilterList items={this.props.filters} addFitlter={this.props.addFitlter} />
+                <FilterList items={this.props.filters} addFitlter={this.props.addFitlter} priceRange={priceRange} />
               ) : null}
             </div>
-            <Col className="px-3">
-              {this.props.result.cars.length !== 0
-                ? this.props.result.cars.map((car) => {
-                    return (
-                      <CarsResult
-                        car={car}
-                        showDetailModal={this.showDetailModal}
-                        showAditionalModal={this.showAditionalModal}
-                      />
-                    );
-                  })
-                : null}
-            </Col>
+            <Col className="px-3">{this.props.result.cars.length !== 0 ? this.renderCarsResult() : null}</Col>
           </Row>
         </Col>
       </Row>

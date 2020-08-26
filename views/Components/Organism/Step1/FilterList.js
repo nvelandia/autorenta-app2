@@ -16,22 +16,23 @@ class FilterList extends React.Component {
       price: [],
     };
     this.dispatch = props.dispatch;
-    this.handleOnLoad();
   }
 
-  handleOnLoad = () => {};
-
-  handleOnSelect = (key, category) => {
-    if (this.state[category].includes(key)) {
-      const filter = this.state[category];
-      const newFilter = filter.filter((e) => {
-        return e !== key;
-      });
-      this.setState({ [category]: newFilter });
+  handleOnSelect = (value, category) => {
+    if (value === 'total') {
+      this.setState({ [category]: [] });
     } else {
-      const filter = this.state[category];
-      filter.push(key);
-      this.setState({ [category]: filter });
+      if (this.state[category].includes(value)) {
+        const filter = this.state[category];
+        const newFilter = filter.filter((e) => {
+          return e !== value;
+        });
+        this.setState({ [category]: newFilter });
+      } else {
+        const filter = this.state[category];
+        filter.push(value);
+        this.setState({ [category]: filter });
+      }
     }
   };
 
@@ -43,7 +44,14 @@ class FilterList extends React.Component {
     this.setState({ price: [minPrice, maxPrice] });
   };
 
+  updateValues = () => {
+    this.dispatch(this.props.addFitlter(this.state));
+  };
+
   render() {
+    if (this.state !== this.props.filterBy) {
+      this.updateValues();
+    }
     const { gears, companies, types, seats, bags } = this.props.items;
     return (
       <Card>
@@ -95,9 +103,9 @@ class FilterList extends React.Component {
         />
         <FilterGroup
           title={'RANGO DE PRECIO'}
-          priceRange={true}
           category={'price'}
           handlePriceChange={this.handlePriceChange}
+          priceRange={this.props.priceRange}
         />
       </Card>
     );
@@ -110,6 +118,7 @@ FilterList.propTypes = {
   loadCountries: PropTypes.func,
   items: PropTypes.object,
   addFitlter: PropTypes.func,
+  priceRange: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
