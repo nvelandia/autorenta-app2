@@ -146,8 +146,62 @@ class CardPromotion extends React.Component {
       <Row className="justify-content-center m-0">
         <Col xl="9" lg="10" md="11" className="pl-0 pr-0">
           <Card className="ar-card-promotion-container">
-            <img src="/img/custom/promotion/avis-promotion-image.jpg" className="ar-card-promotion-image" />
-            <div className="ar-card-promotion-data">hola</div>
+            <div className="ar-card-promotion-image-container">
+              <img src="/img/custom/promotion/avis-promotion-image.jpg" className="ar-card-promotion-image" />
+              <img src="/img/custom/promotion/logo-avis.png" className="ar-card-promotion-logo" />
+            </div>
+            <div className="ar-card-promotion-data">
+              <h3>Obtenga 500 millas AAdvantage con cada alquiler.</h3>
+              <h5>
+                Alquila en USA y recibe más millas de acuerdo a la duración de la renta. Válido para reservas en
+                oficinas participantes. Utilice el código de descuento K817100
+              </h5>
+              <h6> Estas son las millas que obtendrá con cada alquiler válido:</h6>
+              <h6 className="ar-card-promotion-miles">
+                <strong>
+                  <i className="ar-icon-chevron-right" />
+                  &nbsp;500 millas{' '}
+                </strong>
+                - socios AAdvantage.®
+              </h6>
+              <h6 className="ar-card-promotion-miles">
+                <strong>
+                  <i className="ar-icon-chevron-right" />
+                  &nbsp;750 millas{' '}
+                </strong>
+                - Titulares de tarjetas Cit® / AAdvantage® y AAdvantage® Aviator® MasterCard.®
+              </h6>
+              <h6 className="ar-card-promotion-miles">
+                <strong>
+                  <i className="ar-icon-chevron-right" />
+                  &nbsp;1,000 millas{' '}
+                </strong>
+                - Socios Platinum Pro, Platinum y Gold
+              </h6>
+              <h6 className="ar-card-promotion-miles">
+                <strong>
+                  <i className="ar-icon-chevron-right" />
+                  &nbsp;1,250 millas{' '}
+                </strong>
+                - Socios Executive Platinum
+              </h6>
+              <div className="ar-card-promotion-data-small-letter">
+                <p>
+                  Los alquileres que comprenden el uso ya sea de un solo vehículo durante más de un día o de distintos
+                  vehículos durante el mismo día o en días consecutivos, en la misma oficina, serán considerados como un
+                  solo alquiler, incluso si el socio devuelve el vehículo y lo retira nuevamente durante ese mismo
+                  príodo. Para obtener las millas, se deberá hacer la reservación por anticipado y el vehículo deberá
+                  ser alquilado a nombre del socio. Las millas AAdvantage serán acreditadas a un solo socio AAdvantage
+                  por cada alquiler de vehículo. Las millas AAdvantage solo pueden ser obtenidas en las oficinas de Avis
+                  y Budget participantes en aeropuertos en EE.UU., Canadá, Europa, Medio Oriente, África, México,
+                  Latinoamérica y el Caribe.
+                </p>
+                <p>
+                  Los socios Gold, Platinum, Platinum Pro, Executive Platinum y los titulares de tarjetas Citi® /
+                  AAdvantage® y AAdvantage® Aviator® MasterCard® obtendrá los valores base más altos.
+                </p>
+              </div>
+            </div>
           </Card>
         </Col>
       </Row>
