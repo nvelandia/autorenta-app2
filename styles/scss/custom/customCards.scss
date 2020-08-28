@@ -423,14 +423,13 @@
     border-bottom-color: $ar-color-white-7;
     border-bottom-width: thin;
     margin: 0;
-
-    p{
-      font-size: 0.7rem;
-      line-height: normal;
-      margin-bottom: 0;
-      font-weight: 500;
+    height: 80px;
+    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+      height: 70px;
     }
-
+    @media (min-width: $ar-big-size){
+      height: 105px;
+    }
     .ar-car-company-logo{
       display: flex;
       border-right: solid;
@@ -454,6 +453,7 @@
       align-items: center;
       width: 26%;
       padding: 1rem;
+      margin-left: -0.5rem;
     }
     .ar-data-icon{
       display: flex;
@@ -462,16 +462,69 @@
         margin-top: 0.2rem;
       }
     }
+    p{
+      font-size: 0.7rem;
+      line-height: normal;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+      .ar-car-data-left{
+        padding: 1.3rem 2rem 1.3rem 1.5rem;
+      }
+      .ar-car-data-right{
+        padding: 1rem;
+        margin-left: -0.5rem;
+      }
+      .ar-data-icon{
+        font-size: 0.6rem;
+        &:before{
+          margin-top: 0.1rem;
+        }
+      }
+      p{
+        font-size: 0.6rem;
+      }
+    }
+    @media (min-width: $ar-big-size){
+      .ar-car-data-left{
+        padding: 1.5rem 2rem 1.5rem 1.9rem;
+      }
+      .ar-car-data-right{
+        padding: 0.8rem;
+        margin-left: -0.5rem;
+      }
+      p{
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+        padding-right: 0.5rem;
+        font-weight: 500;
+      }
+      .ar-data-icon{
+        display: flex;
+        font-size: 0.9rem;
+        &:before{
+          margin-top: 0.8rem;
+        }
+      }
+    }
   }
 
   .ar-car-bottom{
-    margin-top: 1rem;
-    margin-left: 0;
-    margin-right: 0;
+    margin: 0;
+    padding: 1rem 0 0 0;
+    height: 148px;
+    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+      height: 137px;
+    }
+    @media (min-width: $ar-big-size){
+      height: 190px;
+    }
     .ar-car-bottom-left{
       width: 67%;
       .ar-car-type{
-        padding-left: 2rem;
+        margin-top: 0.4rem;
+        padding-left: 1rem;
         width: 55%;
         display: flex;
         align-items: flex-start;
@@ -479,14 +532,75 @@
         flex-direction: column;
         h3{
           margin: 0;
+          font-size: 1rem;
+        }
+        h6{
+          text-transform: capitalize;
+          margin: 0.1rem 0 0.1rem 2.1rem;
         }
         .ar-car-type-key{
           color: $ar-color-red-0;
+          &:before{
+            font-size: 1.1rem;
+            transform: rotate(40deg);
+            margin-right: 12px;
+            position: relative;
+            top: 3px;
+          }
+        }
+        @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+          padding-left: 0.8rem;
+          h3{
+            margin-top: 0.1rem;
+            font-size: 0.9rem;
+          }
+          h6{
+            font-size: 0.55rem;
+            margin: 0.1rem 0 0.1rem 2rem;
+          }
+          .ar-car-type-key{
+            color: $ar-color-red-0;
+            &:before{
+              font-size: 1rem;
+              transform: rotate(40deg);
+              margin-right: 12px;
+              position: relative;
+              top: 3px;
+            }
+          }
+        }
+        @media (min-width: $ar-big-size){
+          h3{
+            margin-top: 0.3rem;
+            font-size: 1.3rem;
+          }
+          h6{
+            font-size: 0.8rem;
+            margin: 0.1rem 0 0.1rem 2.9rem;
+          }
+          .ar-car-type-key{
+            color: $ar-color-red-0;
+            &:before{
+              font-size: 1.5rem;
+              transform: rotate(40deg);
+              margin-right: 16px;
+              position: relative;
+              top: 7px;
+            }
+          }
         }
       }
       .ar-car-features{
         margin: 1rem 0;
-        padding-left: 2rem;
+        padding-left: 1.8rem;
+        @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+          margin: 1rem 0;
+          padding-left: 1.5rem;
+        }
+        @media (min-width: $ar-big-size){
+          margin: 1.5rem 0;
+          padding-left: 2.7rem;
+        }
         .ar-car-features-group{
           display: flex;
           flex-direction: column;
@@ -503,10 +617,31 @@
             h6{
               color: $ar-color-blue-0;
               margin: 0 0 0 0.4rem;
+              font-size: 0.68rem;
+              font-weight: 500;
             }
-            img{
-              width: 1rem;
-              margin-right: 0.3rem;
+            i{
+              font-size: 0.9rem;
+            }
+            @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+              margin-bottom: 0.1rem;
+              h6{
+                margin: 0 0 0 0.3rem;
+                font-size: 0.6rem;
+              }
+              i{
+                font-size: 0.8rem;
+              }
+            }
+            @media (min-width: $ar-big-size){
+              margin-bottom: 0.1rem;
+              h6{
+                margin: 0 0 0 0.6rem;
+                font-size: 0.85rem;
+              }
+              i{
+                font-size: 1.2rem;
+              }
             }
           }
         }

@@ -5,6 +5,7 @@ import { Button, Card, CardBody, CardImg, CardTitle, CardText, CardHeader, Col, 
 import Pagination from '../../Atoms/Pagination';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { redirectTo } from '../../../../utils/helpers/redirectTo';
 
 class Offer extends React.Component {
   constructor(props) {
@@ -131,7 +132,10 @@ class Offer extends React.Component {
             <CardBody className="ar-card-body-offer">
               <CardTitle className={`ar-card-title ${card.color}`}>{card.title}</CardTitle>
               <Row className="justify-content-center">
-                <Button className={`ar-round-button  ar-promo-button ${card.button} w-100 ml-3 mr-3`}>
+                <Button
+                  className={`ar-round-button  ar-promo-button ${card.button} w-100 ml-3 mr-3`}
+                  onClick={() => redirectTo('/promotion')}
+                >
                   Ver más información <i className="ar-icon-chevron-right mt-i-1 fs-i--1" />
                 </Button>
               </Row>

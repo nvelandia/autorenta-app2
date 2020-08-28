@@ -54,7 +54,7 @@ class ModalDetailInformation extends React.Component {
                 return (
                   <p className="fs--1 mb-1">
                     <i className="ar-icon-check-solid ar-green-text" />
-                    {'  ' + item.charge_type}
+                    {'  ' + item.includes}
                   </p>
                 );
               })}
