@@ -418,6 +418,10 @@
 
 .ar-car-selected{
   border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  @media (min-width: $ar-big-size){
+    margin-bottom: 1.5rem;
+  }
   .ar-car-top{
     border-bottom: solid;
     border-bottom-color: $ar-color-white-7;
@@ -725,6 +729,272 @@
         font-size: 0.68rem;
         line-height: normal;
         font-weight: 500;
+      }
+    }
+  }
+}
+
+.ar-location-selected{
+  width: 48.8%;
+  height: 208px;
+  margin-bottom: 1rem;
+  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+    height: 195px;
+  }
+  @media (min-width: $ar-big-size){
+    height: 275px;
+  }
+  .ar-location-top{
+    margin: 1rem;
+    .ar-location-icon{
+      margin-right: 0.65rem;
+      color: $ar-color-red-0;
+      font-size: 1rem;
+    }
+    .ar-location-date{
+      font-size: 0.85rem;
+      margin:0;
+      font-weight: 500;
+    }
+    .ar-location-place{
+      font-size: 0.6rem;
+      margin:0;
+      font-weight: 500;
+    }
+    h5{
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+        color: $ar-color-red-0;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+    }
+    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+      margin: 0.8rem;
+      .ar-location-icon{
+        margin-right: 0.65rem;
+        font-size: 0.95rem;
+      }
+      .ar-location-date{
+        font-size: 0.8rem;
+        margin:0;
+        font-weight: 500;
+      }
+      .ar-location-place{
+        font-size: 0.55rem;
+        margin:0;
+        font-weight: 500;
+      }
+      h5{
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+        font-size: 0.65rem;
+      }
+    }
+    @media (min-width: $ar-big-size){
+      margin: 1.2rem;
+      .ar-location-icon{
+        margin-right: 0.8rem;
+        font-size: 1.3rem;
+      }
+      .ar-location-date{
+        font-size: 1.15rem;
+        margin:0;
+        font-weight: 500;
+      }
+      .ar-location-place{
+        font-size: 0.75rem;
+        margin:0;
+        font-weight: 500;
+      }
+      h5{
+        margin-top: 0.3rem;
+        margin-bottom: 0.4rem;
+        font-size: 0.9rem;
+      }
+    }
+
+  }
+  .ar-location-bottom{
+    margin: 0;
+    .map-canvas{
+      height: 100px;
+    }
+    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+      .map-canvas{
+        height: 95px;
+      }
+    }
+    @media (min-width: $ar-big-size){
+      padding: 0 0.4rem;
+      .map-canvas{
+        height: 130px;
+      }
+    }
+  }
+}
+
+.ar-optional-equipment{
+  padding: 1rem 1.5rem 1rem 3rem;
+  .ar-title-with-icon{
+    margin: 0 0.3rem 1rem -1.5rem;
+    color: $ar-color-red-0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    &:before{
+      font-size: 1.1rem;
+      position: relative;
+      top: 0.2rem;
+      left: -0.5rem;
+    }
+  }
+  .ar-text-card{
+    font-size: 0.65rem;
+    margin-bottom: 1rem;
+  }
+  .ar-options-section-card{
+    display: flex;
+    justify-content: space-between;
+    .ar-checkbox-options-container{
+      width: 50%;
+      padding-right: 3.5rem;
+      .ar-optional-equipment-checkbox{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.6rem;
+        .ar-optional-item{
+          font-size: 0.6rem;
+          margin-bottom: 0.8rem;
+          &:before{
+            width: 0.8rem;
+            height: 0.8rem;
+            top: 0.05rem;
+          }
+          &:after{
+            top:0;
+            left: -1.8rem;
+          }
+          strong{
+            color: $ar-color-red-0;
+            font-size: 0.7rem;
+            letter-spacing: normal;
+          }
+        }
+      }
+    }
+    .ar-select-options-container{
+      width: 50%;
+      padding-left: 1.25rem;
+      padding-right: 0.75rem;
+      .ar-select-option{
+        border: 1.5px solid $ar-color-white-5;
+        padding: 0;
+        .ar-select-selected{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.15rem 0.5rem 0.15rem 0.8rem;
+          font-size: 0.7rem;
+          font-weight: 400;
+          span{
+            margin-left: 0.35rem;
+            font-size: 0.5rem;
+          }
+        }
+      }
+      .ar-select-description{
+        font-size: 0.6rem;
+        margin:0 0 0 0.8rem;
+      }
+      .ar-optional-item{
+        font-size: 0.6rem;
+        margin:0 0 0 0;
+
+        strong{
+          color: $ar-color-red-0;
+          font-size: 0.7rem;
+          letter-spacing: normal;
+        }
+      }
+    }
+  }
+  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+
+  }
+  @media (min-width: $ar-big-size){
+    padding: 1.4rem 2rem 0.7rem 4.2rem;
+    .ar-title-with-icon{
+      margin: 0 0.3rem 1.25rem -2.1rem;
+      font-size: 0.9rem;
+      &:before{
+        font-size: 1.4rem;
+        top: 0.3rem;
+        left: -0.8rem;
+      }
+    }
+    .ar-text-card{
+      font-size: 0.85rem;
+      margin-bottom: 1.4rem;
+    }
+    .ar-options-section-card{
+      .ar-checkbox-options-container{
+        padding-right: 4.8rem;
+        .ar-optional-equipment-checkbox{
+          font-size: 1rem;
+          .ar-optional-item{
+            font-size: 0.85rem;
+            margin-bottom: 1.15rem;
+            &:before{
+              width: 1rem;
+              height: 1rem;
+              top: 0.15rem;
+            }
+            &:after{
+              top:0.2rem;
+              left: -1.7rem;
+            }
+            strong{
+              font-size: 0.85rem;
+            }
+          }
+        }
+      }
+      .ar-select-options-container{
+        width: 50%;
+        padding-left: 1.25rem;
+        padding-right: 1.5rem;
+        .ar-select-option{
+          border: 2px solid $ar-color-white-5;
+          padding: 0;
+          .ar-select-selected{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.2rem 0.65rem 0.25rem 1.1rem;
+            font-size: 0.85rem;
+            font-weight: 400;
+            span{
+              margin-top: 0.3rem;
+              margin-left: 0.55rem;
+              font-size: 0.7rem;
+            }
+          }
+        }
+        .ar-select-description{
+          font-size: 0.85rem;
+          margin:0 0 0 0.8rem;
+        }
+        .ar-optional-item{
+          font-size: 0.85rem;
+          margin:0 0 0 0;
+
+          strong{
+            color: $ar-color-red-0;
+            font-size: 0.85rem;
+            letter-spacing: normal;
+          }
+        }
       }
     }
   }

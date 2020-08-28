@@ -3,7 +3,7 @@ import { Button, Card, CardBody, CardHeader, CardText, Col, Row } from 'reactstr
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-class CarsResult extends React.Component {
+class CarSelected extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -97,7 +97,7 @@ class CarsResult extends React.Component {
   }
 }
 
-CarsResult.propTypes = {
+CarSelected.propTypes = {
   dispatch: PropTypes.func,
   image: PropTypes.string,
   showDetailModal: PropTypes.func,
@@ -108,4 +108,4 @@ const mapStateToProps = (state) => {
   return state.searchReducer;
 };
 
-export default connect(mapStateToProps)(CarsResult);
+export default connect(mapStateToProps)(CarSelected);
