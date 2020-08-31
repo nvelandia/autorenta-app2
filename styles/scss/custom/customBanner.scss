@@ -13,17 +13,17 @@
   padding-right: 0;
   @media (min-width: $ar-small-size) and (max-width: $ar-normal-size) {
     h3{
-      font-size: 0.95rem;
+      font-size: 0.9em;
     }
   }
   @media (min-width: $ar-normal-size) and (max-width: $ar-big-size) {
     h3{
-      font-size: 1rem;
+      font-size: 1em;
     }
   }
   @media (min-width: $ar-big-size) {
     h3{
-      font-size: 1.3rem;
+      font-size: 1.1em;
     }
   }
 }
@@ -69,11 +69,11 @@
     position: absolute;
   }
   .ar-app-logo{
-    width: 95%;
+    width: 85%;
   }
   @media (min-width: $ar-big-size) {
     .ar-app-logo{
-      width: 80%;
+      width: 77%;
     }
     div{
       display: flex;
@@ -85,6 +85,7 @@
 
 .ar-search-banner{
   background-color: $ar-color-white-0;
+  box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
   @media (min-width: $ar-big-size) {
     h3{
       font-size: 1.3rem;

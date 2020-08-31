@@ -12,7 +12,8 @@
 }
 
 .ar-language-button{
-  font-size: 0.8vw;
+  font-size: 0.9em;
+  height: 42px;
   display: flex;
   align-items: center;
   color: $ar-color-blue-0;
@@ -27,9 +28,12 @@
 .ar-promo-button{
   display: flex;
   align-items: center;
+  justify-content: center;
   color: $ar-color-white-1;
   font-size: 0.8rem;
   white-space: pre;
+  height: 45px;
+  padding-top: 8px;
   &:hover{
     color: $ar-color-white-0;
   }
@@ -59,17 +63,17 @@
 
   //Small Monitor
   @media (min-width: 1200px) and (max-width: 1471px) {
-    font-size: 0.7rem;
+    font-size: 0.82em;
   }
 
   //Normal Monitor
   @media (min-width: 1490px) and (max-width: 1750px) {
-    font-size: 0.9rem;
+    font-size: 0.85em;
   }
 
   //Big Monitor
   @media (min-width: 1751px){
-    font-size: 1rem;
+    font-size: .95em;
   }
 }
 
@@ -82,7 +86,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1em;
   position: fixed;
   top: 80vh;
   left: 90vw;

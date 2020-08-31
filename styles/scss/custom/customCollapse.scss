@@ -15,7 +15,9 @@
   }
   @media (min-width: $ar-big-size){
     h5{
-      font-size: 0.9rem;
+      font-size: 0.75em;
+      letter-spacing: .2px;
+      font-weight: 700;
     }
   }
   border-radius: 0 !important;
@@ -53,10 +55,10 @@
     font-size: 0.9rem;
   }
   @media (min-width: $ar-normal-size) and (max-width: $ar-big-size){
-    font-size: 1.1rem;
+    font-size: 1em;
   }
   @media(min-width: $ar-big-size){
-    font-size: 1.25rem;
+    font-size: 1em;
   }
 }
 

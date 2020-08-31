@@ -132,7 +132,7 @@
 
   // Fade for backdrop
   &.fade { opacity: 0; }
-  &.show { opacity: $modal-backdrop-opacity; }
+  &.show { opacity: 0.55; }
 }
 
 // Modal header
@@ -165,7 +165,7 @@
   // Enable `flex-grow: 1` so that the body take up as much space as possible
   // when there should be a fixed height on `.modal-dialog`.
   flex: 1 1 auto;
-  padding: $modal-inner-padding;
+  padding: 1em 2em 2em 2em;
 }
 
 // Footer (for actions)
