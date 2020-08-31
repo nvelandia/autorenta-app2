@@ -707,6 +707,10 @@
     }
     h5{
       padding: 0.2rem 0 0 0;
+      b{
+        color: $ar-color-red-0;
+        font-weight: 600;
+      }
     }
     h6{
       font-size: 0.75rem;
@@ -724,11 +728,73 @@
       }
     }
     .ar-card-promotion-data-small-letter{
-      margin-top: 1rem;
       p{
+        margin-top: 1rem;
         font-size: 0.68rem;
         line-height: normal;
         font-weight: 500;
+      }
+    }
+    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
+      padding: 2rem 1.5rem 1rem 2.1rem;
+      h3{
+        font-size: 1.1rem;
+      }
+      h6{
+        font-size: 0.7rem;
+        margin: 0.8rem 0;
+        &.ar-card-promotion-miles{
+          margin: 0.15rem 0;
+          strong{
+            color: $ar-color-red-0;
+            i{
+              font-size: 0.7em;
+              font-weight: 900;
+            }
+          }
+        }
+      }
+      .ar-card-promotion-data-small-letter{
+        margin-top: 0.8rem;
+        p{
+          margin-top: 1rem;
+          font-size: 0.6rem;
+          margin-bottom: 0;
+        }
+      }
+    }
+    @media (min-width: $ar-big-size){
+      padding: 2.8rem 2.6rem 1.5rem 2.9rem;
+      h3{
+        font-size: 1.65rem;
+      }
+      h5{
+        padding: 0.4rem 0 0 0;
+        font-size: 1.05rem;
+        line-height: 1.8rem;
+        b{
+          font-weight: 600;
+        }
+      }
+      h6{
+        font-size: 1rem;
+        margin: 1.25rem 0;
+        &.ar-card-promotion-miles{
+          margin: 0.2rem 0;
+          strong{
+            font-weight: 600;
+            i{
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+      .ar-card-promotion-data-small-letter{
+        p{
+          margin-top: 1rem;
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
       }
     }
   }

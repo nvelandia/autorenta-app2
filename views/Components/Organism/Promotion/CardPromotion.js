@@ -154,7 +154,7 @@ class CardPromotion extends React.Component {
               <h3>Obtenga 500 millas AAdvantage con cada alquiler.</h3>
               <h5>
                 Alquila en USA y recibe más millas de acuerdo a la duración de la renta. Válido para reservas en
-                oficinas participantes. Utilice el código de descuento K817100
+                oficinas participantes. Utilice el código de descuento <b>K817100</b>
               </h5>
               <h6> Estas son las millas que obtendrá con cada alquiler válido:</h6>
               <h6 className="ar-card-promotion-miles">
