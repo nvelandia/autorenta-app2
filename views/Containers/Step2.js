@@ -15,6 +15,7 @@ import Details from '../Components/Organism/Step2/Details';
 import { Row, Col } from 'reactstrap';
 import LocationSelected from '../Components/Organism/Step2/LocationSelected';
 import OptionalEquipment from '../Components/Organism/Step2/OptionalEquipment';
+import ClientType from '../Components/Organism/Step2/ClientType';
 
 class Step2 extends React.Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class Step2 extends React.Component {
       <>
         <CustomNavBar />
         <StepsHeader step={2} />
-        <Row className="justify-content-center mt-4">
+        <Row className="justify-content-center mt-4 ml-0 mr-0">
           <Col xl="6" lg="6" className="pr-0">
             <CarSelected car={car} />
             <div className="d-flex justify-content-between">
@@ -73,6 +74,7 @@ class Step2 extends React.Component {
               <LocationSelected location={location.dropoff} title={'oficina de devolución'} />
             </div>
             <OptionalEquipment />
+            <ClientType />
           </Col>
           <Col xl="3" lg="3">
             <Details />

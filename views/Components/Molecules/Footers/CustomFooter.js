@@ -26,7 +26,7 @@ class CustomFooter extends React.Component {
   render() {
     return (
       <div className="ar-footer">
-        <Row className="ar-footer-up bg-ar-blue-2 justify-content-center">
+        <Row className="ar-footer-up bg-ar-blue-2 justify-content-center ml-0 mr-0">
           <Col lg="9">
             <Row className="ar-subscribe">
               <div className="ar-subscribe-text">
@@ -143,7 +143,7 @@ class CustomFooter extends React.Component {
             </Row>
           </Col>
         </Row>
-        <Row className="ar-footer-down bg-ar-blue-5 justify-content-md-center text-center align-items-center">
+        <Row className="ar-footer-down bg-ar-blue-5 justify-content-md-center text-center align-items-center ml-0 mr-0">
           <p>Copyright © 2020 autorenta.com es una marca registrada de GMS. Todos los derechos reservados</p>
         </Row>
       </div>

@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button, Card, CardBody, CardHeader, CardText, Col, Row } from 'reactstrap';
+import { Card, CardBody } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Dropdown from '../../Atoms/Dropdown';
-import OptionalEquipmentDropdown from './OptionalEquipmentDropdown';
+import OptionalEquipmentDropdown from '../../Molecules/dropdowns/OptionalEquipmentDropdown';
 
 class OptionalEquipment extends React.Component {
   constructor(props) {

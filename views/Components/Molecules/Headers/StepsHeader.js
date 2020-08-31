@@ -10,7 +10,7 @@ class StepsHeader extends React.Component {
   render() {
     const { step } = this.props;
     return (
-      <Row className="ar-step-header align-items-center">
+      <Row className="ar-step-header align-items-center ml-0 mr-0">
         <Col>
           <Row className="justify-content-center mt-3 ">
             <div className="ar-card-header-header ar-border-round ">

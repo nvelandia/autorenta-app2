@@ -901,6 +901,7 @@
 
 .ar-optional-equipment{
   padding: 1rem 1.5rem 1rem 3rem;
+  margin-bottom: 1rem;
   .ar-title-with-icon{
     margin: 0 0.3rem 1rem -1.5rem;
     color: $ar-color-red-0;
@@ -943,7 +944,8 @@
           }
           strong{
             color: $ar-color-red-0;
-            font-size: 0.7rem;
+            font-weight: 600;
+            font-size: 0.68rem;
             letter-spacing: normal;
           }
         }
@@ -979,14 +981,12 @@
 
         strong{
           color: $ar-color-red-0;
-          font-size: 0.7rem;
+          font-weight: 600;
+          font-size: 0.68rem;
           letter-spacing: normal;
         }
       }
     }
-  }
-  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-
   }
   @media (min-width: $ar-big-size){
     padding: 1.4rem 2rem 0.7rem 4.2rem;
@@ -1061,6 +1061,68 @@
             letter-spacing: normal;
           }
         }
+      }
+    }
+  }
+}
+
+.ar-client-type-card{
+  height: 125px;
+  padding: 1rem 1.5rem 1rem 3rem;
+  .ar-title-with-icon{
+    margin: 0 0.3rem 1rem -1.5rem;
+    color: $ar-color-red-0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    &:before{
+      font-size: 1.1rem;
+      position: relative;
+      top: 0.2rem;
+      left: -0.5rem;
+    }
+  }
+  .ar-select-client-type-container{
+    width: 31%;
+    margin-left: -0.25rem;
+    padding-top: 0.3rem;
+    .ar-select-button{
+      padding: 0.55rem 1.1rem;
+      border: solid;
+      border-width: 1.5px;
+      border-color: $ar-color-white-4;
+      background-color: $ar-color-white-1;
+      &:active{
+        border-color: $ar-color-white-4;
+        background-color: $ar-color-white-1;
+      }
+    }
+    .ar-client-type-select{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size: 0.6rem;
+      font-weight: 500;
+      span{
+        font-size: 0.8em;
+        font-weight: 900;
+        margin-right: -0.2rem;
+        margin-top: -0.035rem;
+      }
+    }
+  }
+  @media (min-width: $ar-big-size) {
+    height: 180px;
+    padding: 1.4rem 2rem 0.7rem 4.2rem;
+    .ar-title-with-icon {
+      margin: 0 0.3rem 1.25rem -2.1rem;
+      font-size: 0.9rem;
+
+      &:before {
+        font-size: 1.4rem;
+        top: 0.3rem;
+        left: -0.8rem;
       }
     }
   }

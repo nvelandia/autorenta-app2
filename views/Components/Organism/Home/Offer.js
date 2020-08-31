@@ -182,7 +182,7 @@ class Offer extends React.Component {
     const { dataCards } = this.props;
     return (
       <div>
-        <Row className="justify-content-center">
+        <Row className="justify-content-center ml-0 mr-0">
           <Col className="justify-content-center" lg="9">
             <Row className="mb--3">
               <Col className="justify-content-center text-center">

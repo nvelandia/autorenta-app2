@@ -5,7 +5,7 @@ class Banner extends React.Component {
   render() {
     return (
       <>
-        <Row className="ar-banner bg-ar-white-5 justify-content-center">
+        <Row className="ar-banner bg-ar-white-5 justify-content-center ml-0 mr-0">
           <Col lg="9">
             <Row className="justify-content-between ar-banner-container">
               <Col className="ar-banner-text-container " lg="6" md="6" xs="12">
