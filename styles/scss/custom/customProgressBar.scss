@@ -9,13 +9,13 @@
   height: 2.3rem;
   display: block;
   &.ar-done{
-    background-color: $ar-color-blue-2;
+    background-color: $ar-color-blue-2 !important;
   }
   &.ar-active{
-    background-color: $ar-color-red-0;
+    background-color: $ar-color-red-0 !important;
   }
   &.ar-pendant{
-    background-color: $ar-color-light-blue-0;
+    background-color: $ar-color-light-blue-0 !important;
   }
 }
 

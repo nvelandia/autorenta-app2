@@ -6,6 +6,7 @@
 .ar-blue-button{
   background-color: $ar-color-blue-4;
   color: $ar-color-white-3;
+  height: 46px;
   &:hover{
     background-color: $ar-color-blue-4;
   }
@@ -88,7 +89,8 @@
   align-items: center;
   font-size: 1em;
   position: fixed;
-  top: 80vh;
+  padding-left: 5px;
+  top: 87vh;
   left: 90vw;
   &:hover{
     cursor: pointer;
@@ -99,6 +101,7 @@
   font-size: 0.8rem;
   color: $ar-color-white-1;
   padding: 0.825rem 1.25rem;
+  height: 47px;
 }
 
 .ar-common-button{

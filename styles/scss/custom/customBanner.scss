@@ -1,6 +1,6 @@
 .ar-banner{
   height: 100px;
-  margin-top: 30px;
+  margin-top: 20px;
   .ar-banner-container{
     height: 100%;
   }
@@ -18,12 +18,12 @@
   }
   @media (min-width: $ar-normal-size) and (max-width: $ar-big-size) {
     h3{
-      font-size: 1em;
+      font-size: 0.9em;
     }
   }
   @media (min-width: $ar-big-size) {
     h3{
-      font-size: 1.1em;
+      font-size: 1em;
     }
   }
 }
@@ -88,7 +88,8 @@
   box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
   @media (min-width: $ar-big-size) {
     h3{
-      font-size: 1.3rem;
+      font-size: 1.1em;
+      padding-top: 5px;
     }
   }
   .ar-modify-button{
@@ -117,17 +118,17 @@
     }
     @media (min-width: $ar-big-size){
       .ar-search-icon{
-        margin-right: 20px;
+        margin-right: 10px;
         color: $ar-color-red-0;
-        font-size: 1.3rem;
+        font-size: 1.2em;
       }
       .ar-search-date{
-        font-size: 1.1rem;
+        font-size: 1.2em;
         margin:0;
-        font-weight: 600;
+        font-weight: 500;
       }
       .ar-search-place{
-        font-size: 0.8rem;
+        font-size: 0.75em;
         margin:0;
         font-weight: 600;
       }

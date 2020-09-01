@@ -170,6 +170,7 @@ class MakeYourReservation extends React.Component {
                             placeholder="¿Dónde quieres retirar el vehículo?"
                             value={this.state.placeToPickUp}
                             type="text"
+                            autoComplete="off"
                             onFocus={() => this.setState({ placeToPickUpFocus: true })}
                             onBlur={() => this.setState({ placeToPickUpFocus: false })}
                           />
@@ -193,6 +194,7 @@ class MakeYourReservation extends React.Component {
                             className="ar-round-input-right"
                             placeholder="¿Dónde quieres entregar el vehículo?"
                             type="text"
+                            autoComplete="off"
                             value={this.state.placeToDropOff}
                             onFocus={() => this.setState({ placeToDropOffFocus: true })}
                             onBlur={() => this.setState({ placeToDropOffFocus: false })}

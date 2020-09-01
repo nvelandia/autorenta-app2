@@ -193,7 +193,7 @@ class ModalModifySearch extends React.Component {
               <Col lg="5" md="5">
                 <RangeDatePicker handleDate={this.handleDate} />
               </Col>
-              <Col lg="2" md="6" className="pl-lg-0">
+              <Col lg="2" md="6">
                 <FormGroup
                   className={classnames({
                     focused: this.state.ageSelected,
@@ -205,6 +205,7 @@ class ModalModifySearch extends React.Component {
                     items={['+25', '24', '23', '22', '21', '20', '19', '18']}
                     classes={'ar-dropdown-menu-age'}
                     handleSelect={this.handleOnSelect}
+                    height={'ar-dropdown-age-height'}
                   />
                 </FormGroup>
                 <Button

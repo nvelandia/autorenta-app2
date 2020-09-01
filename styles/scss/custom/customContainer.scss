@@ -16,10 +16,9 @@
   }
 }
 
-.ar-filters-container{
-
-}
-
-.ar-cars-results-container{
-
+.ar-central-container{
+  width: 1150px;
+  @media (min-width: $ar-big-size){
+    width: 75%;
+  }
 }

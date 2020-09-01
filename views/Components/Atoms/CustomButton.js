@@ -40,7 +40,12 @@ class CustomButton extends React.Component {
     } else if (text) {
       return (
         <div>
-          <Button className={`btn-icon ar-round-button ${name}`} type="button" color={color} onClick={event}>
+          <Button
+            className={`btn-icon ar-round-button ${name} shadow-none`}
+            type="button"
+            color={color}
+            onClick={event}
+          >
             <Row className={`justify-content-center pl-3 pr-3 ws-nowrap align-items-center`}>{text}</Row>
           </Button>
         </div>

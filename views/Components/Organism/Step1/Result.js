@@ -111,7 +111,7 @@ class Result extends React.Component {
           showModal={this.state.showAditionalModal}
           hideModal={this.hideModal}
         />
-        <Col xl="9" lg="10" md="11" className="pl-0 pr-0">
+        <div className="ar-central-container">
           <Row className="justify-content-end m-0 mb-3">
             <div className="d-flex align-items-center">
               <div className="custom-control custom-checkbox mr-3">
@@ -129,6 +129,7 @@ class Result extends React.Component {
                 items={['De menor a mayor precio', 'De mayor a menor precio']}
                 title={'Ordenar por'}
                 color={'white-3'}
+                classes={'ar-order-by-button'}
                 actions={[this.props.orderByMinToMax, this.props.orderByMaxToMin]}
                 dispatch={this.props.dispatch}
               />
@@ -142,7 +143,7 @@ class Result extends React.Component {
             </div>
             <Col className="px-3">{this.props.result.cars.length !== 0 ? this.renderCarsResult() : null}</Col>
           </Row>
-        </Col>
+        </div>
       </Row>
     );
   }

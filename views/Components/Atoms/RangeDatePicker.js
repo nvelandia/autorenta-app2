@@ -4,6 +4,7 @@ import ReactDatetime from 'react-datetime';
 
 // reactstrap components
 import { FormGroup, InputGroupAddon, InputGroupText, InputGroup, Col, Row, Input } from 'reactstrap';
+import moment from 'moment';
 
 class RangeDatePicker extends React.Component {
   state = {};
@@ -32,7 +33,8 @@ class RangeDatePicker extends React.Component {
                     className: 'form-control ar-round-input-right',
                     placeholder: 'Fecha y hora de retiro',
                   }}
-                  timeFormat={'H:mm'}
+                  timeFormat={'HH:mm'}
+                  timeConstraints={{ hours: { min: 10, max: 18 }, minutes: { step: 30 } }}
                   renderDay={(props, currentDate, selectedDate) => {
                     let classes = props.className;
                     if (
@@ -77,6 +79,7 @@ class RangeDatePicker extends React.Component {
                     placeholder: 'Fecha y hora de entrega',
                   }}
                   timeFormat={'H:mm'}
+                  timeConstraints={{ hours: { min: 10, max: 18 }, minutes: { step: 30 } }}
                   renderDay={(props, currentDate, selectedDate) => {
                     let classes = props.className;
                     if (

@@ -47,7 +47,7 @@ class CarsResult extends React.Component {
             <CardBody className="ar-car-price-body">
               <div className="ar-car-price-details" onClick={() => this.props.showDetailModal(rate.charges)}>
                 <p>
-                  <i className="ar-icon-info va-middle" /> Ver detalle de esta tarifa
+                  <i className="ar-icon-info va-middle" /> Ver detalle del plan
                 </p>
               </div>
               <CardText className="mb-2">
@@ -89,7 +89,7 @@ class CarsResult extends React.Component {
   render() {
     const { car } = this.props;
     return (
-      <Card className="card-frame ar-car-result">
+      <Card className="card-frame ar-car-result mb-3">
         <CardBody className="p-0">
           <Row className="ar-car-top">
             <div className="ar-car-top-left">
@@ -102,7 +102,7 @@ class CarsResult extends React.Component {
               </div>
             </div>
             <Row className="m-0 h-100 ar-car-features">
-              <div className="ar-car-features-group ">
+              <div className="ar-car-features-group pl-0">
                 <div className="ar-car-feature-item">
                   <i className="ar-icon-passenger ar-light-blue-3-text" />
                   <h6>{car.seats} asientos</h6>

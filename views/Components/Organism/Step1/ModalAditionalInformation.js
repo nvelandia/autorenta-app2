@@ -31,7 +31,7 @@ class ModalAditionalInformation extends React.Component {
             <span aria-hidden={true}>×</span>
           </button>
         </div>
-        <div className="modal-body pt-0 px-5">
+        <div className="modal-body pt-0 px-5 ar-modal-body-aditional-information">
           <Row className="my-4">
             <Col>
               <Card className="mb-0 shadow h-100">
@@ -51,7 +51,7 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Seguros y coberturas</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Franquicia / Deducible</CardTitle>
                     <i className="ar-icon-deductible ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
@@ -68,7 +68,7 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Seguros y coberturas</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Depósito o bloqueo</CardTitle>
                     <i className="ar-icon-credit-card-block ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
@@ -83,7 +83,7 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Seguros y coberturas</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Políticas de combustible</CardTitle>
                     <i className="ar-icon-fuel-policy ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
@@ -100,7 +100,7 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Seguros y coberturas</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Kilometraje / Millaje</CardTitle>
                     <i className="ar-icon-miles-kilometers ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
@@ -115,7 +115,7 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Seguros y coberturas</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Tarjeta de crédito y débito</CardTitle>
                     <i className="ar-icon-credit-debit-card ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">

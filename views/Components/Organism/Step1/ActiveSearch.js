@@ -48,7 +48,7 @@ class ActiveSearch extends React.Component {
           searchFleet={this.props.searchFleet}
         />
         <Row className="justify-content-center ar-search-banner p-4 mx-0">
-          <Col xl="9" className="p-0">
+          <div className="ar-central-container">
             <Row className="justify-content-between bg-ar-white-0 align-items-center ">
               <div>
                 <h3>Búsqueda activa</h3>
@@ -113,7 +113,7 @@ class ActiveSearch extends React.Component {
                 />
               </div>
             </Row>
-          </Col>
+          </div>
         </Row>
       </>
     );

@@ -13,7 +13,7 @@
   color: $ar-color-blue-0;
   font-weight: 500;
   margin: 0 !important;
-  font-size: 1em;
+  font-size: .95em;
   letter-spacing: 0.1px;
   &:hover{
     color: $ar-color-red-0 !important;
@@ -22,7 +22,7 @@
 
 .ar-nav-link-red{
   color: $ar-color-red-0;
-  font-size: 1em;
+  font-size: .95em;
 }
 
 .ar-nav-link{
@@ -47,6 +47,7 @@
     letter-spacing: .2px;
     margin-right: 1em;
     height: 42px;
+    padding-top: 8px;
   }
 }
 
@@ -78,5 +79,5 @@
 }
 
 .ar-language{
-  font-size: 1.1vw;
+  font-size: 1.2em;
 }

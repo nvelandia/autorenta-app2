@@ -24,7 +24,7 @@ class Step1 extends React.Component {
     return (
       <>
         <CustomNavBar />
-        <StepsHeader step={1} />
+        <StepsHeader step={2} />
         <ActiveSearch searchLocation={homeActions.searchLocation} searchFleet={homeActions.searchFleet} />
         <Result
           addFitlter={actions.addFilter}

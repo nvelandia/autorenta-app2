@@ -2,7 +2,7 @@
   .ar-footer-up{
     height: 300px;
     .ar-subscribe{
-      padding: 25px 0px 25px 15px;
+      padding: 25px 0px;
       height: 40%;
       width: 100%;
       margin: 0;
@@ -13,12 +13,12 @@
         margin-left: -0.7rem!important;
         margin-right: 1rem;
         h2{
-          font-size: 1.1em;
+          font-size: .9em;
           letter-spacing: 0.3px;
         }
         @media (min-width: $ar-big-size){
           h2{
-            font-size: 1.25rem;
+            font-size: 1em;
             letter-spacing: 0.3px;
           }
         }
@@ -26,6 +26,9 @@
       div{
         display: flex;
         align-items: center;
+      }
+      .ar-register-button-container{
+        margin-left: 10px;
       }
     }
     .ar-links{
@@ -81,7 +84,7 @@
     color: $ar-color-white-1;
     p{
       font-size: 0.8rem;
-      margin-top: 10px;
+      margin-top: 15px;
     }
   }
 }
