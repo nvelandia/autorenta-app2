@@ -69,6 +69,59 @@
   }
 }
 
+.fade-in {
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 2s;
+  -moz-animation: fadeIn ease 2s;
+  -o-animation: fadeIn ease 2s;
+  -ms-animation: fadeIn ease 2s;
+}
+
+@keyframes fadeIn {
+   0% {
+     opacity:0;
+   }
+   100% {
+     opacity:1;
+   }
+ }
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .ar-car-result{
   .ar-car-top{
     border-bottom: solid;
@@ -111,7 +164,7 @@
           margin: 0;
         }
         h6{
-          text-transform: initial;
+          text-transform: capitalize;
         }
         @media (min-width: $ar-big-size){
           h3{
@@ -119,7 +172,7 @@
             font-size: 1.3em;
           }
           h6{
-            text-transform: initial;
+            text-transform: capitalize;
             font-size: 0.8em;
             letter-spacing: .3px;
           }

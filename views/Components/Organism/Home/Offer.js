@@ -122,7 +122,7 @@ class Offer extends React.Component {
   renderCards = () => {
     const cards = this.state.cards.map((card, index) => {
       return (
-        <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
+        <Col key={index} className="fade-in justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
           <Card className="w-auto m-2">
             <div className="ar-card-image">
               <img className="ar-image" src={card.image} />
@@ -189,7 +189,7 @@ class Offer extends React.Component {
                 <h2>Descubre todas las ofertas y promociones</h2>
               </Col>
             </Row>
-            <Row className="justify-content-md-around justify-content-sm-center  mt-5">{this.renderCards()}</Row>
+            <Row className=" justify-content-md-around justify-content-sm-center mt-5">{this.renderCards()}</Row>
           </div>
         </Row>
         <div className="ar-pagination-container">
