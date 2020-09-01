@@ -483,9 +483,6 @@
     border-bottom-width: thin;
     margin: 0;
     height: 80px;
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      height: 70px;
-    }
     @media (min-width: $ar-big-size){
       height: 105px;
     }
@@ -526,24 +523,6 @@
       line-height: normal;
       margin-bottom: 0;
       font-weight: 500;
-    }
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      .ar-car-data-left{
-        padding: 1.3rem 2rem 1.3rem 1.5rem;
-      }
-      .ar-car-data-right{
-        padding: 1rem;
-        margin-left: -0.5rem;
-      }
-      .ar-data-icon{
-        font-size: 0.6rem;
-        &:before{
-          margin-top: 0.1rem;
-        }
-      }
-      p{
-        font-size: 0.6rem;
-      }
     }
     @media (min-width: $ar-big-size){
       .ar-car-data-left{
@@ -674,7 +653,9 @@
       justify-content: space-between;
       align-items: flex-start;
       width: 33%;
+      border-radius: 0.5rem;
       img{
+        border-radius: 0.5rem;
         width: 100%;
       }
     }
@@ -749,34 +730,6 @@
         font-weight: 500;
       }
     }
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      padding: 2rem 1.5rem 1rem 2.1rem;
-      h3{
-        font-size: 1.1rem;
-      }
-      h6{
-        font-size: 0.7rem;
-        margin: 0.8rem 0;
-        &.ar-card-promotion-miles{
-          margin: 0.15rem 0;
-          strong{
-            color: $ar-color-red-0;
-            i{
-              font-size: 0.7em;
-              font-weight: 900;
-            }
-          }
-        }
-      }
-      .ar-card-promotion-data-small-letter{
-        margin-top: 0.8rem;
-        p{
-          margin-top: 1rem;
-          font-size: 0.6rem;
-          margin-bottom: 0;
-        }
-      }
-    }
     @media (min-width: $ar-big-size){
       padding: 2.8rem 2.6rem 1.5rem 2.9rem;
       h3{
@@ -818,9 +771,6 @@
   width: 48.8%;
   height: 208px;
   margin-bottom: 1rem;
-  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-    height: 195px;
-  }
   @media (min-width: $ar-big-size){
     height: 275px;
   }
@@ -847,28 +797,6 @@
         color: $ar-color-red-0;
         text-transform: uppercase;
         font-size: 0.7rem;
-    }
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      margin: 0.8rem;
-      .ar-location-icon{
-        margin-right: 0.65rem;
-        font-size: 0.95rem;
-      }
-      .ar-location-date{
-        font-size: 0.8rem;
-        margin:0;
-        font-weight: 500;
-      }
-      .ar-location-place{
-        font-size: 0.55rem;
-        margin:0;
-        font-weight: 500;
-      }
-      h5{
-        margin-top: 0.2rem;
-        margin-bottom: 0.2rem;
-        font-size: 0.65rem;
-      }
     }
     @media (min-width: $ar-big-size){
       margin: 1.2rem;
@@ -899,11 +827,6 @@
     margin: 0;
     .map-canvas{
       height: 100px;
-    }
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      .map-canvas{
-        height: 95px;
-      }
     }
     @media (min-width: $ar-big-size){
       padding: 0 0.4rem;
@@ -1140,6 +1063,38 @@
         top: 0.3rem;
         left: -0.8rem;
       }
+    }
+  }
+}
+
+.ar-card-details{
+  width: 30%;
+  padding: 0 10px;
+  .ar-card-details-title{
+    padding: 1em 1.2em;
+    h1{
+      font-size: 1em;
+      color: $ar-color-red-0;
+    }
+  }
+  .ar-card-details-subtitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0 !important;
+    cursor: pointer;
+    margin-bottom: 0;
+    color: $ar-color-blue-0;
+    background-color: $ar-color-white-3;
+    padding-right: .4em;
+    h2{
+      font-size: .7em;
+      margin-bottom: 0;
+      padding: 0.8rem 1.5rem;
+    }
+    .ar-button-change-plan{
+      font-size: 0.7em;
+      padding: .5em 1.2em;
     }
   }
 }

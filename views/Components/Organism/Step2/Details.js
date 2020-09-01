@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardHeader } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import CustomButton from '../../Atoms/CustomButton';
 //import FilterGroup from './FilterGroup';
 
 class FilterList extends React.Component {
@@ -26,13 +27,20 @@ class FilterList extends React.Component {
     //const { gears, companies, types, seats, bags } = this.props.items;
     return (
       <Card>
-        {/*<CardHeader className="ar-blue-0-text font-weight-600">Filtrar resultados</CardHeader>
-        <FilterGroup title={'COMPAÑÍA RENTADORA'} items={companies} type={'check'} badge={true} text={''} />
-        <FilterGroup title={'TIPOS DE VEHÍCULO'} items={types} type={'check'} badge={true} text={''} />
-        <FilterGroup title={'CANTIDAD DE PASAJEROS'} items={seats} type={'check'} badge={false} text={'pasajeros'} />
-        <FilterGroup title={'CAPACIDAD DE MALETAS'} items={bags} type={'radio'} badge={false} text={''} />
-        <FilterGroup title={'TIPO DE TRANSMISIÓN'} items={gears} type={'check'} badge={false} text={''} />
-        <FilterGroup title={'RANGO DE PRECIO'} priceRange={true} />*/}
+        <div className="ar-card-details-title">
+          <h1>Detalles de la reserva</h1>
+        </div>
+        <div className="ar-card-details-subtitle">
+          <h2>PLAN SELECCIONADO</h2>
+          <CustomButton
+            text={'Cambiar plan'}
+            event={console.log('cambiar plan click')}
+            color={'red-0'}
+            name={'ar-button-change-plan'}
+            icon={'ar-icon-chevron-right'}
+            justify={'justify-content-between'}
+          />
+        </div>
       </Card>
     );
   }

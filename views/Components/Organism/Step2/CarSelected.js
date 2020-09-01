@@ -86,7 +86,7 @@ class CarSelected extends React.Component {
             </div>
 
             <div className="ar-car-image">
-              <div className="mt-2">
+              <div className="mt-auto">
                 <img src={car.image} alt="Car image" />
               </div>
             </div>

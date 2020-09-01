@@ -244,7 +244,7 @@ class MakeYourReservation extends React.Component {
                         />
                       </FormGroup>
                     </Col>
-                    <Col lg="4" md="6">
+                    <Col lg="4" md="6" className="pl-1">
                       <FormGroup
                         className={classnames(
                           {
@@ -272,7 +272,7 @@ class MakeYourReservation extends React.Component {
                     </Col>
                     <Col lg="2" md="6" className="p-0 ar-make-your-reservation-button-container">
                       <Button
-                        className=" btn-icon ar-round-button ar-blue-button ar-last-row-make-your-reservation fs--1"
+                        className=" btn-icon ar-round-button ar-blue-button ar-last-row-make-your-reservation fs--1 h-100"
                         color="default"
                         type="button"
                         onClick={this.handleSearchClick}

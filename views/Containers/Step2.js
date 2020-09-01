@@ -65,20 +65,22 @@ class Step2 extends React.Component {
     return (
       <>
         <CustomNavBar />
-        <StepsHeader step={2} />
+        <StepsHeader step={3} />
         <Row className="justify-content-center mt-4 ml-0 mr-0">
-          <Col xl="6" lg="6" className="pr-0">
-            <CarSelected car={car} />
-            <div className="d-flex justify-content-between">
-              <LocationSelected location={location.pickup} title={'oficina de inicio'} />
-              <LocationSelected location={location.dropoff} title={'oficina de devolución'} />
+          <div className="ar-central-container d-flex">
+            <Col>
+              <CarSelected car={car} />
+              <div className="d-flex justify-content-between">
+                <LocationSelected location={location.pickup} title={'oficina de inicio'} />
+                <LocationSelected location={location.dropoff} title={'oficina de devolución'} />
+              </div>
+              <OptionalEquipment />
+              <ClientType />
+            </Col>
+            <div className="ar-card-details">
+              <Details />
             </div>
-            <OptionalEquipment />
-            <ClientType />
-          </Col>
-          <Col xl="3" lg="3">
-            <Details />
-          </Col>
+          </div>
         </Row>
 
         <Banner />
