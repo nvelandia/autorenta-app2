@@ -3,6 +3,7 @@ import { Button, Card, CardBody, CardHeader, CardText, Col, Row } from 'reactstr
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomButton from '../../Atoms/CustomButton';
+import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
 
 class CarsResult extends React.Component {
   constructor(props) {
@@ -36,6 +37,11 @@ class CarsResult extends React.Component {
     return rating;
   };
 
+  handleOnClick = (car) => {
+    this.props.dispatch(this.props.selectCar(car));
+    redirectTo(pages.step2);
+  };
+
   renderPrice = (car) => {
     const prices = car.rates.map((rate) => {
       return (
@@ -55,7 +61,7 @@ class CarsResult extends React.Component {
               </CardText>
               <CustomButton
                 text={'Reservar ahora'}
-                event={this.props.dispatch(this.props.selectCar({}))}
+                event={() => this.handleOnClick({})}
                 color={'red-0'}
                 name={'ar-car-price-button'}
                 icon={'ar-icon-chevron-right'}

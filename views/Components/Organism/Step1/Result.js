@@ -90,7 +90,12 @@ class Result extends React.Component {
         filterByPrice(this.props.filterBy.price, car.rates[0].price)
       ) {
         return (
-          <CarsResult car={car} showDetailModal={this.showDetailModal} showAditionalModal={this.showAditionalModal} />
+          <CarsResult
+            car={car}
+            selectCar={this.props.selectCar}
+            showDetailModal={this.showDetailModal}
+            showAditionalModal={this.showAditionalModal}
+          />
         );
       }
     });
@@ -156,6 +161,7 @@ Result.propTypes = {
   addFitlter: PropTypes.func,
   orderByMinToMax: PropTypes.func,
   orderByMaxToMin: PropTypes.func,
+  selectCar: PropTypes.func,
   toggleShowFeaturedFirst: PropTypes.func,
 };
 

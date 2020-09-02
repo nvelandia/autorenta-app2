@@ -35,6 +35,7 @@ class Step1 extends React.Component {
           orderByMinToMax={actions.orderByMinToMax}
           orderByMaxToMin={actions.orderByMaxToMin}
           toggleShowFeaturedFirst={actions.toggleShowFeaturedFirst}
+          selectCar={actions.selectCar}
         />
         <Banner />
         <CustomFooter />
