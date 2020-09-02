@@ -55,7 +55,7 @@ class CarsResult extends React.Component {
               </CardText>
               <CustomButton
                 text={'Reservar ahora'}
-                event={console.log('reservar auto click')}
+                event={this.props.dispatch(this.props.selectCar({}))}
                 color={'red-0'}
                 name={'ar-car-price-button'}
                 icon={'ar-icon-chevron-right'}
@@ -216,6 +216,7 @@ CarsResult.propTypes = {
   image: PropTypes.string,
   showDetailModal: PropTypes.func,
   showAditionalModal: PropTypes.func,
+  selectCar: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

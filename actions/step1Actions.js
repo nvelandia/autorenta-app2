@@ -38,3 +38,10 @@ export const haveToCloseModifyModal = (value) => {
     value,
   };
 };
+
+export const selectCar = (car) => {
+  return {
+    type: actionNames.selectCar,
+    car,
+  };
+};

@@ -32,6 +32,7 @@ export const actionNames = {
   toggleShowFeaturedFirst: 'TOGGLE_SHOW_FEATURED_FIRST',
   modifySearchFleet: 'MODIFY_SEARCH_FLEET',
   haveToCloseModifyModal: 'HAVE_TO_CLOSE_MODIFY_MODAL',
+  selectCar: 'SELECT_CAR',
   //Step1-Service
   modifySearchFleetSuccessfully: 'MODIFY_SEARCH_FLEET_SUCCESSFULLY',
   modifySearchFleetUnsuccessfully: 'MODIFY_SEARCH_FLEET_UNSUCCESSFULLY',

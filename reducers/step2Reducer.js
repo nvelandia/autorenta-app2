@@ -159,6 +159,11 @@ const step2Reducer = (state = defaultState, action) => {
         ...state,
         plan: action.plan,
       };
+    case actionNames.selectCar:
+      return {
+        ...state,
+        carSelected: action.car,
+      };
     default:
       return state;
   }

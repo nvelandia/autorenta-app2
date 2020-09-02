@@ -7,5 +7,5 @@ export const redirectTo = (path) => {
 
 export const pages = {
   home: '/',
-  step1: '/step1',
+  step1: '/step-1',
 };

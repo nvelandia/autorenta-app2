@@ -8,7 +8,6 @@ import Banner from '../Components/Molecules/banners/Banner';
 import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
-import { actionNames } from '../../utils/constants/actionConstants';
 import CarSelected from '../Components/Organism/Step2/CarSelected';
 import Details from '../Components/Organism/Step2/Details';
 import { Row, Col } from 'reactstrap';
@@ -21,24 +20,7 @@ class Step2 extends React.Component {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
-    //this.mock();
   }
-
-  mock = () => {
-    this.dispatch({
-      type: actionNames.searchFleet,
-      body: {
-        pickup_location: 'MIA',
-        pickup_date: '2020-08-11',
-        pickup_time: '12:00',
-        dropoff_location: 'MIA',
-        dropoff_date: '2020-08-12',
-        dropoff_time: '12:00',
-        passenger_country_id: 1,
-        passenger_age: 22,
-      },
-    });
-  };
 
   render() {
     const car = {
