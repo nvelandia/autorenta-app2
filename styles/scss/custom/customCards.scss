@@ -1152,7 +1152,7 @@
         align-items: center;
         justify-content: space-between;
         p{
-          font-size: .8em;
+          font-size: .7em;
           margin: .3em 0;
           font-weight: 500;
           @media (min-width: $ar-big-size){
@@ -1161,7 +1161,7 @@
         }
         strong{
           color: $ar-color-red-0;
-          font-size: .8em;
+          font-size: .7em;
           text-align: left;
           width: 25%;
           @media (min-width: $ar-big-size){
@@ -1238,6 +1238,86 @@
             font-size: 0.85rem;
             top: 25%;
           }
+        }
+      }
+    }
+  }
+}
+
+.ar-card-change-plan{
+  padding: 2rem 4rem;
+  @media (min-width: $ar-big-size){
+    padding: 2.5rem 4.5rem;
+  }
+  p{
+    font-weight: 500;
+    font-size: 0.8em;
+    i{
+      vertical-align: middle;
+    }
+    @media (min-width: $ar-big-size){
+      font-size: .95em;
+    }
+  }
+  .ar-card-change-plan-title{
+    font-size: .85rem;
+    font-weight: bold;
+    margin-bottom: .5rem;
+    color: $ar-color-blue-0;
+    @media (min-width: $ar-big-size){
+      font-size: 1rem;
+    }
+  }
+  .ar-car-chevron{
+    margin-left: -4rem;
+    position: absolute;
+    width: calc(100% + 8rem);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    @media (min-width: $ar-big-size){
+      width: calc(100% + 8rem);
+    }
+    span{
+      margin-right: -.5rem;
+      padding: 0.65rem;
+      z-index: 50;
+      color: $ar-color-gray-1;
+      cursor: pointer;
+      font-size: 1.8rem;
+      @media (min-width: $ar-big-size){
+        padding: 0.9rem;
+        font-size: 2rem;
+      }
+    }
+  }
+  .ar-button-confirm-container{
+    margin: 1.5em 0 0.8em 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1200;
+    .ar-button-confirm{
+      font-size: .75em;
+      font-weight: 600;
+      width: 100%;
+      padding-top: .6em;
+      padding-bottom: .6em;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      @media (min-width: $ar-big-size){
+        font-size: 0.85rem;
+      }
+      i{
+        font-size: .7em;
+        font-weight: 900;
+        margin-top: .3em;
+        @media (min-width: $ar-big-size){
+          font-size: 0.85rem;
+          top: 25%;
+          margin-top: .4em;
         }
       }
     }

@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as homeActions from '../../actions/homeActions';
-//import * as actions from '../../actions/searchActions';
+import * as actions from '../../actions/step2Actions';
 import CustomNavBar from '../Components/Molecules/Navbars/CustomNavBar';
 import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
 import Banner from '../Components/Molecules/banners/Banner';
@@ -78,7 +77,7 @@ class Step2 extends React.Component {
               <ClientType />
             </Col>
             <div className="ar-card-details">
-              <Details />
+              <Details changePlan={actions.changePlan} />
             </div>
           </div>
         </Row>

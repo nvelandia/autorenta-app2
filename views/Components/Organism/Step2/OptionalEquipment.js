@@ -36,41 +36,40 @@ class OptionalEquipment extends React.Component {
           </div>
           <div className="ar-options-section-card">
             <div className="ar-checkbox-options-container">
-              {[1, 2, 3, 4, 5, 6].map((item) => {
+              {this.props.optionalEquipment.map((item) => {
                 return (
                   <div className="custom-control custom-checkbox ar-optional-equipment-checkbox mr-1">
                     <input
                       className="custom-control-input"
-                      id={item}
+                      id={item.name}
                       type="checkbox"
                       //onClick={(e) => this.props.handleOnSelect(key, category)}
                     />
-                    <label className="custom-control-label ar-optional-item" htmlFor={item}>
-                      {' '}
-                      Opcion {item}
+                    <label className="custom-control-label ar-optional-item" htmlFor={item.name}>
+                      {item.name}
                     </label>
                     <label className="ar-optional-item">
-                      <strong>USD 16.99 </strong>(por día)
+                      <strong>USD {item.price} </strong>(por día)
                     </label>
                   </div>
                 );
               })}
             </div>
             <div className="ar-select-options-container">
-              {[0, 1, 2].map((item) => {
+              {this.props.additionalSeats.map((item) => {
                 return (
                   <div className="d-flex justify-content-between align-items-center mb-1">
                     <div className="d-flex align-items-center">
                       <OptionalEquipmentDropdown
                         items={[0, 1, 3, 4, 5]}
-                        title={item}
+                        title={item.quantity.toString()}
                         color={'white-0'}
                         dispatch={this.props.dispatch}
                       />
-                      <label className="ar-select-description">Asientos para bebes</label>
+                      <label className="ar-select-description">{item.name}</label>
                     </div>
                     <label className="ar-optional-item">
-                      <strong>USD 16.99 </strong>(por día)
+                      <strong>USD {item.price} </strong>(por día)
                     </label>
                   </div>
                 );
@@ -91,7 +90,7 @@ OptionalEquipment.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return state.step2Reducer;
 };
 
 export default connect(mapStateToProps)(OptionalEquipment);

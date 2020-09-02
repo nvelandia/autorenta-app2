@@ -13,3 +13,10 @@
     padding: 1em 2em;
   }
 }
+
+.ar-modal-change-plan{
+  max-width: 350px;
+  @media (min-width: $ar-big-size){
+    max-width: 400px;
+  }
+}

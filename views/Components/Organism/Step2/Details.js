@@ -1,17 +1,28 @@
 import React from 'react';
-import { Button, Card, CardBody, CardHeader } from 'reactstrap';
+import { Button, Card } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomButton from '../../Atoms/CustomButton';
-//import FilterGroup from './FilterGroup';
+import ModalChangePlan from './ModalChangePlan';
+import step2Reducer from '../../../../reducers/step2Reducer';
 
 class FilterList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showChangePlanModal: false,
+    };
     this.dispatch = props.dispatch;
     this.handleOnLoad();
   }
+
+  showChangePlanModal = () => {
+    this.setState({ showChangePlanModal: true });
+  };
+
+  hideModal = () => {
+    this.setState({ showChangePlanModal: false });
+  };
 
   handleOnLoad = () => {};
 
@@ -24,17 +35,6 @@ class FilterList extends React.Component {
   };
 
   render() {
-    //const { gears, companies, types, seats, bags } = this.props.items;
-    const rates = [
-      { name: 'Millaje Libre' },
-      { name: 'Cobertura LDW' },
-      { name: 'Cobertura TPL' },
-      { name: 'Impuestos y cargos' },
-      { name: 'Tanque de combustible' },
-      { name: 'Navegador satelital' },
-      { name: 'Conductor adicional' },
-      { name: 'Servicio de asistencia en la carretera' },
-    ];
     const additionalEquipment = [
       { name: 'Asiento elevador para niños', price: '65.00' },
       { name: 'Asiento para bebés', price: '65.00' },
@@ -47,6 +47,12 @@ class FilterList extends React.Component {
     ];
     return (
       <Card>
+        <ModalChangePlan
+          showModal={this.state.showChangePlanModal}
+          hideModal={this.hideModal}
+          changePlan={this.props.changePlan}
+          information={[]}
+        />
         <div className="ar-card-details-title">
           <h1>Detalles de la reserva</h1>
         </div>
@@ -54,7 +60,7 @@ class FilterList extends React.Component {
           <h2>PLAN SELECCIONADO</h2>
           <CustomButton
             text={'Cambiar plan'}
-            event={console.log('cambiar plan click')}
+            event={() => this.showChangePlanModal()}
             color={'red-0'}
             name={'ar-button-change-plan'}
             icon={'ar-icon-chevron-right'}
@@ -65,11 +71,20 @@ class FilterList extends React.Component {
           <h5>Tarifa todo incluido</h5>
           <h6>MOST INCLUSIVE - AR</h6>
           <div className="ar-card-details-rates-list">
-            {rates.map((item) => {
+            {this.props.plan.includes.map((item) => {
+              if (item.selected) {
+                return (
+                  <div className="ar-card-details-rate-item">
+                    <p>
+                      <i className="ar-icon-check-solid ar-green-text" /> {item.name}{' '}
+                    </p>
+                  </div>
+                );
+              }
               return (
                 <div className="ar-card-details-rate-item">
                   <p>
-                    <i className="ar-icon-check-solid ar-green-text" /> {item.name}{' '}
+                    <i className="ar-icon-close-solid ar-red-text" /> {item.name}{' '}
                   </p>
                 </div>
               );
@@ -146,13 +161,12 @@ class FilterList extends React.Component {
 
 FilterList.propTypes = {
   dispatch: PropTypes.func,
-  searchLocation: PropTypes.func,
-  loadCountries: PropTypes.func,
+  changePlan: PropTypes.func,
   items: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return state.step2Reducer;
 };
 
 export default connect(mapStateToProps)(FilterList);

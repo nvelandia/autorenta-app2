@@ -35,4 +35,6 @@ export const actionNames = {
   //Step1-Service
   modifySearchFleetSuccessfully: 'MODIFY_SEARCH_FLEET_SUCCESSFULLY',
   modifySearchFleetUnsuccessfully: 'MODIFY_SEARCH_FLEET_UNSUCCESSFULLY',
+  //Step2
+  changePlan: 'CHANGE_PLAN',
 };
