@@ -30,4 +30,9 @@ export const actionNames = {
   orderByMinToMax: 'ORDER_BY_MIN_TO_MAX',
   orderByMaxToMin: 'ORDER_BY_MAX_TO_MIN',
   toggleShowFeaturedFirst: 'TOGGLE_SHOW_FEATURED_FIRST',
+  modifySearchFleet: 'MODIFY_SEARCH_FLEET',
+  haveToCloseModifyModal: 'HAVE_TO_CLOSE_MODIFY_MODAL',
+  //Step1-Service
+  modifySearchFleetSuccessfully: 'MODIFY_SEARCH_FLEET_SUCCESSFULLY',
+  modifySearchFleetUnsuccessfully: 'MODIFY_SEARCH_FLEET_UNSUCCESSFULLY',
 };

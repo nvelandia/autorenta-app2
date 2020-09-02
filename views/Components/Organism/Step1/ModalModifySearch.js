@@ -77,7 +77,7 @@ class ModalModifySearch extends React.Component {
       passenger_country_id: this.props.searchParams.passenger_country_id,
       passenger_age: this.state.ageSelected,
     };
-    this.dispatch(this.props.searchFleet(body));
+    this.dispatch(this.props.modifySearchFleet(body));
   };
 
   renderListGroup = (name) => {
@@ -159,6 +159,7 @@ class ModalModifySearch extends React.Component {
                       placeholder="¿Dónde quieres retirar el vehículo?"
                       value={this.state.placeToPickUp}
                       type="text"
+                      autoComplete="off"
                       onFocus={() => this.setState({ placeToPickUpFocus: true })}
                       onBlur={() => this.setState({ placeToPickUpFocus: false })}
                     />
@@ -182,6 +183,7 @@ class ModalModifySearch extends React.Component {
                       className="ar-round-input-right"
                       placeholder="¿Dónde quieres entregar el vehículo?"
                       type="text"
+                      autoComplete="off"
                       value={this.state.placeToDropOff}
                       onFocus={() => this.setState({ placeToDropOffFocus: true })}
                       onBlur={() => this.setState({ placeToDropOffFocus: false })}
@@ -233,7 +235,7 @@ ModalModifySearch.propTypes = {
   hideModal: PropTypes.func,
   modifySearch: PropTypes.func,
   searchLocation: PropTypes.func,
-  searchFleet: PropTypes.func,
+  modifySearchFleet: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

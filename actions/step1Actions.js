@@ -24,3 +24,17 @@ export const toggleShowFeaturedFirst = () => {
     type: actionNames.toggleShowFeaturedFirst,
   };
 };
+
+export const modifySearchFleet = (body) => {
+  return {
+    type: actionNames.modifySearchFleet,
+    body,
+  };
+};
+
+export const haveToCloseModifyModal = (value) => {
+  return {
+    type: actionNames.haveToCloseModifyModal,
+    value,
+  };
+};

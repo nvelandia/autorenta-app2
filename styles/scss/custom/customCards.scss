@@ -268,8 +268,8 @@
           }
         }
         .ar-car-featured{
-          padding-bottom: 1.3rem;
-          margin-left: -1rem;
+          padding-bottom: 1.4em;
+          margin-left: -10px;
           text-align: left;
           .ar-car-featured-label-empty{
             height: 2rem;
@@ -287,13 +287,15 @@
               font-size: 0.8rem;
             }
             @media (min-width: $ar-big-size){
-              font-size: 0.9rem;
+              font-size: 0.85em;
               font-weight: 700;
               color: $ar-color-white-0;
               background-color: $ar-color-yellow-0;
               border-top-right-radius: 2rem;
               border-bottom-right-radius: 2rem;
               padding:0.45rem 2rem 0.45rem 1rem ;
+              height: 42px;
+              padding: .30rem 1.5rem .4rem 1rem;
               span{
                 color: $ar-color-yellow-1;
                 font-size: 1.4rem;
@@ -691,7 +693,7 @@
     }
   }
   .ar-card-promotion-data{
-    padding: 2.15rem 1.6rem 1rem 2.1rem;
+    padding: 2rem 1.5rem 1rem 2rem;
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
     width: 67%;
@@ -701,7 +703,6 @@
       color: $ar-color-red-0;
     }
     h5{
-      padding: 0.2rem 0 0 0;
       b{
         color: $ar-color-red-0;
         font-weight: 600;
@@ -710,7 +711,7 @@
     h6{
       font-size: 0.9em;
       font-weight: 500;
-      margin: 1rem 0;
+      margin: 0.8rem 0;
       &.ar-card-promotion-miles{
         margin: 0.2rem 0;
         strong{
@@ -724,7 +725,7 @@
     }
     .ar-card-promotion-data-small-letter{
       p{
-        margin-top: 1rem;
+        margin: 0.8rem 0;
         font-size: 0.7em;
         line-height: normal;
         font-weight: 500;
@@ -1070,6 +1071,9 @@
 .ar-card-details{
   width: 30%;
   padding: 0 10px;
+  @media (min-width: $ar-big-size){
+    margin-bottom: 2rem;
+  }
   .ar-card-details-title{
     padding: 1em 1.2em;
     h1{
@@ -1088,13 +1092,154 @@
     background-color: $ar-color-white-3;
     padding-right: .4em;
     h2{
-      font-size: .7em;
+      font-size: .75em;
       margin-bottom: 0;
       padding: 0.8rem 1.5rem;
     }
     .ar-button-change-plan{
       font-size: 0.7em;
+      font-weight: 600;
       padding: .5em 1.2em;
+    }
+    @media (min-width: $ar-big-size){
+      h2{
+        font-size: .9em;
+        letter-spacing: .2px;
+        font-weight: 700;
+      }
+      .ar-button-change-plan{
+        font-size: .9em;
+        font-weight: 600;
+        padding: .5em 1.2em;
+      }
+    }
+  }
+  .ar-card-details-rates{
+    padding: 1rem 1.5rem;
+    h5{
+      font-size: .8em;
+      margin-bottom: .2em;
+      @media (min-width: $ar-big-size){
+        font-size: 0.85em;
+      }
+    }
+    h6{
+      color: $ar-color-gray-1;
+      font-size: .6em;
+      @media (min-width: $ar-big-size){
+        font-size: 0.7em;
+      }
+    }
+    .ar-card-details-rates-list{
+      padding-top: .1em;
+      .ar-card-details-rate-item{
+        p{
+          font-size: .8em;
+          margin: .6em 0;
+          font-weight: 500;
+          @media (min-width: $ar-big-size){
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+  .ar-card-details-additional-equipment{
+    padding: 1rem 1.6rem 1.5rem 1.6rem;
+    .ar-card-details-additional-equipment-list{
+      .ar-card-details-additional-equipment-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p{
+          font-size: .8em;
+          margin: .3em 0;
+          font-weight: 500;
+          @media (min-width: $ar-big-size){
+            font-size: 0.9rem;
+          }
+        }
+        strong{
+          color: $ar-color-red-0;
+          font-size: .8em;
+          text-align: left;
+          width: 25%;
+          @media (min-width: $ar-big-size){
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+  .ar-card-details-total{
+    border-top: solid thin $ar-color-gray-1;
+    padding: 1rem 1.4rem 1rem 1.5rem;
+    .ar-card-details-total-title{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.3em;
+      h4{
+        font-size: .7em;
+        margin: 0;
+        @media (min-width: $ar-big-size){
+          font-size: 0.8em;
+        }
+      }
+      .ar-card-details-total-amount {
+        display: flex;
+        align-items: center;
+        p {
+          font-size: .7em;
+          margin: 0.1em 0 0 0;
+          font-weight: 500;
+          @media (min-width: $ar-big-size){
+            font-size: 0.8rem;
+          }
+        }
+        strong {
+          color: $ar-color-red-0;
+          font-size: 1.7em;
+          text-align: left;
+          padding-left: 0.1em;
+          @media (min-width: $ar-big-size){
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    .ar-card-details-total-small-letter{
+      font-size: .7em;
+      line-height: 1.2em;
+      font-weight: 500;
+      @media (min-width: $ar-big-size){
+        font-size: 0.8rem;
+      }
+    }
+    .ar-button-confirm-container{
+      margin: 1.5em 0 0.8em 0;
+      display: flex;
+      justify-content: center;
+      .ar-button-confirm{
+        font-size: .7em;
+        width: 100%;
+        padding-top: .6em;
+        padding-bottom: .6em;
+        @media (min-width: $ar-big-size){
+          font-size: 0.85rem;
+        }
+        i{
+          position: absolute;
+          left: 88%;
+          top: 33%;
+          font-size: .7em;
+          font-weight: 900;
+          @media (min-width: $ar-big-size){
+            font-size: 0.85rem;
+            top: 25%;
+          }
+        }
+      }
     }
   }
 }

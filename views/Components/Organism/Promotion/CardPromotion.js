@@ -144,7 +144,7 @@ class CardPromotion extends React.Component {
     const { dataCards } = this.props;
     return (
       <Row className="justify-content-center m-0">
-        <Col xl="9" lg="10" md="11" className="pl-0 pr-0">
+        <div className="ar-central-container">
           <Card className="ar-card-promotion-container">
             <div className="ar-card-promotion-image-container">
               <img src="/img/custom/promotion/avis-promotion-image.jpg" className="ar-card-promotion-image" />
@@ -196,14 +196,14 @@ class CardPromotion extends React.Component {
                   y Budget participantes en aeropuertos en EE.UU., Canadá, Europa, Medio Oriente, África, México,
                   Latinoamérica y el Caribe.
                 </p>
-                <p>
+                <p className="mb-0">
                   Los socios Gold, Platinum, Platinum Pro, Executive Platinum y los titulares de tarjetas Citi® /
                   AAdvantage® y AAdvantage® Aviator® MasterCard® obtendrá los valores base más altos.
                 </p>
               </div>
             </div>
           </Card>
-        </Col>
+        </div>
       </Row>
     );
   }

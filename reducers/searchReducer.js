@@ -1,6 +1,7 @@
 import { actionNames } from '../utils/constants/actionConstants';
 
 const defaultState = {
+  needToCloseModifyModal: false,
   result: {
     locations: [],
     cars: [],
@@ -1130,6 +1131,11 @@ const searchReducer = (state = defaultState, action) => {
       return {
         ...state,
         showFeaturedFirst: !state.showFeaturedFirst,
+      };
+    case actionNames.haveToCloseModifyModal:
+      return {
+        ...state,
+        needToCloseModifyModal: action.value,
       };
     default:
       return state;

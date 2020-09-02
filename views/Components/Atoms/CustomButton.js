@@ -22,13 +22,13 @@ import { Button, ButtonGroup, Card, CardHeader, CardBody, Container, Row, Col, D
 
 class CustomButton extends React.Component {
   render() {
-    const { text, icon, event, color, name } = this.props;
+    const { text, icon, event, color, name, width } = this.props;
     const pl = this.props.pl ? this.props.pl : 'pl-3';
     const pr = this.props.pr ? this.props.pr : 'pr-3';
     const justify = this.props.justify ? this.props.justify : 'justify-content-between';
     if (text && icon) {
       return (
-        <div>
+        <div className={`${width}`}>
           <Button className={`btn-icon ar-round-button ${name}`} type="button" color={color} onClick={event}>
             <Row className={`${justify} ${pl} ${pr} ws-nowrap align-items-center`}>
               {text}
