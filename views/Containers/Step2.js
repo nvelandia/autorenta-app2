@@ -78,7 +78,7 @@ Step2.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return state.step2Reducer;
 };
 
 export default connect(mapStateToProps)(Step2);
