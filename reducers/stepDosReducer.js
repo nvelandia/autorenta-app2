@@ -152,7 +152,7 @@ const defaultState = {
   ],
 };
 
-const step2Reducer = (state = defaultState, action) => {
+const stepDosReducer = (state = defaultState, action) => {
   switch (action.type) {
     case actionNames.changePlan:
       return {
@@ -169,4 +169,4 @@ const step2Reducer = (state = defaultState, action) => {
   }
 };
 
-export default step2Reducer;
+export default stepDosReducer;

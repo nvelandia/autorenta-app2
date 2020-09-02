@@ -27,6 +27,31 @@ class ModalChangePlan extends React.Component {
     this.props.hideModal();
   };
 
+  renderPlanItems = () => {
+    if (this.props.plans) {
+      if (this.props.plans[this.state.page]) {
+        if (this.props.plans[this.state.page].includes) {
+          return this.props.plans[this.state.page].includes.map((item, index) => {
+            if (item.selected) {
+              return (
+                <p key={index} className="mb-1">
+                  <i className="ar-icon-check-solid ar-green-text" />
+                  {'  ' + item.nickName}
+                </p>
+              );
+            }
+            return (
+              <p className=" mb-1">
+                <i className="ar-icon-close-solid ar-red-text" />
+                {'  ' + item.nickName}
+              </p>
+            );
+          });
+        }
+      }
+    }
+  };
+
   render() {
     const { information } = this.props;
     return (
@@ -59,22 +84,7 @@ class ModalChangePlan extends React.Component {
               </Row>
             </CardHeader>
             <CardBody className="py-2 zi-1200">
-              {this.props.plans[this.state.page].includes.map((item) => {
-                if (item.selected) {
-                  return (
-                    <p className="mb-1">
-                      <i className="ar-icon-check-solid ar-green-text" />
-                      {'  ' + item.nickName}
-                    </p>
-                  );
-                }
-                return (
-                  <p className=" mb-1">
-                    <i className="ar-icon-close-solid ar-red-text" />
-                    {'  ' + item.nickName}
-                  </p>
-                );
-              })}
+              {this.renderPlanItems()}
               <div className="ar-button-confirm-container">
                 <Button
                   className="btn-icon ar-round-button ar-button-confirm"
@@ -107,7 +117,7 @@ ModalChangePlan.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.step2Reducer;
+  return state.stepDosReducer;
 };
 
 export default connect(mapStateToProps)(ModalChangePlan);

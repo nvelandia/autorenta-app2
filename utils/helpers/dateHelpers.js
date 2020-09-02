@@ -14,6 +14,6 @@ export const isoStringToStringTime = (date) => {
 
 export const isoStringToDateWithTimeInText = (date, time) => {
   const fullDate = date + ' ' + time;
-  let message = moment(fullDate).lang('es').format('LLL');
+  let message = moment(fullDate).locale('es').format('LLL');
   return message + ' hs.';
 };

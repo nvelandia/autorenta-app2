@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomButton from '../../Atoms/CustomButton';
 import ModalChangePlan from './ModalChangePlan';
-import step2Reducer from '../../../../reducers/step2Reducer';
 
-class FilterList extends React.Component {
+class Details extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -71,10 +70,10 @@ class FilterList extends React.Component {
           <h5>Tarifa todo incluido</h5>
           <h6>MOST INCLUSIVE - AR</h6>
           <div className="ar-card-details-rates-list">
-            {this.props.plan.includes.map((item) => {
+            {this.props.plan.includes.map((item, index) => {
               if (item.selected) {
                 return (
-                  <div className="ar-card-details-rate-item">
+                  <div key={index} className="ar-card-details-rate-item">
                     <p>
                       <i className="ar-icon-check-solid ar-green-text" /> {item.name}{' '}
                     </p>
@@ -82,7 +81,7 @@ class FilterList extends React.Component {
                 );
               }
               return (
-                <div className="ar-card-details-rate-item">
+                <div key={index} className="ar-card-details-rate-item">
                   <p>
                     <i className="ar-icon-close-solid ar-red-text" /> {item.name}{' '}
                   </p>
@@ -96,9 +95,9 @@ class FilterList extends React.Component {
         </div>
         <div className="ar-card-details-additional-equipment">
           <div className="ar-card-details-additional-equipment-list">
-            {additionalEquipment.map((item) => {
+            {additionalEquipment.map((item, index) => {
               return (
-                <div className="ar-card-details-additional-equipment-item">
+                <div key={index} className="ar-card-details-additional-equipment-item">
                   <p>{item.name}</p>
                   <strong>USD {item.price}</strong>
                 </div>
@@ -111,9 +110,9 @@ class FilterList extends React.Component {
         </div>
         <div className="ar-card-details-additional-equipment">
           <div className="ar-card-details-additional-equipment-list">
-            {charges.map((item) => {
+            {charges.map((item, index) => {
               return (
-                <div className="ar-card-details-additional-equipment-item">
+                <div key={index} className="ar-card-details-additional-equipment-item">
                   <p>{item.name}</p>
                   <strong>USD {item.price}</strong>
                 </div>
@@ -159,14 +158,13 @@ class FilterList extends React.Component {
   }
 }
 
-FilterList.propTypes = {
+Details.propTypes = {
   dispatch: PropTypes.func,
   changePlan: PropTypes.func,
-  items: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {
-  return state.step2Reducer;
+  return state.stepDosReducer;
 };
 
-export default connect(mapStateToProps)(FilterList);
+export default connect(mapStateToProps)(Details);

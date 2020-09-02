@@ -55,11 +55,11 @@ class Step2 extends React.Component {
                 <LocationSelected location={location.pickup} title={'oficina de inicio'} />
                 <LocationSelected location={location.dropoff} title={'oficina de devolución'} />
               </div>
-              <OptionalEquipment />
+              {this.props.optionalEquipment ? <OptionalEquipment /> : null}
               <ClientType />
             </Col>
             <div className="ar-card-details">
-              <Details changePlan={actions.changePlan} />
+              {this.props.plans ? <Details changePlan={actions.changePlan} /> : null}
             </div>
           </div>
         </Row>
@@ -78,7 +78,7 @@ Step2.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.step2Reducer;
+  return state.stepDosReducer;
 };
 
 export default connect(mapStateToProps)(Step2);
