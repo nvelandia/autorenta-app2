@@ -6,3 +6,10 @@ export const changePlan = (plan) => {
     plan,
   };
 };
+
+export const addOptionalEquipment = (optionalEquipment) => {
+  return {
+    type: actionNames.addOptionalEquipment,
+    optionalEquipment,
+  };
+};

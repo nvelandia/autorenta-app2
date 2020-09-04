@@ -95,6 +95,7 @@ class Result extends React.Component {
             selectCar={this.props.selectCar}
             showDetailModal={this.showDetailModal}
             showAditionalModal={this.showAditionalModal}
+            showLoader={this.props.showLoader}
           />
         );
       }
@@ -163,6 +164,7 @@ Result.propTypes = {
   orderByMaxToMin: PropTypes.func,
   selectCar: PropTypes.func,
   toggleShowFeaturedFirst: PropTypes.func,
+  showLoader: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

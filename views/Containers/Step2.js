@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/step2Actions';
+import * as generalActions from '../../actions/generalActions';
 import CustomNavBar from '../Components/Molecules/Navbars/CustomNavBar';
 import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
 import Banner from '../Components/Molecules/banners/Banner';
@@ -23,26 +24,7 @@ class Step2 extends React.Component {
   }
 
   render() {
-    const car = {
-      image: '/img/custom/searchView/mitsubishi-mirage-alamo.jpg',
-      doors: 5,
-      gear: 'Manual',
-      bags_small: 3,
-      bags_big: 2,
-      seats: 5,
-      name: 'Ford Fiesta',
-      typeCar: {
-        name: 'Económico / Pequeño',
-      },
-      company: {
-        logo: '/svg/searchView/avis-logo.svg',
-      },
-    };
-    const location = {
-      pickup: { date: '2020-08-25', time: '12:00', location: 'Miami, Florida, Estados Unidos', iata: 'MIA' },
-      dropoff: { date: '2020-08-28', time: '12:00', location: 'Miami, Florida, Estados Unidos', iata: 'MIA' },
-    };
-
+    this.dispatch(generalActions.hideLoader());
     return (
       <>
         <CustomNavBar />
@@ -50,16 +32,16 @@ class Step2 extends React.Component {
         <Row className="justify-content-center mt-4 ml-0 mr-0">
           <div className="ar-central-container d-flex">
             <Col>
-              <CarSelected car={car} />
+              <CarSelected car={this.props.carSelected} />
               <div className="d-flex justify-content-between">
-                <LocationSelected location={location.pickup} title={'oficina de inicio'} />
-                <LocationSelected location={location.dropoff} title={'oficina de devolución'} />
+                <LocationSelected location={this.props.location.pickup} title={'oficina de inicio'} />
+                <LocationSelected location={this.props.location.dropoff} title={'oficina de devolución'} />
               </div>
-              {this.props.optionalEquipment ? <OptionalEquipment /> : null}
+              <OptionalEquipment />
               <ClientType />
             </Col>
             <div className="ar-card-details">
-              {this.props.plans ? <Details changePlan={actions.changePlan} /> : null}
+              <Details changePlan={actions.changePlan} />
             </div>
           </div>
         </Row>
@@ -78,7 +60,7 @@ Step2.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.stepDosReducer;
+  return state.step2Reducer;
 };
 
 export default connect(mapStateToProps)(Step2);

@@ -1,0 +1,18 @@
+export const vehicleTypes = [
+  'Todos los vehículos',
+  'Pequeño / Mini',
+  'Económico',
+  'Compacto',
+  'Intermedio',
+  'Standard',
+  'Grande',
+  'Premium / De lujo',
+  'Deportivo / Convertible',
+  'Minivan / Maxivan',
+  'SUV Económicos a Intermedios',
+  'SUV Standards a Grandes',
+  'SUV Premiums, Elites y De lujo',
+  'Crossovers',
+  'Station Wagon Economicos a Intermedios',
+  'Station Wagon Full Size, Premium, Lujo, Elite,',
+];

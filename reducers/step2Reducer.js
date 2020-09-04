@@ -2,6 +2,7 @@ import { actionNames } from '../utils/constants/actionConstants';
 
 const defaultState = {
   carSelected: {},
+  location: {},
   plans: [
     {
       id: 0,
@@ -152,7 +153,7 @@ const defaultState = {
   ],
 };
 
-const stepDosReducer = (state = defaultState, action) => {
+const step2Reducer = (state = defaultState, action) => {
   switch (action.type) {
     case actionNames.changePlan:
       return {
@@ -163,10 +164,16 @@ const stepDosReducer = (state = defaultState, action) => {
       return {
         ...state,
         carSelected: action.car,
+        location: action.location,
+      };
+    case actionNames.addOptionalEquipment:
+      return {
+        ...state,
+        optionalEquipment: action.optionalEquipment,
       };
     default:
       return state;
   }
 };
 
-export default stepDosReducer;
+export default step2Reducer;

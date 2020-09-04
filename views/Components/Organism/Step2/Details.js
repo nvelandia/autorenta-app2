@@ -164,7 +164,7 @@ Details.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.stepDosReducer;
+  return state.step2Reducer;
 };
 
 export default connect(mapStateToProps)(Details);

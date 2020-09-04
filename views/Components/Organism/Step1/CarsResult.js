@@ -38,7 +38,8 @@ class CarsResult extends React.Component {
   };
 
   handleOnClick = (car) => {
-    this.props.dispatch(this.props.selectCar(car));
+    this.props.dispatch(this.props.showLoader());
+    this.props.dispatch(this.props.selectCar(car, this.props.result.locations));
     redirectTo(pages.step2);
   };
 
@@ -61,7 +62,7 @@ class CarsResult extends React.Component {
               </CardText>
               <CustomButton
                 text={'Reservar ahora'}
-                event={() => this.handleOnClick({})}
+                event={() => this.handleOnClick(car)}
                 color={'red-0'}
                 name={'ar-car-price-button'}
                 icon={'ar-icon-chevron-right'}
@@ -223,6 +224,7 @@ CarsResult.propTypes = {
   showDetailModal: PropTypes.func,
   showAditionalModal: PropTypes.func,
   selectCar: PropTypes.func,
+  showLoader: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

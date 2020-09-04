@@ -38,4 +38,5 @@ export const actionNames = {
   modifySearchFleetUnsuccessfully: 'MODIFY_SEARCH_FLEET_UNSUCCESSFULLY',
   //Step2
   changePlan: 'CHANGE_PLAN',
+  addOptionalEquipment: 'ADD_OPTIONAL_EQUIPMENT',
 };

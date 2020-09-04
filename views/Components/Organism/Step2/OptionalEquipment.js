@@ -33,48 +33,44 @@ class OptionalEquipment extends React.Component {
           </div>
           <div className="ar-options-section-card">
             <div className="ar-checkbox-options-container">
-              {this.props.optionalEquipment
-                ? this.props.optionalEquipment.map((item, index) => {
-                    return (
-                      <div key={index} className="custom-control custom-checkbox ar-optional-equipment-checkbox mr-1">
-                        <input
-                          className="custom-control-input"
-                          id={item.name}
-                          type="checkbox"
-                          //onClick={(e) => this.props.handleOnSelect(key, category)}
-                        />
-                        <label className="custom-control-label ar-optional-item" htmlFor={item.name}>
-                          {item.name}
-                        </label>
-                        <label className="ar-optional-item">
-                          <strong>USD {item.price} </strong>(por día)
-                        </label>
-                      </div>
-                    );
-                  })
-                : null}
+              {this.props.optionalEquipment.map((item, index) => {
+                return (
+                  <div key={index} className="custom-control custom-checkbox ar-optional-equipment-checkbox mr-1">
+                    <input
+                      className="custom-control-input"
+                      id={item.name}
+                      type="checkbox"
+                      //onClick={(e) => this.props.handleOnSelect(key, category)}
+                    />
+                    <label className="custom-control-label ar-optional-item" htmlFor={item.name}>
+                      {item.name}
+                    </label>
+                    <label className="ar-optional-item">
+                      <strong>USD {item.price} </strong>(por día)
+                    </label>
+                  </div>
+                );
+              })}
             </div>
             <div className="ar-select-options-container">
-              {this.props.additionalSeats
-                ? this.props.additionalSeats.map((item, index) => {
-                    return (
-                      <div key={index} className="d-flex justify-content-between align-items-center mb-1">
-                        <div className="d-flex align-items-center">
-                          <OptionalEquipmentDropdown
-                            items={[0, 1, 3, 4, 5]}
-                            title={item.quantity.toString()}
-                            color={'white-0'}
-                            dispatch={this.props.dispatch}
-                          />
-                          <label className="ar-select-description">{item.name}</label>
-                        </div>
-                        <label className="ar-optional-item">
-                          <strong>USD {item.price} </strong>(por día)
-                        </label>
-                      </div>
-                    );
-                  })
-                : null}
+              {this.props.additionalSeats.map((item, index) => {
+                return (
+                  <div key={index} className="d-flex justify-content-between align-items-center mb-1">
+                    <div className="d-flex align-items-center">
+                      <OptionalEquipmentDropdown
+                        items={[0, 1, 3, 4, 5]}
+                        title={item.quantity.toString()}
+                        color={'white-0'}
+                        dispatch={this.props.dispatch}
+                      />
+                      <label className="ar-select-description">{item.name}</label>
+                    </div>
+                    <label className="ar-optional-item">
+                      <strong>USD {item.price} </strong>(por día)
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </CardBody>
@@ -91,7 +87,7 @@ OptionalEquipment.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.stepDosReducer;
+  return state.step2Reducer;
 };
 
 export default connect(mapStateToProps)(OptionalEquipment);

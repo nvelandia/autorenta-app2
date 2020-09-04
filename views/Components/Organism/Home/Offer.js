@@ -6,6 +6,7 @@ import Pagination from '../../Atoms/Pagination';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { redirectTo } from '../../../../utils/helpers/redirectTo';
+import CustomCarousel from '../../Molecules/Carousels/CustomCarousel';
 
 class Offer extends React.Component {
   constructor(props) {
@@ -122,7 +123,7 @@ class Offer extends React.Component {
   renderCards = () => {
     const cards = this.state.cards.map((card, index) => {
       return (
-        <Col key={index} className="fade-in justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
+        <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
           <Card className="w-auto m-2">
             <div className="ar-card-image">
               <img className="ar-image" src={card.image} />
@@ -144,7 +145,7 @@ class Offer extends React.Component {
         </Col>
       );
     });
-    return cards.slice(this.state.selectedPage * 4 - 4, this.state.selectedPage * 4);
+    return [cards.slice(0, 4), cards.slice(4, 8), cards.slice(8, 12)];
   };
 
   // metodo con lo que viene del back
@@ -189,7 +190,9 @@ class Offer extends React.Component {
                 <h2>Descubre todas las ofertas y promociones</h2>
               </Col>
             </Row>
-            <Row className=" justify-content-md-around justify-content-sm-center mt-5">{this.renderCards()}</Row>
+            <Row className=" justify-content-md-around justify-content-sm-center mt-5">
+              <CustomCarousel activeIndex={this.state.selectedPage - 1} items={this.renderCards()} />
+            </Row>
           </div>
         </Row>
         <div className="ar-pagination-container">

@@ -25,6 +25,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import FilterGroup from '../Step1/FilterGroup';
 import { isoStringToString, isoStringToStringTime } from '../../../../utils/helpers/dateHelpers';
+import { vehicleTypes } from '../../../../utils/constants/vehicleTypes';
+import NotificationAlert from 'react-notification-alert';
 
 class MakeYourReservation extends React.Component {
   constructor(props) {
@@ -43,6 +45,8 @@ class MakeYourReservation extends React.Component {
       iataToDropOff: '',
       timeToDropOff: '',
       timeToPickUp: '',
+      vehicleType: '',
+      notification: false,
     };
     this.dispatch = props.dispatch;
     this.handleOnLoad();
@@ -89,8 +93,13 @@ class MakeYourReservation extends React.Component {
       dropoff_time: this.state.timeToDropOff,
       passenger_country_id: this.state.countrySelected,
       passenger_age: this.state.ageSelected,
+      vehicle_type: vehicleTypes.indexOf(this.state.vehicleType) + 1,
     };
-    this.dispatch(this.props.searchfleet(body));
+    if (Object.values(body).includes('') || Object.values(body).includes(0)) {
+      this.notify('warning');
+    } else {
+      this.dispatch(this.props.searchfleet(body));
+    }
   };
 
   renderListGroup = (name) => {
@@ -129,9 +138,31 @@ class MakeYourReservation extends React.Component {
     }
   };
 
+  notify = (type) => {
+    let options = {
+      place: 'tc',
+      message: (
+        <div className="alert-text">
+          <span className="alert-title" data-notify="title">
+            {' '}
+            ¡Atención!
+          </span>
+          <span data-notify="message">Todos los campos son requeridos</span>
+        </div>
+      ),
+      type: type,
+      icon: 'ni ni-bell-55',
+      autoDismiss: 7,
+    };
+    this.refs.notificationAlert.notificationAlert(options);
+  };
+
   render() {
     return (
       <Container className="mt--10 pb-5">
+        <div className="rna-wrapper">
+          <NotificationAlert ref="notificationAlert" />
+        </div>
         <Row className="justify-content-center">
           <Col lg="9" md="10">
             <Row className="justify-content-center">
@@ -254,19 +285,11 @@ class MakeYourReservation extends React.Component {
                         )}
                       >
                         <CustomDropDown
+                          name={'vehicleType'}
                           title={'Tipo de vehículo'}
-                          items={[
-                            'Pequeño / Económico',
-                            'Compacto',
-                            'Intermedio',
-                            'Standar',
-                            'Grande',
-                            'Premiun / De Lujo',
-                            'Deportivo / Convertible',
-                            'Minivan / Maxivan',
-                            'SUV / Todoterreno',
-                          ]}
-                          classes={'ar-dropdown-menu-car-type'}
+                          items={vehicleTypes}
+                          classes={'ar-dropdown-menu-car-type ar-dropdown-menu-overflow'}
+                          handleSelect={this.handleOnSelect}
                         />
                       </FormGroup>
                     </Col>

@@ -38,7 +38,7 @@ class CustomNavbar extends React.Component {
     return (
       <Navbar className="sticky-top navbar-horizontal navbar-main bg-ar-navbar p-2" expand="xl" id="navbar-main">
         <Container className="ar-container-navbar">
-          <NavbarBrand>
+          <NavbarBrand href={'/'}>
             <img className="ar-nav-brand" alt="..." src={'/svg/autorenta-logo.svg'} />
           </NavbarBrand>
           <button
