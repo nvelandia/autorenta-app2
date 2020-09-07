@@ -13,3 +13,10 @@ export const addOptionalEquipment = (optionalEquipment) => {
     optionalEquipment,
   };
 };
+
+export const selectClientType = (clientType) => {
+  return {
+    type: actionNames.selectClientType,
+    clientType,
+  };
+};

@@ -841,24 +841,24 @@
 }
 
 .ar-optional-equipment{
-  padding: 1rem 1.5rem 1rem 3rem;
+  padding: 1rem 1.5rem 1rem 3.2rem;
   margin-bottom: 1rem;
   .ar-title-with-icon{
-    margin: 0 0.3rem 1rem -1.5rem;
+    margin: 0 0.3rem 1.3rem -1.7rem;
     color: $ar-color-red-0;
-    font-size: 0.75em;
-    letter-spacing: .5px;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     &:before{
-      font-size: 1.1rem;
+      margin-right: .3rem;
+      font-size: 1.2rem;
       position: relative;
-      top: 0.2rem;
+      top: 0.3rem;
       left: -0.5rem;
     }
   }
   .ar-text-card{
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     margin-bottom: 1rem;
   }
   .ar-options-section-card{
@@ -871,17 +871,17 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         .ar-optional-item{
-          font-size: 0.6rem;
+          font-size: 0.7rem;
           margin-bottom: 0.8rem;
           &:before{
             width: 0.8rem;
             height: 0.8rem;
-            top: 0.05rem;
+            top: 0.16rem;
           }
           &:after{
-            top:0;
+            top:0.1rem;
             left: -1.8rem;
           }
           strong{
@@ -914,11 +914,11 @@
         }
       }
       .ar-select-description{
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         margin:0 0 0 0.8rem;
       }
       .ar-optional-item{
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         margin:0 0 0 0;
 
         strong{
@@ -1009,56 +1009,263 @@
 }
 
 .ar-client-type-card{
-  height: 125px;
-  padding: 1rem 1.5rem 1rem 3rem;
+  height: 140px;
+  padding: 1rem 1.5rem 1rem 3.2rem;
+  margin-bottom: 1rem;
   .ar-title-with-icon{
-    margin: 0 0.3rem 1rem -1.5rem;
+    margin: 0 0.3rem 1.3rem -1.7rem;
     color: $ar-color-red-0;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     &:before{
-      font-size: 1.1rem;
+      margin-right: .3rem;
+      font-size: 1.2rem;
       position: relative;
-      top: 0.2rem;
+      top: 0.3rem;
       left: -0.5rem;
     }
   }
-  .ar-select-client-type-container{
-    width: 31%;
-    margin-left: -0.25rem;
+  .ar-client-type-container{
     padding-top: 0.3rem;
-    .ar-select-button{
-      padding: 0.55rem 1.1rem;
-      border: solid;
-      border-width: 1.5px;
-      border-color: $ar-color-white-4;
-      background-color: $ar-color-white-1;
-      &:active{
+    @media (min-width: $ar-big-size) {
+      padding-top: 0.6rem;
+    }
+    .ar-select-client-type-container{
+      width: 31%;
+      margin-left: -0.25rem;
+      height: 36.6px;
+      margin-right: 20px;
+      @media (min-width: $ar-big-size) {
+        height: 45px;
+      }
+      .ar-select-button{
+        height: 36.6px;
+        padding: 0.55rem 1.1rem;
+        border: solid;
+        border-width: 1.5px;
         border-color: $ar-color-white-4;
         background-color: $ar-color-white-1;
+        &:active{
+          border-color: $ar-color-white-4;
+          background-color: $ar-color-white-1;
+        }
+        @media (min-width: $ar-big-size) {
+          height: 45px;
+        }
+      }
+      .ar-client-type-select{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-size: 0.7rem;
+        font-weight: 600;
+        @media (min-width: $ar-big-size) {
+          font-size: 0.85rem;
+        }
+        span{
+          font-size: 0.8em;
+          font-weight: 900;
+          margin-right: -0.2rem;
+          margin-top: -0.035rem;
+          @media (min-width: $ar-big-size) {
+            font-size: 0.85rem;
+          }
+        }
       }
     }
-    .ar-client-type-select{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      font-size: 0.6rem;
-      font-weight: 500;
-      span{
-        font-size: 0.8em;
-        font-weight: 900;
-        margin-right: -0.2rem;
-        margin-top: -0.035rem;
+    img{
+      width: 45%;
+      position: absolute;
+      left: 52.7%;
+      top: 6%;
+      @media (min-width: $ar-big-size) {
+        left: 52.5%;
+        top: 7%;
       }
+    }
+    .ar-input-agency-code{
+      background-color: $ar-color-white-1;
+      height: 35px;
+      font-size: .7em;
+      font-weight: 600;
+      color: $ar-color-red-0;
+      @media (min-width: $ar-big-size) {
+        height: 45px;
+        font-size: .9rem;
+      }
+      &:focus{
+        background-color: $ar-color-white-0;
+      }
+    }
+    .ar-validate-input-agency{
+      margin-right: 20px;
+      margin-bottom: 0;
+      width: 43%;
+      .ar-validate-input-agency-button{
+        white-space: pre;
+        border-radius: 0 2rem 2rem 0;
+        font-size: .7em;
+        font-weight: 700;
+        height: 35px;
+        padding: .525rem 1rem;
+        @media (min-width: $ar-big-size) {
+          height: 45px;
+          font-size: .8em;
+        }
+        i{
+          font-size: 0.8em;
+        }
+      }
+
     }
   }
+
   @media (min-width: $ar-big-size) {
     height: 180px;
     padding: 1.4rem 2rem 0.7rem 4.2rem;
     .ar-title-with-icon {
       margin: 0 0.3rem 1.25rem -2.1rem;
+      font-size: 0.9rem;
+
+      &:before {
+        font-size: 1.4rem;
+        top: 0.3rem;
+        left: -0.8rem;
+      }
+    }
+  }
+}
+
+.ar-passenger-card{
+  height: 300px;
+  padding: 1rem 1.5rem 1rem 3.2rem;
+  .ar-title-with-icon{
+    margin: 0 0.3rem 1.3rem -1.7rem;
+    color: $ar-color-red-0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    &:before{
+      margin-right: .3rem;
+      font-size: 1.2rem;
+      position: relative;
+      top: 0.3rem;
+      left: -0.5rem;
+    }
+  }
+  .ar-passenger-form-container{
+    padding-left: .3rem;
+    @media (min-width: $ar-big-size){
+      padding-left: 0rem;
+    }
+    .ar-subtitle{
+      color: $ar-color-light-blue-2;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: .5rem 0 1rem 0;
+      @media (min-width: $ar-big-size){
+        padding: .5rem 0 1.2rem 0;
+        font-size: 0.7rem;
+      }
+    }
+    .ar-passenger-form-row{
+      display: flex;
+      align-items: center;
+      padding: 0 0.5em 1em 0;
+      margin: 0;
+      @media (min-width: $ar-big-size){
+        font-size: 0.8rem;
+        padding: 0 0.5em 1.5em 0;
+
+      }
+      .ar-input-passenger-data{
+        background-color: $ar-color-white-1;
+        height: 35px;
+        font-size: .7em;
+        font-weight: 600;
+        color: $ar-color-red-0;
+        @media (min-width: $ar-big-size){
+          height: 45px;
+          font-size: 0.9rem;
+        }
+        &:focus{
+          background-color: $ar-color-white-0;
+        }
+
+      }
+      .ar-select-fly-agency-container{
+        height: 36.6px;
+        @media (min-width: $ar-big-size){
+          height: 45px;
+        }
+        .ar-select-button{
+          height: 36.6px;
+          padding: 0.55rem 1.1rem;
+          border: solid;
+          border-width: 1.5px;
+          border-color: $ar-color-white-4;
+          background-color: $ar-color-white-1;
+          @media (min-width: $ar-big-size){
+            height: 45px;
+            font-size: 0.8rem;
+          }
+          &:active{
+            border-color: $ar-color-white-4;
+            background-color: $ar-color-white-1;
+          }
+        }
+        .ar-client-type-select{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          font-size: 0.7rem;
+          font-weight: 500;
+          @media (min-width: $ar-big-size){
+            font-size: 0.9rem;
+          }
+          span{
+            font-size: 0.8em;
+            font-weight: 900;
+            margin-right: -0.2rem;
+            margin-top: -0.035rem;
+          }
+        }
+      }
+      .ar-validate-input-passenger{
+        margin-right: 20px;
+        margin-bottom: 0;
+        width: 43%;
+        .ar-validate-input-passenger-button{
+          white-space: pre;
+          border-radius: 0 2rem 2rem 0;
+          font-size: .7em;
+          font-weight: 700;
+          height: 35px;
+          padding: .525rem 1rem;
+          @media (min-width: $ar-big-size){
+            height: 45px;
+            font-size: .9rem;
+            padding: .525rem 1.5rem;
+          }
+          i{
+            font-size: 0.8em;
+          }
+        }
+
+      }
+    }
+  }
+
+  @media (min-width: $ar-big-size) {
+    height: 370px;
+    padding: 1.4rem 2rem 0.7rem 4.2rem;
+    .ar-title-with-icon {
+      margin: 0 0.3rem 0.5rem -2.1rem;
       font-size: 0.9rem;
 
       &:before {

@@ -15,6 +15,9 @@ import { Row, Col } from 'reactstrap';
 import LocationSelected from '../Components/Organism/Step2/LocationSelected';
 import OptionalEquipment from '../Components/Organism/Step2/OptionalEquipment';
 import ClientType from '../Components/Organism/Step2/ClientType';
+import Passenger from '../Components/Organism/Step2/Passenger';
+import Agency from '../Components/Organism/Step2/Agency';
+import Corporation from '../Components/Organism/Step2/Corporation';
 
 class Step2 extends React.Component {
   constructor(props) {
@@ -38,7 +41,10 @@ class Step2 extends React.Component {
                 <LocationSelected location={this.props.location.dropoff} title={'oficina de devolución'} />
               </div>
               <OptionalEquipment />
-              <ClientType />
+              <ClientType selectClientType={actions.selectClientType} />
+              {this.props.clientType === 'Agencia de viajes' ? <Agency /> : null}
+              {this.props.clientType === 'Pasajero / Cliente directo' ? <Passenger /> : null}
+              {this.props.clientType === 'Corporativo / Empresas' ? <Corporation /> : null}
             </Col>
             <div className="ar-card-details">
               <Details changePlan={actions.changePlan} />

@@ -9,36 +9,29 @@ class ClientTypeDropdown extends React.Component {
     const { title } = props;
     this.state = {
       value: title,
+      changeColor: false,
     };
   }
 
-  handleOnSelect = (event, actions) => {
-    if (actions) {
-      this.props.dispatch(actions());
-    }
-    this.setState({ value: event.target.value });
+  handleOnSelect = (event) => {
+    this.setState({ value: event.target.value, changeColor: 'ar-red-text' });
+    this.props.handleOnSelectClientType(event.target.value);
   };
 
   render() {
-    const { items, classes, name, color, actions } = this.props;
+    const { items, classes, name, color } = this.props;
     return (
       <UncontrolledDropdown group className="w-100">
         <DropdownToggle color={color} className={`ar-round-button ${classes}`}>
-          <div className="ar-client-type-select">
+          <div className={`ar-client-type-select ${this.state.changeColor}`}>
             {this.state.value}
-            <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron ml-1" />
+            <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron ml-1 ar-blue-0-text" />
           </div>
         </DropdownToggle>
         <DropdownMenu>
           {items.map((item, index) => {
             return (
-              <DropdownItem
-                key={index}
-                id={index}
-                name={name}
-                value={item}
-                onClick={(e) => this.handleOnSelect(e, actions[index])}
-              >
+              <DropdownItem key={index} id={index} name={name} value={item} onClick={this.handleOnSelect}>
                 {item}
               </DropdownItem>
             );
@@ -54,7 +47,7 @@ ClientTypeDropdown.propTypes = {
   title: PropTypes.string,
   name: PropTypes.string,
   color: PropTypes.string,
-  dispatch: PropTypes.func,
+  handleOnSelectClientType: PropTypes.func,
 };
 
 export default ClientTypeDropdown;

@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  @media (min-width: $ar-big-size) {
+    margin: -15px 0 35px 0;
+  }
   .ar-active{
     background-color: $ar-color-blue-9;
     border-color: $ar-color-blue-9;

@@ -151,6 +151,7 @@ const defaultState = {
     { name: 'Asiento para niños', price: '14.00', quantity: 0 },
     { name: 'Asiento elevador para niños', price: '14.00', quantity: 0 },
   ],
+  clientType: '',
 };
 
 const step2Reducer = (state = defaultState, action) => {
@@ -170,6 +171,11 @@ const step2Reducer = (state = defaultState, action) => {
       return {
         ...state,
         optionalEquipment: action.optionalEquipment,
+      };
+    case actionNames.selectClientType:
+      return {
+        ...state,
+        clientType: action.clientType,
       };
     default:
       return state;

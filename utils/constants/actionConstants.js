@@ -39,4 +39,5 @@ export const actionNames = {
   //Step2
   changePlan: 'CHANGE_PLAN',
   addOptionalEquipment: 'ADD_OPTIONAL_EQUIPMENT',
+  selectClientType: 'SELECT_CLIENT_TYPE',
 };
