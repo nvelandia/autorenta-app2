@@ -21,6 +21,7 @@ class Step1 extends React.Component {
   }
 
   render() {
+    this.dispatch(generalActions.hideLoader());
     return (
       <>
         <CustomNavBar />

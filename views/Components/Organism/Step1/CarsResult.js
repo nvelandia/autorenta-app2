@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomButton from '../../Atoms/CustomButton';
 import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
+import PriceCarousel from '../../Molecules/Carousels/PriceCarousel';
 
 class CarsResult extends React.Component {
   constructor(props) {
@@ -76,21 +77,23 @@ class CarsResult extends React.Component {
       );
     });
 
-    if (this.state.page === 1) {
-      return (
-        <>
-          {prices[0]}
-          {prices[1]}
-        </>
-      );
-    } else {
-      return (
-        <>
-          {prices[2]}
-          {prices[3]}
-        </>
-      );
-    }
+    return [prices.slice(0, 2), prices.slice(2, 4)];
+
+    // if (this.state.page === 1) {
+    //   return (
+    //     <>
+    //       {prices[0]}
+    //       {prices[1]}
+    //     </>
+    //   );
+    // } else {
+    //   return (
+    //     <>
+    //       {prices[2]}
+    //       {prices[3]}
+    //     </>
+    //   );
+    // }
   };
 
   render() {
@@ -192,7 +195,7 @@ class CarsResult extends React.Component {
             </div>
             <div className="ar-car-right">
               <div className=" ar-car-price-container">
-                {this.renderPrice(car)}
+                <PriceCarousel activeIndex={this.state.page - 1} items={this.renderPrice(car)} />
                 <div className="ar-car-chevron">
                   <span
                     onClick={() => (car.rates.length > 2 ? this.setState({ page: 1 }) : null)}
