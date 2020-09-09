@@ -1,8 +1,22 @@
 import React from 'react';
 // reactstrap components
 import { Progress, Row, Col } from 'reactstrap';
+import { redirectTo, pages } from '../../../utils/helpers/redirectTo';
 
 class ProgressBar extends React.Component {
+  handleClick = (step) => {
+    switch (step) {
+      case 1:
+        return redirectTo(pages.home);
+      case 2:
+        return redirectTo(pages.step1);
+      case 3:
+        return redirectTo(pages.step2);
+      default:
+        return null;
+    }
+  };
+
   render() {
     const { classes, step } = this.props;
     return (
@@ -50,7 +64,9 @@ class ProgressBar extends React.Component {
             <div className="progress-info">
               <Col className="justify-content-center p-0">
                 <p className={'ar-title-bar ' + classes}>&nbsp;</p>
-                <span className="ar-circle ar-done">1</span>
+                <span className="ar-circle ar-done" onClick={() => this.handleClick(1)}>
+                  1
+                </span>
               </Col>
               <Col className="justify-content-center p-0">
                 <p className={'ar-title-bar ar-white-text ' + classes}>Selecciona tu plan</p>
@@ -69,11 +85,15 @@ class ProgressBar extends React.Component {
             <div className="progress-info">
               <Col className="justify-content-center p-0">
                 <p className={'ar-title-bar ' + classes}>&nbsp;</p>
-                <span className="ar-circle ar-done">1</span>
+                <span className="ar-circle ar-done" onClick={() => this.handleClick(1)}>
+                  1
+                </span>
               </Col>
               <Col className="justify-content-center p-0">
                 <p className={'ar-title-bar ' + classes}>&nbsp;</p>
-                <span className="ar-circle ar-done">2</span>
+                <span className="ar-circle ar-done" onClick={() => this.handleClick(2)}>
+                  2
+                </span>
               </Col>
               <Col className="justify-content-center p-0">
                 <p className={'ar-title-bar ar-white-text ' + classes}>Confirma tu reserva</p>

@@ -36,11 +36,16 @@ class Passenger extends React.Component {
       surname: '',
       email: '',
       phone: '',
+      airlineCompany: '',
       flyNumber: '',
       promotionCode: '',
       couponNumber: '',
     };
   }
+
+  handleOnSelect = (value) => {
+    this.setState({ airlineCompany: value });
+  };
 
   handleOnChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -147,12 +152,14 @@ class Passenger extends React.Component {
               <Col>
                 <div className="ar-select-fly-agency-container">
                   <ClientTypeDropdown
-                    items={['LATAM', 'American Airlines']}
+                    items={this.props.airlines.map((item) => {
+                      return item.name;
+                    })}
                     title={'Compañía aérea (opcional)'}
                     color={'white-0'}
                     dispatch={this.props.dispatch}
                     classes={'ar-select-button'}
-                    handleOnSelectClientType={() => console.log()}
+                    handleOnSelectClientType={this.handleOnSelect}
                   />
                 </div>
               </Col>

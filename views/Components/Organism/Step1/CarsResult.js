@@ -42,6 +42,7 @@ class CarsResult extends React.Component {
     this.props.dispatch(this.props.showLoader());
     this.props.dispatch(this.props.selectCar(car, this.props.result.locations));
     redirectTo(pages.step2);
+    window.scrollTo(0, 0);
   };
 
   renderPrice = (car) => {

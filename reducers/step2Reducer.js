@@ -138,20 +138,23 @@ const defaultState = {
       },
     ],
   },
-  optionalEquipment: [
-    { name: 'Radio Satelital XM', price: '16.99' },
-    { name: 'Asistencia en la carretera', price: '7.99' },
-    { name: 'Navegador satelital', price: '19.00' },
-    { name: 'Conductor adicional', price: '13.00' },
-    { name: 'Cobertura LDW', price: '34.99' },
-    { name: 'Cobertura ALI', price: '16.37' },
-  ],
-  additionalSeats: [
-    { name: 'Asiento para bebés', price: '14.00', quantity: 0 },
-    { name: 'Asiento para niños', price: '14.00', quantity: 0 },
-    { name: 'Asiento elevador para niños', price: '14.00', quantity: 0 },
-  ],
+  optionalEquipment: {
+    others: [
+      { name: 'Radio Satelital XM', price: '16.99', added: false },
+      { name: 'Asistencia en la carretera', price: '7.99', added: false },
+      { name: 'Navegador satelital', price: '19.00', added: false },
+      { name: 'Conductor adicional', price: '13.00', added: false },
+      { name: 'Cobertura LDW', price: '34.99', added: false },
+      { name: 'Cobertura ALI', price: '16.37', added: false },
+    ],
+    additionalSeats: [
+      { name: 'Asiento para bebés', price: '14.00', quantity: 0, added: false },
+      { name: 'Asiento para niños', price: '14.00', quantity: 0, added: false },
+      { name: 'Asiento elevador para niños', price: '14.00', quantity: 0, added: false },
+    ],
+  },
   clientType: '',
+  airlines: [],
 };
 
 const step2Reducer = (state = defaultState, action) => {
@@ -168,14 +171,26 @@ const step2Reducer = (state = defaultState, action) => {
         location: action.location,
       };
     case actionNames.addOptionalEquipment:
-      return {
-        ...state,
-        optionalEquipment: action.optionalEquipment,
-      };
+      if (action.others) {
+        return {
+          ...state,
+          optionalEquipment: { ...state.optionalEquipment, others: action.optionalEquipment },
+        };
+      } else {
+        return {
+          ...state,
+          optionalEquipment: { ...state.optionalEquipment, additionalSeats: action.optionalEquipment },
+        };
+      }
     case actionNames.selectClientType:
       return {
         ...state,
         clientType: action.clientType,
+      };
+    case actionNames.loadAirlinesSuccessfully:
+      return {
+        ...state,
+        airlines: action.airlines,
       };
     default:
       return state;

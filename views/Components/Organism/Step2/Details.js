@@ -29,19 +29,31 @@ class Details extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  calucalteSubTotalsAndTotal = () => {
+    let subtotal = 0;
+    this.props.optionalEquipment.others.forEach((item) => {
+      if (item.added) {
+        subtotal = subtotal + Number.parseFloat(item.price);
+      }
+    });
+    this.props.optionalEquipment.additionalSeats.forEach((item) => {
+      if (item.quantity !== 0) {
+        subtotal = subtotal + Number.parseFloat(item.price);
+      }
+    });
+    let total = subtotal + Number.parseFloat(this.props.carSelected.rates[0].price);
+
+    return { subtotal: subtotal.toFixed(2), tarifa: this.props.carSelected.rates[0].price, total: total.toFixed(2) };
+  };
+
   handleOnChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
-    const additionalEquipment = [
-      { name: 'Asiento elevador para niños', price: '65.00' },
-      { name: 'Asiento para bebés', price: '65.00' },
-      { name: 'Radio Satelital XM', price: '79.00' },
-    ];
     const charges = [
-      { name: 'Tarifa base', price: '1356.03' },
-      { name: 'Total de equipamiento adicional', price: '209.00' },
+      { name: 'Tarifa base', price: this.calucalteSubTotalsAndTotal().tarifa },
+      { name: 'Total de equipamiento adicional', price: this.calucalteSubTotalsAndTotal().subtotal },
       { name: 'Impuestos y cargos', price: '0.00' },
     ];
     return (
@@ -95,13 +107,26 @@ class Details extends React.Component {
         </div>
         <div className="ar-card-details-additional-equipment">
           <div className="ar-card-details-additional-equipment-list">
-            {additionalEquipment.map((item, index) => {
-              return (
-                <div key={index} className="ar-card-details-additional-equipment-item">
-                  <p>{item.name}</p>
-                  <strong>USD {item.price}</strong>
-                </div>
-              );
+            {this.props.optionalEquipment.others.map((item, index) => {
+              console.log(item);
+              if (item.added) {
+                return (
+                  <div key={index} className="ar-card-details-additional-equipment-item">
+                    <p>{item.name}</p>
+                    <strong>USD {item.price}</strong>
+                  </div>
+                );
+              }
+            })}
+            {this.props.optionalEquipment.additionalSeats.map((item, index) => {
+              if (item.quantity !== 0) {
+                return (
+                  <div key={index} className="ar-card-details-additional-equipment-item">
+                    <p>{item.name}</p>
+                    <strong>USD {item.price}</strong>
+                  </div>
+                );
+              }
             })}
           </div>
         </div>
@@ -125,7 +150,7 @@ class Details extends React.Component {
             <h4>TOTAL ESTIMADO</h4>
             <div className="ar-card-details-total-amount">
               <p>USD</p>
-              <strong>1356.03</strong>
+              <strong>{this.calucalteSubTotalsAndTotal().total}</strong>
             </div>
           </div>
           <p className="ar-card-details-total-small-letter">

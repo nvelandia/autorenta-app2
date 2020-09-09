@@ -7,18 +7,20 @@ import OptionalEquipmentDropdown from '../../Molecules/dropdowns/OptionalEquipme
 class OptionalEquipment extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      page: 1,
-    };
+    this.state = {};
     this.dispatch = props.dispatch;
   }
 
-  handleOnSelect = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+  handleOnSelect = (value, propertyIndex) => {
+    let newOptionalEquipmentAdditionalSeats = this.props.optionalEquipment.additionalSeats;
+    newOptionalEquipmentAdditionalSeats[propertyIndex].quantity = value;
+    this.dispatch(this.props.addOptionalEquipment(newOptionalEquipmentAdditionalSeats));
   };
 
-  handleOnChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+  handleOnChange = (index) => {
+    let newOptionalEquipmentOthers = this.props.optionalEquipment.others;
+    newOptionalEquipmentOthers[index].added = !newOptionalEquipmentOthers[index].added;
+    this.dispatch(this.props.addOptionalEquipment(newOptionalEquipmentOthers, true));
   };
 
   render() {
@@ -33,14 +35,14 @@ class OptionalEquipment extends React.Component {
           </div>
           <div className="ar-options-section-card">
             <div className="ar-checkbox-options-container">
-              {this.props.optionalEquipment.map((item, index) => {
+              {this.props.optionalEquipment.others.map((item, index) => {
                 return (
                   <div key={index} className="custom-control custom-checkbox ar-optional-equipment-checkbox mr-1">
                     <input
                       className="custom-control-input"
                       id={item.name}
                       type="checkbox"
-                      //onClick={(e) => this.props.handleOnSelect(key, category)}
+                      onClick={(e) => this.handleOnChange(index)}
                     />
                     <label className="custom-control-label ar-optional-item" htmlFor={item.name}>
                       {item.name}
@@ -53,15 +55,16 @@ class OptionalEquipment extends React.Component {
               })}
             </div>
             <div className="ar-select-options-container">
-              {this.props.additionalSeats.map((item, index) => {
+              {this.props.optionalEquipment.additionalSeats.map((item, index) => {
                 return (
                   <div key={index} className="d-flex justify-content-between align-items-center mb-1">
                     <div className="d-flex align-items-center">
                       <OptionalEquipmentDropdown
-                        items={[0, 1, 3, 4, 5]}
+                        values={[0, 1, 2, 3]}
                         title={item.quantity.toString()}
                         color={'white-0'}
-                        dispatch={this.props.dispatch}
+                        handleOnSelect={this.handleOnSelect}
+                        propertyIndex={index}
                       />
                       <label className="ar-select-description">{item.name}</label>
                     </div>
@@ -84,6 +87,7 @@ OptionalEquipment.propTypes = {
   image: PropTypes.string,
   showDetailModal: PropTypes.func,
   showAditionalModal: PropTypes.func,
+  addOptionalEquipment: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

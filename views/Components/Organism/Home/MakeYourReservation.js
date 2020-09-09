@@ -107,9 +107,9 @@ class MakeYourReservation extends React.Component {
     if (Array.isArray(placesOptions)) {
       return (
         <ListGroup className="ar-list-group">
-          {placesOptions.map((option) => {
+          {placesOptions.map((option, index) => {
             return (
-              <ListGroupItem className="p-0 ar-list-item" action>
+              <ListGroupItem key={index} className="p-0 ar-list-item" action>
                 <Button
                   className="ar-list-item d-flex align-items-center p-3 w-100 ws-pre"
                   name={name}

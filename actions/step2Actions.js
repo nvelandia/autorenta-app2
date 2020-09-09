@@ -7,10 +7,11 @@ export const changePlan = (plan) => {
   };
 };
 
-export const addOptionalEquipment = (optionalEquipment) => {
+export const addOptionalEquipment = (optionalEquipment, others = false) => {
   return {
     type: actionNames.addOptionalEquipment,
     optionalEquipment,
+    others,
   };
 };
 
@@ -18,5 +19,11 @@ export const selectClientType = (clientType) => {
   return {
     type: actionNames.selectClientType,
     clientType,
+  };
+};
+
+export const loadAirlines = () => {
+  return {
+    type: actionNames.loadAirlines,
   };
 };

@@ -90,28 +90,28 @@ class Result extends React.Component {
         filterByPrice(this.props.filterBy.price, car.rates[0].price)
       ) {
         return (
-          // <div className="fade-in">
-          <CarsResult
-            car={car}
-            selectCar={this.props.selectCar}
-            showDetailModal={this.showDetailModal}
-            showAditionalModal={this.showAditionalModal}
-            showLoader={this.props.showLoader}
-          />
-          // {/*</div>*/}
+          <div className="fade-in">
+            <CarsResult
+              car={car}
+              selectCar={this.props.selectCar}
+              showDetailModal={this.showDetailModal}
+              showAditionalModal={this.showAditionalModal}
+              showLoader={this.props.showLoader}
+            />
+          </div>
         );
       } else {
-        // return (
-        //   <div className="fade-out">
-        //     <CarsResult
-        //       car={car}
-        //       selectCar={this.props.selectCar}
-        //       showDetailModal={this.showDetailModal}
-        //       showAditionalModal={this.showAditionalModal}
-        //       showLoader={this.props.showLoader}
-        //     />
-        //   </div>
-        // );
+        return (
+          <div className="fade-out">
+            <CarsResult
+              car={car}
+              selectCar={this.props.selectCar}
+              showDetailModal={this.showDetailModal}
+              showAditionalModal={this.showAditionalModal}
+              showLoader={this.props.showLoader}
+            />
+          </div>
+        );
       }
     });
   };

@@ -78,7 +78,6 @@ class ApiFetch {
   }
 
   makeRequest(requestData) {
-    console.log(requestData);
     return new Promise(async (resolve, reject) => {
       const response = await axios({
         method: requestData.method,

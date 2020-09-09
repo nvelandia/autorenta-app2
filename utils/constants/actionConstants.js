@@ -40,4 +40,8 @@ export const actionNames = {
   changePlan: 'CHANGE_PLAN',
   addOptionalEquipment: 'ADD_OPTIONAL_EQUIPMENT',
   selectClientType: 'SELECT_CLIENT_TYPE',
+  loadAirlines: 'LOAD_AIRLINES',
+  //Step2-Service
+  loadAirlinesSuccessfully: 'LOAD_AIRLINES_SUCCESSFULLY',
+  loadAirlinesUnsuccessfully: 'LOAD_AIRLINES_UNSUCCESSFULLY',
 };

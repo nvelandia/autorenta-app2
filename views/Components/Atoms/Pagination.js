@@ -25,7 +25,7 @@ class Paginations extends React.Component {
           <Pagination className="pagination pagination-sm" listClassName="pagination-sm">
             {pages.map((item, index) => {
               return (
-                <PaginationItem>
+                <PaginationItem key={index}>
                   <PaginationLink
                     className={this.state.active === index + 1 ? 'ar-active' : 'ar-inactive'}
                     href=""

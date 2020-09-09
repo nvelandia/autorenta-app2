@@ -24,7 +24,12 @@ class Step2 extends React.Component {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
+    this.handleOnLoad();
   }
+
+  handleOnLoad = () => {
+    this.dispatch(actions.loadAirlines());
+  };
 
   render() {
     this.dispatch(generalActions.hideLoader());
@@ -40,7 +45,7 @@ class Step2 extends React.Component {
                 <LocationSelected location={this.props.location.pickup} title={'oficina de inicio'} />
                 <LocationSelected location={this.props.location.dropoff} title={'oficina de devolución'} />
               </div>
-              <OptionalEquipment />
+              <OptionalEquipment addOptionalEquipment={actions.addOptionalEquipment} />
               <ClientType selectClientType={actions.selectClientType} />
               {this.props.clientType === 'Agencia de viajes' ? <Agency /> : null}
               {this.props.clientType === 'Pasajero / Cliente directo' ? <Passenger /> : null}

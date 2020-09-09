@@ -77,9 +77,7 @@ class CustomNavbar extends React.Component {
             <Nav className="d-flex justify-content-between ml-4 w-100" navbar>
               <NavItem className="m-0">
                 <NavLink className="ar-nav-link ar-nav-link-blue " href={routes.HOME}>
-                  <a className="ar-nav-link-blue">
-                    <span className="ar-icon-home" />
-                  </a>
+                  <span className="ar-icon-home" />
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">

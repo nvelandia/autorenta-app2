@@ -50,6 +50,7 @@
     justify-content: center;
     align-items: center;
     &.ar-done{
+      cursor: pointer;
       background-color: $ar-color-blue-2;
     }
     &.ar-active{

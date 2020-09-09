@@ -52,6 +52,7 @@
 }
 
 .fade-out {
+  position: absolute;
   animation: fadeOut ease 2s forwards;
   -webkit-animation: fadeOut ease 2s forwards;
   -moz-animation: fadeOut ease 2s forwards;
@@ -65,17 +66,18 @@
   }
   100% {
     opacity: 0;
-    display: none;
+    position: absolute;
   }
 }
 
 @-moz-keyframes fadeOut {
   0% {
     opacity: 1;
+    top: 0;
   }
   100% {
     opacity: 0;
-    display: none;
+    top: -100%;
   }
 }
 
@@ -85,7 +87,7 @@
   }
   100% {
     opacity: 0;
-    display: none;
+    position: absolute;
   }
 }
 
@@ -95,7 +97,7 @@
   }
   100% {
     opacity: 0;
-    display: none;
+    position: absolute;
   }
 }
 
@@ -105,7 +107,7 @@
   }
   100% {
     opacity: 0;
-    display: none;
+    position: absolute;
   }
 }
 
