@@ -87,6 +87,13 @@ class successfullyResponsesPresenter {
       message,
     };
   };
+
+  withOnlyData = (type, item, data) => {
+    return {
+      type,
+      [item]: data,
+    };
+  };
 }
 
 export default new successfullyResponsesPresenter();

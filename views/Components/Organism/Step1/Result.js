@@ -80,7 +80,7 @@ class Result extends React.Component {
       });
       cars = simple.concat(featured);
     }
-    return cars.map((car) => {
+    return cars.map((car, index) => {
       if (
         filterByType(this.props.filterBy.types, car.typeCar.name) &&
         filterBySeats(this.props.filterBy.seats, car.seats) &&
@@ -90,7 +90,27 @@ class Result extends React.Component {
         filterByPrice(this.props.filterBy.price, car.rates[0].price)
       ) {
         return (
-          <CarsResult car={car} showDetailModal={this.showDetailModal} showAditionalModal={this.showAditionalModal} />
+          <div key={index} className="fade-in">
+            <CarsResult
+              car={car}
+              selectCar={this.props.selectCar}
+              showDetailModal={this.showDetailModal}
+              showAditionalModal={this.showAditionalModal}
+              showLoader={this.props.showLoader}
+            />
+          </div>
+        );
+      } else {
+        return (
+          <div key={index} className="fade-out">
+            <CarsResult
+              car={car}
+              selectCar={this.props.selectCar}
+              showDetailModal={this.showDetailModal}
+              showAditionalModal={this.showAditionalModal}
+              showLoader={this.props.showLoader}
+            />
+          </div>
         );
       }
     });
@@ -111,7 +131,7 @@ class Result extends React.Component {
           showModal={this.state.showAditionalModal}
           hideModal={this.hideModal}
         />
-        <Col xl="9" lg="10" md="11" className="pl-0 pr-0">
+        <div className="ar-central-container">
           <Row className="justify-content-end m-0 mb-3">
             <div className="d-flex align-items-center">
               <div className="custom-control custom-checkbox mr-3">
@@ -129,6 +149,7 @@ class Result extends React.Component {
                 items={['De menor a mayor precio', 'De mayor a menor precio']}
                 title={'Ordenar por'}
                 color={'white-3'}
+                classes={'ar-order-by-button'}
                 actions={[this.props.orderByMinToMax, this.props.orderByMaxToMin]}
                 dispatch={this.props.dispatch}
               />
@@ -142,7 +163,7 @@ class Result extends React.Component {
             </div>
             <Col className="px-3">{this.props.result.cars.length !== 0 ? this.renderCarsResult() : null}</Col>
           </Row>
-        </Col>
+        </div>
       </Row>
     );
   }
@@ -155,7 +176,9 @@ Result.propTypes = {
   addFitlter: PropTypes.func,
   orderByMinToMax: PropTypes.func,
   orderByMaxToMin: PropTypes.func,
+  selectCar: PropTypes.func,
   toggleShowFeaturedFirst: PropTypes.func,
+  showLoader: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

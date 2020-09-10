@@ -1,23 +1,34 @@
 import React from 'react';
-import { Card, CardBody, FormGroup } from 'reactstrap';
+import { Button, Card, CardBody, FormGroup, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ClientTypeDropdown from '../../Molecules/dropdowns/ClientTypeDropdown';
+import classnames from 'classnames';
 
 class ClientType extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: 1,
+      clientType: '',
+      agencyCodeFocus: false,
+      corporationCodeFocus: false,
+      agencyCode: '',
+      corporationCode: '',
     };
     this.dispatch = props.dispatch;
-    this.handleOnLoad();
   }
 
-  handleOnLoad = () => {};
+  handleOnSelect = (value) => {
+    this.setState({ clientType: value, agencyCode: '', corporationCode: '' });
+    this.dispatch(this.props.selectClientType(value));
+  };
 
-  handleOnSelect = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+  handleValidateClick = (agency) => {
+    if (agency) {
+      this.dispatch(this.props.validateId(this.state.agencyCode));
+    } else {
+      this.dispatch(this.props.validateId(this.state.corporationCode));
+    }
   };
 
   handleOnChange = (event) => {
@@ -29,15 +40,89 @@ class ClientType extends React.Component {
       <Card className="card-frame ar-client-type-card">
         <CardBody className="p-0">
           <div className="ar-icon-customer-type ar-title-with-icon">Tipo de cliente</div>
-          <div className="ar-select-client-type-container">
-            <ClientTypeDropdown
-              items={[0, 1, 3, 4, 5]}
-              title={'Selecciona una opción'}
-              color={'white-0'}
-              dispatch={this.props.dispatch}
-              classes={'ar-select-button'}
-            />
-          </div>
+          <Row className="m-0 align-items-center ar-client-type-container">
+            <div className="ar-select-client-type-container">
+              <ClientTypeDropdown
+                items={['Pasajero / Cliente directo', 'Agencia de viajes', 'Corporativo / Empresas']}
+                title={'Selecciona una opción'}
+                color={'white-0'}
+                dispatch={this.props.dispatch}
+                classes={'ar-select-button'}
+                handleOnSelectClientType={this.handleOnSelect}
+              />
+            </div>
+            {this.state.clientType === 'Pasajero / Cliente directo' ? (
+              <img src={'/img/custom/step2/banner-pay-online-discount.png'} alt="offer" />
+            ) : null}
+            {this.state.clientType === 'Agencia de viajes' ? (
+              <FormGroup
+                className={
+                  'ar-validate-input-agency ' +
+                  classnames({
+                    focused: this.state.agencyCodeFocus,
+                  })
+                }
+              >
+                <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
+                  <Input
+                    className="ar-round-input ar-input-agency-code"
+                    placeholder={
+                      !this.props.error.validationId ? 'Ingresa tu número de ID' : this.props.error.validationId
+                    }
+                    type="text"
+                    name="agencyCode"
+                    onFocus={() => this.setState({ agencyCodeFocus: true })}
+                    onBlur={() => this.setState({ agencyCodeFocus: false })}
+                    onChange={this.handleOnChange}
+                  />
+                  <InputGroupAddon addonType="append">
+                    <Button
+                      className=" btn-icon w-100 ar-validate-input-agency-button"
+                      color="red-0"
+                      onClick={() => this.handleValidateClick(true)}
+                    >
+                      <span className="nav-link-inner--text">Validar </span>
+                      <i className="ar-icon-chevron-right" />
+                    </Button>
+                  </InputGroupAddon>
+                </InputGroup>
+              </FormGroup>
+            ) : null}
+            {this.state.clientType === 'Corporativo / Empresas' ? (
+              <FormGroup
+                className={
+                  'ar-validate-input-agency ' +
+                  classnames({
+                    focused: this.state.corporationCodeFocus,
+                  })
+                }
+              >
+                <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
+                  <Input
+                    className="ar-round-input ar-input-agency-code"
+                    placeholder={
+                      !this.props.error.validationId ? 'Ingresa tu número de ID' : this.props.error.validationId
+                    }
+                    type="text"
+                    name="corporationCode"
+                    onFocus={() => this.setState({ corporationCodeFocus: true })}
+                    onBlur={() => this.setState({ corporationCodeFocus: false })}
+                    onChange={this.handleOnChange}
+                  />
+                  <InputGroupAddon addonType="append">
+                    <Button
+                      className=" btn-icon w-100 ar-validate-input-agency-button"
+                      color="red-0"
+                      onClick={() => this.handleValidateClick(false)}
+                    >
+                      <span className="nav-link-inner--text">Validar </span>
+                      <i className="ar-icon-chevron-right" />
+                    </Button>
+                  </InputGroupAddon>
+                </InputGroup>
+              </FormGroup>
+            ) : null}
+          </Row>
         </CardBody>
       </Card>
     );
@@ -46,13 +131,12 @@ class ClientType extends React.Component {
 
 ClientType.propTypes = {
   dispatch: PropTypes.func,
-  image: PropTypes.string,
-  showDetailModal: PropTypes.func,
-  showAditionalModal: PropTypes.func,
+  selectClientType: PropTypes.func,
+  validateId: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return state.step2Reducer;
 };
 
 export default connect(mapStateToProps)(ClientType);

@@ -281,16 +281,16 @@ td.rdtYear:hover {
     border: 1px solid transparent;
   }
 }
-.rdtCounters {
-  .rdtCounter:last-child {
-    .rdtCount {
-      font-size: 0.8rem;
-      color: $ar-color-red-0;
-      border-radius: 50%;
-      border: 1px solid $ar-color-red-0;
-    }
-  }
-}
+//.rdtCounters {
+//  .rdtCounter:last-child {
+//    .rdtCount {
+//      font-size: 0.8rem;
+//      color: $ar-color-red-0;
+//      border-radius: 50%;
+//      border: 1px solid $ar-color-red-0;
+//    }
+//  }
+//}
 
 .rdtCounterSeparator {
   padding: 7px;

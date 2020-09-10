@@ -3,6 +3,8 @@ import { Button, Card, CardBody, CardHeader, CardText, Col, Row } from 'reactstr
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomButton from '../../Atoms/CustomButton';
+import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
+import PriceCarousel from '../../Molecules/Carousels/PriceCarousel';
 
 class CarsResult extends React.Component {
   constructor(props) {
@@ -36,10 +38,17 @@ class CarsResult extends React.Component {
     return rating;
   };
 
+  handleOnClick = (car) => {
+    this.props.dispatch(this.props.showLoader());
+    this.props.dispatch(this.props.selectCar(car, this.props.result.locations));
+    redirectTo(pages.step2);
+    window.scrollTo(0, 0);
+  };
+
   renderPrice = (car) => {
-    const prices = car.rates.map((rate) => {
+    const prices = car.rates.map((rate, index) => {
       return (
-        <Col xl="6" lg="6" className="ar-car-price">
+        <Col xl="6" lg="6" className="ar-car-price" key={index}>
           <Card className="text-center  shadow mb-0">
             <CardHeader className="bg-transparent ar-car-price-title">
               <h4 className="mb-0">{rate.name}</h4>
@@ -47,15 +56,15 @@ class CarsResult extends React.Component {
             <CardBody className="ar-car-price-body">
               <div className="ar-car-price-details" onClick={() => this.props.showDetailModal(rate.charges)}>
                 <p>
-                  <i className="ar-icon-info va-middle" /> Ver detalle de esta tarifa
+                  <i className="ar-icon-info va-middle" /> Ver detalle del plan
                 </p>
               </div>
-              <CardText className="mb-2">
+              <div className="mb-2">
                 <h1 className="ar-car-price-price">{rate.price}</h1>
-              </CardText>
+              </div>
               <CustomButton
                 text={'Reservar ahora'}
-                event={console.log('reservar auto click')}
+                event={() => this.handleOnClick(car)}
                 color={'red-0'}
                 name={'ar-car-price-button'}
                 icon={'ar-icon-chevron-right'}
@@ -69,27 +78,29 @@ class CarsResult extends React.Component {
       );
     });
 
-    if (this.state.page === 1) {
-      return (
-        <>
-          {prices[0]}
-          {prices[1]}
-        </>
-      );
-    } else {
-      return (
-        <>
-          {prices[2]}
-          {prices[3]}
-        </>
-      );
-    }
+    return [prices.slice(0, 2), prices.slice(2, 4)];
+
+    // if (this.state.page === 1) {
+    //   return (
+    //     <>
+    //       {prices[0]}
+    //       {prices[1]}
+    //     </>
+    //   );
+    // } else {
+    //   return (
+    //     <>
+    //       {prices[2]}
+    //       {prices[3]}
+    //     </>
+    //   );
+    // }
   };
 
   render() {
     const { car } = this.props;
     return (
-      <Card className="card-frame ar-car-result">
+      <Card className="card-frame ar-car-result mb-3">
         <CardBody className="p-0">
           <Row className="ar-car-top">
             <div className="ar-car-top-left">
@@ -98,11 +109,11 @@ class CarsResult extends React.Component {
               </div>
               <div className="ar-car-type">
                 <h3 className="ar-red-text">{car.typeCar.name}</h3>
-                <h6 className="mb-0">{car.name}</h6>
+                <h6 className="mb-0">{car.name.toLowerCase()}</h6>
               </div>
             </div>
             <Row className="m-0 h-100 ar-car-features">
-              <div className="ar-car-features-group ">
+              <div className="ar-car-features-group pl-0">
                 <div className="ar-car-feature-item">
                   <i className="ar-icon-passenger ar-light-blue-3-text" />
                   <h6>{car.seats} asientos</h6>
@@ -185,7 +196,7 @@ class CarsResult extends React.Component {
             </div>
             <div className="ar-car-right">
               <div className=" ar-car-price-container">
-                {this.renderPrice(car)}
+                <PriceCarousel activeIndex={this.state.page - 1} items={this.renderPrice(car)} />
                 <div className="ar-car-chevron">
                   <span
                     onClick={() => (car.rates.length > 2 ? this.setState({ page: 1 }) : null)}
@@ -216,6 +227,8 @@ CarsResult.propTypes = {
   image: PropTypes.string,
   showDetailModal: PropTypes.func,
   showAditionalModal: PropTypes.func,
+  selectCar: PropTypes.func,
+  showLoader: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

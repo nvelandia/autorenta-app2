@@ -125,7 +125,7 @@
   width: 100%; // For `<button>`s
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
   clear: both;
-  font-weight: $font-weight-normal;
+  font-weight: 500;
   color: $dropdown-link-color;
   text-align: inherit; // For `<button>`s
   white-space: nowrap; // prevent links from randomly breaking onto new lines
@@ -152,7 +152,7 @@
 
   &.active,
   &:active {
-    color: $dropdown-link-active-color;
+    color: #012e68;
     text-decoration: none;
     @include gradient-bg($dropdown-link-active-bg);
   }

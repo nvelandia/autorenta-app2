@@ -27,16 +27,16 @@ class CustomDropDown extends React.Component {
   };
 
   render() {
-    const { items, classes, name } = this.props;
+    const { items, classes, name, height } = this.props;
     return (
       <>
-        <UncontrolledDropdown className="w-100">
+        <UncontrolledDropdown className={`w-100 ${height}`}>
           <DropdownToggle
-            className="w-100 ar-round-input bg-ar-white-1 ar-last-row-make-your-reservation"
+            className="w-100 ar-round-input bg-ar-white-1 ar-last-row-make-your-reservation h-100"
             color="asdas"
           >
-            <Row className="justify-content-between pl-3 pr-3 align-items-center">
-              {this.state.value}
+            <Row className="justify-content-between ar-pl-3 pr-3 align-items-center ">
+              <div className="tx-overflow-clip ws-nowrap mw-89">{this.state.value}</div>
               <span className="ar-icon-chevron-down fs-i--1 mt-i-1" />
             </Row>
           </DropdownToggle>

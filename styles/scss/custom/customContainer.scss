@@ -5,6 +5,7 @@
 
 .ar-make-your-reservation-button-container{
   display: flex;
+  height: 45px;
 
   @media (max-width: 5200px) {
     justify-content: center;
@@ -16,10 +17,9 @@
   }
 }
 
-.ar-filters-container{
-
-}
-
-.ar-cars-results-container{
-
+.ar-central-container{
+  width: 1150px;
+  @media (min-width: $ar-big-size){
+    width: 75%;
+  }
 }

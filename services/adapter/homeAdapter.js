@@ -4,10 +4,9 @@ import errorResponsesPresenter from '../../utils/helpers/errorResponsesPresenter
 import { actionNames } from '../../utils/constants/actionConstants';
 
 class homeAdapter {
-  searchLocation = (response, body) => {
-    const { status, data } = response;
-
-    if (!isError(status)) {
+  searchLocation = (response) => {
+    const { data } = response;
+    if (data.success) {
       return successfullyResponsesPresenter.listResponse(
         actionNames.searchLocationSuccessfully,
         'locations',
@@ -16,13 +15,13 @@ class homeAdapter {
       );
     }
 
-    return errorResponsesPresenter.listError(data, status, body, actionNames.searchLocationUnsuccessfully);
+    return errorResponsesPresenter.listError(data, actionNames.searchLocationUnsuccessfully);
   };
 
-  loadCountries = (response, body) => {
-    const { status, data } = response;
+  loadCountries = (response) => {
+    const { data } = response;
 
-    if (!isError(status)) {
+    if (data.success) {
       const countries = data.response
         .map((country) => {
           return { name: country.name, id: country.country_id };
@@ -46,13 +45,13 @@ class homeAdapter {
       );
     }
 
-    return errorResponsesPresenter.listError(data, status, body, actionNames.loadCountriesUnsuccessfully);
+    return errorResponsesPresenter.listError(data, actionNames.loadCountriesUnsuccessfully);
   };
 
-  loadOffers = (response, body) => {
-    const { status, data } = response;
+  loadOffers = (response) => {
+    const { data } = response;
 
-    if (!isError(status)) {
+    if (data.success) {
       return successfullyResponsesPresenter.listResponse(
         actionNames.loadOffersSuccessfully,
         'offers',
@@ -61,13 +60,13 @@ class homeAdapter {
       );
     }
 
-    return errorResponsesPresenter.listError(data, status, body, actionNames.loadOffersUnsuccessfully);
+    return errorResponsesPresenter.listError(data, actionNames.loadOffersUnsuccessfully);
   };
 
-  searchFleet = (response, body) => {
-    const { status, data } = response;
+  searchFleet = (response) => {
+    const { data } = response;
 
-    if (!isError(status)) {
+    if (data.success) {
       return successfullyResponsesPresenter.fleetResponse(
         actionNames.searchFleetSuccessfully,
         data.response,
@@ -75,7 +74,7 @@ class homeAdapter {
       );
     }
 
-    return errorResponsesPresenter.listError(data, status, body, actionNames.searchFleetUnsuccessfully);
+    return errorResponsesPresenter.listError(data, actionNames.searchFleetUnsuccessfully);
   };
 }
 

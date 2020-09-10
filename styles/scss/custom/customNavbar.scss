@@ -6,14 +6,15 @@
 
 .bg-ar-navbar{
   background-color: $ar-color-white-2;
+  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 40);
 }
 
 .ar-nav-link-blue{
   color: $ar-color-blue-0;
   font-weight: 500;
   margin: 0 !important;
-  font-size: .9em;
-  letter-spacing: 0.2px;
+  font-size: .95em;
+  letter-spacing: 0.1px;
   &:hover{
     color: $ar-color-red-0 !important;
   }
@@ -21,15 +22,16 @@
 
 .ar-nav-link-red{
   color: $ar-color-red-0;
+  font-size: .95em;
 }
 
 .ar-nav-link{
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  padding-left: 0.6em !important;
+  padding-right: 0.6em !important;
   font-size: 0.750rem !important;
   white-space: pre;
   @media (min-width: 1500px) {
-    font-size: 0.8vw !important;
+    font-size: 0.9em !important;
   }
 }
 
@@ -38,9 +40,14 @@
   .ar-nav-button{
     white-space: pre;
     margin-top: auto;
+    padding-bottom: 15px;
     margin-bottom: auto;
-    font-size: 0.8vw;
-    padding-right: 0.8rem;
+    font-size: 0.9em;
+    padding-right: 1.4em;
+    letter-spacing: .2px;
+    margin-right: 1em;
+    height: 42px;
+    padding-top: 8px;
   }
 }
 
@@ -58,8 +65,9 @@
 .ar-button-flag{
   .ar-dropdown-menu{
     transform: translate3d(7px, 50px, 0px) !important;
-    min-width: 5rem;
+    min-width: 4.5rem;
     max-width: 8rem;
+    font-size: 1em;
     &::before{
       display: none !important;
     }
@@ -71,5 +79,5 @@
 }
 
 .ar-language{
-  font-size: 1.1vw;
+  font-size: 1.2em;
 }

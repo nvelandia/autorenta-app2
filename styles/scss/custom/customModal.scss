@@ -4,4 +4,19 @@
 
 .ar-modal-aditional-information{
   max-width: 950px;
+  h2{
+    font-size: 1.1em;
+  }
+  .ar-modal-body-aditional-information{
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1em 2em;
+  }
+}
+
+.ar-modal-change-plan{
+  max-width: 350px;
+  @media (min-width: $ar-big-size){
+    max-width: 400px;
+  }
 }

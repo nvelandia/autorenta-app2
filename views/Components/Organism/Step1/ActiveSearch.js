@@ -39,16 +39,20 @@ class ActiveSearch extends React.Component {
   };
 
   render() {
+    if (this.props.needToCloseModifyModal) {
+      this.hideModal();
+      this.props.dispatch(this.props.haveToCloseModifyModal(false));
+    }
     return (
       <>
         <ModalModifySearch
           showModal={this.state.showModifyModal}
           hideModal={this.hideModal}
           searchLocation={this.props.searchLocation}
-          searchFleet={this.props.searchFleet}
+          modifySearchFleet={this.props.modifySearchFleet}
         />
         <Row className="justify-content-center ar-search-banner p-4 mx-0">
-          <Col xl="9" className="p-0">
+          <div className="ar-central-container">
             <Row className="justify-content-between bg-ar-white-0 align-items-center ">
               <div>
                 <h3>Búsqueda activa</h3>
@@ -113,7 +117,7 @@ class ActiveSearch extends React.Component {
                 />
               </div>
             </Row>
-          </Col>
+          </div>
         </Row>
       </>
     );
@@ -124,7 +128,8 @@ ActiveSearch.propTypes = {
   dispatch: PropTypes.func,
   searchLocation: PropTypes.func,
   loadCountries: PropTypes.func,
-  searchFleet: PropTypes.func,
+  modifySearchFleet: PropTypes.func,
+  haveToCloseModifyModal: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

@@ -137,7 +137,11 @@
 
 //Paddings
 .ar-last-row-make-your-reservation{
-  padding: 0.8rem 1.25rem;
+  padding: .8em 2.2em;
+}
+
+.ar-pl-3{
+  padding-left: 1em !important;
 }
 
 //Widths
@@ -154,7 +158,16 @@
   width: 80%;
 }
 
+.mw-89{
+  max-width: 89%;
+}
+
 //Text
+.tx-overflow-clip{
+  overflow: hidden;
+  text-overflow: clip;
+}
+
 
 .lh-normal{
   line-height: normal;
@@ -201,7 +214,7 @@
 }
 
 .fs-4{
-  font-size: 2rem;
+  font-size: 1.75em;;
 }
 
 .tx-bold{
@@ -213,7 +226,8 @@
 }
 
 .fs-i--1{
-  font-size: 0.7em;
+  font-size: .7em;
+  margin-left: 2px;
 }
 
 //Borders
@@ -224,4 +238,10 @@
 
 .ar-border-color-white-3{
   border-color: $ar-color-white-3;
+}
+
+//Z-index
+
+.zi-1200{
+  z-index: 1200;
 }

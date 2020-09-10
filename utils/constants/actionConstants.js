@@ -30,4 +30,21 @@ export const actionNames = {
   orderByMinToMax: 'ORDER_BY_MIN_TO_MAX',
   orderByMaxToMin: 'ORDER_BY_MAX_TO_MIN',
   toggleShowFeaturedFirst: 'TOGGLE_SHOW_FEATURED_FIRST',
+  modifySearchFleet: 'MODIFY_SEARCH_FLEET',
+  haveToCloseModifyModal: 'HAVE_TO_CLOSE_MODIFY_MODAL',
+  selectCar: 'SELECT_CAR',
+  //Step1-Service
+  modifySearchFleetSuccessfully: 'MODIFY_SEARCH_FLEET_SUCCESSFULLY',
+  modifySearchFleetUnsuccessfully: 'MODIFY_SEARCH_FLEET_UNSUCCESSFULLY',
+  //Step2
+  changePlan: 'CHANGE_PLAN',
+  addOptionalEquipment: 'ADD_OPTIONAL_EQUIPMENT',
+  selectClientType: 'SELECT_CLIENT_TYPE',
+  loadAirlines: 'LOAD_AIRLINES',
+  validateId: 'VALIDATE_ID',
+  //Step2-Service
+  loadAirlinesSuccessfully: 'LOAD_AIRLINES_SUCCESSFULLY',
+  loadAirlinesUnsuccessfully: 'LOAD_AIRLINES_UNSUCCESSFULLY',
+  validateIdSuccessfully: 'VALIDATE_ID_SUCCESSFULLY',
+  validateIdUnsuccessfully: 'VALIDATE_ID_UNSUCCESSFULLY',
 };

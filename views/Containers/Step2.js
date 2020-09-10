@@ -1,86 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as homeActions from '../../actions/homeActions';
-//import * as actions from '../../actions/searchActions';
+import * as actions from '../../actions/step2Actions';
+import * as generalActions from '../../actions/generalActions';
 import CustomNavBar from '../Components/Molecules/Navbars/CustomNavBar';
 import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
 import Banner from '../Components/Molecules/banners/Banner';
 import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
-import { actionNames } from '../../utils/constants/actionConstants';
 import CarSelected from '../Components/Organism/Step2/CarSelected';
 import Details from '../Components/Organism/Step2/Details';
 import { Row, Col } from 'reactstrap';
 import LocationSelected from '../Components/Organism/Step2/LocationSelected';
 import OptionalEquipment from '../Components/Organism/Step2/OptionalEquipment';
 import ClientType from '../Components/Organism/Step2/ClientType';
+import Passenger from '../Components/Organism/Step2/Passenger';
+import AgencyOrCorporation from '../Components/Organism/Step2/AgencyOrCorporation';
 
 class Step2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
-    //this.mock();
+    this.handleOnLoad();
   }
 
-  mock = () => {
-    this.dispatch({
-      type: actionNames.searchFleet,
-      body: {
-        pickup_location: 'MIA',
-        pickup_date: '2020-08-11',
-        pickup_time: '12:00',
-        dropoff_location: 'MIA',
-        dropoff_date: '2020-08-12',
-        dropoff_time: '12:00',
-        passenger_country_id: 1,
-        passenger_age: 22,
-      },
-    });
+  handleOnLoad = () => {
+    this.dispatch(actions.loadAirlines());
   };
 
   render() {
-    const car = {
-      image: '/img/custom/searchView/mitsubishi-mirage-alamo.jpg',
-      doors: 5,
-      gear: 'Manual',
-      bags_small: 3,
-      bags_big: 2,
-      seats: 5,
-      name: 'Ford Fiesta',
-      typeCar: {
-        name: 'Económico / Pequeño',
-      },
-      company: {
-        logo: '/svg/searchView/avis-logo.svg',
-      },
-    };
-    const location = {
-      pickup: { date: '2020-08-25', time: '12:00', location: 'Miami, Florida, Estados Unidos', iata: 'MIA' },
-      dropoff: { date: '2020-08-28', time: '12:00', location: 'Miami, Florida, Estados Unidos', iata: 'MIA' },
-    };
-
+    this.dispatch(generalActions.hideLoader());
     return (
       <>
         <CustomNavBar />
-        <StepsHeader step={2} />
+        <StepsHeader step={3} />
         <Row className="justify-content-center mt-4 ml-0 mr-0">
-          <Col xl="6" lg="6" className="pr-0">
-            <CarSelected car={car} />
-            <div className="d-flex justify-content-between">
-              <LocationSelected location={location.pickup} title={'oficina de inicio'} />
-              <LocationSelected location={location.dropoff} title={'oficina de devolución'} />
+          <div className="ar-central-container d-flex">
+            <Col>
+              <CarSelected car={this.props.carSelected} />
+              <div className="d-flex justify-content-between">
+                <LocationSelected location={this.props.location.pickup} title={'oficina de inicio'} />
+                <LocationSelected location={this.props.location.dropoff} title={'oficina de devolución'} />
+              </div>
+              <OptionalEquipment addOptionalEquipment={actions.addOptionalEquipment} />
+              <ClientType selectClientType={actions.selectClientType} validateId={actions.validateId} />
+              {this.props.organization.organization_id ? <AgencyOrCorporation /> : null}
+              {this.props.clientType === 'Pasajero / Cliente directo' ? <Passenger /> : null}
+            </Col>
+            <div className="ar-card-details">
+              <Details changePlan={actions.changePlan} />
             </div>
-            <OptionalEquipment />
-            <ClientType />
-          </Col>
-          <Col xl="3" lg="3">
-            <Details />
-          </Col>
+          </div>
         </Row>
-
         <Banner />
         <CustomFooter />
         <UpToTop />
@@ -95,7 +68,7 @@ Step2.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return state.step2Reducer;
 };
 
 export default connect(mapStateToProps)(Step2);

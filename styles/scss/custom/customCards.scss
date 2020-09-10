@@ -10,12 +10,14 @@
   font-weight: 600;
 
   @media (min-width: 1200px) and (max-width: 1471px) {
-    font-size: 13px;
-    margin-bottom: 0.8rem;
+    font-size: 16px;
+    margin-bottom: 1.2em;
+    margin-left: .2em;
   }
 
   @media (min-width: 1471px) and (max-width: 1750px) {
-    font-size: 15px;
+    font-size: 17.5px;
+    margin-left: 3px;
   }
 
   @media (min-width: 1751px){
@@ -34,12 +36,12 @@
     border-top-right-radius: 0.4rem;
   }
   .ar-logo{
-    border-radius: 10px;
+    border-radius: 11px;
     background-color: #ffffff;
-    width: 28%;
+    width: 30%;
     position: absolute;
-    top: 4%;
-    left: 4%;
+    top: 5%;
+    left: 5%;
   }
   .ar-border-image-offer{
     width: 100%;
@@ -61,21 +63,16 @@
 }
 
 .ar-card-body-offer{
-  padding: 1.8rem 1.8rem 1.8rem 1.8rem;
-
-  @media (min-width: 1200px) and (max-width: 1471px) {
-    padding: 1.8rem 1.8rem 1.4rem 1.8rem;
-  }
-
+  padding: 1.1em 1.9em 2em 1.9em;
   @media (min-width: 1700px){
-    padding: 1.8rem 1.8rem 2.2rem 1.8rem;
+    padding: 1.0rem 1.8rem 2.1rem 1.8rem;
   }
 }
 
 .ar-car-result{
   .ar-car-top{
     border-bottom: solid;
-    border-bottom-color: $ar-color-white-7;
+    border-bottom-color: #ececec;
     border-bottom-width: thin;
     margin: 0;
     height: 80px;
@@ -92,7 +89,7 @@
         align-items: center;
         width: 46%;
         border-right: solid;
-        border-right-color: $ar-color-white-7;
+        border-right-color: #ececec;
         border-right-width: thin;
         padding: 0 2.65rem;
         img{
@@ -119,11 +116,12 @@
         @media (min-width: $ar-big-size){
           h3{
             margin: 0;
-            font-size: 1.4rem;
+            font-size: 1.3em;
           }
           h6{
             text-transform: capitalize;
-            font-size: 0.8rem;
+            font-size: 0.8em;
+            letter-spacing: .3px;
           }
         }
       }
@@ -136,12 +134,12 @@
         padding: 1.4rem 0;
       }
       .ar-car-features-group{
-        padding: 0 1rem;
+        padding: 0 1em;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         @media (min-width: $ar-big-size){
-          padding: 0 1.4rem;
+          padding: 0 1.2em;
         }
         .ar-car-feature-item {
           display: flex;
@@ -152,24 +150,25 @@
 
           h6 {
             color: $ar-color-blue-0;
-            margin: 0 0 0 0.4rem;
+            margin: 0 0 0 0.4em;
             font-weight: 500;
+            font-size: .75em;
           }
 
           i {
-            font-size: 0.9rem;
+            font-size: 1em;
             font-weight: 800;
           }
 
           @media (min-width: $ar-big-size) {
             h6 {
               color: $ar-color-blue-0;
-              margin: 0 0 0 0.4rem;
+              margin: 0 0 0 0.3em;
               font-weight: 500;
-              font-size: 0.9rem;
+              font-size: 0.85em;
             }
             i {
-              font-size: 1.2rem;
+              font-size: 1.1em;
               font-weight: 800;
             }
           }
@@ -185,7 +184,7 @@
     .ar-car-left{
       width: 47%;
       border-right: solid;
-      border-right-color: $ar-color-white-7;
+      border-right-color: #ececec;
       border-right-width: thin;
       padding: 1rem 0;
       @media (min-width: $ar-big-size){
@@ -203,20 +202,22 @@
           @media (min-width: $ar-big-size){
             margin-bottom: 0.7rem;
             margin-left: 1.4rem;
-            font-size: 0.7rem;
+            font-size: 0.9em;
           }
         }
         img{
-          width: 100%;
-          max-height: 110px;
+          width: 95%;
+          margin-top: 15px;
+          max-height: 115px;
           @media (min-width: $ar-big-size){
-            width: 100%;
-            max-height: 140px;
+            max-height: 200px;
+            margin-top: 0;
           }
         }
+
         .ar-car-featured{
-          padding-bottom: 1.3rem;
-          margin-left: -1rem;
+          padding-bottom: 1.4em;
+          margin-left: -10px;
           text-align: left;
           .ar-car-featured-label-empty{
             height: 2rem;
@@ -234,13 +235,15 @@
               font-size: 0.8rem;
             }
             @media (min-width: $ar-big-size){
-              font-size: 0.9rem;
+              font-size: 0.85em;
               font-weight: 700;
               color: $ar-color-white-0;
               background-color: $ar-color-yellow-0;
               border-top-right-radius: 2rem;
               border-bottom-right-radius: 2rem;
               padding:0.45rem 2rem 0.45rem 1rem ;
+              height: 42px;
+              padding: .30rem 1.5rem .4rem 1rem;
               span{
                 color: $ar-color-yellow-1;
                 font-size: 1.4rem;
@@ -258,7 +261,7 @@
           padding-right: 0.5rem;
           @media (min-width: $ar-big-size){
             h6{
-              font-size: 0.9rem;
+              font-size: 1em;
               margin-top: 0.5rem;
               padding-right: 0.5rem;
               font-weight: 500;
@@ -268,25 +271,25 @@
         .ar-car-data-button-container{
           margin-bottom: 1rem;
           @media (min-width: $ar-big-size){
-            margin-bottom: 1.4rem;
+            margin-bottom: 1.6rem;
           }
           .ar-car-data-button{
             width: 100%;
-            font-size: 0.6rem;
+            font-size: 0.75em;
             font-weight: 700;
             background-color: $ar-color-white-0;
             border-color: $ar-color-green-0;
-            border-width: 3px;
+            border-width: 2px;
             color: $ar-color-green-0;
             text-align: center;
             @media (min-width: $ar-big-size){
               text-align: center;
               width: 100%;
-              font-size: 0.9rem;
+              font-size: 0.85em;
               font-weight: 700;
               background-color: $ar-color-white-0;
               border-color: $ar-color-green-0;
-              border-width: 3px;
+              border-width: 2px;
               color: $ar-color-green-0;
             }
           }
@@ -297,34 +300,41 @@
       width: 53%;
       .ar-car-chevron{
         position: absolute;
-        width: calc(53% + 1rem);
-        margin-left: - 1rem;
+        width: calc(53% + 2.1rem);
+        margin-left: - 1.8rem;
         height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-size: 0.5rem;
         @media (min-width: $ar-big-size){
-          margin-left: - 1.8rem;
+          margin-left: - 2.5rem;
+          width: calc(53% + 1.3rem);
         }
         span{
           padding: 0.65rem;
           border-radius: 50%;
           -webkit-box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
           -moz-box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
-          box-shadow: 0px 0px 5px 0px rgba(176,176,176,1);
-          margin-right: -1rem;
-          background-color: $ar-color-white-0;
+          box-shadow: 0px 0px 5px 0px #b0b0b059;
           z-index: 50;
+          animation: fromRedToWhite ease 1s forwards;
+          -webkit-animation: fromRedToWhite ease 1s forwards;
+          -moz-animation: fromRedToWhite ease 1s forwards;
+          -o-animation: fromRedToWhite ease 1s forwards;
+          -ms-animation: fromRedToWhite ease 1s forwards;
           @media (min-width: $ar-big-size){
             padding: 0.9rem;
             font-size: 0.7rem;
             margin-right: -1.8rem;
           }
           &.ar-price-enabled{
-            color: $ar-color-white-0;
+            animation: fromWhiteToRed ease 1s forwards;
+            -webkit-animation: fromWhiteToRed ease 1s forwards;
+            -moz-animation: fromWhiteToRed ease 1s forwards;
+            -o-animation: fromWhiteToRed ease 1s forwards;
+            -ms-animation: fromWhiteToRed ease 1s forwards;
             cursor: pointer;
-            background-color: $ar-color-red-0;
           }
         }
       }
@@ -336,7 +346,6 @@
   display: flex;
   align-items: center;
   padding: 0 0.75rem;
-  justify-content: center;
   @media (min-width: $ar-big-size) {
     padding: 0 1rem;
   }
@@ -344,7 +353,7 @@
     padding: 1rem 0.75rem;
     z-index: 10;
     @media (min-width: $ar-big-size) {
-      padding: 1.2rem 1rem;
+      padding: 1.4em 0.9em;
     }
     .ar-car-price-title{
       font-size: 0.8rem;
@@ -362,7 +371,7 @@
     .ar-car-price-body{
       padding:  0 0 1rem 0 ;
       @media (min-width: $ar-big-size) {
-        padding:  0 0 1.4rem 0 ;
+        padding:  0 0 1.5rem 0;
       }
       .ar-car-price-details{
         cursor: pointer;
@@ -372,12 +381,12 @@
         align-items: center;
         p{
           margin: 0;
-          font-size: 0.65rem;
+          font-size: 0.8em;
           font-weight: 600;
           color: $ar-color-red-0;
           @media (min-width: $ar-big-size) {
             margin: 0.4rem 0 0 0;
-            font-size: 0.9rem;
+            font-size:0.85em;
             font-weight: 600;
           }
         }
@@ -387,8 +396,8 @@
         color: $ar-color-red-0;
         margin-bottom: 0.25rem;
         @media (min-width: $ar-big-size) {
-          font-size: 2.2rem !important;
-          margin-bottom: 0.9rem;
+          font-size: 2.1rem !important;
+          margin-bottom: 0.4em;
         }
         &:before{
           margin-right: 0.4rem;
@@ -403,13 +412,15 @@
         }
       }
       .ar-car-price-button{
-        font-size: 0.7rem;
+        font-size: 0.75em;
+        padding-top: 9px;
         font-weight: 700;
         width: 85%;
         @media (min-width: $ar-big-size) {
-          font-size: 0.9rem;
+          font-size: .85em;
+          padding-bottom: 11px;
           font-weight: 700;
-          width: 85%;
+          width: 75%;
         }
       }
     }
@@ -428,9 +439,6 @@
     border-bottom-width: thin;
     margin: 0;
     height: 80px;
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      height: 70px;
-    }
     @media (min-width: $ar-big-size){
       height: 105px;
     }
@@ -472,24 +480,6 @@
       margin-bottom: 0;
       font-weight: 500;
     }
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      .ar-car-data-left{
-        padding: 1.3rem 2rem 1.3rem 1.5rem;
-      }
-      .ar-car-data-right{
-        padding: 1rem;
-        margin-left: -0.5rem;
-      }
-      .ar-data-icon{
-        font-size: 0.6rem;
-        &:before{
-          margin-top: 0.1rem;
-        }
-      }
-      p{
-        font-size: 0.6rem;
-      }
-    }
     @media (min-width: $ar-big-size){
       .ar-car-data-left{
         padding: 1.5rem 2rem 1.5rem 1.9rem;
@@ -513,14 +503,10 @@
       }
     }
   }
-
   .ar-car-bottom{
     margin: 0;
     padding: 1rem 0 0 0;
     height: 148px;
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      height: 137px;
-    }
     @media (min-width: $ar-big-size){
       height: 190px;
     }
@@ -552,27 +538,6 @@
             top: 3px;
           }
         }
-        @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-          padding-left: 0.8rem;
-          h3{
-            margin-top: 0.1rem;
-            font-size: 0.9rem;
-          }
-          h6{
-            font-size: 0.55rem;
-            margin: 0.1rem 0 0.1rem 2rem;
-          }
-          .ar-car-type-key{
-            color: $ar-color-red-0;
-            &:before{
-              font-size: 1rem;
-              transform: rotate(40deg);
-              margin-right: 12px;
-              position: relative;
-              top: 3px;
-            }
-          }
-        }
         @media (min-width: $ar-big-size){
           h3{
             margin-top: 0.3rem;
@@ -597,10 +562,6 @@
       .ar-car-features{
         margin: 1rem 0;
         padding-left: 1.8rem;
-        @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-          margin: 1rem 0;
-          padding-left: 1.5rem;
-        }
         @media (min-width: $ar-big-size){
           margin: 1.5rem 0;
           padding-left: 2.7rem;
@@ -625,26 +586,16 @@
               font-weight: 500;
             }
             i{
-              font-size: 0.9rem;
-            }
-            @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-              margin-bottom: 0.1rem;
-              h6{
-                margin: 0 0 0 0.3rem;
-                font-size: 0.6rem;
-              }
-              i{
-                font-size: 0.8rem;
-              }
+              font-size: 1em;
             }
             @media (min-width: $ar-big-size){
               margin-bottom: 0.1rem;
               h6{
                 margin: 0 0 0 0.6rem;
-                font-size: 0.85rem;
+                font-size: 0.85em;
               }
               i{
-                font-size: 1.2rem;
+                font-size: 1em;
               }
             }
           }
@@ -657,20 +608,19 @@
       justify-content: space-between;
       align-items: flex-start;
       width: 33%;
+      border-radius: 0.5rem;
       img{
-        width: 100%;
+        border-radius: 0.5rem;
+        width: 80%;
       }
     }
   }
 }
 
 .ar-card-filters{
-  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-    width: 200px;
-  }
-  @media (min-width: $ar-normal-size) and (max-width: $ar-big-size){
+
     width: 240px;
-  }
+
   @media (min-width: $ar-big-size){
     width: 300px;
   }
@@ -696,26 +646,25 @@
     }
   }
   .ar-card-promotion-data{
-    padding: 2.15rem 1.6rem 1rem 2.1rem;
+    padding: 2rem 1.5rem 1rem 2rem;
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
     width: 67%;
     background-color: $ar-color-white-0;
     h3{
-      font-size: 1.25rem;
+      font-size: 1.4em;
       color: $ar-color-red-0;
     }
     h5{
-      padding: 0.2rem 0 0 0;
       b{
         color: $ar-color-red-0;
         font-weight: 600;
       }
     }
     h6{
-      font-size: 0.75rem;
+      font-size: 0.9em;
       font-weight: 500;
-      margin: 1rem 0;
+      margin: 0.8rem 0;
       &.ar-card-promotion-miles{
         margin: 0.2rem 0;
         strong{
@@ -729,38 +678,10 @@
     }
     .ar-card-promotion-data-small-letter{
       p{
-        margin-top: 1rem;
-        font-size: 0.68rem;
+        margin: 0.8rem 0;
+        font-size: 0.7em;
         line-height: normal;
         font-weight: 500;
-      }
-    }
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      padding: 2rem 1.5rem 1rem 2.1rem;
-      h3{
-        font-size: 1.1rem;
-      }
-      h6{
-        font-size: 0.7rem;
-        margin: 0.8rem 0;
-        &.ar-card-promotion-miles{
-          margin: 0.15rem 0;
-          strong{
-            color: $ar-color-red-0;
-            i{
-              font-size: 0.7em;
-              font-weight: 900;
-            }
-          }
-        }
-      }
-      .ar-card-promotion-data-small-letter{
-        margin-top: 0.8rem;
-        p{
-          margin-top: 1rem;
-          font-size: 0.6rem;
-          margin-bottom: 0;
-        }
       }
     }
     @media (min-width: $ar-big-size){
@@ -804,9 +725,6 @@
   width: 48.8%;
   height: 208px;
   margin-bottom: 1rem;
-  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-    height: 195px;
-  }
   @media (min-width: $ar-big-size){
     height: 275px;
   }
@@ -834,33 +752,11 @@
         text-transform: uppercase;
         font-size: 0.7rem;
     }
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      margin: 0.8rem;
-      .ar-location-icon{
-        margin-right: 0.65rem;
-        font-size: 0.95rem;
-      }
-      .ar-location-date{
-        font-size: 0.8rem;
-        margin:0;
-        font-weight: 500;
-      }
-      .ar-location-place{
-        font-size: 0.55rem;
-        margin:0;
-        font-weight: 500;
-      }
-      h5{
-        margin-top: 0.2rem;
-        margin-bottom: 0.2rem;
-        font-size: 0.65rem;
-      }
-    }
     @media (min-width: $ar-big-size){
       margin: 1.2rem;
       .ar-location-icon{
         margin-right: 0.8rem;
-        font-size: 1.3rem;
+        font-size: 1.2em;
       }
       .ar-location-date{
         font-size: 1.15rem;
@@ -873,9 +769,10 @@
         font-weight: 500;
       }
       h5{
-        margin-top: 0.3rem;
-        margin-bottom: 0.4rem;
-        font-size: 0.9rem;
+        margin-top: .4rem;
+        margin-bottom: .4rem;
+        font-size: .75rem;
+        letter-spacing: .5px;
       }
     }
 
@@ -884,11 +781,6 @@
     margin: 0;
     .map-canvas{
       height: 100px;
-    }
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      .map-canvas{
-        height: 95px;
-      }
     }
     @media (min-width: $ar-big-size){
       padding: 0 0.4rem;
@@ -900,23 +792,24 @@
 }
 
 .ar-optional-equipment{
-  padding: 1rem 1.5rem 1rem 3rem;
+  padding: 1rem 1.5rem 1rem 3.2rem;
   margin-bottom: 1rem;
   .ar-title-with-icon{
-    margin: 0 0.3rem 1rem -1.5rem;
+    margin: 0 0.3rem 1.3rem -1.7rem;
     color: $ar-color-red-0;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     &:before{
-      font-size: 1.1rem;
+      margin-right: .3rem;
+      font-size: 1.2rem;
       position: relative;
-      top: 0.2rem;
+      top: 0.3rem;
       left: -0.5rem;
     }
   }
   .ar-text-card{
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     margin-bottom: 1rem;
   }
   .ar-options-section-card{
@@ -929,17 +822,17 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         .ar-optional-item{
-          font-size: 0.6rem;
+          font-size: 0.7rem;
           margin-bottom: 0.8rem;
           &:before{
             width: 0.8rem;
             height: 0.8rem;
-            top: 0.05rem;
+            top: 0.16rem;
           }
           &:after{
-            top:0;
+            top:0.1rem;
             left: -1.8rem;
           }
           strong{
@@ -972,11 +865,11 @@
         }
       }
       .ar-select-description{
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         margin:0 0 0 0.8rem;
       }
       .ar-optional-item{
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         margin:0 0 0 0;
 
         strong{
@@ -1067,51 +960,119 @@
 }
 
 .ar-client-type-card{
-  height: 125px;
-  padding: 1rem 1.5rem 1rem 3rem;
+  height: 140px;
+  padding: 1rem 1.5rem 1rem 3.2rem;
+  margin-bottom: 1rem;
   .ar-title-with-icon{
-    margin: 0 0.3rem 1rem -1.5rem;
+    margin: 0 0.3rem 1.3rem -1.7rem;
     color: $ar-color-red-0;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     &:before{
-      font-size: 1.1rem;
+      margin-right: .3rem;
+      font-size: 1.2rem;
       position: relative;
-      top: 0.2rem;
+      top: 0.3rem;
       left: -0.5rem;
     }
   }
-  .ar-select-client-type-container{
-    width: 31%;
-    margin-left: -0.25rem;
+  .ar-client-type-container{
     padding-top: 0.3rem;
-    .ar-select-button{
-      padding: 0.55rem 1.1rem;
-      border: solid;
-      border-width: 1.5px;
-      border-color: $ar-color-white-4;
-      background-color: $ar-color-white-1;
-      &:active{
+    @media (min-width: $ar-big-size) {
+      padding-top: 0.6rem;
+    }
+    .ar-select-client-type-container{
+      width: 31%;
+      margin-left: -0.25rem;
+      height: 36.6px;
+      margin-right: 20px;
+      @media (min-width: $ar-big-size) {
+        height: 45px;
+      }
+      .ar-select-button{
+        height: 36.6px;
+        padding: 0.55rem 1.1rem;
+        border: solid;
+        border-width: 1.5px;
         border-color: $ar-color-white-4;
         background-color: $ar-color-white-1;
+        &:active{
+          border-color: $ar-color-white-4;
+          background-color: $ar-color-white-1;
+        }
+        @media (min-width: $ar-big-size) {
+          height: 45px;
+        }
+      }
+      .ar-client-type-select{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-size: 0.7rem;
+        font-weight: 600;
+        @media (min-width: $ar-big-size) {
+          font-size: 0.85rem;
+        }
+        span{
+          font-size: 0.8em;
+          font-weight: 900;
+          margin-right: -0.2rem;
+          margin-top: -0.035rem;
+          @media (min-width: $ar-big-size) {
+            font-size: 0.85rem;
+          }
+        }
       }
     }
-    .ar-client-type-select{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      font-size: 0.6rem;
-      font-weight: 500;
-      span{
-        font-size: 0.8em;
-        font-weight: 900;
-        margin-right: -0.2rem;
-        margin-top: -0.035rem;
+    img{
+      width: 45%;
+      position: absolute;
+      left: 52.7%;
+      top: 6%;
+      @media (min-width: $ar-big-size) {
+        left: 52.5%;
+        top: 7%;
       }
+    }
+    .ar-input-agency-code{
+      background-color: $ar-color-white-1;
+      height: 35px;
+      font-size: .7em;
+      font-weight: 600;
+      color: $ar-color-red-0;
+      @media (min-width: $ar-big-size) {
+        height: 45px;
+        font-size: .9rem;
+      }
+      &:focus{
+        background-color: $ar-color-white-0;
+      }
+    }
+    .ar-validate-input-agency{
+      margin-right: 20px;
+      margin-bottom: 0;
+      width: 43%;
+      .ar-validate-input-agency-button{
+        white-space: pre;
+        border-radius: 0 2rem 2rem 0;
+        font-size: .7em;
+        font-weight: 700;
+        height: 35px;
+        padding: .525rem 1rem;
+        @media (min-width: $ar-big-size) {
+          height: 45px;
+          font-size: .8em;
+        }
+        i{
+          font-size: 0.8em;
+        }
+      }
+
     }
   }
+
   @media (min-width: $ar-big-size) {
     height: 180px;
     padding: 1.4rem 2rem 0.7rem 4.2rem;
@@ -1127,3 +1088,404 @@
     }
   }
 }
+
+.ar-passenger-card{
+  height: 300px;
+  padding: 1rem 1.5rem 1rem 3.2rem;
+  .ar-title-with-icon{
+    margin: 0 0.3rem 1.3rem -1.7rem;
+    color: $ar-color-red-0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    &:before{
+      margin-right: .3rem;
+      font-size: 1.2rem;
+      position: relative;
+      top: 0.3rem;
+      left: -0.5rem;
+    }
+  }
+  .ar-passenger-form-container{
+    padding-left: .3rem;
+    @media (min-width: $ar-big-size){
+      padding-left: 0rem;
+    }
+    .ar-subtitle{
+      color: $ar-color-light-blue-2;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: .5rem 0 1rem 0;
+      @media (min-width: $ar-big-size){
+        padding: .5rem 0 1.2rem 0;
+        font-size: 0.7rem;
+      }
+    }
+    .ar-passenger-form-row{
+      display: flex;
+      align-items: center;
+      padding: 0 0.5em 1em 0;
+      margin: 0;
+      @media (min-width: $ar-big-size){
+        font-size: 0.8rem;
+        padding: 0 0.5em 1.5em 0;
+
+      }
+      .ar-input-passenger-data{
+        background-color: $ar-color-white-1;
+        height: 35px;
+        font-size: .7em;
+        font-weight: 600;
+        color: $ar-color-red-0;
+        @media (min-width: $ar-big-size){
+          height: 45px;
+          font-size: 0.9rem;
+        }
+        &:focus{
+          background-color: $ar-color-white-0;
+        }
+
+      }
+      .ar-select-fly-agency-container{
+        height: 36.6px;
+        @media (min-width: $ar-big-size){
+          height: 45px;
+        }
+        .ar-select-button{
+          height: 36.6px;
+          padding: 0.55rem 1.1rem;
+          border: solid;
+          border-width: 1.5px;
+          border-color: $ar-color-white-4;
+          background-color: $ar-color-white-1;
+          @media (min-width: $ar-big-size){
+            height: 45px;
+            font-size: 0.8rem;
+          }
+          &:active{
+            border-color: $ar-color-white-4;
+            background-color: $ar-color-white-1;
+          }
+        }
+        .ar-client-type-select{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          font-size: 0.7rem;
+          font-weight: 600;
+          @media (min-width: $ar-big-size){
+            font-size: 0.9rem;
+          }
+          span{
+            font-size: 0.8em;
+            font-weight: 900;
+            margin-right: -0.2rem;
+            margin-top: -0.035rem;
+          }
+        }
+      }
+      .ar-validate-input-passenger{
+        margin-right: 20px;
+        margin-bottom: 0;
+        width: 43%;
+        .ar-validate-input-passenger-button{
+          white-space: pre;
+          border-radius: 0 2rem 2rem 0;
+          font-size: .7em;
+          font-weight: 700;
+          height: 35px;
+          padding: .525rem 1rem;
+          @media (min-width: $ar-big-size){
+            height: 45px;
+            font-size: .9rem;
+            padding: .525rem 1.5rem;
+          }
+          i{
+            font-size: 0.8em;
+          }
+        }
+
+      }
+    }
+  }
+
+  @media (min-width: $ar-big-size) {
+    height: 370px;
+    padding: 1.4rem 2rem 0.7rem 4.2rem;
+    .ar-title-with-icon {
+      margin: 0 0.3rem 0.5rem -2.1rem;
+      font-size: 0.9rem;
+
+      &:before {
+        font-size: 1.4rem;
+        top: 0.3rem;
+        left: -0.8rem;
+      }
+    }
+  }
+}
+
+.ar-card-details{
+  width: 30%;
+  padding: 0 10px;
+  @media (min-width: $ar-big-size){
+    margin-bottom: 2rem;
+  }
+  .ar-card-details-title{
+    padding: 1em 1.2em;
+    h1{
+      font-size: 1em;
+      color: $ar-color-red-0;
+    }
+  }
+  .ar-card-details-subtitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0 !important;
+    cursor: pointer;
+    margin-bottom: 0;
+    color: $ar-color-blue-0;
+    background-color: $ar-color-white-3;
+    padding-right: .4em;
+    h2{
+      font-size: .75em;
+      margin-bottom: 0;
+      padding: 0.8rem 1.5rem;
+    }
+    .ar-button-change-plan{
+      font-size: 0.7em;
+      font-weight: 600;
+      padding: .5em 1.2em;
+    }
+    @media (min-width: $ar-big-size){
+      h2{
+        font-size: .9em;
+        letter-spacing: .2px;
+        font-weight: 700;
+      }
+      .ar-button-change-plan{
+        font-size: .9em;
+        font-weight: 600;
+        padding: .5em 1.2em;
+      }
+    }
+  }
+  .ar-card-details-rates{
+    padding: 1rem 1.5rem;
+    h5{
+      font-size: .8em;
+      margin-bottom: .2em;
+      @media (min-width: $ar-big-size){
+        font-size: 0.85em;
+      }
+    }
+    h6{
+      color: $ar-color-gray-1;
+      font-size: .6em;
+      @media (min-width: $ar-big-size){
+        font-size: 0.7em;
+      }
+    }
+    .ar-card-details-rates-list{
+      padding-top: .1em;
+      .ar-card-details-rate-item{
+        p{
+          font-size: .8em;
+          margin: .6em 0;
+          font-weight: 500;
+          @media (min-width: $ar-big-size){
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+  .ar-card-details-additional-equipment{
+    padding: 1rem 1.6rem 1.5rem 1.6rem;
+    .ar-card-details-additional-equipment-list{
+      .ar-card-details-additional-equipment-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        p{
+          font-size: .7em;
+          margin: .3em 0;
+          font-weight: 500;
+          @media (min-width: $ar-big-size){
+            font-size: 0.9rem;
+          }
+        }
+        strong{
+          color: $ar-color-red-0;
+          font-size: .7em;
+          text-align: left;
+          width: 25%;
+          @media (min-width: $ar-big-size){
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+  .ar-card-details-total{
+    border-top: solid thin $ar-color-gray-1;
+    padding: 1rem 1.4rem 1rem 1.5rem;
+    .ar-card-details-total-title{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.3em;
+      h4{
+        font-size: .7em;
+        margin: 0;
+        @media (min-width: $ar-big-size){
+          font-size: 0.8em;
+        }
+      }
+      .ar-card-details-total-amount {
+        display: flex;
+        align-items: center;
+        p {
+          font-size: .7em;
+          margin: 0.1em 0 0 0;
+          font-weight: 500;
+          @media (min-width: $ar-big-size){
+            font-size: 0.8rem;
+          }
+        }
+        strong {
+          color: $ar-color-red-0;
+          font-size: 1.7em;
+          text-align: left;
+          padding-left: 0.1em;
+          @media (min-width: $ar-big-size){
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+    .ar-card-details-total-small-letter{
+      font-size: .7em;
+      line-height: 1.2em;
+      font-weight: 500;
+      @media (min-width: $ar-big-size){
+        font-size: 0.8rem;
+      }
+    }
+    .ar-button-confirm-container{
+      margin: 1.5em 0 0.8em 0;
+      display: flex;
+      justify-content: center;
+      .ar-button-confirm{
+        font-size: .7em;
+        width: 100%;
+        padding-top: .6em;
+        padding-bottom: .6em;
+        &.disabled{
+          background-color: $ar-color-gray-1;
+          border-color: $ar-color-gray-1;
+          opacity: 1;
+        }
+        @media (min-width: $ar-big-size){
+          font-size: 0.85rem;
+        }
+        i{
+          position: absolute;
+          left: 88%;
+          top: 33%;
+          font-size: .7em;
+          font-weight: 900;
+          @media (min-width: $ar-big-size){
+            font-size: 0.85rem;
+            top: 25%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ar-card-change-plan{
+  padding: 2rem 4rem;
+  @media (min-width: $ar-big-size){
+    padding: 2.5rem 4.5rem;
+  }
+  p{
+    font-weight: 500;
+    font-size: 0.8em;
+    i{
+      vertical-align: middle;
+    }
+    @media (min-width: $ar-big-size){
+      font-size: .95em;
+    }
+  }
+  .ar-card-change-plan-title{
+    font-size: .85rem;
+    font-weight: bold;
+    margin-bottom: .5rem;
+    color: $ar-color-blue-0;
+    @media (min-width: $ar-big-size){
+      font-size: 1rem;
+    }
+  }
+  .ar-car-chevron{
+    margin-left: -4rem;
+    position: absolute;
+    width: calc(100% + 8rem);
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    @media (min-width: $ar-big-size){
+      width: calc(100% + 8rem);
+    }
+    span{
+      margin-right: -.5rem;
+      padding: 0.65rem;
+      z-index: 50;
+      color: $ar-color-gray-1;
+      cursor: pointer;
+      font-size: 1.8rem;
+      @media (min-width: $ar-big-size){
+        padding: 0.9rem;
+        font-size: 2rem;
+      }
+    }
+  }
+  .ar-button-confirm-container{
+    margin: 1.5em 0 0.8em 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 1200;
+    .ar-button-confirm{
+      font-size: .75em;
+      font-weight: 600;
+      width: 100%;
+      padding-top: .6em;
+      padding-bottom: .6em;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      @media (min-width: $ar-big-size){
+        font-size: 0.85rem;
+      }
+      i{
+        font-size: .7em;
+        font-weight: 900;
+        margin-top: .3em;
+        @media (min-width: $ar-big-size){
+          font-size: 0.85rem;
+          top: 25%;
+          margin-top: .4em;
+        }
+      }
+    }
+  }
+}
+

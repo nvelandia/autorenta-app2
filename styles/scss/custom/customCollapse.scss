@@ -3,11 +3,6 @@
     font-size: 0.75rem;
     margin-bottom: 0;
   }
-  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-    h5{
-      font-size: 0.65rem;
-    }
-  }
   @media (min-width: $ar-normal-size) and (max-width: $ar-big-size){
     h5{
       font-size: 0.75rem;
@@ -15,7 +10,9 @@
   }
   @media (min-width: $ar-big-size){
     h5{
-      font-size: 0.9rem;
+      font-size: 0.75em;
+      letter-spacing: .2px;
+      font-weight: 700;
     }
   }
   border-radius: 0 !important;
@@ -31,10 +28,6 @@
     white-space: pre;
     font-size: 0.8rem !important;
     padding-top: 0.1rem;
-    @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-      font-size: 0.6rem !important;
-      padding-top: 0.25rem;
-    }
     @media (min-width: $ar-normal-size) and (max-width: $ar-big-size){
       font-size: 0.8rem !important;
       padding-top: 0.1rem;
@@ -49,14 +42,11 @@
 .ar-filter-main-title{
   color: $ar-color-blue-0;
   font-weight: 600;
-  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size){
-    font-size: 0.9rem;
-  }
   @media (min-width: $ar-normal-size) and (max-width: $ar-big-size){
-    font-size: 1.1rem;
+    font-size: 1em;
   }
   @media(min-width: $ar-big-size){
-    font-size: 1.25rem;
+    font-size: 1em;
   }
 }
 

@@ -6,6 +6,7 @@ import Pagination from '../../Atoms/Pagination';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { redirectTo } from '../../../../utils/helpers/redirectTo';
+import CustomCarousel from '../../Molecules/Carousels/CustomCarousel';
 
 class Offer extends React.Component {
   constructor(props) {
@@ -136,7 +137,7 @@ class Offer extends React.Component {
                   className={`ar-round-button  ar-promo-button ${card.button} w-100 ml-3 mr-3`}
                   onClick={() => redirectTo('/promotion')}
                 >
-                  Ver más información <i className="ar-icon-chevron-right mt-i-1 fs-i--1" />
+                  Más información
                 </Button>
               </Row>
             </CardBody>
@@ -144,7 +145,7 @@ class Offer extends React.Component {
         </Col>
       );
     });
-    return cards.slice(this.state.selectedPage * 4 - 4, this.state.selectedPage * 4);
+    return [cards.slice(0, 4), cards.slice(4, 8), cards.slice(8, 12)];
   };
 
   // metodo con lo que viene del back
@@ -167,7 +168,7 @@ class Offer extends React.Component {
   //                   className={`ar-round-button  ar-promo-button ${offer.button} w-100 ml-3 mr-3`}
   //                   style={{ backgroundColor: offer.company.color, borderColor: offer.company.color }}
   //                 >
-  //                   Ver más información <i className="ar-icon-chevron-right" />
+  //                   Más información
   //                 </Button>
   //               </Row>
   //             </CardBody>
@@ -183,14 +184,16 @@ class Offer extends React.Component {
     return (
       <div>
         <Row className="justify-content-center ml-0 mr-0">
-          <Col className="justify-content-center" lg="9">
+          <div className="justify-content-center ar-central-container">
             <Row className="mb--3">
               <Col className="justify-content-center text-center">
                 <h2>Descubre todas las ofertas y promociones</h2>
               </Col>
             </Row>
-            <Row className="justify-content-md-around justify-content-sm-center  mt-5">{this.renderCards()}</Row>
-          </Col>
+            <Row className=" justify-content-md-around justify-content-sm-center mt-5">
+              <CustomCarousel activeIndex={this.state.selectedPage - 1} items={this.renderCards()} />
+            </Row>
+          </div>
         </Row>
         <div className="ar-pagination-container">
           <Pagination

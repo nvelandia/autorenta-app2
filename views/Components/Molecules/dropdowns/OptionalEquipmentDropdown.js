@@ -12,15 +12,13 @@ class OptionalEquipmentDropdown extends React.Component {
     };
   }
 
-  handleOnSelect = (event, actions) => {
-    if (actions) {
-      this.props.dispatch(actions());
-    }
-    this.setState({ value: event.target.value });
+  handleOnSelect = (item, propertyIndex) => {
+    this.props.handleOnSelect(item, propertyIndex);
+    this.setState({ value: item });
   };
 
   render() {
-    const { items, name, color, actions } = this.props;
+    const { values, propertyIndex, color } = this.props;
     return (
       <UncontrolledDropdown group>
         <DropdownToggle color={color} className="ar-round-button ar-select-option">
@@ -29,15 +27,15 @@ class OptionalEquipmentDropdown extends React.Component {
             <span className="ar-icon-chevron-down" />
           </div>
         </DropdownToggle>
-        <DropdownMenu>
-          {items.map((item, index) => {
+        <DropdownMenu className="ar-dropdown-optional-equipment">
+          {values.map((item, index) => {
             return (
               <DropdownItem
                 key={index}
                 id={index}
-                name={name}
+                name={propertyIndex}
                 value={item}
-                onClick={(e) => this.handleOnSelect(e, actions[index])}
+                onClick={() => this.handleOnSelect(item, propertyIndex)}
               >
                 {item}
               </DropdownItem>
@@ -54,7 +52,7 @@ OptionalEquipmentDropdown.propTypes = {
   title: PropTypes.string,
   name: PropTypes.string,
   color: PropTypes.string,
-  dispatch: PropTypes.func,
+  handleOnSelect: PropTypes.func,
 };
 
 export default OptionalEquipmentDropdown;

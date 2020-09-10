@@ -2,23 +2,23 @@
   .ar-footer-up{
     height: 300px;
     .ar-subscribe{
-      padding: 2rem 0.5rem 2rem 1.5rem;
+      padding: 25px 0;
       height: 40%;
       width: 100%;
       margin: 0;
       border-bottom: solid;
-      border-bottom-color: $ar-color-blue-7;
+      border-bottom-color: #053e8a;
       border-width: thin;
       .ar-subscribe-text{
-        margin-left: -0.7rem!important;
+        margin-left: 0 !important;
         margin-right: 1rem;
         h2{
-          font-size: 1.05rem;
+          font-size: .9em;
           letter-spacing: 0.3px;
         }
         @media (min-width: $ar-big-size){
           h2{
-            font-size: 1.25rem;
+            font-size: 1em;
             letter-spacing: 0.3px;
           }
         }
@@ -27,9 +27,12 @@
         display: flex;
         align-items: center;
       }
+      .ar-register-button-container{
+        margin-left: 10px;
+      }
     }
     .ar-links{
-      padding-left: 1.4rem;
+      padding-left: 15px;
       height: 60%;
       width: 100%;
       .ar-group-links{
@@ -76,12 +79,12 @@
   .ar-footer-down{
     height: 100px;
     border-top: solid;
-    border-color: $ar-color-blue-7;
+    border-color: #053e8a;
     border-width: thin;
     color: $ar-color-white-1;
     p{
       font-size: 0.8rem;
-      margin-top: 10px;
+      margin-top: 15px;
     }
   }
 }
