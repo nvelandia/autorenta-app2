@@ -155,6 +155,8 @@ const defaultState = {
   },
   clientType: '',
   airlines: [],
+  organization: {},
+  error: {},
 };
 
 const step2Reducer = (state = defaultState, action) => {
@@ -186,11 +188,23 @@ const step2Reducer = (state = defaultState, action) => {
       return {
         ...state,
         clientType: action.clientType,
+        organization: {},
       };
     case actionNames.loadAirlinesSuccessfully:
       return {
         ...state,
         airlines: action.airlines,
+      };
+    case actionNames.validateIdSuccessfully:
+      return {
+        ...state,
+        organization: action.organization,
+      };
+    case actionNames.validateIdUnsuccessfully:
+      return {
+        ...state,
+        organization: {},
+        error: { validationId: 'Ingresa un número de ID válido' },
       };
     default:
       return state;

@@ -41,7 +41,10 @@ export const actionNames = {
   addOptionalEquipment: 'ADD_OPTIONAL_EQUIPMENT',
   selectClientType: 'SELECT_CLIENT_TYPE',
   loadAirlines: 'LOAD_AIRLINES',
+  validateId: 'VALIDATE_ID',
   //Step2-Service
   loadAirlinesSuccessfully: 'LOAD_AIRLINES_SUCCESSFULLY',
   loadAirlinesUnsuccessfully: 'LOAD_AIRLINES_UNSUCCESSFULLY',
+  validateIdSuccessfully: 'VALIDATE_ID_SUCCESSFULLY',
+  validateIdUnsuccessfully: 'VALIDATE_ID_UNSUCCESSFULLY',
 };

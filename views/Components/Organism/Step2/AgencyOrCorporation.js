@@ -21,7 +21,7 @@ import {
 import classnames from 'classnames';
 import ClientTypeDropdown from '../../Molecules/dropdowns/ClientTypeDropdown';
 
-class Agency extends React.Component {
+class AgencyOrCorporation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -233,10 +233,10 @@ class Agency extends React.Component {
   }
 }
 
-Agency.proptypes = {};
+AgencyOrCorporation.proptypes = {};
 
 const mapStateToProps = (state) => {
   return state.step2Reducer;
 };
 
-export default connect(mapStateToProps)(Agency);
+export default connect(mapStateToProps)(AgencyOrCorporation);

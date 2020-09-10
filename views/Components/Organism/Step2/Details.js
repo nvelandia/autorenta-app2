@@ -10,6 +10,7 @@ class Details extends React.Component {
     super(props);
     this.state = {
       showChangePlanModal: false,
+      conditionsAndTerms: false,
     };
     this.dispatch = props.dispatch;
     this.handleOnLoad();
@@ -47,7 +48,12 @@ class Details extends React.Component {
   };
 
   handleOnChange = (event) => {
+    console.log(event.target.value);
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleCheckbox = () => {
+    this.setState({ conditionsAndTerms: !this.state.conditionsAndTerms });
   };
 
   render() {
@@ -108,7 +114,6 @@ class Details extends React.Component {
         <div className="ar-card-details-additional-equipment">
           <div className="ar-card-details-additional-equipment-list">
             {this.props.optionalEquipment.others.map((item, index) => {
-              console.log(item);
               if (item.added) {
                 return (
                   <div key={index} className="ar-card-details-additional-equipment-item">
@@ -166,13 +171,25 @@ class Details extends React.Component {
             abonados en destino.
           </p>
           <div className="custom-control custom-checkbox">
-            <input className="custom-control-input" id="customCheck1" type="checkbox" />
+            <input
+              className="custom-control-input"
+              id="customCheck1"
+              type="checkbox"
+              name="conditionsAndTerms"
+              checked={this.state.conditionsAndTerms}
+              onChange={this.handleCheckbox}
+            />
             <label className="custom-control-label ar-card-details-total-small-letter" htmlFor="customCheck1">
               He leido y acepto los términos y condiciones vigentes en el país destino de la renta.
             </label>
           </div>
           <div className="ar-button-confirm-container">
-            <Button className="btn-icon ar-round-button ar-button-confirm" color="red-0" type="button">
+            <Button
+              className="btn-icon ar-round-button ar-button-confirm"
+              color="red-0"
+              type="button"
+              disabled={!this.state.conditionsAndTerms}
+            >
               Confirmar reserva
               <i className="ar-icon-chevron-right" />
             </Button>

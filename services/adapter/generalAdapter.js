@@ -4,17 +4,17 @@ import errorResponsesPresenter from '../../utils/helpers/errorResponsesPresenter
 import { actionNames } from '../../utils/constants/actionConstants';
 
 class generalAdapter {
-  subscribeToNewsletter = (response, body) => {
-    const { status, data } = response;
+  subscribeToNewsletter = (response) => {
+    const { data } = response;
 
-    if (!isError(status)) {
+    if (data.success) {
       return successfullyResponsesPresenter.withOnlyMessage(
         actionNames.subscribedSuccessfully,
         'Subscribed to newsletter',
       );
     }
 
-    return errorResponsesPresenter.form(data, status, body, actionNames.subscribedUnsuccessfully);
+    return errorResponsesPresenter.formError(data, actionNames.subscribedUnsuccessfully);
   };
 }
 export default new generalAdapter();

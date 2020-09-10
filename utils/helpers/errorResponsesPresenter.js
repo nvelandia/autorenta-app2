@@ -1,18 +1,14 @@
 class errorResponsesPresenter {
-  listError = (data, status, body, type) => {
+  listError = (data, type) => {
     return {
       data,
-      status,
-      body,
       type,
     };
   };
 
-  formError = (data, status, body, type) => {
+  formError = (data, type) => {
     return {
       data,
-      status,
-      body,
       type,
     };
   };

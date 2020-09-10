@@ -88,9 +88,9 @@ class FilterGroup extends React.Component {
         <Collapse role="tabpanel" isOpen={this.state.openedCollapses.includes('collapseOne')}>
           <CardBody className="pl-3">
             {!priceRange ? (
-              filters.map((key) => {
+              filters.map((key, index) => {
                 return (
-                  <div className="d-flex m-1 align-items-center">
+                  <div key={index} className="d-flex m-1 align-items-center">
                     {type === 'check' ? (
                       <div className="custom-control custom-checkbox mr-1">
                         <input

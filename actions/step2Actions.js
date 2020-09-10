@@ -27,3 +27,10 @@ export const loadAirlines = () => {
     type: actionNames.loadAirlines,
   };
 };
+
+export const validateId = (id) => {
+  return {
+    type: actionNames.validateId,
+    id,
+  };
+};

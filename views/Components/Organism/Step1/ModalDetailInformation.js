@@ -50,9 +50,9 @@ class ModalDetailInformation extends React.Component {
               </Row>
             </CardHeader>
             <CardBody className="py-2">
-              {information.map((item) => {
+              {information.map((item, index) => {
                 return (
-                  <p className="fs--1 mb-1">
+                  <p key={index} className="fs--1 mb-1">
                     <i className="ar-icon-check-solid ar-green-text" />
                     {'  ' + item.includes}
                   </p>

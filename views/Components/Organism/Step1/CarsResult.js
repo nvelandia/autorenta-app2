@@ -46,9 +46,9 @@ class CarsResult extends React.Component {
   };
 
   renderPrice = (car) => {
-    const prices = car.rates.map((rate) => {
+    const prices = car.rates.map((rate, index) => {
       return (
-        <Col xl="6" lg="6" className="ar-car-price">
+        <Col xl="6" lg="6" className="ar-car-price" key={index}>
           <Card className="text-center  shadow mb-0">
             <CardHeader className="bg-transparent ar-car-price-title">
               <h4 className="mb-0">{rate.name}</h4>
@@ -59,9 +59,9 @@ class CarsResult extends React.Component {
                   <i className="ar-icon-info va-middle" /> Ver detalle del plan
                 </p>
               </div>
-              <CardText className="mb-2">
+              <div className="mb-2">
                 <h1 className="ar-car-price-price">{rate.price}</h1>
-              </CardText>
+              </div>
               <CustomButton
                 text={'Reservar ahora'}
                 event={() => this.handleOnClick(car)}

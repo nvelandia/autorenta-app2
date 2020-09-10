@@ -16,8 +16,7 @@ import LocationSelected from '../Components/Organism/Step2/LocationSelected';
 import OptionalEquipment from '../Components/Organism/Step2/OptionalEquipment';
 import ClientType from '../Components/Organism/Step2/ClientType';
 import Passenger from '../Components/Organism/Step2/Passenger';
-import Agency from '../Components/Organism/Step2/Agency';
-import Corporation from '../Components/Organism/Step2/Corporation';
+import AgencyOrCorporation from '../Components/Organism/Step2/AgencyOrCorporation';
 
 class Step2 extends React.Component {
   constructor(props) {
@@ -46,17 +45,15 @@ class Step2 extends React.Component {
                 <LocationSelected location={this.props.location.dropoff} title={'oficina de devolución'} />
               </div>
               <OptionalEquipment addOptionalEquipment={actions.addOptionalEquipment} />
-              <ClientType selectClientType={actions.selectClientType} />
-              {this.props.clientType === 'Agencia de viajes' ? <Agency /> : null}
+              <ClientType selectClientType={actions.selectClientType} validateId={actions.validateId} />
+              {this.props.organization.organization_id ? <AgencyOrCorporation /> : null}
               {this.props.clientType === 'Pasajero / Cliente directo' ? <Passenger /> : null}
-              {this.props.clientType === 'Corporativo / Empresas' ? <Corporation /> : null}
             </Col>
             <div className="ar-card-details">
               <Details changePlan={actions.changePlan} />
             </div>
           </div>
         </Row>
-
         <Banner />
         <CustomFooter />
         <UpToTop />

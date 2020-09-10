@@ -4,10 +4,10 @@ import errorResponsesPresenter from '../../utils/helpers/errorResponsesPresenter
 import { actionNames } from '../../utils/constants/actionConstants';
 
 class step2Adapter {
-  loadAirlines = (response, body) => {
-    const { status, data } = response;
+  loadAirlines = (response) => {
+    const { data } = response;
 
-    if (!isError(status)) {
+    if (data.success) {
       return successfullyResponsesPresenter.listResponse(
         actionNames.loadAirlinesSuccessfully,
         'airlines',
@@ -16,7 +16,21 @@ class step2Adapter {
       );
     }
 
-    return errorResponsesPresenter.form(data, status, body, actionNames.loadAirlinesUnsuccessfully);
+    return errorResponsesPresenter.listError(data, actionNames.loadAirlinesUnsuccessfully);
+  };
+
+  validateId = (response, body) => {
+    const { data } = response;
+
+    if (data.success) {
+      return successfullyResponsesPresenter.withOnlyData(
+        actionNames.validateIdSuccessfully,
+        'organization',
+        data.response,
+      );
+    }
+
+    return errorResponsesPresenter.formError(data, actionNames.validateIdUnsuccessfully);
   };
 }
 export default new step2Adapter();

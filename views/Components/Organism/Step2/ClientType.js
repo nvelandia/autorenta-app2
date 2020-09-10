@@ -19,8 +19,20 @@ class ClientType extends React.Component {
   }
 
   handleOnSelect = (value) => {
-    this.setState({ clientType: value });
+    this.setState({ clientType: value, agencyCode: '', corporationCode: '' });
     this.dispatch(this.props.selectClientType(value));
+  };
+
+  handleValidateClick = (agency) => {
+    if (agency) {
+      this.dispatch(this.props.validateId(this.state.agencyCode));
+    } else {
+      this.dispatch(this.props.validateId(this.state.corporationCode));
+    }
+  };
+
+  handleOnChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
@@ -54,7 +66,9 @@ class ClientType extends React.Component {
                 <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
                   <Input
                     className="ar-round-input ar-input-agency-code"
-                    placeholder="Ingresa tu número de ID"
+                    placeholder={
+                      !this.props.error.validationId ? 'Ingresa tu número de ID' : this.props.error.validationId
+                    }
                     type="text"
                     name="agencyCode"
                     onFocus={() => this.setState({ agencyCodeFocus: true })}
@@ -65,7 +79,7 @@ class ClientType extends React.Component {
                     <Button
                       className=" btn-icon w-100 ar-validate-input-agency-button"
                       color="red-0"
-                      onClick={this.handleSearchClick}
+                      onClick={() => this.handleValidateClick(true)}
                     >
                       <span className="nav-link-inner--text">Validar </span>
                       <i className="ar-icon-chevron-right" />
@@ -86,7 +100,9 @@ class ClientType extends React.Component {
                 <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
                   <Input
                     className="ar-round-input ar-input-agency-code"
-                    placeholder="Ingresa tu número de ID"
+                    placeholder={
+                      !this.props.error.validationId ? 'Ingresa tu número de ID' : this.props.error.validationId
+                    }
                     type="text"
                     name="corporationCode"
                     onFocus={() => this.setState({ corporationCodeFocus: true })}
@@ -97,7 +113,7 @@ class ClientType extends React.Component {
                     <Button
                       className=" btn-icon w-100 ar-validate-input-agency-button"
                       color="red-0"
-                      onClick={this.handleSearchClick}
+                      onClick={() => this.handleValidateClick(false)}
                     >
                       <span className="nav-link-inner--text">Validar </span>
                       <i className="ar-icon-chevron-right" />
@@ -116,10 +132,11 @@ class ClientType extends React.Component {
 ClientType.propTypes = {
   dispatch: PropTypes.func,
   selectClientType: PropTypes.func,
+  validateId: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return state.step2Reducer;
 };
 
 export default connect(mapStateToProps)(ClientType);
