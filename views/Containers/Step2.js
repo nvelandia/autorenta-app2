@@ -35,7 +35,7 @@ class Step2 extends React.Component {
     return (
       <>
         <CustomNavBar />
-        <StepsHeader step={3} />
+        <StepsHeader step={2} />
         <Row className="justify-content-center mt-4 ml-0 mr-0">
           <div className="ar-central-container d-flex">
             <Col>
@@ -46,8 +46,12 @@ class Step2 extends React.Component {
               </div>
               <OptionalEquipment addOptionalEquipment={actions.addOptionalEquipment} />
               <ClientType selectClientType={actions.selectClientType} validateId={actions.validateId} />
-              {this.props.organization.organization_id ? <AgencyOrCorporation /> : null}
-              {this.props.clientType === 'Pasajero / Cliente directo' ? <Passenger /> : null}
+              {this.props.organization.organization_id ? (
+                <AgencyOrCorporation updateFormData={actions.updateFormData} />
+              ) : null}
+              {this.props.clientType === 'Pasajero / Cliente directo' ? (
+                <Passenger updateFormData={actions.updateFormData} />
+              ) : null}
             </Col>
             <div className="ar-card-details">
               <Details changePlan={actions.changePlan} />

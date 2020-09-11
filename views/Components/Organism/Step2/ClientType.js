@@ -52,7 +52,7 @@ class ClientType extends React.Component {
               />
             </div>
             {this.state.clientType === 'Pasajero / Cliente directo' ? (
-              <img src={'/img/custom/step2/banner-pay-online-discount.png'} alt="offer" />
+              <img className="fade-in" src={'/img/custom/step2/banner-pay-online-discount.png'} alt="offer" />
             ) : null}
             {this.state.clientType === 'Agencia de viajes' ? (
               <FormGroup
@@ -71,6 +71,7 @@ class ClientType extends React.Component {
                     }
                     type="text"
                     name="agencyCode"
+                    defaultValue="5F2961A48F468"
                     onFocus={() => this.setState({ agencyCodeFocus: true })}
                     onBlur={() => this.setState({ agencyCodeFocus: false })}
                     onChange={this.handleOnChange}

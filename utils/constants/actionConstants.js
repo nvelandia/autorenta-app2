@@ -42,6 +42,7 @@ export const actionNames = {
   selectClientType: 'SELECT_CLIENT_TYPE',
   loadAirlines: 'LOAD_AIRLINES',
   validateId: 'VALIDATE_ID',
+  updateFormData: 'UPDATE_FORM_DATA',
   //Step2-Service
   loadAirlinesSuccessfully: 'LOAD_AIRLINES_SUCCESSFULLY',
   loadAirlinesUnsuccessfully: 'LOAD_AIRLINES_UNSUCCESSFULLY',

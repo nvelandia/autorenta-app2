@@ -1489,3 +1489,297 @@
   }
 }
 
+.ar-rent-state{
+  .ar-rent-state-description{
+    display: flex;
+    justify-content: center;
+    margin: 0 0 1.5rem 0;
+    img{
+      width: 150px;
+      margin-right: 1rem;
+    }
+    div{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 440px;
+      h2{
+        color: $ar-color-green-0;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        margin-bottom: 0.4rem;
+      }
+      h6{
+        margin-left: 0.3rem;
+        font-weight: 500;
+      }
+    }
+  }
+  .ar-ren-state-card{
+    margin-bottom: 1.5rem;
+    background-color: $ar-color-green-0;
+    color: $ar-color-white-0 !important;
+    .ar-rent-state-body{
+      padding: 1rem 0;
+      display: flex;
+      align-items: center;
+      height: 90px;
+      .ar-rent-state-left{
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      i{
+        font-size: 2.2rem;
+        margin-bottom: -0.5rem;
+      }
+      h1{
+        color: $ar-color-white-0;
+        margin: 0 5px 0 0;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+      h6{
+        width: 195px;
+        color: $ar-color-white-0;
+        margin: 0;
+        letter-spacing: 0.03em;
+        font-weight: 500;
+        font-size: .75em;
+      }
+    }
+      .ar-rent-state-center{
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      border-left: solid;
+      border-right: solid;
+      border-color: $ar-color-green-1;
+      i{
+        font-size: 2.5rem;
+        margin: 0 0 -5px -5px;
+      }
+      h4{
+        color: $ar-color-white-0;
+        margin: 0 0 0 -8px;
+        font-weight: 700;
+      }
+      h6{
+        width: 200px;
+        color: $ar-color-white-0;
+        margin: 0 0 -3px -8px;
+        letter-spacing: 0.03em;
+        font-weight: 400;
+      }
+    }
+      .ar-rent-state-right{
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 0 1.5rem;
+      width: 100%;
+      .ar-rent-state-button{
+        display: flex;
+        align-items: center;
+        background-color: $ar-color-white-0;
+        color: $ar-color-green-0;
+        height: 35px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding-left: 1.6rem;
+        box-shadow: 0 7px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+        i{
+          font-size: .8em;
+          font-weight: 700;
+          margin: 0.2em -0.3rem 0 0.7rem;
+        }
+      }
+    }
+    }
+  }
+}
+
+.ar-payment{
+  padding: 1.1rem;
+  .ar-payment-card-top{
+    margin-bottom: 1rem;
+    border: solid;
+    border-color: $ar-color-red-0;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    .ar-payment-left{
+      width: 30%;
+      padding-left: 3.3rem;
+      .ar-payment-left-title{
+        margin: 0 0 0.4rem -2rem;
+        color: $ar-color-red-0;
+        font-size: 0.8rem;
+        font-weight: 700;
+        i{
+          font-size: 1.2rem;
+          position: relative;
+          top: 0.25rem;
+          left: -0.3rem;
+        }
+      }
+      .ar-payment-left-text{
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+    .ar-payment-right{
+      width: 70%;
+      padding: 0 1rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      .ar-payment-options-card{
+        width: 510px;
+        padding: 2rem 0;
+        box-shadow: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0;
+        background-color: $ar-color-white-1;
+        .ar-payment-option-text{
+          padding: 0 1.5rem;
+          h6{
+            max-width: 175px;
+            font-weight: 500;
+          }
+        }
+        .ar-payment-radios-button-container{
+          border-left: solid;
+          border-color: $ar-color-gray-1;
+          padding: 0 1.8rem 0 1.2rem;
+          .ar-payment-radio-button{
+            white-space: pre;
+            font-size: 0.7rem;
+            font-weight: 600;
+            &:before, &:after{
+              width: 0.8rem;
+              height: 0.8rem;
+              top: 0.15rem;
+              left: -1.5rem
+            }
+          }
+        }
+      }
+      .ar-payment-button-next{
+        font-weight: 700;
+        font-size: .7rem;
+        margin-left: 1rem;
+        padding-left: 2.2rem;
+        i{
+          font-size: 0.8em;
+          margin: 0 -0.2rem 0 1rem;
+        }
+      }
+    }
+  }
+  .ar-payment-card-bottom{
+    border: solid;
+    border-color: $ar-color-gray-1;
+    border-width: 1px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 0;
+    .ar-payment-left{
+      width: 30%;
+      padding-left: 3.3rem;
+      .ar-payment-left-title{
+        margin: 0 0 0.4rem -2rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        i{
+          color: $ar-color-gray-1;
+          font-size: 1.2rem;
+          position: relative;
+          top: 0.25rem;
+          left: -0.3rem;
+        }
+      }
+      .ar-payment-left-text{
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+    .ar-payment-right{
+      width: 70%;
+      padding: 0 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .ar-payment-options-card{
+        width: 510px;
+        padding: 1rem 0;
+        box-shadow: none;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0;
+        background-color: $ar-color-white-1;
+        .ar-payment-option-text{
+          padding: 0 1.5rem;
+          h6{
+            font-weight: 500;
+          }
+        }
+      }
+      .ar-payment-number-reserve{
+        padding-right: 1rem;
+        text-align: right;
+        max-width: 180px;
+        h5{
+          font-size: 0.8rem;
+          margin-bottom: 0;
+        }
+        h4{
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: $ar-color-green-0;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.ar-reserve-details{
+  padding: 1rem;
+  .ar-reserve-details-text-container{
+    width: 35%;
+    padding: 0 0 0 3.2rem;
+    .ar-reserve-details-title{
+      margin: 0.5rem 0 1.5rem 0;
+      text-transform: uppercase;
+      color: $ar-color-red-0;
+      font-size: 0.75rem;
+      i{
+        position: absolute;
+        font-size: 1.2rem;
+        left: 2rem;
+        top: 1.7rem;
+      }
+    }
+    h6{
+      font-size: .7rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+      strong{
+        color: $ar-color-red-0;
+      }
+    }
+  }
+  .ar-reserve-details-map-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 65%;
+  }
+}

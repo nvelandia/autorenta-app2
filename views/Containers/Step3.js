@@ -1,44 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as homeActions from '../../actions/homeActions';
+import * as actions from '../../actions/step3Actions';
 import * as generalActions from '../../actions/generalActions';
-import * as actions from '../../actions/step1Actions';
 import CustomNavBar from '../Components/Molecules/Navbars/CustomNavBar';
 import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
 import Banner from '../Components/Molecules/banners/Banner';
 import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
-import ActiveSearch from '../Components/Organism/Step1/ActiveSearch';
-import Result from '../Components/Organism/Step1/Result';
+import { Col, Row } from 'reactstrap';
+import RentState from '../Components/Organism/Step3/RentState';
+import Payment from '../Components/Organism/Step3/Payment';
+import RentDetails from '../Components/Organism/Step3/RentDetails';
 
-class Step1 extends React.Component {
+class Step3 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
+    this.handleOnLoad();
   }
+
+  handleOnLoad = () => {};
 
   render() {
     this.dispatch(generalActions.hideLoader());
     return (
       <>
         <CustomNavBar />
-        <StepsHeader step={1} />
-        <ActiveSearch
-          searchLocation={homeActions.searchLocation}
-          modifySearchFleet={actions.modifySearchFleet}
-          haveToCloseModifyModal={actions.haveToCloseModifyModal}
-        />
-        <Result
-          addFitlter={actions.addFilter}
-          orderByMinToMax={actions.orderByMinToMax}
-          orderByMaxToMin={actions.orderByMaxToMin}
-          toggleShowFeaturedFirst={actions.toggleShowFeaturedFirst}
-          selectCar={actions.selectCar}
-          showLoader={generalActions.showLoader}
-        />
+        <StepsHeader step={3} />
+        <Row className="justify-content-center mt-4 ml-0 mr-0">
+          <div className="ar-central-container d-flex">
+            <Col>
+              <RentState />
+              <Payment />
+              <RentDetails />
+            </Col>
+          </div>
+        </Row>
         <Banner />
         <CustomFooter />
         <UpToTop />
@@ -48,12 +48,12 @@ class Step1 extends React.Component {
   }
 }
 
-Step1.propTypes = {
+Step3.propTypes = {
   dispatch: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return state.step3Reducer;
 };
 
-export default connect(mapStateToProps)(Step1);
+export default connect(mapStateToProps)(Step3);

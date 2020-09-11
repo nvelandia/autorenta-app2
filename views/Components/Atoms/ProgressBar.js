@@ -44,25 +44,6 @@ class ProgressBar extends React.Component {
           <>
             <div className="progress-info">
               <Col className="justify-content-center p-0">
-                <p className={'ar-title-bar ar-white-text ' + classes}>Inicia tu búsqueda </p>
-                <span className="ar-circle ar-active">1</span>
-              </Col>
-              <Col className="justify-content-center p-0">
-                <p className={'ar-title-bar ar-light-blue-text  ' + classes}>Selecciona tu plan</p>
-                <span className="ar-circle ar-pendant">2</span>
-              </Col>
-              <Col className="justify-content-center p-0">
-                <p className={'ar-title-bar ar-light-blue-text  ' + classes}>Confirma tu reserva</p>
-                <span className="ar-circle ar-pendant">3</span>
-              </Col>
-            </div>
-            <Progress className="ar-bar bg-ar-white-3" max="100" value="0" color="blue-2" />
-          </>
-        ) : null}
-        {step === 2 ? (
-          <>
-            <div className="progress-info">
-              <Col className="justify-content-center p-0">
                 <p className={'ar-title-bar ' + classes}>&nbsp;</p>
                 <span className="ar-circle ar-done" onClick={() => this.handleClick(1)}>
                   1
@@ -80,7 +61,7 @@ class ProgressBar extends React.Component {
             <Progress className="ar-bar bg-ar-white-3" max="100" value="35" color="blue-2" />
           </>
         ) : null}
-        {step === 3 ? (
+        {step === 2 ? (
           <>
             <div className="progress-info">
               <Col className="justify-content-center p-0">
@@ -101,6 +82,29 @@ class ProgressBar extends React.Component {
               </Col>
             </div>
             <Progress className="ar-bar bg-ar-white-3" max="100" value="70" color="blue-2" />
+          </>
+        ) : null}
+        {step === 3 ? (
+          <>
+            <div className="progress-info">
+              <Col className="justify-content-center p-0">
+                <p className={'ar-title-bar ' + classes}>&nbsp;</p>
+                <span className="ar-circle ar-done" onClick={() => this.handleClick(1)}>
+                  1
+                </span>
+              </Col>
+              <Col className="justify-content-center p-0">
+                <p className={'ar-title-bar ' + classes}>&nbsp;</p>
+                <span className="ar-circle ar-done" onClick={() => this.handleClick(2)}>
+                  2
+                </span>
+              </Col>
+              <Col className="justify-content-center p-0">
+                <p className={'ar-title-bar ' + classes}>&nbsp;</p>
+                <span className="ar-circle ar-done">3</span>
+              </Col>
+            </div>
+            <Progress className="ar-bar bg-ar-white-3" max="100" value="100" color="blue-2" />
           </>
         ) : null}
       </>

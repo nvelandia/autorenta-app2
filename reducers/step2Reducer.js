@@ -157,6 +157,7 @@ const defaultState = {
   airlines: [],
   organization: {},
   error: {},
+  formData: {},
 };
 
 const step2Reducer = (state = defaultState, action) => {
@@ -205,6 +206,14 @@ const step2Reducer = (state = defaultState, action) => {
         ...state,
         organization: {},
         error: { validationId: 'Ingresa un número de ID válido' },
+      };
+    case actionNames.updateFormData:
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+          [Object.keys(action.data)[0]]: Object.values(action.data)[0],
+        },
       };
     default:
       return state;

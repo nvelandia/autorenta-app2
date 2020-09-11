@@ -1,6 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
 import {
   Button,
   Card,
@@ -39,19 +39,28 @@ class AgencyOrCorporation extends React.Component {
       promotionCode: '',
       couponNumber: '',
     };
+    this.dispatch = this.props.dispatch;
   }
 
   handleOnSelect = (value) => {
     this.setState({ airlineCompany: value });
+    this.dispatch(this.props.updateFormData({ airlineCompany: value }));
   };
 
   handleOnChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleOnBlur = (event) => {
+    this.setState({ [event.target.name + 'Focus']: false });
+    this.dispatch(this.props.updateFormData({ [event.target.name]: event.target.value }));
+  };
+
+  handleValidateClick = (event) => {};
+
   render() {
     return (
-      <Card className="card-frame ar-passenger-card">
+      <Card className="card-frame ar-passenger-card fade-in">
         <CardBody className="p-0">
           <div className="ar-icon-customer-type ar-title-with-icon">Información del pasajero</div>
           <div className="ar-passenger-form-container">
@@ -73,7 +82,7 @@ class AgencyOrCorporation extends React.Component {
                       type="text"
                       name="name"
                       onFocus={() => this.setState({ nameFocus: true })}
-                      onBlur={() => this.setState({ nameFocus: false })}
+                      onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
@@ -95,7 +104,7 @@ class AgencyOrCorporation extends React.Component {
                       type="text"
                       name="surname"
                       onFocus={() => this.setState({ surnameFocus: true })}
-                      onBlur={() => this.setState({ surnameFocus: false })}
+                      onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
@@ -120,7 +129,7 @@ class AgencyOrCorporation extends React.Component {
                       type="text"
                       name="phone"
                       onFocus={() => this.setState({ phoneFocus: true })}
-                      onBlur={() => this.setState({ phoneFocus: false })}
+                      onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
@@ -156,7 +165,7 @@ class AgencyOrCorporation extends React.Component {
                       type="text"
                       name="flyNumber"
                       onFocus={() => this.setState({ flyNumberFocus: true })}
-                      onBlur={() => this.setState({ flyNumberFocus: false })}
+                      onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
@@ -187,7 +196,7 @@ class AgencyOrCorporation extends React.Component {
                     <Button
                       className=" btn-icon w-100 ar-validate-input-passenger-button"
                       color="red-0"
-                      onClick={this.handleSearchClick}
+                      onClick={this.handleValidateClick}
                     >
                       <span className="nav-link-inner--text">Validar </span>
                       <i className="ar-icon-chevron-right" />
@@ -217,7 +226,7 @@ class AgencyOrCorporation extends React.Component {
                     <Button
                       className=" btn-icon w-100 ar-validate-input-passenger-button"
                       color="red-0"
-                      onClick={this.handleSearchClick}
+                      onClick={this.handleValidateClick}
                     >
                       <span className="nav-link-inner--text">Validar </span>
                       <i className="ar-icon-chevron-right" />
@@ -233,7 +242,10 @@ class AgencyOrCorporation extends React.Component {
   }
 }
 
-AgencyOrCorporation.proptypes = {};
+AgencyOrCorporation.proptypes = {
+  dispatch: PropTypes.func,
+  updateFormData: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   return state.step2Reducer;

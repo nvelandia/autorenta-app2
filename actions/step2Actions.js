@@ -34,3 +34,10 @@ export const validateId = (id) => {
     id,
   };
 };
+
+export const updateFormData = (data) => {
+  return {
+    type: actionNames.updateFormData,
+    data,
+  };
+};
