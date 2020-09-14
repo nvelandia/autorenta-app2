@@ -3,6 +3,7 @@ import { actionNames } from '../utils/constants/actionConstants';
 const defaultState = {
   carSelected: {},
   location: {},
+  searchParams: {},
   plans: [
     {
       id: 0,
@@ -172,6 +173,7 @@ const step2Reducer = (state = defaultState, action) => {
         ...state,
         carSelected: action.car,
         location: action.location,
+        searchParams: action.searchParams,
       };
     case actionNames.addOptionalEquipment:
       if (action.others) {

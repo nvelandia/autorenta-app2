@@ -43,9 +43,12 @@ export const actionNames = {
   loadAirlines: 'LOAD_AIRLINES',
   validateId: 'VALIDATE_ID',
   updateFormData: 'UPDATE_FORM_DATA',
+  confirmReservation: 'CONFIRM_RESERVATION',
   //Step2-Service
   loadAirlinesSuccessfully: 'LOAD_AIRLINES_SUCCESSFULLY',
   loadAirlinesUnsuccessfully: 'LOAD_AIRLINES_UNSUCCESSFULLY',
   validateIdSuccessfully: 'VALIDATE_ID_SUCCESSFULLY',
   validateIdUnsuccessfully: 'VALIDATE_ID_UNSUCCESSFULLY',
+  createReservationSuccessfully: 'CREATE_RESERVATION_SUCCESSFULLY',
+  createReservationUnsuccessfully: 'CREATE_RESERVATION_UNSUCCESSFULLY',
 };

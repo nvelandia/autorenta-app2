@@ -40,7 +40,7 @@ class CarsResult extends React.Component {
 
   handleOnClick = (car) => {
     this.props.dispatch(this.props.showLoader());
-    this.props.dispatch(this.props.selectCar(car, this.props.result.locations));
+    this.props.dispatch(this.props.selectCar(car, this.props.result.locations, this.props.searchParams));
     redirectTo(pages.step2);
     window.scrollTo(0, 0);
   };

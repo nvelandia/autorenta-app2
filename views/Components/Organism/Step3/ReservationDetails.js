@@ -1,10 +1,10 @@
 import React from 'react';
-import { Card, CardBody, Col } from 'reactstrap';
+import { Card, CardBody, Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import LocationSelected from '../Step2/LocationSelected';
 
-class RentDetails extends React.Component {
+class ReservationDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -41,13 +41,15 @@ class RentDetails extends React.Component {
                 <i className="ar-icon-customer-type" />
                 Detalle de la reserva
               </h1>
-              {details.map((item, index) => {
-                return (
-                  <h6 key={index}>
-                    {item.label}:&nbsp;<strong>{item.value}</strong>
-                  </h6>
-                );
-              })}
+              <div>
+                {details.map((item, index) => {
+                  return (
+                    <h6 key={index}>
+                      {item.label}:&nbsp;<strong>{item.value}</strong>
+                    </h6>
+                  );
+                })}
+              </div>
             </div>
             <div className="ar-reserve-details-map-container">
               <LocationSelected location={locations.pickup} title={'oficina de inicio'} />
@@ -55,18 +57,60 @@ class RentDetails extends React.Component {
             </div>
           </div>
         </Card>
-        <Card className="card-frame ar-optional-equipment">
-          <CardBody className="p-0">
-            <div className="ar-icon-optional-equipment ar-title-with-icon">Agrega equipamiento opcional a tu renta</div>
-            <div className="ar-text-card">
-              El equipamietno opcional puede ser reservado, sólo quedará requerido a la compañía rentadora y será
-              confirmado y abonado en la oficina al inicio de la renta. Su costo no estincluido en el precio prepago de
-              esta reserva y se mostrará un precio estimado a modo orientativo pudiendo variar sin previo aviso.
-            </div>
-            <div className="ar-options-section-card">
-              <div className="ar-checkbox-options-container"></div>
-              <div className="ar-select-options-container"></div>
-            </div>
+        <Card className="card-frame ar-reserve-details">
+          <CardBody className="p-0 ar-reserve-details-car">
+            <Row className="ar-car-top">
+              <div className="ar-car-top-left">
+                <div className="ar-car-image">
+                  <img src={this.props.car.image} alt={'Company logo'} />
+                </div>
+                <div className="ar-car-company-logo">
+                  <img src={this.props.car.company.logo} alt={'Company logo'} />
+                </div>
+                <div className="ar-car-type">
+                  <h3 className="ar-red-text">{this.props.car.typeCar.name}</h3>
+                  <h6 className="mb-0">{this.props.car.name.toLowerCase()}</h6>
+                </div>
+              </div>
+              <Row className="m-0 h-100 ar-car-features">
+                <div className="ar-car-features-group pl-0">
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-passenger ar-light-blue-3-text" />
+                    <h6>{this.props.car.seats} asientos</h6>
+                  </div>
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-doors ar-light-blue-3-text" />
+                    <h6>{this.props.car.doors} puertas</h6>
+                  </div>
+                </div>
+                <div className="ar-car-features-group">
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-luggage ar-light-blue-3-text" />
+                    <h6>{this.props.car.bags_big} maletas grandes</h6>
+                  </div>
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-carry-on ar-light-blue-3-text" />
+                    <h6>{this.props.car.bags_small} maletas pequeñas</h6>
+                  </div>
+                </div>
+                <div className="ar-car-features-group ">
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-transmission ar-light-blue-3-text" />
+                    <h6>Transmisión {this.props.car.gear}</h6>
+                  </div>
+                  <div className="ar-car-feature-item">
+                    {this.props.car.air ? (
+                      <>
+                        <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
+                        <h6>Aire acondicionado</h6>
+                      </>
+                    ) : (
+                      <i>&nbsp;</i>
+                    )}
+                  </div>
+                </div>
+              </Row>
+            </Row>
           </CardBody>
         </Card>
         <Card className="card-frame ar-optional-equipment">
@@ -102,7 +146,7 @@ class RentDetails extends React.Component {
   }
 }
 
-RentDetails.propTypes = {
+ReservationDetails.propTypes = {
   dispatch: PropTypes.func,
   image: PropTypes.string,
 };
@@ -111,4 +155,4 @@ const mapStateToProps = (state) => {
   return state.step3Reducer;
 };
 
-export default connect(mapStateToProps)(RentDetails);
+export default connect(mapStateToProps)(ReservationDetails);

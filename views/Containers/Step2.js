@@ -54,7 +54,11 @@ class Step2 extends React.Component {
               ) : null}
             </Col>
             <div className="ar-card-details">
-              <Details changePlan={actions.changePlan} />
+              <Details
+                createReservationSuccessfully={actions.createReservationSuccessfully}
+                changePlan={actions.changePlan}
+                confirmReservation={actions.confirmReservation}
+              />
             </div>
           </div>
         </Row>

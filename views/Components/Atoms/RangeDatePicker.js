@@ -53,7 +53,7 @@ class RangeDatePicker extends React.Component {
                   }}
                   timeFormat={'HH:mm'}
                   value={this.state.startDate}
-                  timeConstraints={{ hours: { min: 10, max: 18 }, minutes: { step: 30 } }}
+                  timeConstraints={{ minutes: { step: 30 } }}
                   renderDay={(props, currentDate, selectedDate) => {
                     let classes = props.className;
                     if (
@@ -106,7 +106,7 @@ class RangeDatePicker extends React.Component {
                   }}
                   timeFormat={'H:mm'}
                   value={this.state.endDate}
-                  timeConstraints={{ hours: { min: 10, max: 18 }, minutes: { step: 30 } }}
+                  timeConstraints={{ minutes: { step: 30 } }}
                   renderDay={(props, currentDate, selectedDate) => {
                     let classes = props.className;
                     if (

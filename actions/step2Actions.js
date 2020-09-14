@@ -41,3 +41,17 @@ export const updateFormData = (data) => {
     data,
   };
 };
+
+export const confirmReservation = (body) => {
+  return {
+    type: actionNames.confirmReservation,
+    body,
+  };
+};
+
+export const createReservationSuccessfully = (car) => {
+  return {
+    type: actionNames.createReservationSuccessfully,
+    car,
+  };
+};

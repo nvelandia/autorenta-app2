@@ -96,8 +96,8 @@ class Google extends React.Component {
     return (
       <>
         <Container fluid>
-          <Row>
-            <div className="col">
+          <Row className="m-0">
+            <div className="col p-0">
               <Card className="border-0">
                 <MapCustom
                   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBHQl7lKVzqxKiLvKVmeY0S7LkVy-HVSY"

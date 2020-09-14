@@ -1,13 +1,15 @@
 import { actionNames } from '../utils/constants/actionConstants';
 
-const defaultState = {};
+const defaultState = {
+  car: {},
+};
 
 const step3Reducer = (state = defaultState, action) => {
   switch (action.type) {
-    case actionNames.changePlan:
+    case actionNames.createReservationSuccessfully:
       return {
         ...state,
-        plan: action.plan,
+        car: action.car,
       };
     default:
       return state;

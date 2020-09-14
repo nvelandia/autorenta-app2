@@ -3,7 +3,7 @@ import { Row, Card, CardBody, Col, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-class RentState extends React.Component {
+class ReservationState extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -60,7 +60,7 @@ class RentState extends React.Component {
   }
 }
 
-RentState.propTypes = {
+ReservationState.propTypes = {
   dispatch: PropTypes.func,
 };
 
@@ -68,4 +68,4 @@ const mapStateToProps = (state) => {
   return state.step3Reducer;
 };
 
-export default connect(mapStateToProps)(RentState);
+export default connect(mapStateToProps)(ReservationState);

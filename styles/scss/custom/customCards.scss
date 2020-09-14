@@ -1754,8 +1754,12 @@
 .ar-reserve-details{
   padding: 1rem;
   .ar-reserve-details-text-container{
-    width: 35%;
+    width: 37%;
+    height: 208px;
     padding: 0 0 0 3.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .ar-reserve-details-title{
       margin: 0.5rem 0 1.5rem 0;
       text-transform: uppercase;
@@ -1781,6 +1785,186 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 65%;
+    width: 63%;
+    .ar-location-selected{
+      width: 48.8%;
+      height: 208px;
+      margin-bottom: 1rem;
+      @media (min-width: $ar-big-size){
+        height: 275px;
+      }
+      .ar-location-top{
+        margin: 1rem 0.8rem 1rem 0.8rem;
+        .ar-location-icon{
+          margin-right: 0.4rem;
+          color: $ar-color-red-0;
+          font-size: 1.1rem;
+        }
+        .ar-location-date{
+          font-size: 0.95rem;
+          margin:0;
+          font-weight: 500;
+        }
+        .ar-location-place{
+          font-size: 0.65rem;
+          margin:0;
+          font-weight: 500;
+        }
+        h5{
+          margin-top: 0.2rem;
+          margin-bottom: 0.2rem;
+          color: $ar-color-red-0;
+          text-transform: uppercase;
+          font-size: 0.75rem;
+          letter-spacing: 0.02em;
+        }
+        @media (min-width: $ar-big-size){
+          margin: 1.2rem;
+          .ar-location-icon{
+            margin-right: 0.8rem;
+            font-size: 1.2em;
+          }
+          .ar-location-date{
+            font-size: 1.15rem;
+            margin:0;
+            font-weight: 500;
+          }
+          .ar-location-place{
+            font-size: 0.75rem;
+            margin:0;
+            font-weight: 500;
+          }
+          h5{
+            margin-top: .4rem;
+            margin-bottom: .4rem;
+            font-size: .75rem;
+            letter-spacing: .5px;
+          }
+        }
+
+      }
+      .ar-location-bottom{
+        margin: 0;
+        .map-canvas{
+          height: 100px;
+        }
+        @media (min-width: $ar-big-size){
+          padding: 0 0.4rem;
+          .map-canvas{
+            height: 130px;
+          }
+        }
+      }
+    }
+  }
+  .ar-reserve-details-car{
+    .ar-car-top{
+      margin: 0;
+      height: 80px;
+      @media (min-width: $ar-big-size){
+        height: 110px;
+      }
+      .ar-car-top-left{
+        padding: 0;
+        width: 60%;
+        display: flex;
+        height: 100%;
+        .ar-car-image{
+          width: 200px;
+          img{
+            position: absolute;
+            width: 15%;
+            top: -1rem;
+          }
+        }
+        .ar-car-company-logo{
+          display: flex;
+          align-items: center;
+          width: 36%;
+          padding: 0 2.65rem;
+          img{
+            width: 100%;
+          }
+          @media (min-width: $ar-big-size){
+            padding: 0 3.5rem;
+          }
+        }
+        .ar-car-type{
+          padding-left: 2rem;
+          width: 55%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+          flex-direction: column;
+          text-transform: capitalize;
+          h3{
+            margin: 0;
+          }
+          h6{
+            text-transform: capitalize;
+          }
+          @media (min-width: $ar-big-size){
+            h3{
+              margin: 0;
+              font-size: 1.3em;
+            }
+            h6{
+              text-transform: capitalize;
+              font-size: 0.8em;
+              letter-spacing: .3px;
+            }
+          }
+        }
+      }
+
+      .ar-car-features{
+        padding: 0;
+        width: 40%;
+        @media (min-width: $ar-big-size){
+          padding: 1.4rem 0;
+        }
+        .ar-car-features-group{
+          padding: 0 1em;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          @media (min-width: $ar-big-size){
+            padding: 0 1.2em;
+          }
+          .ar-car-feature-item {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+
+            h6 {
+              color: $ar-color-blue-0;
+              margin: 0 0 0 0.4em;
+              font-weight: 500;
+              font-size: .65em;
+            }
+
+            i {
+              font-size: 0.9em;
+              font-weight: 800;
+            }
+
+            @media (min-width: $ar-big-size) {
+              h6 {
+                color: $ar-color-blue-0;
+                margin: 0 0 0 0.3em;
+                font-weight: 500;
+                font-size: 0.85em;
+              }
+              i {
+                font-size: 1.1em;
+                font-weight: 800;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

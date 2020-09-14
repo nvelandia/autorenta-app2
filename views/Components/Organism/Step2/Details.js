@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomButton from '../../Atoms/CustomButton';
 import ModalChangePlan from './ModalChangePlan';
+import { createReservationSuccessfully } from '../../../../actions/step2Actions';
+import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
 
 class Details extends React.Component {
   constructor(props) {
@@ -13,7 +15,6 @@ class Details extends React.Component {
       conditionsAndTerms: false,
     };
     this.dispatch = props.dispatch;
-    this.handleOnLoad();
   }
 
   showChangePlanModal = () => {
@@ -24,10 +25,40 @@ class Details extends React.Component {
     this.setState({ showChangePlanModal: false });
   };
 
-  handleOnLoad = () => {};
-
   handleOnSelect = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleCheckbox = () => {
+    this.setState({ conditionsAndTerms: !this.state.conditionsAndTerms });
+  };
+
+  handleOnClick = () => {
+    // const formData = {
+    //   pickup_location: this.props.location.pickup.iata,
+    //   pickup_date: this.props.location.pickup.date,
+    //   pickup_time: this.props.location.pickup.time,
+    //   dropoff_location: this.props.location.dropoff.iata,
+    //   dropoff_date: this.props.location.dropoff.date,
+    //   dropoff_time: this.props.location.dropoff.time,
+    //   passenger_country_id: this.props.searchParams.passenger_country_id,
+    //   passenger_age: this.props.searchParams.passenger_age,
+    //   passenger_email: this.props.organization.organization_id
+    //     ? this.props.organization.email
+    //     : this.props.formData.email,
+    //   passenger_name: this.props.formData.name,
+    //   passenger_lastname: this.props.formData.surname,
+    //   passenger_phone: this.props.formData.phone,
+    //   rate_code: '4D',
+    //   vendor: this.props.carSelected.company.code,
+    //   sipp: this.props.carSelected.typeAlias,
+    //   partner_code: this.props.organization.organization_id ? this.props.organization.organization_id : null,
+    // };
+    //
+    // this.dispatch(this.props.confirmReservation(formData));
+
+    this.dispatch(this.props.createReservationSuccessfully(this.props.carSelected));
+    redirectTo(pages.step3);
   };
 
   calucalteSubTotalsAndTotal = () => {
@@ -45,15 +76,6 @@ class Details extends React.Component {
     let total = subtotal + Number.parseFloat(this.props.carSelected.rates[0].price);
 
     return { subtotal: subtotal.toFixed(2), tarifa: this.props.carSelected.rates[0].price, total: total.toFixed(2) };
-  };
-
-  handleOnChange = (event) => {
-    console.log(event.target.value);
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  handleCheckbox = () => {
-    this.setState({ conditionsAndTerms: !this.state.conditionsAndTerms });
   };
 
   render() {
@@ -189,6 +211,7 @@ class Details extends React.Component {
               color="red-0"
               type="button"
               disabled={!this.state.conditionsAndTerms}
+              onClick={this.handleOnClick}
             >
               Confirmar reserva
               <i className="ar-icon-chevron-right" />
@@ -203,6 +226,8 @@ class Details extends React.Component {
 Details.propTypes = {
   dispatch: PropTypes.func,
   changePlan: PropTypes.func,
+  confirmReservation: PropTypes.func,
+  createReservationSuccessfully: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

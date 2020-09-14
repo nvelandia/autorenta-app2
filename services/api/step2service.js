@@ -24,6 +24,17 @@ class step2Service {
 
     return step2Adapter.validateId(validateResponse);
   };
+
+  createReservation = async (body) => {
+    let crateResponse;
+    try {
+      crateResponse = await Api.post('bookings/create', body);
+    } catch (err) {
+      crateResponse = err;
+    }
+
+    return step2Adapter.createReservation(crateResponse);
+  };
 }
 
 export default new step2Service();

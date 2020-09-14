@@ -10,9 +10,9 @@ import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
 import { Col, Row } from 'reactstrap';
-import RentState from '../Components/Organism/Step3/RentState';
+import ReservationState from '../Components/Organism/Step3/ReservationState';
 import Payment from '../Components/Organism/Step3/Payment';
-import RentDetails from '../Components/Organism/Step3/RentDetails';
+import ReservationDetails from '../Components/Organism/Step3/ReservationDetails';
 
 class Step3 extends React.Component {
   constructor(props) {
@@ -33,9 +33,9 @@ class Step3 extends React.Component {
         <Row className="justify-content-center mt-4 ml-0 mr-0">
           <div className="ar-central-container d-flex">
             <Col>
-              <RentState />
+              <ReservationState />
               <Payment />
-              <RentDetails />
+              <ReservationDetails />
             </Col>
           </div>
         </Row>
