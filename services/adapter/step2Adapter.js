@@ -1,6 +1,6 @@
 import { isError } from '../../utils/helpers/isError';
-import successfullyResponsesPresenter from '../../utils/helpers/successfullyResponsesPresenter';
-import errorResponsesPresenter from '../../utils/helpers/errorResponsesPresenter';
+import successfullyResponsesPresenter from '../../utils/presenters/successfullyResponsesPresenter';
+import errorResponsesPresenter from '../../utils/presenters/errorResponsesPresenter';
 import { actionNames } from '../../utils/constants/actionConstants';
 
 class step2Adapter {

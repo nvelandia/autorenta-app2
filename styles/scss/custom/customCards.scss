@@ -211,6 +211,7 @@
           max-height: 115px;
           @media (min-width: $ar-big-size){
             max-height: 200px;
+            margin-left: 15px;
             margin-top: 0;
           }
         }

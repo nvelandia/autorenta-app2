@@ -39,7 +39,7 @@ class CarSelected extends React.Component {
             </div>
             <div className="ar-car-data-right">
               <div className="ar-icon-check-solid ar-data-icon ar-green-text">
-                <p className="ml-2 ar-blue-0-text">Cancela gratis tu reserva con 45hs de anticipación.</p>
+                <p className="ml-2 ar-blue-0-text">Cancela gratis tu reserva con 48 horas de anticipación.</p>
               </div>
             </div>
           </Row>

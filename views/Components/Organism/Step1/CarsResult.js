@@ -173,7 +173,7 @@ class CarsResult extends React.Component {
                   <div className="ar-car-data-text">
                     <div className="ar-icon-check-solid d-flex fs--1 ar-green-text">
                       <h6 className="mt--1 ml-2 ar-blue-0-text mb-3">
-                        Cancela gratis tu reserva con 45hs de anticipación.
+                        Cancela gratis tu reserva con 48 horas de anticipación.
                       </h6>
                     </div>
                     <div className="ar-icon-info d-flex fs--1">

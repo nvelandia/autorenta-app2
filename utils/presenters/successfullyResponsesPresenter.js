@@ -15,7 +15,9 @@ class successfullyResponsesPresenter {
     const companies = { total: 0 };
     for (const car of data.cars) {
       const company = data.companies.find((company) => company.code === car.company);
-      const typeCar = data.car_features.find((carFeature) => carFeature.code === car.typeLetter);
+      const typeCar = data.car_features.find(
+        (carFeature) => carFeature.code === car.typeLetter && carFeature.level === '1',
+      );
       car.company = company;
       car.typeCar = typeCar;
       if (!companies[car.company.name]) {
