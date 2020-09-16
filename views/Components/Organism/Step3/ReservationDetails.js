@@ -15,6 +15,33 @@ class ReservationDetails extends React.Component {
 
   handleOnChange = (index) => {};
 
+  renderSelectedPlan = () => {
+    const list = this.props.plan.includes.map((item, index) => {
+      if (item.selected) {
+        return (
+          <div key={index} className="ar-card-details-rate-item">
+            <p>
+              <i className="ar-icon-check-solid ar-green-text" /> {item.nickName}{' '}
+            </p>
+          </div>
+        );
+      }
+      return (
+        <div key={index} className="ar-card-details-rate-item">
+          <p>
+            <i className="ar-icon-close-solid ar-red-text" /> {item.nickName}{' '}
+          </p>
+        </div>
+      );
+    });
+    return (
+      <Row className="m-0 justify-content-between">
+        <div>{list.slice(0, 4)}</div>
+        <div>{list.slice(4, 8)}</div>
+      </Row>
+    );
+  };
+
   render() {
     const locations = {
       pickup: { date: '2020-08-25', time: '12:00', location: 'Miami, Florida, Estados Unidos', iata: 'MIA' },
@@ -72,7 +99,7 @@ class ReservationDetails extends React.Component {
                   <h6 className="mb-0">{this.props.car.name.toLowerCase()}</h6>
                 </div>
               </div>
-              <Row className="m-0 h-100 ar-car-features">
+              <Row className="m-0 ar-car-features">
                 <div className="ar-car-features-group pl-0">
                   <div className="ar-car-feature-item">
                     <i className="ar-icon-passenger ar-light-blue-3-text" />
@@ -113,19 +140,64 @@ class ReservationDetails extends React.Component {
             </Row>
           </CardBody>
         </Card>
-        <Card className="card-frame ar-optional-equipment">
-          <CardBody className="p-0">
-            <div className="ar-icon-optional-equipment ar-title-with-icon">Agrega equipamiento opcional a tu renta</div>
-            <div className="ar-text-card">
-              El equipamietno opcional puede ser reservado, sólo quedará requerido a la compañía rentadora y será
-              confirmado y abonado en la oficina al inicio de la renta. Su costo no estincluido en el precio prepago de
-              esta reserva y se mostrará un precio estimado a modo orientativo pudiendo variar sin previo aviso.
+        <Card className="card-frame ar-reserve-details ">
+          <div className="ar-reserve-selected-plan">
+            <div className="ar-reserve-selected-plan-text">
+              <h1 className="ar-reserve-selected-plan-title">
+                <i className="ar-icon-plan-selected" />
+                Plan seleccionado
+              </h1>
+              <div className="ar-card-details-rates">
+                <h5>Tarifa todo incluido</h5>
+                <h6>MOST INCLUSIVE - AR</h6>
+                <div className="ar-card-details-rates-list">{this.renderSelectedPlan()}</div>
+              </div>
             </div>
-            <div className="ar-options-section-card">
-              <div className="ar-checkbox-options-container"></div>
-              <div className="ar-select-options-container"></div>
-            </div>
-          </CardBody>
+            <Card className="ar-reserve-selected-plan-prices">
+              <div className="ar-reserve-selected-plan-prices-title">
+                <i className="ar-icon-taxes" />
+                Detalle de tarifa, cargos e impuestos
+              </div>
+              <div className="ar-reserve-selected-plan-prices-list">
+                <div className="ar-reserve-selected-plan-prices-item">
+                  <h6>Tarifa base</h6>
+                  <strong>USD 1356.00</strong>
+                </div>
+                <div className="ar-reserve-selected-plan-prices-item">
+                  <h6>Impuestos y cargos</h6>
+                  <strong>USD 0.00</strong>
+                </div>
+              </div>
+              <div className="ar-reserve-selected-plan-prices-total">
+                <h6>Total Estimado</h6>
+                <h1>1356.00</h1>
+              </div>
+            </Card>
+            <Card className="ar-reserve-selected-plan-prices">
+              <div className="ar-reserve-selected-plan-prices-title">
+                <i className="ar-icon-optional-equipment" />
+                Equipamiento adicional solicitado
+              </div>
+              <div className="ar-reserve-selected-plan-prices-list">
+                <div className="ar-reserve-selected-plan-prices-item">
+                  <h6>1 Asiento elevador para niños</h6>
+                  <strong>USD 65.00</strong>
+                </div>
+                <div className="ar-reserve-selected-plan-prices-item">
+                  <h6>1 Asiento para bebés</h6>
+                  <strong>USD 65.00</strong>
+                </div>
+                <div className="ar-reserve-selected-plan-prices-item">
+                  <h6>Radio Satelital XM</h6>
+                  <strong>USD 79.00</strong>
+                </div>
+              </div>
+              <div className="ar-reserve-selected-plan-prices-total">
+                <h6>Total Estimado</h6>
+                <h1>209.00</h1>
+              </div>
+            </Card>
+          </div>
         </Card>
         <Card className="card-frame ar-optional-equipment">
           <CardBody className="p-0">

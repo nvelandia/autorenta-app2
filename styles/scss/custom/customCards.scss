@@ -1779,6 +1779,10 @@
         top: 1.7rem;
       }
     }
+    .ar-reserve-details-subtitle{
+      margin: 0.5rem 0 1.5rem 0;
+      font-size: 0.75rem;
+    }
     h6{
       font-size: .7rem;
       font-weight: 500;
@@ -1874,7 +1878,6 @@
         padding: 0;
         width: 59%;
         display: flex;
-        height: 100%;
         .ar-car-image{
           padding-left: 1.5rem;
           width: 32%;
@@ -1972,6 +1975,126 @@
                 font-weight: 800;
               }
             }
+          }
+        }
+      }
+    }
+  }
+  .ar-reserve-selected-plan{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 225px;
+    .ar-reserve-selected-plan-text{
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      width: 35%;
+      padding: 1rem 1rem 1rem 3.2rem;
+      height: 100%;
+      .ar-reserve-selected-plan-title{
+        text-transform: uppercase;
+        color: $ar-color-red-0;
+        font-size: 0.75rem;
+        i{
+          position: absolute;
+          font-size: 1.2rem;
+          left: 2rem;
+          top: 1.7rem;
+        }
+      }
+
+      .ar-card-details-rates{
+        h5{
+          font-size: .8em;
+          margin-bottom: .2em;
+          @media (min-width: $ar-big-size){
+            font-size: 0.85em;
+          }
+        }
+        h6{
+          color: $ar-color-gray-1;
+          font-size: .6em;
+          @media (min-width: $ar-big-size){
+            font-size: 0.7em;
+          }
+        }
+        .ar-card-details-rates-list{
+          padding-top: .1em;
+          .ar-card-details-rate-item{
+            p{
+              font-size: .7em;
+              margin: .6em 0;
+              font-weight: 500;
+              @media (min-width: $ar-big-size){
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+      }
+    }
+    .ar-reserve-selected-plan-prices{
+      width: 32%;
+      height: 100%;
+      margin: 0 0 0 1rem;
+      padding: 2rem 1.5rem 0.8rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .ar-reserve-selected-plan-prices-title{
+        display: flex;
+        align-items: center;
+        color: $ar-color-red-0;
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        i{
+          position: absolute;
+          left: 1.5rem;
+          top: 1.75rem;
+          font-size: 1.3rem;
+        }
+      }
+      .ar-reserve-selected-plan-prices-list{
+        margin-top: 1.5rem;
+        height: 50%;
+        .ar-reserve-selected-plan-prices-item{
+          display: flex;
+          justify-content: space-between;
+          h6{
+            font-size: .7rem;
+            font-weight: 500;
+          }
+          strong{
+            color: $ar-color-red-0;
+            font-size: .7rem;
+          }
+        }
+      }
+      .ar-reserve-selected-plan-prices-total{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h6{
+          font-size: .7rem;
+          text-transform: uppercase;
+          margin: 0.4em 0 0 0;
+          letter-spacing: 0.05em;
+        }
+        h1{
+          color: $ar-color-red-0;
+          font-weight: 700;
+          margin: 0;
+          font-size: 1.7rem;
+          &:before{
+            content: 'USD';
+            font-size: .8rem;
+            font-weight: 500;
+            color: $ar-color-blue-2;
+            vertical-align: middle;
+            margin-right: 0.5rem;
           }
         }
       }
