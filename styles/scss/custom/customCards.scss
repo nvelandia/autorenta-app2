@@ -2100,4 +2100,27 @@
       }
     }
   }
+  .ar-reserve-terms{
+    padding: 0.5rem 1rem 1rem 3.2rem;
+    .ar-reserve-details-title{
+      margin: 0.5rem 0 1.5rem 0;
+      text-transform: uppercase;
+      color: $ar-color-red-0;
+      font-size: 0.75rem;
+      i{
+        position: absolute;
+        font-size: 1.4rem;
+        left: 1.8rem;
+        top: 1.7rem;
+      }
+    }
+    .ar-text-card{
+      p{
+        color: $ar-color-blue-2;
+        font-size: 0.7rem;
+        margin: 0;
+        line-height: 0.8rem;
+      }
+    }
+  }
 }

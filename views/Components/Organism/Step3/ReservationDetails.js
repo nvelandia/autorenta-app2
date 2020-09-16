@@ -199,17 +199,45 @@ class ReservationDetails extends React.Component {
             </Card>
           </div>
         </Card>
-        <Card className="card-frame ar-optional-equipment">
-          <CardBody className="p-0">
-            <div className="ar-icon-optional-equipment ar-title-with-icon">Agrega equipamiento opcional a tu renta</div>
+        <Card className="card-frame ar-reserve-details">
+          <CardBody className="ar-reserve-terms">
+            <h1 className="ar-reserve-details-title">
+              <i className="ar-icon-terms-and-conditions" />
+              Condiciones generales de la renta
+            </h1>
             <div className="ar-text-card">
-              El equipamietno opcional puede ser reservado, sólo quedará requerido a la compañía rentadora y será
-              confirmado y abonado en la oficina al inicio de la renta. Su costo no estincluido en el precio prepago de
-              esta reserva y se mostrará un precio estimado a modo orientativo pudiendo variar sin previo aviso.
-            </div>
-            <div className="ar-options-section-card">
-              <div className="ar-checkbox-options-container"></div>
-              <div className="ar-select-options-container"></div>
+              <p>
+                Autorenta confirma grupos o categorías y no marcas o modelos de vehículos, los mismos son a modo
+                orientativo y pueden variar sin previo aviso. La imágen es a modo ilustrativo.
+              </p>
+              <p>
+                Recuerda que deberás presentar una tarjeta de crédito internacional válida a nombre del titular de la
+                renta al momento de retirar el vehículo por las oficinas de la compañía rentadora.
+              </p>
+              <p>
+                Algunas rentadoras podrían aplicar cargos y restricciones por conductores por debajo de la edad mínima.
+              </p>
+              <p>
+                El equipamiento opcional no puede ser reservado, sólo quedará requerido. El mismo será confirmado y
+                abonado en la oficina de retiro del vehículo. Su costo no está incluido en el precio de esta renta y se
+                muestra un precio estimado de los mismos a modo orientativo.
+              </p>
+              <p>
+                La mayoría de las compañías rentadoras ofrecen un período de gracia de dos horas desde la hora acordada
+                de devolución y la hora real en la que se recoge el vehículo. Si crees que llegarás tarde, recomendamos
+                te pongas en contacto directamente con la oficina local de la compañía.
+              </p>
+              <p>
+                En cuanto a la devolución del vehículo, las compañías de alquiler suelen ofrecer un período de gracia de
+                29 minutos entre la hora acordada de devolución y la hora real en que se devuelve el vehículo en la
+                oficina local. Una vez pasado este período de tiempo, es posible que la compañía cargue el equivalente a
+                un día adicional de alquiler.
+              </p>
+              <p>
+                Pueden aplicarse restricciones geográficas, incluso en planes de tarifas que incluyan kilometraje /
+                millaje ilimitado. Algunas compañías rentadoras no permiten cruzar algunas fronteras nacionales o
+                internacionales con el vehículo o aplican cargos adicionales a quien lo haga.
+              </p>
             </div>
           </CardBody>
         </Card>
