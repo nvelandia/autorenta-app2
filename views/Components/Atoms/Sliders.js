@@ -10,7 +10,6 @@ class Sliders extends React.Component {
     slider2Values: ['200.00', '400.00'],
   };
   componentDidMount() {
-    console.log(this.props.priceRange);
     var slider2 = this.refs.slider2;
     Slider.create(slider2, {
       start: [parseFloat(this.props.priceRange.minPrice), parseFloat(this.props.priceRange.maxPrice)],

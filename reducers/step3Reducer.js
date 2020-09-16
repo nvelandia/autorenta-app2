@@ -2,6 +2,7 @@ import { actionNames } from '../utils/constants/actionConstants';
 
 const defaultState = {
   car: {},
+  location: {},
   plan: {
     id: 0,
     title: 'Todo incluido',
@@ -29,6 +30,7 @@ const step3Reducer = (state = defaultState, action) => {
       return {
         ...state,
         car: action.car,
+        location: action.location,
       };
     default:
       return state;

@@ -79,8 +79,8 @@ class ReservationDetails extends React.Component {
               </div>
             </div>
             <div className="ar-reserve-details-map-container">
-              <LocationSelected location={locations.pickup} title={'oficina de inicio'} />
-              <LocationSelected location={locations.dropoff} title={'oficina de devolución'} />
+              <LocationSelected location={this.props.location.pickup} title={'oficina de inicio'} />
+              <LocationSelected location={this.props.location.dropoff} title={'oficina de devolución'} />
             </div>
           </div>
         </Card>

@@ -25,7 +25,7 @@ const MapCustom = withScriptjs(
   withGoogleMap((props) => (
     <GoogleMap
       defaultZoom={12}
-      defaultCenter={{ lat: 40.748817, lng: -73.985428 }}
+      defaultCenter={props.defaultCenter}
       defaultOptions={{
         scrollwheel: false,
         styles: [
@@ -93,6 +93,7 @@ const MapDefault = withScriptjs(
 
 class Google extends React.Component {
   render() {
+    const { lat, lng } = this.props;
     return (
       <>
         <Container fluid>
@@ -104,6 +105,7 @@ class Google extends React.Component {
                   loadingElement={<div style={{ height: `100%` }} />}
                   containerElement={<div className="map-canvas" id="map-custom" />}
                   mapElement={<div style={{ height: `100%`, borderRadius: 'inherit' }} />}
+                  defaultCenter={{ lat: lat, lng: lng }}
                 />
               </Card>
             </div>

@@ -45,7 +45,7 @@ class LocationSelected extends React.Component {
             </div>
           </Row>
           <Row className="ar-location-bottom">
-            <Google />
+            <Google lat={parseFloat(location.latitude)} lng={parseFloat(location.longitude)} />
           </Row>
         </CardBody>
       </Card>
