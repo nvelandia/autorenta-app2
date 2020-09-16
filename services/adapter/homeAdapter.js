@@ -65,7 +65,6 @@ class homeAdapter {
 
   searchFleet = (response) => {
     const { data } = response;
-
     if (data.success) {
       return successfullyResponsesPresenter.fleetResponse(
         actionNames.searchFleetSuccessfully,

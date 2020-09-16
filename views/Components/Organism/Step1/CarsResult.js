@@ -155,7 +155,7 @@ class CarsResult extends React.Component {
             <div className="ar-car-left">
               <Row className="m-0 h-100">
                 <Col xl="6" lg="6" className="pr-0 ar-car-image">
-                  <div>
+                  <div className="ar-car-image-container">
                     <div className="ar-car-rate">{this.renderRating(car.rating)}</div>
                     <img src={car.image} alt="Car image" />
                   </div>

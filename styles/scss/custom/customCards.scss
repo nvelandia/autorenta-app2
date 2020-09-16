@@ -186,9 +186,9 @@
       border-right: solid;
       border-right-color: #ececec;
       border-right-width: thin;
-      padding: 1rem 0;
+      padding: 1rem 0 2rem 0;
       @media (min-width: $ar-big-size){
-        padding: 1.4rem 0;
+        padding: 1.4rem 0 3rem 0;
       }
       .ar-car-image{
         display: flex;
@@ -196,34 +196,42 @@
         justify-content: space-between;
         align-items: flex-start;
         .ar-car-rate{
-          margin-bottom: 0.5rem;
+          margin-top: 0.5rem;
           margin-left: 1rem;
           font-size: 0.5rem;
           @media (min-width: $ar-big-size){
-            margin-bottom: 0.7rem;
             margin-left: 1.4rem;
             font-size: 0.9em;
           }
         }
-        img{
-          width: 95%;
-          margin-top: 15px;
-          max-height: 115px;
+        .ar-car-image-container{
+          height: 142px;
           @media (min-width: $ar-big-size){
-            max-height: 200px;
-            margin-left: 15px;
-            margin-top: 0;
+            height: 180px;
+          }
+          img{
+            width: 95%;
+            max-height: 95%;
+            @media (min-width: $ar-big-size){
+              margin-left: 15px;
+              margin-top: 0;
+            }
           }
         }
-
         .ar-car-featured{
-          padding-bottom: 1.4em;
           margin-left: -10px;
           text-align: left;
+          height: 40px;
+          @media (min-width: $ar-big-size){
+            height: 42px;
+          }
           .ar-car-featured-label-empty{
             height: 2rem;
           }
           .ar-car-featured-label{
+            display: flex;
+            align-items: center;
+            height: 100%;
             font-size: 0.7rem;
             font-weight: 700;
             color: $ar-color-white-0;
@@ -270,9 +278,8 @@
           }
         }
         .ar-car-data-button-container{
-          margin-bottom: 1rem;
           @media (min-width: $ar-big-size){
-            margin-bottom: 1.6rem;
+            margin-right: 1.5em;
           }
           .ar-car-data-button{
             width: 100%;
@@ -1860,27 +1867,27 @@
   .ar-reserve-details-car{
     .ar-car-top{
       margin: 0;
-      height: 80px;
       @media (min-width: $ar-big-size){
         height: 110px;
       }
       .ar-car-top-left{
         padding: 0;
-        width: 60%;
+        width: 59%;
         display: flex;
         height: 100%;
         .ar-car-image{
-          width: 200px;
+          padding-left: 1.5rem;
+          width: 32%;
           img{
             position: absolute;
             width: 15%;
-            top: -1rem;
+            top: -1.8rem;
           }
         }
         .ar-car-company-logo{
           display: flex;
           align-items: center;
-          width: 36%;
+          width: 25%;
           padding: 0 2.65rem;
           img{
             width: 100%;
@@ -1890,8 +1897,11 @@
           }
         }
         .ar-car-type{
-          padding-left: 2rem;
-          width: 55%;
+          padding:1.2rem 0 1.2rem 2rem;
+          border-left: solid;
+          border-left-color: #ececec;
+          border-left-width: thin;
+          width: 30%;
           display: flex;
           align-items: flex-start;
           justify-content: center;
@@ -1919,12 +1929,12 @@
 
       .ar-car-features{
         padding: 0;
-        width: 40%;
+        width: 41%;
         @media (min-width: $ar-big-size){
           padding: 1.4rem 0;
         }
         .ar-car-features-group{
-          padding: 0 1em;
+          padding: 1.2rem 1em;
           display: flex;
           flex-direction: column;
           justify-content: space-around;
@@ -1940,9 +1950,9 @@
 
             h6 {
               color: $ar-color-blue-0;
-              margin: 0 0 0 0.4em;
+              margin: 0.2em 0 0 0.4em;
               font-weight: 500;
-              font-size: .65em;
+              font-size: .7em;
             }
 
             i {

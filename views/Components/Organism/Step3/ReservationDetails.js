@@ -57,7 +57,7 @@ class ReservationDetails extends React.Component {
             </div>
           </div>
         </Card>
-        <Card className="card-frame ar-reserve-details">
+        <Card className="card-frame ar-reserve-details p-0">
           <CardBody className="p-0 ar-reserve-details-car">
             <Row className="ar-car-top">
               <div className="ar-car-top-left">
@@ -93,7 +93,7 @@ class ReservationDetails extends React.Component {
                     <h6>{this.props.car.bags_small} maletas pequeñas</h6>
                   </div>
                 </div>
-                <div className="ar-car-features-group ">
+                <div className="ar-car-features-group pr-0 ">
                   <div className="ar-car-feature-item">
                     <i className="ar-icon-transmission ar-light-blue-3-text" />
                     <h6>Transmisión {this.props.car.gear}</h6>
