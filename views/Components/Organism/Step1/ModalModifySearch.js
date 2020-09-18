@@ -14,11 +14,13 @@ import {
   Button,
   ListGroup,
   ListGroupItem,
+  Container,
 } from 'reactstrap';
 import classnames from 'classnames';
 import RangeDatePicker from '../../Atoms/RangeDatePicker';
 import CustomDropDown from '../../Atoms/CustomDropDown';
 import { isoStringToString, isoStringToStringTime } from '../../../../utils/helpers/dateHelpers';
+import NotificationAlert from 'react-notification-alert';
 
 class ModalModifySearch extends React.Component {
   constructor(props) {
@@ -35,6 +37,7 @@ class ModalModifySearch extends React.Component {
       iataToDropOff: '',
       timeToDropOff: '',
       timeToPickUp: '',
+      error: {},
     };
     this.dispatch = props.dispatch;
   }
@@ -47,16 +50,35 @@ class ModalModifySearch extends React.Component {
         this.setState({ [event.target.name]: event.target.value, iataToDropOff: iata });
       }
     }
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+      error: { ...this.state.error, [event.target.name]: false },
+    });
   };
 
   handleDate = (dateToPickUp, dateToDropOff) => {
-    this.setState({
-      dateToPickUp: isoStringToString(dateToPickUp),
-      dateToDropOff: isoStringToString(dateToDropOff),
-      timeToPickUp: isoStringToStringTime(dateToPickUp),
-      timeToDropOff: isoStringToStringTime(dateToDropOff),
-    });
+    if (dateToPickUp) {
+      this.setState({
+        dateToPickUp: isoStringToString(dateToPickUp),
+        timeToPickUp: isoStringToStringTime(dateToPickUp),
+        error: {
+          ...this.state.error,
+          dateToPickUp: false,
+          timeToPickUp: false,
+        },
+      });
+    }
+    if (dateToDropOff) {
+      this.setState({
+        dateToDropOff: isoStringToString(dateToDropOff),
+        timeToDropOff: isoStringToStringTime(dateToDropOff),
+        error: {
+          ...this.state.error,
+          dateToDropOff: false,
+          timeToDropOff: false,
+        },
+      });
+    }
   };
 
   handleOnChange = (event) => {
@@ -64,6 +86,10 @@ class ModalModifySearch extends React.Component {
       this.dispatch(this.props.searchLocation(event.target.value));
       this.setState({ [event.target.name]: event.target.value });
     }
+    this.setState({
+      [event.target.name]: event.target.value,
+      error: { ...this.state.error, [event.target.name]: false },
+    });
   };
 
   handleSearchClick = () => {
@@ -77,7 +103,18 @@ class ModalModifySearch extends React.Component {
       passenger_country_id: this.props.searchParams.passenger_country_id,
       passenger_age: this.state.ageSelected,
     };
-    this.dispatch(this.props.modifySearchFleet(body));
+    if (Object.values(body).includes('') || Object.values(body).includes(0)) {
+      const error = {};
+      for (const field in this.state) {
+        if (this.state[field] === '' || this.state[field] === 0) {
+          error[field] = true;
+        }
+      }
+      this.setState({ error: error });
+      this.notify('autorenta');
+    } else {
+      this.dispatch(this.props.modifySearchFleet(body));
+    }
   };
 
   renderListGroup = (name) => {
@@ -116,13 +153,36 @@ class ModalModifySearch extends React.Component {
     }
   };
 
+  notify = (type) => {
+    let options = {
+      place: 'tc',
+      message: (
+        <div className="alert-text">
+          <span className="alert-title" data-notify="title">
+            {' '}
+            ¡Atención!
+          </span>
+          <span data-notify="message">Todos los campos son requeridos</span>
+        </div>
+      ),
+      type: type,
+      icon: 'ni ni-bell-55',
+      autoDismiss: 10,
+    };
+    this.refs.notificationAlert.notificationAlert(options);
+  };
+
   render() {
+    const error = this.state.error;
     return (
       <Modal
         className="modal-dialog-centered ar-modal-aditional-information"
         isOpen={this.props.showModal}
         toggle={() => this.props.hideModal()}
       >
+        <div className="rna-wrapper">
+          <NotificationAlert ref="notificationAlert" />
+        </div>
         <div className="modal-header pb-0">
           <h6 className="modal-title mt-3 pl-1 mb-2" id="exampleModalLabel">
             Modificar la búsqueda
@@ -146,7 +206,11 @@ class ModalModifySearch extends React.Component {
                     focused: this.state.placeToPickUpFocus,
                   })}
                 >
-                  <InputGroup className="input-group-merge shadow-none input-group-alternative mb-3 ar-round-input bg-ar-white-1">
+                  <InputGroup
+                    className={`input-group-merge input-group-alternative shadow-none mb-3 ar-round-input bg-ar-white-1 ${
+                      error.placeToPickUp ? ' ar-error-border' : null
+                    }`}
+                  >
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText className="ar-round-input-left">
                         <i className="ar-icon-location ar-round-input-left" />
@@ -171,7 +235,11 @@ class ModalModifySearch extends React.Component {
                     focused: this.state.placeToDropOffFocus,
                   })}
                 >
-                  <InputGroup className="input-group-merge shadow-none input-group-alternative mb-3 ar-round-input bg-ar-white-1">
+                  <InputGroup
+                    className={`input-group-merge input-group-alternative shadow-none mb-3 ar-round-input bg-ar-white-1 ${
+                      error.placeToDropOff ? ' ar-error-border' : null
+                    }`}
+                  >
                     <InputGroupAddon addonType="prepend">
                       <InputGroupText className="ar-round-input-left">
                         <i className="ar-icon-location ar-round-input-left" />
@@ -193,7 +261,7 @@ class ModalModifySearch extends React.Component {
                 </FormGroup>
               </Col>
               <Col lg="5" md="5">
-                <RangeDatePicker handleDate={this.handleDate} />
+                <RangeDatePicker error={error} handleDate={this.handleDate} />
               </Col>
               <Col lg="2" md="6">
                 <FormGroup
@@ -208,6 +276,7 @@ class ModalModifySearch extends React.Component {
                     classes={'ar-dropdown-menu-age'}
                     handleSelect={this.handleOnSelect}
                     height={'ar-dropdown-age-height'}
+                    error={error}
                   />
                 </FormGroup>
                 <Button

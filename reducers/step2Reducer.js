@@ -217,6 +217,11 @@ const step2Reducer = (state = defaultState, action) => {
           [Object.keys(action.data)[0]]: Object.values(action.data)[0],
         },
       };
+    case actionNames.clearValidateIdError:
+      return {
+        ...state,
+        error: {},
+      };
     default:
       return state;
   }

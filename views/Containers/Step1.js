@@ -18,10 +18,16 @@ class Step1 extends React.Component {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
+    this.handleOnLoad();
   }
 
+  handleOnLoad = () => {
+    if (this.props.searchParams.passenger_country_id !== '') {
+      this.dispatch(actions.searchFleet(this.props.searchParams));
+    }
+  };
+
   render() {
-    this.dispatch(generalActions.hideLoader());
     return (
       <>
         <CustomNavBar />

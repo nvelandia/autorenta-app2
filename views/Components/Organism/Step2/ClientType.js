@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, Card, CardBody, FormGroup, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap';
+import { Button, Card, CardBody, Container, FormGroup, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ClientTypeDropdown from '../../Molecules/dropdowns/ClientTypeDropdown';
 import classnames from 'classnames';
+import NotificationAlert from 'react-notification-alert';
 
 class ClientType extends React.Component {
   constructor(props) {
@@ -33,11 +34,41 @@ class ClientType extends React.Component {
 
   handleOnChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+    if (this.props.error.validationId) {
+      this.dispatch(this.props.clearValidateIdError());
+    }
+  };
+
+  notify = (type) => {
+    let options = {
+      place: 'tc',
+      message: (
+        <div className="alert-text">
+          <span className="alert-title" data-notify="title">
+            {' '}
+            ¡Atención!
+          </span>
+          <span data-notify="message">El número de ID ingres no es valido</span>
+        </div>
+      ),
+      type: type,
+      icon: 'ni ni-bell-55',
+      autoDismiss: 10,
+    };
+    this.refs.notificationAlert.notificationAlert(options);
   };
 
   render() {
+    const error = this.props.error;
+    if (error.validationId) {
+      this.notify('autorenta');
+      this.dispatch(this.props.clearValidateIdError());
+    }
     return (
       <Card className="card-frame ar-client-type-card">
+        <div className="rna-wrapper">
+          <NotificationAlert ref="notificationAlert" />
+        </div>
         <CardBody className="p-0">
           <div className="ar-icon-customer-type ar-title-with-icon">Tipo de cliente</div>
           <Row className="m-0 align-items-center ar-client-type-container">
@@ -63,7 +94,11 @@ class ClientType extends React.Component {
                   })
                 }
               >
-                <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
+                <InputGroup
+                  className={`input-group-merge input-group-alternative ar-round-input shadow-none ${
+                    error['validationId'] ? 'ar-error-border' : null
+                  }`}
+                >
                   <Input
                     className="ar-round-input ar-input-agency-code"
                     placeholder={
@@ -98,7 +133,11 @@ class ClientType extends React.Component {
                   })
                 }
               >
-                <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
+                <InputGroup
+                  className={`input-group-merge input-group-alternative ar-round-input shadow-none ${
+                    error['validationId'] ? 'ar-error-border' : null
+                  }`}
+                >
                   <Input
                     className="ar-round-input ar-input-agency-code"
                     placeholder={
@@ -134,6 +173,7 @@ ClientType.propTypes = {
   dispatch: PropTypes.func,
   selectClientType: PropTypes.func,
   validateId: PropTypes.func,
+  clearValidateIdError: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

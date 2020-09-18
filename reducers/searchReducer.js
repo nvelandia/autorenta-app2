@@ -1077,6 +1077,11 @@ const defaultState = {
 
 const searchReducer = (state = defaultState, action) => {
   switch (action.type) {
+    case actionNames.nextStep:
+      return {
+        ...state,
+        searchParams: action.body,
+      };
     case actionNames.searchFleetSuccessfully:
       return {
         ...state,

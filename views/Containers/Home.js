@@ -55,7 +55,7 @@ class Home extends React.Component {
         <MakeYourReservation
           searchLocation={actions.searchLocation}
           loadCountries={actions.loadCountries}
-          searchfleet={actions.searchFleet}
+          nextStep={actions.nextStep}
         />
         <Offer loadOffers={actions.loadOffers} />
         <Banner />

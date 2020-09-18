@@ -45,7 +45,11 @@ class Step2 extends React.Component {
                 <LocationSelected location={this.props.location.dropoff} title={'oficina de devolución'} />
               </div>
               <OptionalEquipment addOptionalEquipment={actions.addOptionalEquipment} />
-              <ClientType selectClientType={actions.selectClientType} validateId={actions.validateId} />
+              <ClientType
+                clearValidateIdError={actions.clearValidateIdError}
+                selectClientType={actions.selectClientType}
+                validateId={actions.validateId}
+              />
               {this.props.organization.organization_id ? (
                 <AgencyOrCorporation updateFormData={actions.updateFormData} />
               ) : null}

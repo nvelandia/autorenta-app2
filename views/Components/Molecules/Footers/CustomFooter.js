@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, FormGroup, InputGroup, InputGroupAddon, InputGroupText, Input, Button } from 'reactstrap';
+import { Row, Col, FormGroup, InputGroup, InputGroupAddon, InputGroupText, Input, Button, Container } from 'reactstrap';
 import { connect } from 'react-redux';
+import NotificationAlert from 'react-notification-alert';
 
 class CustomFooter extends React.Component {
   constructor(props) {
@@ -11,21 +12,59 @@ class CustomFooter extends React.Component {
       email: '',
       nameFocus: false,
       emailFocus: false,
+      error: {},
     };
     this.dispatch = props.dispatch;
   }
 
   handleOnClick = () => {
-    this.dispatch(this.props.subscribeToNewsletter(this.state.name, this.state.email));
+    if (this.state.name === '' || this.state.email === '') {
+      const error = {};
+      for (const field in this.state) {
+        if (this.state[field] === '') {
+          error[field] = true;
+        }
+      }
+      this.setState({ error: error });
+      this.notify('autorenta');
+    } else {
+      this.dispatch(this.props.subscribeToNewsletter(this.state.name, this.state.email));
+    }
   };
 
   handleOnChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+      error: { ...this.state.error, [event.target.name]: false },
+    });
+  };
+
+  notify = (type) => {
+    let options = {
+      place: 'tc',
+      message: (
+        <div className="alert-text">
+          <span className="alert-title" data-notify="title">
+            {' '}
+            ¡Atención!
+          </span>
+          <span data-notify="message">Todos los campos son requeridos</span>
+        </div>
+      ),
+      type: type,
+      icon: 'ni ni-bell-55',
+      autoDismiss: 10,
+    };
+    this.refs.notificationAlert.notificationAlert(options);
   };
 
   render() {
+    const error = this.state.error;
     return (
       <div className="ar-footer">
+        <div className="rna-wrapper">
+          <NotificationAlert ref="notificationAlert" />
+        </div>
         <Row className="ar-footer-up bg-ar-blue-2 justify-content-center ml-0 mr-0">
           <Col lg="9">
             <Row className="ar-subscribe">
@@ -33,7 +72,11 @@ class CustomFooter extends React.Component {
                 <h2 className="m-0 ar-white-1-text">Suscríbete y recibe todas nuestras ofertas</h2>
               </div>
               <Col>
-                <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1">
+                <InputGroup
+                  className={`input-group-merge input-group-alternative ar-round-input bg-ar-white-1 ${
+                    error['name'] ? 'ar-error-border' : null
+                  }`}
+                >
                   <Input
                     className="ar-round-input h-auto"
                     placeholder="Nombre y apellido"
@@ -46,7 +89,11 @@ class CustomFooter extends React.Component {
                 </InputGroup>
               </Col>
               <Col>
-                <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1">
+                <InputGroup
+                  className={`input-group-merge input-group-alternative ar-round-input bg-ar-white-1 ${
+                    error['email'] ? 'ar-error-border' : null
+                  }`}
+                >
                   <Input
                     className="ar-round-input h-auto"
                     placeholder="Direccion de E-mail"

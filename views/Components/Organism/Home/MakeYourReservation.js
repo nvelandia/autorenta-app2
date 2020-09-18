@@ -26,6 +26,7 @@ import { connect } from 'react-redux';
 import { isoStringToString, isoStringToStringTime } from '../../../../utils/helpers/dateHelpers';
 import { vehicleTypes } from '../../../../utils/constants/vehicleTypes';
 import NotificationAlert from 'react-notification-alert';
+import { redirectTo, pages } from '../../../../utils/helpers/redirectTo';
 
 class MakeYourReservation extends React.Component {
   constructor(props) {
@@ -127,7 +128,8 @@ class MakeYourReservation extends React.Component {
       this.setState({ error: error });
       this.notify('autorenta');
     } else {
-      this.dispatch(this.props.searchfleet(body));
+      this.dispatch(this.props.nextStep(body));
+      redirectTo(pages.step1);
     }
   };
 
@@ -362,7 +364,7 @@ MakeYourReservation.propTypes = {
   dispatch: PropTypes.func,
   searchLocation: PropTypes.func,
   loadCountries: PropTypes.func,
-  searchfleet: PropTypes.func,
+  nextStep: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

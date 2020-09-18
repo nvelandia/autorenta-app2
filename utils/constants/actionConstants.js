@@ -4,7 +4,7 @@ export const actionNames = {
   decrementCounter: 'DECREMENT_COUNTER',
   handleError: 'HANDLE_ERROR',
   //Home
-  nextPageHome: 'NEXT_PAGE_HOME',
+  nextStep: 'NEXT_STEP',
   searchLocation: 'SEARCH_LOCATION',
   loadCountries: 'LOAD_COUNTRIES',
   loadOffers: 'LOAD_OFFERS',
@@ -44,6 +44,7 @@ export const actionNames = {
   validateId: 'VALIDATE_ID',
   updateFormData: 'UPDATE_FORM_DATA',
   confirmReservation: 'CONFIRM_RESERVATION',
+  clearValidateIdError: 'CLEAR_VALIDATE_ID_ERROR',
   //Step2-Service
   loadAirlinesSuccessfully: 'LOAD_AIRLINES_SUCCESSFULLY',
   loadAirlinesUnsuccessfully: 'LOAD_AIRLINES_UNSUCCESSFULLY',

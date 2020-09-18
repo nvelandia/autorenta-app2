@@ -47,3 +47,10 @@ export const selectCar = (car, location, searchParams) => {
     searchParams,
   };
 };
+
+export const searchFleet = (body) => {
+  return {
+    type: actionNames.searchFleet,
+    body,
+  };
+};

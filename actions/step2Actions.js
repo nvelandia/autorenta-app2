@@ -56,3 +56,9 @@ export const createReservationSuccessfully = (car, location) => {
     location,
   };
 };
+
+export const clearValidateIdError = () => {
+  return {
+    type: actionNames.clearValidateIdError,
+  };
+};

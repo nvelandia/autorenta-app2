@@ -1,8 +1,9 @@
 import { actionNames } from '../utils/constants/actionConstants';
 
-export const nextPage = () => {
+export const nextStep = (body) => {
   return {
-    type: actionNames.nextPageHome,
+    type: actionNames.nextStep,
+    body,
   };
 };
 
@@ -22,12 +23,5 @@ export const loadCountries = () => {
 export const loadOffers = () => {
   return {
     type: actionNames.loadOffers,
-  };
-};
-
-export const searchFleet = (body) => {
-  return {
-    type: actionNames.searchFleet,
-    body,
   };
 };
