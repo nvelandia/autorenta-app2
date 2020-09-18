@@ -10,9 +10,7 @@ class RangeDatePicker extends React.Component {
   state = {};
 
   handleOnBlur = (handleDate) => {
-    if (this.state.startDate && this.state.endDate) {
-      handleDate(this.state.startDate, this.state.endDate);
-    }
+    handleDate(this.state.startDate, this.state.endDate);
   };
 
   handleSelectStartDate = (e) => {
@@ -34,13 +32,17 @@ class RangeDatePicker extends React.Component {
   };
 
   render() {
-    const { handleDate } = this.props;
+    const { handleDate, error } = this.props;
     return (
       <>
         <Row>
           <Col xs={12}>
             <FormGroup>
-              <InputGroup className="input-group-alternative shadow-none ar-round-input bg-ar-white-1">
+              <InputGroup
+                className={`input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                  error.dateToPickUp ? ' ar-error-border' : null
+                }`}
+              >
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText className="ar-round-input-left">
                     <i className="ar-icon-calendar ar-round-input-left" />
@@ -93,7 +95,11 @@ class RangeDatePicker extends React.Component {
           </Col>
           <Col xs={12}>
             <FormGroup>
-              <InputGroup className="input-group-alternative shadow-none ar-round-input bg-ar-white-1">
+              <InputGroup
+                className={`input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                  error.dateToDropOff ? ' ar-error-border' : null
+                }`}
+              >
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText className="ar-round-input-left">
                     <i className="ar-icon-calendar ar-round-input-left" />

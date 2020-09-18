@@ -27,12 +27,14 @@ class CustomDropDown extends React.Component {
   };
 
   render() {
-    const { items, classes, name, height } = this.props;
+    const { items, classes, name, height, error } = this.props;
     return (
       <>
         <UncontrolledDropdown className={`w-100 ${height}`}>
           <DropdownToggle
-            className="w-100 ar-round-input bg-ar-white-1 ar-last-row-make-your-reservation h-100"
+            className={`w-100 ar-round-input bg-ar-white-1 ar-last-row-make-your-reservation h-100 ${
+              error[name] ? 'ar-error-border' : null
+            }`}
             color="asdas"
           >
             <Row className="justify-content-between ar-pl-3 pr-3 align-items-center ">

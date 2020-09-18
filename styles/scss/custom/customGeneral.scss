@@ -137,7 +137,7 @@
 
 //Paddings
 .ar-last-row-make-your-reservation{
-  padding: .8em 2.2em;
+  padding: .8em 2.1em;
 }
 
 .ar-pl-3{
@@ -238,6 +238,11 @@
 
 .ar-border-color-white-3{
   border-color: $ar-color-white-3;
+}
+
+.ar-error-border{
+  border-color: #ff9fb5 !important;
+  border-width: 2px !important;
 }
 
 //Z-index
