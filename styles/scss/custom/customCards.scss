@@ -1675,6 +1675,25 @@
           }
         }
       }
+      .ar-payment-form-credit-card{
+        width: 510px;
+        padding: 2rem 0;
+        box-shadow: none;
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        .ar-payment-form-top{
+          margin: 0 0 0 1rem;
+          .ar-card-form-input{
+            font-size: 0.7rem;
+            padding: 0.5rem 0.75rem;
+            height: auto;
+          }
+        }
+        .ar-payment-form-bottom{
+
+        }
+      }
       .ar-payment-button-next{
         font-weight: 700;
         font-size: .7rem;
