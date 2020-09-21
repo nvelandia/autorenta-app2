@@ -12,6 +12,8 @@ import UpToTop from '../Components/Atoms/UpToTop';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
 import ActiveSearch from '../Components/Organism/Step1/ActiveSearch';
 import Result from '../Components/Organism/Step1/Result';
+import { vehicleTypes } from '../../utils/constants/vehicleTypes';
+import { pages, redirectTo } from '../../utils/helpers/redirectTo';
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -22,16 +24,33 @@ class Step1 extends React.Component {
   }
 
   handleOnLoad = () => {
-    if (this.props.searchParams.passenger_country_id !== '') {
-      this.dispatch(actions.searchFleet(this.props.searchParams));
+    if (this.props.params) {
+      const body = {
+        pickup_location: this.props.params[0],
+        pickup_date: this.props.params[1],
+        pickup_time: this.props.params[2],
+        dropoff_location: this.props.params[3],
+        dropoff_date: this.props.params[4],
+        dropoff_time: this.props.params[5],
+        passenger_country_id: this.props.params[6],
+        passenger_age: this.props.params[7],
+        vehicle_type: this.props.params[8],
+      };
+      this.dispatch(actions.searchFleet(body));
+    } else if (this.props.result.cars.length === 0) {
+      redirectTo(pages.home);
     }
   };
 
   render() {
+    const { params } = this.props;
     return (
       <>
         <CustomNavBar />
-        <StepsHeader step={1} />
+        <StepsHeader
+          step={1}
+          step1URL={`${pages.step1}/${params[0]}/${params[1]}/${params[2]}/${params[3]}/${params[4]}/${params[5]}/${params[6]}/${params[7]}/${params[8]}`}
+        />
         <ActiveSearch
           searchLocation={homeActions.searchLocation}
           modifySearchFleet={actions.modifySearchFleet}

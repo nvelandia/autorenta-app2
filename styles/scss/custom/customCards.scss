@@ -1680,18 +1680,80 @@
         padding: 2rem 0;
         box-shadow: none;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         margin: 0;
         .ar-payment-form-top{
-          margin: 0 0 0 1rem;
-          .ar-card-form-input{
-            font-size: 0.7rem;
-            padding: 0.5rem 0.75rem;
-            height: auto;
+          margin: 0 0 0.5rem 1rem;
+          .ar-card-form-input-container{
+            width: 300px;
+            margin: 0;
+            .ar-card-form-input{
+              font-size: 0.7rem;
+              padding: 0.5rem 0.75rem;
+              height: auto;
+              color: $ar-color-blue-2;
+              width: 300px;
+            }
           }
+          .ar-select-country-container{
+            margin: 0 0.5rem;
+            width: 170px;
+            .ar-select-country{
+              background-color: $ar-color-white-1;
+              font-size: 0.7rem;
+              border: solid;
+              border-color: $ar-color-white-4;
+              border-width: thin;
+              padding: 0.5rem 0.75rem;
+              font-weight: 500;
+            }
+          }
+
         }
         .ar-payment-form-bottom{
+          display: flex;
+          margin-left: 1rem;
+          .ar-payment-security-code{
+            width: 170px;
+            color: $ar-color-blue-2;
+            margin-bottom: 0;
+            .ar-card-form-input{
+              background-color: $ar-color-white-1;
+              font-size: 0.7rem;
+              font-weight: 500;
+              padding: 0.5rem 0.75rem;
+              height: auto;
+              text-align: center;
+            }
+          }
+          .ar-payment-expiration-date{
+            width: 24.5%;
+            margin: 0 0.5rem;
+            color: $ar-color-blue-2;
+            .ar-card-form-input{
+              background-color: $ar-color-white-1;
+              font-size: 0.7rem;
+              font-weight: 500;
+              padding: 0.5rem 0.75rem;
+              height: auto;
+              text-align: center;
 
+            }
+          }
+          .ar-payment-postal-code{
+            width: 170px;
+            color: $ar-color-blue-2;
+            margin-bottom: 0;
+            .ar-card-form-input{
+              background-color: $ar-color-white-1;
+              font-size: 0.7rem;
+              font-weight: 500;
+              padding: 0.5rem 0.75rem;
+              height: auto;
+              text-align: center;
+
+            }
+          }
         }
       }
       .ar-payment-button-next{

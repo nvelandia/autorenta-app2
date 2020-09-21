@@ -92,6 +92,7 @@
   padding-left: 5px;
   top: 87vh;
   left: 90vw;
+  z-index: 100;
   &:hover{
     cursor: pointer;
   }
@@ -107,5 +108,4 @@
 .ar-common-button{
   border-radius: 2rem !important;
   white-space: pre;
-
 }

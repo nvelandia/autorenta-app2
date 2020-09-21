@@ -9,7 +9,7 @@ class ProgressBar extends React.Component {
       case 1:
         return redirectTo(pages.home);
       case 2:
-        return redirectTo(pages.step1);
+        return redirectTo(this.props.step1URL);
       case 3:
         return redirectTo(pages.step2);
       default:

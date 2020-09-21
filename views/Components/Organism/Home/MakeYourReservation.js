@@ -129,7 +129,9 @@ class MakeYourReservation extends React.Component {
       this.notify('autorenta');
     } else {
       this.dispatch(this.props.nextStep(body));
-      redirectTo(pages.step1);
+      redirectTo(
+        `${pages.step1}/${body.pickup_location}/${body.pickup_date}/${body.pickup_time}/${body.dropoff_location}/${body.dropoff_date}/${body.dropoff_time}/${body.passenger_country_id}/${body.passenger_age}/${body.vehicle_type}`,
+      );
     }
   };
 

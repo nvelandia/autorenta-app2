@@ -35,6 +35,17 @@ class step2Service {
 
     return step2Adapter.createReservation(crateResponse);
   };
+
+  validatePromotion = async (body) => {
+    let validateResponse;
+    try {
+      validateResponse = await Api.post('fleet/find', body);
+    } catch (err) {
+      validateResponse = err;
+    }
+
+    return step2Adapter.validatePromotion(validateResponse);
+  };
 }
 
 export default new step2Service();

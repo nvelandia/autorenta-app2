@@ -13,6 +13,7 @@ import { Col, Row } from 'reactstrap';
 import ReservationState from '../Components/Organism/Step3/ReservationState';
 import Payment from '../Components/Organism/Step3/Payment';
 import ReservationDetails from '../Components/Organism/Step3/ReservationDetails';
+import { pages } from '../../utils/helpers/redirectTo';
 
 class Step3 extends React.Component {
   constructor(props) {
@@ -26,15 +27,19 @@ class Step3 extends React.Component {
 
   render() {
     this.dispatch(generalActions.hideLoader());
+    const params = this.props.searchParams;
     return (
       <>
         <CustomNavBar />
-        <StepsHeader step={3} />
+        <StepsHeader
+          step={3}
+          step1URL={`${pages.step1}/${params.pickup_location}/${params.pickup_date}/${params.pickup_time}/${params.dropoff_location}/${params.dropoff_date}/${params.dropoff_time}/${params.passenger_country_id}/${params.passenger_age}/${params.vehicle_type}`}
+        />
         <Row className="justify-content-center mt-4 ml-0 mr-0">
           <div className="ar-central-container d-flex">
             <Col>
               <ReservationState />
-              <Payment />
+              <Payment loadCountries={actions.loadCountries} />
               <ReservationDetails />
             </Col>
           </div>

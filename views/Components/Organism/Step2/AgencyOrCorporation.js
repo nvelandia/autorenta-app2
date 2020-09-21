@@ -56,7 +56,28 @@ class AgencyOrCorporation extends React.Component {
     this.dispatch(this.props.updateFormData({ [event.target.name]: event.target.value }));
   };
 
-  handleValidateClick = (event) => {};
+  handleValidateClick = (event) => {
+    const body = {
+      pickup_location: this.props.searchParams.pickup_location,
+      pickup_date: this.props.searchParams.pickup_date,
+      pickup_time: this.props.searchParams.pickup_time,
+      dropoff_location: this.props.searchParams.dropoff_location,
+      dropoff_date: this.props.searchParams.dropoff_date,
+      dropoff_time: this.props.searchParams.dropoff_time,
+      passenger_country_id: this.props.searchParams.passenger_country_id,
+      passenger_age: this.props.searchParams.passenger_age,
+      vehicle_type: this.props.searchParams.vehicle_type,
+      vendor: this.props.carSelected.company.code,
+      sipp: this.props.carSelected.typeAlias,
+      rate: this.props.carSelected.rates[0].rate_code,
+    };
+    if (event.target.name === 'couponNumber') {
+      body.coupon = this.state.couponNumber;
+    } else {
+      body.discount_code = this.state.promotionCode;
+    }
+    this.dispatch(this.props.validatePromotion(body));
+  };
 
   render() {
     return (
@@ -196,6 +217,7 @@ class AgencyOrCorporation extends React.Component {
                     <Button
                       className=" btn-icon w-100 ar-validate-input-passenger-button"
                       color="red-0"
+                      name="promotionCode"
                       onClick={this.handleValidateClick}
                     >
                       <span className="nav-link-inner--text">Validar </span>
@@ -227,6 +249,7 @@ class AgencyOrCorporation extends React.Component {
                       className=" btn-icon w-100 ar-validate-input-passenger-button"
                       color="red-0"
                       onClick={this.handleValidateClick}
+                      name="couponNumber"
                     >
                       <span className="nav-link-inner--text">Validar </span>
                       <i className="ar-icon-chevron-right" />
@@ -245,6 +268,7 @@ class AgencyOrCorporation extends React.Component {
 AgencyOrCorporation.proptypes = {
   dispatch: PropTypes.func,
   updateFormData: PropTypes.func,
+  validatePromotion: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

@@ -6,7 +6,7 @@ import { actionNames } from './utils/constants/actionConstants';
 import { loadCountries, searchLocation, loadOffers, searchFleet } from './redux-saga/HomeSaga';
 import { subscribeToNewsletter } from './redux-saga/GeneralSagas';
 import { modifySearchFleet } from './redux-saga/Step1Saga';
-import { loadAirlines, validateId, confirmReservation } from './redux-saga/Step2Saga';
+import { loadAirlines, validateId, confirmReservation, validatePromotion } from './redux-saga/Step2Saga';
 
 //es6promise.polyfill();
 
@@ -24,6 +24,7 @@ const saga = [
   takeLatest(actionNames.loadAirlines, loadAirlines),
   takeLatest(actionNames.validateId, validateId),
   takeLatest(actionNames.confirmReservation, confirmReservation),
+  takeLatest(actionNames.validatePromotion, validatePromotion),
 ];
 
 export default function* rootSaga() {

@@ -14,7 +14,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as classnames from 'classnames';
-import CustomDropDown from '../../Atoms/CustomDropDown';
+import CountryDropdown from '../../Molecules/dropdowns/CountryDropdown';
 
 class Payment extends React.Component {
   constructor(props) {
@@ -25,11 +25,17 @@ class Payment extends React.Component {
       cardNumber: '',
       cardNumberFocus: false,
       paymentWaySelected: true,
+      error: {},
     };
     this.dispatch = props.dispatch;
+    this.handleOnLoad();
   }
 
-  handleOnChange = (value) => {
+  handleOnLoad = () => {
+    this.dispatch(this.props.loadCountries());
+  };
+
+  handleOnChangePaymentWay = (value) => {
     this.setState({ paymentWay: value });
   };
 
@@ -37,7 +43,12 @@ class Payment extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleOnChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
+    const error = this.state.error;
     return (
       <Card className="card-frame ar-payment">
         <Card className="card-frame ar-payment-card-top shadow-none">
@@ -63,7 +74,7 @@ class Payment extends React.Component {
                       name={'paymentWay'}
                       id={'1'}
                       type="radio"
-                      onClick={() => this.handleOnChange('creditCard')}
+                      onClick={() => this.handleOnChangePaymentWay('creditCard')}
                     />
                     <label className="custom-control-label ar-payment-radio-button" htmlFor="1">
                       Pagar con Tarjeta de Crédito / Débito
@@ -75,7 +86,7 @@ class Payment extends React.Component {
                       name={'paymentWay'}
                       id={'2'}
                       type="radio"
-                      onClick={() => this.handleOnChange('PayPal')}
+                      onClick={() => this.handleOnChangePaymentWay('PayPal')}
                     />
                     <label className="custom-control-label ar-payment-radio-button" htmlFor="2">
                       PayPal
@@ -100,11 +111,14 @@ class Payment extends React.Component {
               <div className="ar-payment-form-credit-card">
                 <Row className="ar-payment-form-top">
                   <FormGroup
-                    className={classnames({
-                      focused: this.state.cardNumberFocus,
-                    })}
+                    className={classnames(
+                      {
+                        focused: this.state.cardNumberFocus,
+                      },
+                      'ar-card-form-input-container',
+                    )}
                   >
-                    <InputGroup className="input-group-merge input-group-alternative shadow-none mb-3 ar-round-input bg-ar-white-1">
+                    <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
                       <Input
                         name="cardNumber"
                         onChange={this.handleOnChange}
@@ -131,19 +145,86 @@ class Payment extends React.Component {
                       {
                         focused: this.state.countrySelected,
                       },
-                      'mb-0',
+                      'ar-select-country-container',
                     )}
                   >
-                    <CustomDropDown
-                      name={'countrySelected'}
-                      title={'País'}
+                    <CountryDropdown
                       items={this.props.countries}
-                      classes={'ar-dropdown-menu-overflow'}
-                      handleSelect={this.handleOnSelect}
+                      title={'País'}
+                      color={'white-0'}
+                      classes={'ar-select-country'}
+                      handleOnSelectClientType={this.handleOnSelect}
                     />
                   </FormGroup>
                 </Row>
-                <div className="ar-payment-form-bottom"></div>
+                <div className="ar-payment-form-bottom">
+                  <FormGroup
+                    className={classnames(
+                      {
+                        focused: this.state.securityCodeFocus,
+                      },
+                      'ar-payment-security-code',
+                    )}
+                  >
+                    <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
+                      <Input
+                        name="securityCode"
+                        onChange={this.handleOnChange}
+                        className=" ar-round-input ar-card-form-input"
+                        placeholder="CVC (código de seguridad)"
+                        value={this.state.securityCode}
+                        type="text"
+                        autoComplete="off"
+                        onFocus={() => this.setState({ securityCodeFocus: true })}
+                        onBlur={() => this.setState({ securityCodeFocus: false })}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                  <FormGroup
+                    className={classnames(
+                      {
+                        focused: this.state.expirationDateFocus,
+                      },
+                      'ar-payment-expiration-date',
+                    )}
+                  >
+                    <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
+                      <Input
+                        name="expirationDate"
+                        onChange={this.handleOnChange}
+                        className=" ar-round-input ar-card-form-input"
+                        placeholder="MM/AAAA"
+                        value={this.state.expirationDate}
+                        type="text"
+                        autoComplete="off"
+                        onFocus={() => this.setState({ expirationDateFocus: true })}
+                        onBlur={() => this.setState({ expirationDateFocus: false })}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                  <FormGroup
+                    className={classnames(
+                      {
+                        focused: this.state.postalCodeFocus,
+                      },
+                      'ar-payment-postal-code',
+                    )}
+                  >
+                    <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
+                      <Input
+                        name="postalCode"
+                        onChange={this.handleOnChange}
+                        className=" ar-round-input ar-card-form-input"
+                        placeholder="Códigal postal"
+                        value={this.state.postalCode}
+                        type="text"
+                        autoComplete="off"
+                        onFocus={() => this.setState({ postalCodeFocus: true })}
+                        onBlur={() => this.setState({ postalCodeFocus: false })}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </div>
               </div>
               <div className="m-auto d-flex align-items-center justify-content-center">
                 <Button
@@ -192,6 +273,7 @@ class Payment extends React.Component {
 Payment.propTypes = {
   dispatch: PropTypes.func,
   image: PropTypes.string,
+  loadCountries: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

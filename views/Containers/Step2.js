@@ -17,6 +17,7 @@ import OptionalEquipment from '../Components/Organism/Step2/OptionalEquipment';
 import ClientType from '../Components/Organism/Step2/ClientType';
 import Passenger from '../Components/Organism/Step2/Passenger';
 import AgencyOrCorporation from '../Components/Organism/Step2/AgencyOrCorporation';
+import { pages } from '../../utils/helpers/redirectTo';
 
 class Step2 extends React.Component {
   constructor(props) {
@@ -32,10 +33,14 @@ class Step2 extends React.Component {
 
   render() {
     this.dispatch(generalActions.hideLoader());
+    const params = this.props.searchParams;
     return (
       <>
         <CustomNavBar />
-        <StepsHeader step={2} />
+        <StepsHeader
+          step={2}
+          step1URL={`${pages.step1}/${params.pickup_location}/${params.pickup_date}/${params.pickup_time}/${params.dropoff_location}/${params.dropoff_date}/${params.dropoff_time}/${params.passenger_country_id}/${params.passenger_age}/${params.vehicle_type}`}
+        />
         <Row className="justify-content-center mt-4 ml-0 mr-0">
           <div className="ar-central-container d-flex">
             <Col>
@@ -51,7 +56,10 @@ class Step2 extends React.Component {
                 validateId={actions.validateId}
               />
               {this.props.organization.organization_id ? (
-                <AgencyOrCorporation updateFormData={actions.updateFormData} />
+                <AgencyOrCorporation
+                  updateFormData={actions.updateFormData}
+                  validatePromotion={actions.validatePromotion}
+                />
               ) : null}
               {this.props.clientType === 'Pasajero / Cliente directo' ? (
                 <Passenger updateFormData={actions.updateFormData} />

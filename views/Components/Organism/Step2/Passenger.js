@@ -20,6 +20,7 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 import ClientTypeDropdown from '../../Molecules/dropdowns/ClientTypeDropdown';
+import PropTypes from 'prop-types';
 
 class Passenger extends React.Component {
   constructor(props) {
@@ -41,14 +42,44 @@ class Passenger extends React.Component {
       promotionCode: '',
       couponNumber: '',
     };
+    this.dispatch = this.props.dispatch;
   }
 
   handleOnSelect = (value) => {
     this.setState({ airlineCompany: value });
+    this.dispatch(this.props.updateFormData({ airlineCompany: value }));
   };
 
   handleOnChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  handleOnBlur = (event) => {
+    this.setState({ [event.target.name + 'Focus']: false });
+    this.dispatch(this.props.updateFormData({ [event.target.name]: event.target.value }));
+  };
+
+  handleValidateClick = (event) => {
+    const body = {
+      pickup_location: this.props.searchParams.pickup_location,
+      pickup_date: this.props.searchParams.pickup_date,
+      pickup_time: this.props.searchParams.pickup_time,
+      dropoff_location: this.props.searchParams.dropoff_location,
+      dropoff_date: this.props.searchParams.dropoff_date,
+      dropoff_time: this.props.searchParams.dropoff_time,
+      passenger_country_id: this.props.searchParams.passenger_country_id,
+      passenger_age: this.props.searchParams.passenger_age,
+      vehicle_type: this.props.searchParams.vehicle_type,
+      vendor: this.props.carSelected.company.code,
+      sipp: this.props.carSelected.typeAlias,
+      rate: this.props.carSelected.rates[0].rate_code,
+    };
+    if (event.target.name === 'couponNumber') {
+      body.coupon = this.state.couponNumber;
+    } else {
+      body.discount_code = this.state.promotionCode;
+    }
+    this.dispatch(this.props.validatePromotion(body));
   };
 
   render() {
@@ -75,7 +106,7 @@ class Passenger extends React.Component {
                       type="text"
                       name="name"
                       onFocus={() => this.setState({ nameFocus: true })}
-                      onBlur={() => this.setState({ nameFocus: false })}
+                      onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
@@ -97,7 +128,7 @@ class Passenger extends React.Component {
                       type="text"
                       name="surname"
                       onFocus={() => this.setState({ surnameFocus: true })}
-                      onBlur={() => this.setState({ surnameFocus: false })}
+                      onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
@@ -119,7 +150,7 @@ class Passenger extends React.Component {
                       type="email"
                       name="email"
                       onFocus={() => this.setState({ emailFocus: true })}
-                      onBlur={() => this.setState({ emailFocus: false })}
+                      onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
@@ -143,7 +174,7 @@ class Passenger extends React.Component {
                       type="text"
                       name="phone"
                       onFocus={() => this.setState({ phoneFocus: true })}
-                      onBlur={() => this.setState({ phoneFocus: false })}
+                      onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
@@ -179,7 +210,7 @@ class Passenger extends React.Component {
                       type="text"
                       name="flyNumber"
                       onFocus={() => this.setState({ flyNumberFocus: true })}
-                      onBlur={() => this.setState({ flyNumberFocus: false })}
+                      onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
@@ -203,13 +234,14 @@ class Passenger extends React.Component {
                     type="text"
                     name="promotionCode"
                     onFocus={() => this.setState({ promotionCodeFocus: true })}
-                    onBlur={() => this.setState({ promotionCodeFocus: false })}
+                    onBlur={this.handleOnBlur}
                     onChange={this.handleOnChange}
                   />
                   <InputGroupAddon addonType="append">
                     <Button
                       className=" btn-icon w-100 ar-validate-input-passenger-button"
                       color="red-0"
+                      name="promotionCode"
                       onClick={this.handleSearchClick}
                     >
                       <span className="nav-link-inner--text">Validar </span>
@@ -233,7 +265,7 @@ class Passenger extends React.Component {
                     type="text"
                     name="couponNumber"
                     onFocus={() => this.setState({ couponNumberFocus: true })}
-                    onBlur={() => this.setState({ couponNumberFocus: false })}
+                    onBlur={this.handleOnBlur}
                     onChange={this.handleOnChange}
                   />
                   <InputGroupAddon addonType="append">
@@ -241,6 +273,7 @@ class Passenger extends React.Component {
                       className=" btn-icon w-100 ar-validate-input-passenger-button"
                       color="red-0"
                       onClick={this.handleSearchClick}
+                      name="couponNumber"
                     >
                       <span className="nav-link-inner--text">Validar </span>
                       <i className="ar-icon-chevron-right" />
@@ -256,7 +289,11 @@ class Passenger extends React.Component {
   }
 }
 
-Passenger.proptypes = {};
+Passenger.proptypes = {
+  dispatch: PropTypes.func,
+  updateFormData: PropTypes.func,
+  validatePromotion: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   return state.step2Reducer;

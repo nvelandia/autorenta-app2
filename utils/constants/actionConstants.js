@@ -45,6 +45,7 @@ export const actionNames = {
   updateFormData: 'UPDATE_FORM_DATA',
   confirmReservation: 'CONFIRM_RESERVATION',
   clearValidateIdError: 'CLEAR_VALIDATE_ID_ERROR',
+  validatePromotion: 'VALIDATE_PROMOTION',
   //Step2-Service
   loadAirlinesSuccessfully: 'LOAD_AIRLINES_SUCCESSFULLY',
   loadAirlinesUnsuccessfully: 'LOAD_AIRLINES_UNSUCCESSFULLY',
@@ -52,4 +53,6 @@ export const actionNames = {
   validateIdUnsuccessfully: 'VALIDATE_ID_UNSUCCESSFULLY',
   createReservationSuccessfully: 'CREATE_RESERVATION_SUCCESSFULLY',
   createReservationUnsuccessfully: 'CREATE_RESERVATION_UNSUCCESSFULLY',
+  validatePromotionSuccessfully: 'VALIDATE_PROMOTION_SUCCESSFULLY',
+  validatePromotionUnsuccessfully: 'VALIDATE_PROMOTION_UNSUCCESSFULLY',
 };

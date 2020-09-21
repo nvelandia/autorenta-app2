@@ -6,3 +6,9 @@ export const changePlan = (plan) => {
     plan,
   };
 };
+
+export const loadCountries = () => {
+  return {
+    type: actionNames.loadCountries,
+  };
+};

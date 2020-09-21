@@ -55,3 +55,20 @@ export function* confirmReservation(action) {
     yield all([put(res)]);
   }
 }
+
+export function* validatePromotion(action) {
+  const { body } = action;
+  body.language = 'es';
+
+  const res = yield call(step2service.validatePromotion, body);
+  if (res.error) {
+    if (res.error.code === 401 || res.error.code === 403) {
+      yield all([put({ type: actionNames.handleError, error: res.error })]);
+      redirectTo(pages.error);
+    }
+    yield all([put(res), put(generalActions.showNotification('', res.error))]);
+  } else {
+    res.searchParams = body;
+    yield all([put(res)]);
+  }
+}

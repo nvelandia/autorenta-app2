@@ -48,7 +48,7 @@ class ClientType extends React.Component {
             {' '}
             ¡Atención!
           </span>
-          <span data-notify="message">El número de ID ingres no es valido</span>
+          <span data-notify="message">El número de ID ingresado no es valido</span>
         </div>
       ),
       type: type,

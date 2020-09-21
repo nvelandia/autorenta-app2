@@ -222,6 +222,13 @@ const step2Reducer = (state = defaultState, action) => {
         ...state,
         error: {},
       };
+    case actionNames.validatePromotionSuccessfully:
+      return {
+        ...state,
+        formData: {
+          ...state.formData,
+        },
+      };
     default:
       return state;
   }

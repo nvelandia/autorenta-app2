@@ -78,7 +78,7 @@ class Result extends React.Component {
           simple.push(car);
         }
       });
-      cars = simple.concat(featured);
+      cars = featured.concat(simple);
     }
     return cars.map((car, index) => {
       if (

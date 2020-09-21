@@ -49,16 +49,24 @@ export const confirmReservation = (body) => {
   };
 };
 
-export const createReservationSuccessfully = (car, location) => {
+export const createReservationSuccessfully = (car, location, searchParams) => {
   return {
     type: actionNames.createReservationSuccessfully,
     car,
     location,
+    searchParams,
   };
 };
 
 export const clearValidateIdError = () => {
   return {
     type: actionNames.clearValidateIdError,
+  };
+};
+
+export const validatePromotion = (body) => {
+  return {
+    type: actionNames.validatePromotion,
+    body,
   };
 };

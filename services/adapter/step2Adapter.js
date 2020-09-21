@@ -46,5 +46,19 @@ class step2Adapter {
 
     return errorResponsesPresenter.formError(data, actionNames.createReservationUnsuccessfully);
   };
+
+  validatePromotion = (response, body) => {
+    const { data } = response;
+    console.log(response);
+    if (data.success) {
+      return successfullyResponsesPresenter.withOnlyData(
+        actionNames.createReservationSuccessfully,
+        'reservation',
+        data.response,
+      );
+    }
+
+    return errorResponsesPresenter.formError(data, actionNames.createReservationUnsuccessfully);
+  };
 }
 export default new step2Adapter();
