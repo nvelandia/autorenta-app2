@@ -9,13 +9,12 @@ class CountryDropdown extends React.Component {
     const { title } = props;
     this.state = {
       value: title,
-      changeColor: false,
     };
   }
 
-  handleOnSelect = (event) => {
-    this.setState({ value: event.target.value, changeColor: 'ar-red-text' });
-    this.props.handleOnSelectClientType(event.target.value);
+  handleOnSelect = (event, item) => {
+    this.props.handleOnSelect(event);
+    this.setState({ value: item.name });
   };
 
   render() {
@@ -23,15 +22,21 @@ class CountryDropdown extends React.Component {
     return (
       <UncontrolledDropdown group className="w-100">
         <DropdownToggle color={color} className={`ar-round-button ${classes}`}>
-          <div className={`${this.state.changeColor}`}>
+          <div>
             {this.state.value}
-            <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron ml-1 ar-blue-0-text" />
+            <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron-country ml-1 ar-blue-0-text" />
           </div>
         </DropdownToggle>
         <DropdownMenu>
           {items.map((item, index) => {
             return (
-              <DropdownItem key={index} id={index} name={name} value={item} onClick={this.handleOnSelect}>
+              <DropdownItem
+                key={index}
+                id={index}
+                name={name}
+                value={item.id}
+                onClick={(e) => this.handleOnSelect(e, item)}
+              >
                 {item.name}
               </DropdownItem>
             );
@@ -47,7 +52,7 @@ CountryDropdown.propTypes = {
   title: PropTypes.string,
   name: PropTypes.string,
   color: PropTypes.string,
-  handleOnSelectClientType: PropTypes.func,
+  handleOnSelect: PropTypes.func,
 };
 
 export default CountryDropdown;

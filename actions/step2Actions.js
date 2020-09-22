@@ -49,12 +49,13 @@ export const confirmReservation = (body) => {
   };
 };
 
-export const createReservationSuccessfully = (car, location, searchParams) => {
+export const createReservationSuccessfully = (car, location, searchParams, organization) => {
   return {
     type: actionNames.createReservationSuccessfully,
     car,
     location,
     searchParams,
+    organization,
   };
 };
 

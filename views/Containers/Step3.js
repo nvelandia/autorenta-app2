@@ -14,6 +14,7 @@ import ReservationState from '../Components/Organism/Step3/ReservationState';
 import Payment from '../Components/Organism/Step3/Payment';
 import ReservationDetails from '../Components/Organism/Step3/ReservationDetails';
 import { pages } from '../../utils/helpers/redirectTo';
+import AgencyOrOrganizationPayment from '../Components/Organism/Step3/AgencyOrOrganizationPayment';
 
 class Step3 extends React.Component {
   constructor(props) {
@@ -39,7 +40,11 @@ class Step3 extends React.Component {
           <div className="ar-central-container d-flex">
             <Col>
               <ReservationState />
-              <Payment loadCountries={actions.loadCountries} />
+              {!this.props.organization.name ? (
+                <Payment loadCountries={actions.loadCountries} />
+              ) : (
+                <AgencyOrOrganizationPayment loadCountries={actions.loadCountries} />
+              )}
               <ReservationDetails />
             </Col>
           </div>

@@ -5,6 +5,7 @@ const defaultState = {
   location: {},
   countries: [],
   searchParams: {},
+  organization: {},
   plan: {
     id: 0,
     title: 'Todo incluido',
@@ -34,6 +35,7 @@ const step3Reducer = (state = defaultState, action) => {
         car: action.car,
         location: action.location,
         searchParams: action.searchParams,
+        organization: action.organization,
       };
     case actionNames.loadCountriesSuccessfully:
       return { ...state, countries: action.countries };

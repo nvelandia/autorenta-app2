@@ -13,7 +13,7 @@ class ClientType extends React.Component {
       clientType: '',
       agencyCodeFocus: false,
       corporationCodeFocus: false,
-      agencyCode: '',
+      agencyCode: '5F2961A48F468',
       corporationCode: '',
     };
     this.dispatch = props.dispatch;
