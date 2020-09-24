@@ -99,7 +99,7 @@ class Google extends React.Component {
         <Container fluid>
           <Row className="m-0">
             <div className="col p-0">
-              <Card className="border-0">
+              <Card className="border-0 mb-0">
                 <MapCustom
                   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBHQl7lKVzqxKiLvKVmeY0S7LkVy-HVSY"
                   loadingElement={<div style={{ height: `100%` }} />}

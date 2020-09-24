@@ -1505,21 +1505,34 @@
     img{
       width: 150px;
       margin-right: 1rem;
+      @media (min-width: $ar-big-size){
+        width: 200px;
+        margin-right: 1rem;
+      }
     }
     div{
       display: flex;
       flex-direction: column;
       justify-content: center;
       width: 440px;
+      @media (min-width: $ar-big-size){
+        width: 530px;
+      }
       h2{
         color: $ar-color-green-0;
         font-weight: 700;
         letter-spacing: 0.02em;
         margin-bottom: 0.4rem;
+        @media (min-width: $ar-big-size){
+          font-size: 1.4rem;
+        }
       }
       h6{
         margin-left: 0.3rem;
         font-weight: 500;
+        @media (min-width: $ar-big-size){
+          font-size: .9rem;
+        }
       }
     }
   }
@@ -1530,30 +1543,45 @@
     img{
       width: 150px;
       margin-right: -1.5rem;
+      @media (min-width: $ar-big-size){
+        width: 200px;
+        margin-right: -2rem;
+      }
     }
     div{
       display: flex;
       flex-direction: column;
       justify-content: center;
       width: 540px;
+      @media (min-width: $ar-big-size){
+        width: 650px;
+      }
       h2{
         color: $ar-color-green-0;
         font-weight: 700;
         letter-spacing: 0.02em;
         margin-bottom: 0.4rem;
+        @media (min-width: $ar-big-size){
+          font-size: 1.4rem;
+        }
       }
       h6{
         font-weight: 500;
+        @media (min-width: $ar-big-size){
+          font-size: .9rem;
+        }
       }
       h5{
         color: $ar-color-green-0;
         font-weight: 700;
         font-size: .7rem;
         letter-spacing: 0.01em;
+        @media (min-width: $ar-big-size){
+          font-size: .9rem;
+        }
       }
     }
   }
-
   .ar-ren-state-card{
     margin-bottom: 1.5rem;
     background-color: $ar-color-green-0;
@@ -1563,19 +1591,31 @@
       display: flex;
       align-items: center;
       height: 90px;
+      @media (min-width: $ar-big-size){
+        height: 110px;
+      }
       .ar-rent-state-left{
       display: flex;
       align-items: center;
       padding: 0 1.5rem;
+        @media (min-width: $ar-big-size){
+          padding: 0 2rem;
+        }
       i{
         font-size: 2.2rem;
         margin-bottom: -0.5rem;
+        @media (min-width: $ar-big-size){
+          font-size: 2.7rem;
+        }
       }
       h1{
         color: $ar-color-white-0;
         margin: 0 5px 0 0;
         font-weight: 700;
         letter-spacing: 0.02em;
+        @media (min-width: $ar-big-size){
+          font-size: 2rem;
+        }
       }
       h6{
         width: 195px;
@@ -1584,6 +1624,12 @@
         letter-spacing: 0.03em;
         font-weight: 500;
         font-size: .75em;
+        @media (min-width: $ar-big-size){
+          font-size: 1em;
+          width: 245px;
+          line-height: 1.3em;
+          letter-spacing: 0.02em;
+        }
       }
     }
       .ar-rent-state-center{
@@ -1593,14 +1639,23 @@
       border-left: solid;
       border-right: solid;
       border-color: $ar-color-green-1;
+      @media (min-width: $ar-big-size){
+        padding: 0 2rem;
+      }
       i{
         font-size: 2.5rem;
         margin: 0 0 -5px -5px;
+        @media (min-width: $ar-big-size){
+          font-size: 3rem;
+        }
       }
       h4{
         color: $ar-color-white-0;
         margin: 0 0 0 -8px;
         font-weight: 700;
+        @media (min-width: $ar-big-size){
+          font-size: 1.25rem;
+        }
       }
       h6{
         width: 200px;
@@ -1608,6 +1663,12 @@
         margin: 0 0 -3px -8px;
         letter-spacing: 0.03em;
         font-weight: 400;
+        @media (min-width: $ar-big-size){
+          font-size: 1em;
+          width: 275px;
+          letter-spacing: 0.02em;
+          line-height: 1.1em;
+        }
       }
     }
       .ar-rent-state-right{
@@ -1616,6 +1677,11 @@
       justify-content: space-evenly;
       padding: 0 1.5rem;
       width: 100%;
+        button:first-child{
+          @media (min-width: $ar-big-size){
+            margin-left: 1rem;
+          }
+        }
       .ar-rent-state-button{
         display: flex;
         align-items: center;
@@ -1626,10 +1692,18 @@
         font-weight: 700;
         padding-left: 1.6rem;
         box-shadow: 0 7px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+        @media (min-width: $ar-big-size){
+          font-size: .9rem;
+          padding: .75rem 1.45rem .75rem 2rem;
+          height: auto;
+        }
         i{
           font-size: .8em;
           font-weight: 700;
           margin: 0.2em -0.3rem 0 0.7rem;
+          @media (min-width: $ar-big-size){
+            margin: 0.2em -0.3rem 0 1rem;
+          }
         }
       }
     }
@@ -1639,6 +1713,9 @@
 
 .ar-payment{
   padding: 1.1rem;
+  @media (min-width: $ar-big-size){
+    padding: 1.5rem;
+  }
   .ar-payment-card-top{
     margin-bottom: 1rem;
     border: solid;
@@ -1647,24 +1724,43 @@
     display: flex;
     align-items: center;
     flex-direction: row;
+    @media (min-width: $ar-big-size){
+      height: 170px;
+      margin-bottom: 1.5rem;
+    }
     .ar-payment-left{
       width: 30%;
       padding-left: 3.3rem;
+      @media (min-width: $ar-big-size){
+        padding-left: 4.2rem;
+      }
       .ar-payment-left-title{
         margin: 0 0 0.4rem -2rem;
         color: $ar-color-red-0;
         font-size: 0.8rem;
         font-weight: 700;
+        @media (min-width: $ar-big-size){
+          font-size: 1rem;
+          margin: 0 0 0.4rem -2.5rem;
+        }
         i{
           font-size: 1.2rem;
           position: relative;
           top: 0.25rem;
           left: -0.3rem;
+          @media (min-width: $ar-big-size){
+            font-size: 1.4rem;
+            top: 0.25rem;
+            left: -0.5rem;
+          }
         }
       }
       .ar-payment-left-text{
         font-size: 0.8rem;
         font-weight: 500;
+        @media (min-width: $ar-big-size){
+          font-size: 1rem;
+        }
       }
     }
     .ar-payment-right{
@@ -1682,26 +1778,51 @@
         justify-content: space-around;
         margin: 0;
         background-color: $ar-color-white-1;
+        @media (min-width: $ar-big-size){
+          width: 645px;
+          justify-content: space-between;
+        }
         .ar-payment-option-text{
           padding: 0 1.5rem;
+          @media (min-width: $ar-big-size){
+            padding: 0 1.5rem 0 2rem;
+          }
           h6{
             max-width: 175px;
             font-weight: 500;
+            @media (min-width: $ar-big-size){
+              max-width: 225px;
+              font-size: .95rem;
+            }
           }
         }
         .ar-payment-radios-button-container{
           border-left: solid;
           border-color: $ar-color-gray-1;
           padding: 0 1.8rem 0 1.2rem;
+          @media (min-width: $ar-big-size){
+            padding: 0 2.2rem 0.5rem 2rem;
+          }
           .ar-payment-radio-button{
             white-space: pre;
             font-size: 0.7rem;
             font-weight: 600;
+            @media (min-width: $ar-big-size){
+              font-size: 0.9rem;
+              letter-spacing: 0.02em;
+              margin: 0.5rem 0;
+            }
             &:before, &:after{
               width: 0.8rem;
               height: 0.8rem;
               top: 0.15rem;
-              left: -1.5rem
+              left: -1.5rem;
+              @media (min-width: $ar-big-size){
+                width: 1rem;
+                height: 1rem;
+                top: 0.18rem;
+                left: -1.7rem;
+              }
             }
           }
         }
@@ -1853,6 +1974,11 @@
         font-size: .7rem;
         margin-left: 1rem;
         padding-left: 2.2rem;
+        @media (min-width: $ar-big-size){
+          font-size: .9rem;
+          padding: .7rem 1.7rem .7rem 2.7rem;
+          margin-left: 1.5rem;
+        }
         i{
           font-size: 0.8em;
           margin: 0 -0.2rem 0 1rem;
@@ -1938,24 +2064,42 @@
     align-items: center;
     flex-direction: row;
     margin-bottom: 0;
+    @media (min-width: $ar-big-size){
+      height: 170px;
+    }
     .ar-payment-left{
       width: 30%;
       padding-left: 3.3rem;
+      @media (min-width: $ar-big-size){
+        padding-left: 4.2rem;
+      }
       .ar-payment-left-title{
         margin: 0 0 0.4rem -2rem;
         font-size: 0.8rem;
         font-weight: 700;
+        @media (min-width: $ar-big-size){
+          font-size: 1rem;
+          margin: 0 0 0.4rem -2.5rem;
+        }
         i{
           color: $ar-color-gray-1;
           font-size: 1.2rem;
           position: relative;
           top: 0.25rem;
           left: -0.3rem;
+          @media (min-width: $ar-big-size){
+            font-size: 1.4rem;
+            top: 0.25rem;
+            left: -0.5rem;
+          }
         }
       }
       .ar-payment-left-text{
         font-size: 0.8rem;
         font-weight: 500;
+        @media (min-width: $ar-big-size){
+          font-size: 1rem;
+        }
       }
     }
     .ar-payment-right{
@@ -1974,10 +2118,20 @@
         justify-content: space-around;
         margin: 0;
         background-color: $ar-color-white-1;
+        @media (min-width: $ar-big-size){
+          width: 645px;
+          justify-content: space-between;
+        }
         .ar-payment-option-text{
           padding: 0 1.5rem;
+          @media (min-width: $ar-big-size){
+            padding: 0.5rem 1.5rem 0.5rem 2rem;
+          }
           h6{
             font-weight: 500;
+            @media (min-width: $ar-big-size){
+              font-size: .95rem;
+            }
           }
         }
       }
@@ -1985,15 +2139,26 @@
         padding-right: 1rem;
         text-align: right;
         max-width: 180px;
+        @media (min-width: $ar-big-size){
+          max-width: 235px;
+          padding-right: 1.5rem;
+        }
         h5{
           font-size: 0.8rem;
           margin-bottom: 0;
+          @media (min-width: $ar-big-size){
+            font-size: 1.05rem;
+          }
         }
         h4{
           font-size: 1.2rem;
           font-weight: 700;
           color: $ar-color-green-0;
           margin-bottom: 0;
+          @media (min-width: $ar-big-size){
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+          }
         }
       }
     }
@@ -2008,39 +2173,65 @@
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    @media (min-width: $ar-big-size){
+      height: 170px;
+      margin-bottom: 1.5rem;
+    }
     i{
       font-size: 4rem;
       color: $ar-color-white-0;
       margin-right: -1rem;
+      @media (min-width: $ar-big-size){
+        font-size: 5rem;
+      }
     }
     h1{
       color: $ar-color-white-0;
       margin: 0;
       font-size: 1.1rem;
       font-weight: 700;
+      @media (min-width: $ar-big-size){
+        font-size: 1.4rem;
+      }
     }
   }
 }
 
 .ar-reserve-details{
   padding: 1rem;
+  @media (min-width: $ar-big-size){
+    padding: 1.5rem;
+  }
   .ar-reserve-details-text-container{
     width: 37%;
     height: 208px;
     padding: 0 0 0 3.2rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    @media (min-width: $ar-big-size){
+      height: 275px;
+      padding: 0 0 0 3.7rem;
+    }
     .ar-reserve-details-title{
-      margin: 0.5rem 0 1.5rem 0;
+      margin: .35rem 0 1.5rem 0;
       text-transform: uppercase;
       color: $ar-color-red-0;
       font-size: 0.75rem;
+      @media (min-width: $ar-big-size){
+        font-size: .9rem;
+        margin: 0.8rem 0 1.9rem 0;
+        letter-spacing: 0.03em;
+      }
       i{
         position: absolute;
         font-size: 1.2rem;
         left: 2rem;
         top: 1.7rem;
+        @media (min-width: $ar-big-size){
+          font-size: 1.5rem;
+          left: 2.3rem;
+          top: 2rem;
+        }
       }
     }
     .ar-reserve-details-subtitle{
@@ -2051,6 +2242,10 @@
       font-size: .7rem;
       font-weight: 500;
       margin-bottom: 0.2rem;
+      @media (min-width: $ar-big-size){
+        font-size: .85rem;
+        margin-bottom: 0.3rem;
+      }
       strong{
         color: $ar-color-red-0;
       }
@@ -2063,17 +2258,17 @@
     width: 63%;
     .ar-location-selected{
       width: 48.8%;
-      height: 208px;
-      margin-bottom: 1rem;
-      @media (min-width: $ar-big-size){
-        height: 275px;
-      }
+      height: auto;
+      margin-bottom: 0;
       .ar-location-top{
         margin: 1rem 0.8rem 1rem 0.8rem;
         .ar-location-icon{
           margin-right: 0.4rem;
           color: $ar-color-red-0;
           font-size: 1.1rem;
+          @media (min-width: $ar-big-size){
+            font-size: 1.5rem !important;
+          }
         }
         .ar-location-date{
           font-size: 0.95rem;
@@ -2084,6 +2279,9 @@
           font-size: 0.65rem;
           margin:0;
           font-weight: 500;
+          @media (min-width: $ar-big-size){
+            font-size: .8rem !important;
+          }
         }
         h5{
           margin-top: 0.2rem;
@@ -2092,6 +2290,9 @@
           text-transform: uppercase;
           font-size: 0.75rem;
           letter-spacing: 0.02em;
+          @media (min-width: $ar-big-size){
+            font-size: .9rem !important;
+          }
         }
         @media (min-width: $ar-big-size){
           margin: 1.2rem;
@@ -2119,9 +2320,9 @@
 
       }
       .ar-location-bottom{
-        margin: 0;
+        margin: 0 0 1rem 0;
         .map-canvas{
-          height: 100px;
+          height: 110px;
         }
         @media (min-width: $ar-big-size){
           padding: 0 0.4rem;

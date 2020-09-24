@@ -7,7 +7,7 @@ class ReservationState extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      payed: false,
+      payed: true,
     };
     this.dispatch = props.dispatch;
   }
