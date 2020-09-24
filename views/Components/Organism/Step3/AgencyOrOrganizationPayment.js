@@ -20,11 +20,11 @@ class AgencyOrOrganizationPayment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      paymentWay: 'PayPal',
+      paymentWay: '',
       countrySelected: '',
       cardNumber: '',
       cardNumberFocus: false,
-      paymentWaySelected: true,
+      paymentWaySelected: false,
       payed: false,
       error: {},
     };

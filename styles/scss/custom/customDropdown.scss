@@ -38,4 +38,9 @@
   left: 80%;
   font-size: 0.7em;
   margin-top: 0.5em;
+  @media (min-width: $ar-big-size){
+    font-size: 0.8em;
+    left: 82%;
+    top: 20%;
+  }
 }

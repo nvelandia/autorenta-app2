@@ -17,6 +17,9 @@
   img{
     width: 30px;
     padding: 0 0.2rem;
+    @media (min-width: $ar-big-size){
+      width: 35px;
+    }
   }
 }
 

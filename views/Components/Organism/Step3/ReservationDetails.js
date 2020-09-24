@@ -148,7 +148,7 @@ class ReservationDetails extends React.Component {
                 Plan seleccionado
               </h1>
               <div className="ar-card-details-rates">
-                <h5>Tarifa todo incluido</h5>
+                <h5>Tarifa Todo Incluido</h5>
                 <h6>MOST INCLUSIVE - AR</h6>
                 <div className="ar-card-details-rates-list">{this.renderSelectedPlan()}</div>
               </div>
