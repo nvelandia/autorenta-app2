@@ -12,6 +12,7 @@ import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
 import Banner from '../Components/Molecules/banners/Banner';
 import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
+import { isServer } from '../../utils/helpers/isError';
 
 const items = [
   {
@@ -45,7 +46,14 @@ class Home extends React.Component {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
+    this.handleOnLoad();
   }
+
+  handleOnLoad = () => {
+    if (!isServer()) {
+      window.scrollTo(0, 0);
+    }
+  };
 
   render() {
     return (

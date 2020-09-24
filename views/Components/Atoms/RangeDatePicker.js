@@ -56,6 +56,15 @@ class RangeDatePicker extends React.Component {
                   timeFormat={'HH:mm'}
                   value={this.state.startDate}
                   timeConstraints={{ minutes: { step: 30 } }}
+                  isValidDate={(currentDate, selectedDate) => {
+                    if (moment().isBefore(currentDate)) {
+                      if (this.state.endDate) {
+                        return moment(this.state.endDate).isAfter(currentDate);
+                      }
+                      return true;
+                    }
+                    return false;
+                  }}
                   renderDay={(props, currentDate, selectedDate) => {
                     let classes = props.className;
                     if (
@@ -113,11 +122,19 @@ class RangeDatePicker extends React.Component {
                   timeFormat={'H:mm'}
                   value={this.state.endDate}
                   timeConstraints={{ minutes: { step: 30 } }}
+                  isValidDate={(currentDate, selectedDate) => {
+                    if (moment().isBefore(currentDate)) {
+                      if (this.state.startDate) {
+                        return moment(this.state.startDate).isBefore(currentDate);
+                      }
+                      return true;
+                    }
+                    return false;
+                  }}
                   renderDay={(props, currentDate, selectedDate) => {
                     let classes = props.className;
                     if (
                       this.state.startDate &&
-                      this.state.endDate &&
                       moment(this.state.startDate._d).format('DD-MM-YYYY') + '' ===
                         moment(currentDate._d).format('DD-MM-YYYY') + ''
                     ) {

@@ -18,6 +18,7 @@ import ClientType from '../Components/Organism/Step2/ClientType';
 import Passenger from '../Components/Organism/Step2/Passenger';
 import AgencyOrCorporation from '../Components/Organism/Step2/AgencyOrCorporation';
 import { pages } from '../../utils/helpers/redirectTo';
+import { isServer } from '../../utils/helpers/isError';
 
 class Step2 extends React.Component {
   constructor(props) {
@@ -29,6 +30,9 @@ class Step2 extends React.Component {
 
   handleOnLoad = () => {
     this.dispatch(actions.loadAirlines());
+    if (!isServer()) {
+      window.scrollTo(0, 0);
+    }
   };
 
   render() {

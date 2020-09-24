@@ -9,6 +9,7 @@ import UpToTop from '../Components/Atoms/UpToTop';
 import ImageHeader from '../Components/Molecules/Headers/ImageHeader';
 import Breadcrumbs from '../Components/Atoms/Breadcrumbs';
 import CardPromotion from '../Components/Organism/Promotion/CardPromotion';
+import { isServer } from '../../utils/helpers/isError';
 
 const items = [
   {
@@ -26,7 +27,14 @@ class Promotion extends React.Component {
     super(props);
     this.state = {};
     this.dispatch = props.dispatch;
+    this.handleOnLoad();
   }
+
+  handleOnLoad = () => {
+    if (!isServer()) {
+      window.scrollTo(0, 0);
+    }
+  };
 
   render() {
     return (

@@ -78,7 +78,7 @@ class CarsResult extends React.Component {
       );
     });
 
-    return [prices.slice(0, 2), prices.slice(2, 4)];
+    return [prices.slice(0, 2), prices.slice(2, 4), prices.slice(4, 6)];
 
     // if (this.state.page === 1) {
     //   return (
@@ -199,17 +199,18 @@ class CarsResult extends React.Component {
                 <PriceCarousel activeIndex={this.state.page - 1} items={this.renderPrice(car)} />
                 <div className="ar-car-chevron">
                   <span
-                    onClick={() => (car.rates.length > 2 ? this.setState({ page: 1 }) : null)}
+                    onClick={() => (this.state.page > 1 ? this.setState({ page: this.state.page - 1 }) : null)}
                     className={
                       'ar-icon-chevron-left ' +
-                      (this.state.page !== 1 && car.rates.length > 2 ? ' ar-price-enabled' : null)
+                      (this.state.page > 1 && car.rates.length > 2 ? ' ar-price-enabled' : null)
                     }
                   />
                   <span
-                    onClick={() => (car.rates.length > 2 ? this.setState({ page: 2 }) : null)}
+                    onClick={() =>
+                      car.rates.length / 2 > this.state.page ? this.setState({ page: this.state.page + 1 }) : null
+                    }
                     className={
-                      'ar-icon-chevron-right ' +
-                      (this.state.page !== 2 && car.rates.length > 2 ? ' ar-price-enabled' : null)
+                      'ar-icon-chevron-right ' + (this.state.page < car.rates.length / 2 ? ' ar-price-enabled' : null)
                     }
                   />
                 </div>

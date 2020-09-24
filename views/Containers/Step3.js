@@ -15,6 +15,7 @@ import Payment from '../Components/Organism/Step3/Payment';
 import ReservationDetails from '../Components/Organism/Step3/ReservationDetails';
 import { pages } from '../../utils/helpers/redirectTo';
 import AgencyOrOrganizationPayment from '../Components/Organism/Step3/AgencyOrOrganizationPayment';
+import { isServer } from '../../utils/helpers/isError';
 
 class Step3 extends React.Component {
   constructor(props) {
@@ -24,7 +25,11 @@ class Step3 extends React.Component {
     this.handleOnLoad();
   }
 
-  handleOnLoad = () => {};
+  handleOnLoad = () => {
+    if (!isServer()) {
+      window.scrollTo(0, 0);
+    }
+  };
 
   render() {
     this.dispatch(generalActions.hideLoader());

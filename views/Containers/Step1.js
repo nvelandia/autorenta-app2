@@ -14,6 +14,7 @@ import ActiveSearch from '../Components/Organism/Step1/ActiveSearch';
 import Result from '../Components/Organism/Step1/Result';
 import { vehicleTypes } from '../../utils/constants/vehicleTypes';
 import { pages, redirectTo } from '../../utils/helpers/redirectTo';
+import { isServer } from '../../utils/helpers/isError';
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -39,6 +40,9 @@ class Step1 extends React.Component {
       this.dispatch(actions.searchFleet(body));
     } else if (this.props.result.cars.length === 0) {
       redirectTo(pages.home);
+    }
+    if (!isServer()) {
+      window.scrollTo(0, 0);
     }
   };
 
