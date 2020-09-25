@@ -30,6 +30,9 @@
   padding-right: 0.6em !important;
   font-size: 0.750rem !important;
   white-space: pre;
+  &:hover{
+    cursor: pointer;
+  }
   @media (min-width: 1500px) {
     font-size: 0.9em !important;
   }

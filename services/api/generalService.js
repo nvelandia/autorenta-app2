@@ -13,6 +13,17 @@ class generalService {
 
     return generalAdapter.subscribeToNewsletter(subscribeResponse);
   };
+
+  searchReservation = async (body) => {
+    let searchResponse;
+    try {
+      searchResponse = await Api.post('bookings/view', body);
+    } catch (err) {
+      searchResponse = err;
+    }
+
+    return generalAdapter.subscribeToNewsletter(searchResponse);
+  };
 }
 
 export default new generalService();

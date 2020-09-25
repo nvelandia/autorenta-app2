@@ -20,3 +20,65 @@
     max-width: 400px;
   }
 }
+
+.ar-modal-search-reservation{
+  max-width: 700px;
+
+  @media (min-width: $ar-big-size){
+    max-width: 900px;
+  }
+  .ar-modal-search-reservation-title{
+    margin: 1rem 0 1rem 1.5rem;
+  }
+  .ar-search-reservation-input{
+    width: 38%;
+    color: $ar-color-blue-2;
+    padding: 0 0.5rem;
+    margin-bottom: 1.8rem;
+    .ar-search-reservation-form-input{
+      background-color: $ar-color-white-1;
+      font-size: 0.7rem;
+      font-weight: 500;
+      padding: 0.6rem 1rem;
+      height: auto;
+      color: $ar-color-blue-2;
+      @media (min-width: $ar-big-size){
+        font-size: 0.9rem;
+        padding: 0.7rem 1.5rem;
+      }
+    }
+  }
+  .ar-search-button-container{
+    width: 23%;
+    padding: 0 0.5rem;
+    .ar-search-button{
+      width: 100%;
+      padding: 0.6rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      @media (min-width: $ar-big-size){
+        font-size: 0.9rem;
+        padding: 0.7rem 0.95rem;
+      }
+    }
+  }
+  .ar-search-reservation-checkbox{
+    font-size: .75em !important;
+    line-height: 1.2em;
+    font-weight: 500;
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    @media (min-width: $ar-big-size){
+      font-size: .9em !important;
+    }
+    &:before, &:after{
+      width: 1.3em;
+      height: 1.3em;
+      top: 0;
+      left: -3em;
+    }
+    @media (min-width: $ar-big-size){
+      font-size: 0.8rem;
+    }
+  }
+}

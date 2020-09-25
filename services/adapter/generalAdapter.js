@@ -16,5 +16,18 @@ class generalAdapter {
 
     return errorResponsesPresenter.formError(data, actionNames.subscribedUnsuccessfully);
   };
+
+  searchReservation = (response) => {
+    const { data } = response;
+
+    if (data.success) {
+      return successfullyResponsesPresenter.withOnlyMessage(
+        actionNames.searchReservationSuccessfully,
+        'Reservation found successfully',
+      );
+    }
+
+    return errorResponsesPresenter.formError(data, actionNames.searchReservationUnsuccessfully);
+  };
 }
 export default new generalAdapter();

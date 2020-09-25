@@ -38,11 +38,11 @@ class CustomCarousel extends React.Component {
           onExiting={() => this.setState({ animating: true })}
           onExited={() => this.setState({ animating: false })}
         >
-          <Row>
-            {item[0]}
-            {item[1]}
-            {item[2]}
-            {item[3]}
+          <Row className={`${this.props.justify ? this.props.justify : ''}`}>
+            {item[0] ? item[0] : null}
+            {item[1] ? item[1] : null}
+            {item[2] ? item[2] : null}
+            {item[3] ? item[3] : null}
           </Row>
         </CarouselItem>
       );

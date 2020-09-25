@@ -9,6 +9,7 @@ export const actionNames = {
   loadCountries: 'LOAD_COUNTRIES',
   loadOffers: 'LOAD_OFFERS',
   searchFleet: 'SEARCH_FLEET',
+  selectPromotion: 'SELECT_PROMOTION',
   //Home-Service
   searchLocationSuccessfully: 'SEARCH_LOCATION_SUCCESSFULLY',
   searchLocationUnsuccessfully: 'SEARCH_LOCATION_UNSUCCESSFULLY',
@@ -22,9 +23,12 @@ export const actionNames = {
   showLoader: 'SHOW_LOADER',
   hideLoader: 'HIDE-LOADER',
   subscribeNewsletter: 'SUBSCRIBE_TO_NEWSLETTER',
+  searchReservation: 'SEARCH_RESERVATION',
   //General-Service
   subscribedSuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_SUCCESSFULLY',
   subscribedUnsuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_UNSUCCESSFULLY',
+  searchReservationSuccessfully: 'SEARCH_RESERVATION_SUCCESSFULLY',
+  searchReservationUnsuccessfully: 'SEARCH_RESERVATION_UNSUCCESSFULLY',
   //Step1
   addFilter: 'ADD_FILTER',
   orderByMinToMax: 'ORDER_BY_MIN_TO_MAX',

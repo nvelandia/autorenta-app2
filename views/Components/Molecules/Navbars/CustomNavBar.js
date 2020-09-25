@@ -30,10 +30,27 @@ import {
   Button,
 } from 'reactstrap';
 import { routes } from '../../../../utils/constants/routes';
-
 import Flags from '../../Atoms/Flags';
+import SearchReservationModal from '../Modals/SearchReservationModal';
+
+import * as actions from '../../../../actions/generalActions';
 
 class CustomNavbar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSearchReservationModal: false,
+    };
+  }
+
+  showSearchReservationModal = () => {
+    this.setState({ showSearchReservationModal: true });
+  };
+
+  hideModal = () => {
+    this.setState({ showSearchReservationModal: false });
+  };
+
   render() {
     return (
       <Navbar className="sticky-top navbar-horizontal navbar-main bg-ar-navbar p-2" expand="xl" id="navbar-main">
@@ -88,7 +105,7 @@ class CustomNavbar extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
-                <NavLink className="ar-nav-link" href={routes.SEARCH}>
+                <NavLink className="ar-nav-link" onClick={this.showSearchReservationModal}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
                     <strong>Buscar reservación</strong>
                   </span>
@@ -129,6 +146,11 @@ class CustomNavbar extends React.Component {
             </Nav>
           </UncontrolledCollapse>
         </Container>
+        <SearchReservationModal
+          searchReservation={actions.searchReservation}
+          showModal={this.state.showSearchReservationModal}
+          hideModal={this.hideModal}
+        />
       </Navbar>
     );
   }

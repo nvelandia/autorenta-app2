@@ -23,3 +23,10 @@ export const subscribeNewsletter = (name, email) => {
     email,
   };
 };
+
+export const searchReservation = (body) => {
+  return {
+    type: actionNames.searchReservation,
+    body,
+  };
+};

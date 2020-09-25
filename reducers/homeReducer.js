@@ -5,6 +5,7 @@ const defaultState = {
   locations: [],
   countries: [],
   offers: [],
+  promotionSelected: {},
 };
 
 const homeReducer = (state = defaultState, action) => {
@@ -17,6 +18,8 @@ const homeReducer = (state = defaultState, action) => {
       return { ...state, countries: action.countries };
     case actionNames.loadOffersSuccessfully:
       return { ...state, offers: action.offers };
+    case actionNames.selectPromotion:
+      return { ...state, promotionSelected: action.promotion };
     default:
       return state;
   }

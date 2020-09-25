@@ -5,7 +5,7 @@ import { Button, Card, CardBody, CardImg, CardTitle, CardText, CardHeader, Col, 
 import Pagination from '../../Atoms/Pagination';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { redirectTo } from '../../../../utils/helpers/redirectTo';
+import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
 import CustomCarousel from '../../Molecules/Carousels/CustomCarousel';
 
 class Offer extends React.Component {
@@ -120,22 +120,58 @@ class Offer extends React.Component {
     this.setState({ selectedPage: page });
   };
 
+  handleSelectPromotion = (index) => {
+    this.dispatch(this.props.selectPromotion(this.props.offers[index]));
+    redirectTo(pages.promotion);
+  };
+
+  // renderCards = () => {
+  //   const cards = this.state.cards.map((card, index) => {
+  //     return (
+  //       <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
+  //         <Card className="w-auto m-2">
+  //           <div className="ar-card-image">
+  //             <img className="ar-image" src={card.image} />
+  //             <img className="ar-logo" src={card.thumb} />
+  //             <div className="ar-border-image-offer" />
+  //           </div>
+  //           <CardBody className="ar-card-body-offer">
+  //             <CardTitle className={`ar-card-title ${card.color}`}>{card.title}</CardTitle>
+  //             <Row className="justify-content-center">
+  //               <Button
+  //                 className={`ar-round-button  ar-promo-button ${card.button} w-100 ml-3 mr-3`}
+  //                 onClick={() => redirectTo('/promotion')}
+  //               >
+  //                 Más información
+  //               </Button>
+  //             </Row>
+  //           </CardBody>
+  //         </Card>
+  //       </Col>
+  //     );
+  //   });
+  //   return [cards.slice(0, 4), cards.slice(4, 8), cards.slice(8, 12)];
+  // };
+
+  // metodo con lo que viene del back
+
   renderCards = () => {
-    const cards = this.state.cards.map((card, index) => {
+    const cards = this.props.offers.map((offer, index) => {
       return (
         <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
           <Card className="w-auto m-2">
             <div className="ar-card-image">
-              <img className="ar-image" src={card.image} />
-              <img className="ar-logo" src={card.thumb} />
+              <img className="ar-image" src={offer.thumb} />
+              <img className="ar-logo" src={offer.company.logo} />
               <div className="ar-border-image-offer" />
             </div>
-            <CardBody className="ar-card-body-offer">
-              <CardTitle className={`ar-card-title ${card.color}`}>{card.title}</CardTitle>
+            <CardBody>
+              <CardTitle className={`ar-card-title ${offer.color}`}>{offer.title}</CardTitle>
               <Row className="justify-content-center">
                 <Button
-                  className={`ar-round-button  ar-promo-button ${card.button} w-100 ml-3 mr-3`}
-                  onClick={() => redirectTo('/promotion')}
+                  className={`ar-round-button  ar-promo-button ${offer.button} w-100 ml-3 mr-3`}
+                  style={{ backgroundColor: offer.company.color, borderColor: offer.company.color }}
+                  onClick={() => this.handleSelectPromotion(index)}
                 >
                   Más información
                 </Button>
@@ -145,39 +181,13 @@ class Offer extends React.Component {
         </Col>
       );
     });
-    return [cards.slice(0, 4), cards.slice(4, 8), cards.slice(8, 12)];
+    let iterations = Math.ceil(cards.length / 3);
+    const cleanedCards = [];
+    for (let i = 0; i < iterations; i++) {
+      cleanedCards.push(cards.slice(i * 4, i * 4 + 4));
+    }
+    return cleanedCards;
   };
-
-  // metodo con lo que viene del back
-
-  // renderCards = () => {
-  //   return this.props.offers
-  //     .map((offer, index) => {
-  //       return (
-  //         <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
-  //           <Card className="w-auto m-2">
-  //             <div className="ar-card-image">
-  //               <img className="ar-image" src={offer.thumb} />
-  //               <img className="ar-logo" src={offer.company.logo} />
-  //               <div className="ar-border-image-offer" />
-  //             </div>
-  //             <CardBody>
-  //               <CardTitle className={`ar-card-title ${offer.color}`}>{offer.title}</CardTitle>
-  //               <Row className="justify-content-center">
-  //                 <Button
-  //                   className={`ar-round-button  ar-promo-button ${offer.button} w-100 ml-3 mr-3`}
-  //                   style={{ backgroundColor: offer.company.color, borderColor: offer.company.color }}
-  //                 >
-  //                   Más información
-  //                 </Button>
-  //               </Row>
-  //             </CardBody>
-  //           </Card>
-  //         </Col>
-  //       );
-  //     })
-  //     .slice(0, 4);
-  // };
 
   render() {
     const { dataCards } = this.props;
@@ -191,14 +201,18 @@ class Offer extends React.Component {
               </Col>
             </Row>
             <Row className=" justify-content-md-around justify-content-sm-center mt-5">
-              <CustomCarousel activeIndex={this.state.selectedPage - 1} items={this.renderCards()} />
+              <CustomCarousel
+                activeIndex={this.state.selectedPage - 1}
+                items={this.renderCards()}
+                justify="justify-content-center"
+              />
             </Row>
           </div>
         </Row>
         <div className="ar-pagination-container">
           <Pagination
-            // totalPages={Math.ceil(this.props.offers.length / 4)}
-            totalPages={this.state.totalPages}
+            totalPages={Math.ceil(this.props.offers.length / 4)}
+            // totalPages={this.state.totalPages}
             selectPage={this.selectPage}
             active={this.state.selectedPage}
           />
@@ -211,6 +225,7 @@ class Offer extends React.Component {
 Offer.proptypes = {
   dispatch: PropTypes.func,
   loadOffers: PropTypes.func,
+  selectPromotion: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

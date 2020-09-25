@@ -65,7 +65,7 @@ class Home extends React.Component {
           loadCountries={actions.loadCountries}
           nextStep={actions.nextStep}
         />
-        <Offer loadOffers={actions.loadOffers} />
+        <Offer loadOffers={actions.loadOffers} selectPromotion={actions.selectPromotion} />
         <Banner />
         <CustomFooter subscribeToNewsletter={generalAction.subscribeNewsletter} />
         <UpToTop />

@@ -11,17 +11,6 @@ import Breadcrumbs from '../Components/Atoms/Breadcrumbs';
 import CardPromotion from '../Components/Organism/Promotion/CardPromotion';
 import { isServer } from '../../utils/helpers/isError';
 
-const items = [
-  {
-    src: '/img/custom/promotion/promotion-top-header-bg.jpg',
-    altText: '',
-    caption: '',
-    header: '',
-    id: 1,
-    style: 'ar-header-image',
-  },
-];
-
 class Promotion extends React.Component {
   constructor(props) {
     super(props);
@@ -37,6 +26,16 @@ class Promotion extends React.Component {
   };
 
   render() {
+    const items = [
+      {
+        src: this.props.promotionSelected.image,
+        altText: '',
+        caption: '',
+        header: '',
+        id: 1,
+        style: 'ar-header-image',
+      },
+    ];
     return (
       <>
         <CustomNavBar />

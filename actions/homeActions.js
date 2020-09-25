@@ -25,3 +25,10 @@ export const loadOffers = () => {
     type: actionNames.loadOffers,
   };
 };
+
+export const selectPromotion = (promotion) => {
+  return {
+    type: actionNames.selectPromotion,
+    promotion,
+  };
+};
