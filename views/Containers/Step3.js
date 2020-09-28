@@ -44,7 +44,7 @@ class Step3 extends React.Component {
         <Row className="justify-content-center mt-4 ml-0 mr-0">
           <div className="ar-central-container d-flex">
             <Col>
-              <ReservationState />
+              <ReservationState cancelReservation={actions.cancelReservation} />
               {!this.props.organization.name ? (
                 <Payment loadCountries={actions.loadCountries} />
               ) : (

@@ -4,6 +4,7 @@ const defaultState = {
   carSelected: {},
   location: {},
   searchParams: {},
+  rateSelected: '',
   plans: [
     {
       id: 0,
@@ -167,6 +168,7 @@ const step2Reducer = (state = defaultState, action) => {
       return {
         ...state,
         plan: action.plan,
+        rateSelected: action.rateSelected,
       };
     case actionNames.selectCar:
       return {
@@ -174,6 +176,7 @@ const step2Reducer = (state = defaultState, action) => {
         carSelected: action.car,
         location: action.location,
         searchParams: action.searchParams,
+        rateSelected: action.rateSelected,
       };
     case actionNames.addOptionalEquipment:
       if (action.others) {

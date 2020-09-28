@@ -12,3 +12,10 @@ export const loadCountries = () => {
     type: actionNames.loadCountries,
   };
 };
+
+export const cancelReservation = (body) => {
+  return {
+    type: actionNames.cancelReservation,
+    body,
+  };
+};

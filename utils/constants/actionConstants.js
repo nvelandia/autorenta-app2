@@ -59,4 +59,9 @@ export const actionNames = {
   createReservationUnsuccessfully: 'CREATE_RESERVATION_UNSUCCESSFULLY',
   validatePromotionSuccessfully: 'VALIDATE_PROMOTION_SUCCESSFULLY',
   validatePromotionUnsuccessfully: 'VALIDATE_PROMOTION_UNSUCCESSFULLY',
+  //Step3
+  cancelReservation: 'CANCEL-RESERVATION',
+  //Step3-Service
+  cancelReservationSuccessfully: 'CANCEL_RESERVATION_SUCCESSFULLY',
+  cancelReservationUnsuccessfully: 'CANCEL_RESERVATION_UNSUCCESSFULLY',
 };

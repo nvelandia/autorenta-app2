@@ -89,15 +89,11 @@ class ProgressBar extends React.Component {
             <div className="progress-info">
               <Col className="justify-content-center p-0">
                 <p className={'ar-title-bar ' + classes}>&nbsp;</p>
-                <span className="ar-circle ar-done" onClick={() => this.handleClick(1)}>
-                  1
-                </span>
+                <span className="ar-circle ar-done">1</span>
               </Col>
               <Col className="justify-content-center p-0">
                 <p className={'ar-title-bar ' + classes}>&nbsp;</p>
-                <span className="ar-circle ar-done" onClick={() => this.handleClick(2)}>
-                  2
-                </span>
+                <span className="ar-circle ar-done">2</span>
               </Col>
               <Col className="justify-content-center p-0">
                 <p className={'ar-title-bar ' + classes}>&nbsp;</p>

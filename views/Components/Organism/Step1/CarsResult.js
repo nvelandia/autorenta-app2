@@ -38,9 +38,9 @@ class CarsResult extends React.Component {
     return rating;
   };
 
-  handleOnClick = (car) => {
+  handleOnClick = (car, selectedRate) => {
     this.props.dispatch(this.props.showLoader());
-    this.props.dispatch(this.props.selectCar(car, this.props.result.locations, this.props.searchParams));
+    this.props.dispatch(this.props.selectCar(car, this.props.result.locations, this.props.searchParams, selectedRate));
     redirectTo(pages.step2);
     window.scrollTo(0, 0);
   };
@@ -54,7 +54,7 @@ class CarsResult extends React.Component {
               <h4 className="mb-0">{rate.name}</h4>
             </CardHeader>
             <CardBody className="ar-car-price-body">
-              <div className="ar-car-price-details" onClick={() => this.props.showDetailModal(rate.charges)}>
+              <div className="ar-car-price-details" onClick={() => this.props.showDetailModal(rate.includes)}>
                 <p>
                   <i className="ar-icon-info va-middle" /> Ver detalle del plan
                 </p>
@@ -64,7 +64,7 @@ class CarsResult extends React.Component {
               </div>
               <CustomButton
                 text={'Reservar ahora'}
-                event={() => this.handleOnClick(car)}
+                event={() => this.handleOnClick(car, index)}
                 color={'red-0'}
                 name={'ar-car-price-button'}
                 icon={'ar-icon-chevron-right'}
@@ -79,22 +79,6 @@ class CarsResult extends React.Component {
     });
 
     return [prices.slice(0, 2), prices.slice(2, 4), prices.slice(4, 6)];
-
-    // if (this.state.page === 1) {
-    //   return (
-    //     <>
-    //       {prices[0]}
-    //       {prices[1]}
-    //     </>
-    //   );
-    // } else {
-    //   return (
-    //     <>
-    //       {prices[2]}
-    //       {prices[3]}
-    //     </>
-    //   );
-    // }
   };
 
   render() {

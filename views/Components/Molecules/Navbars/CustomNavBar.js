@@ -34,21 +34,29 @@ import Flags from '../../Atoms/Flags';
 import SearchReservationModal from '../Modals/SearchReservationModal';
 
 import * as actions from '../../../../actions/generalActions';
+import * as homeActions from '../../../../actions/homeActions';
+import NewSearchModal from '../Modals/NewSearchModal';
+import MakeYourReservation from '../../Organism/Home/MakeYourReservation';
 
 class CustomNavbar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showSearchReservationModal: false,
+      showNewSearchModal: false,
     };
   }
+
+  showNewSearchModal = () => {
+    this.setState({ showNewSearchModal: true });
+  };
 
   showSearchReservationModal = () => {
     this.setState({ showSearchReservationModal: true });
   };
 
   hideModal = () => {
-    this.setState({ showSearchReservationModal: false });
+    this.setState({ showSearchReservationModal: false, showNewSearchModal: false });
   };
 
   render() {
@@ -133,7 +141,11 @@ class CustomNavbar extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem className="d-none d-lg-block ar-nav-button-link ml-3 mr-0">
-                <Button className=" btn-icon ar-round-button ar-nav-button" color="blue-4" href="">
+                <Button
+                  className=" btn-icon ar-round-button ar-nav-button"
+                  color="blue-4"
+                  onClick={this.showNewSearchModal}
+                >
                   <span className="nav-link-inner--text">Reservar </span>
                   <span className="btn-inner--icon">
                     <span className="ar-icon-chevron-right va-middle fs-i--1" />
@@ -149,6 +161,13 @@ class CustomNavbar extends React.Component {
         <SearchReservationModal
           searchReservation={actions.searchReservation}
           showModal={this.state.showSearchReservationModal}
+          hideModal={this.hideModal}
+        />
+        <NewSearchModal
+          searchLocation={homeActions.searchLocation}
+          loadCountries={homeActions.loadCountries}
+          nextStep={homeActions.nextStep}
+          showModal={this.state.showNewSearchModal}
           hideModal={this.hideModal}
         />
       </Navbar>

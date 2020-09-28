@@ -80,9 +80,13 @@ class Details extends React.Component {
         subtotal = subtotal + Number.parseFloat(item.price);
       }
     });
-    let total = subtotal + Number.parseFloat(this.props.carSelected.rates[0].price);
+    let total = subtotal + Number.parseFloat(this.props.carSelected.rates[this.props.rateSelected].price);
 
-    return { subtotal: subtotal.toFixed(2), tarifa: this.props.carSelected.rates[0].price, total: total.toFixed(2) };
+    return {
+      subtotal: subtotal.toFixed(2),
+      tarifa: this.props.carSelected.rates[this.props.rateSelected].price,
+      total: total.toFixed(2),
+    };
   };
 
   render() {
@@ -114,15 +118,19 @@ class Details extends React.Component {
           />
         </div>
         <div className="ar-card-details-rates">
-          <h5>Tarifa todo incluido</h5>
-          <h6>MOST INCLUSIVE - AR</h6>
+          <h5>{this.props.carSelected.rates[this.props.rateSelected].name}</h5>
+          <h6>
+            {this.props.carSelected.rates[this.props.rateSelected].name +
+              ' - ' +
+              this.props.carSelected.rates[this.props.rateSelected].rate_code}
+          </h6>
           <div className="ar-card-details-rates-list">
-            {this.props.plan.includes.map((item, index) => {
+            {this.props.carSelected.rates[this.props.rateSelected].includes.map((item, index) => {
               if (item.selected) {
                 return (
                   <div key={index} className="ar-card-details-rate-item">
                     <p>
-                      <i className="ar-icon-check-solid ar-green-text" /> {item.name}{' '}
+                      <i className="ar-icon-check-solid ar-green-text" /> {item}{' '}
                     </p>
                   </div>
                 );
@@ -130,7 +138,7 @@ class Details extends React.Component {
               return (
                 <div key={index} className="ar-card-details-rate-item">
                   <p>
-                    <i className="ar-icon-close-solid ar-red-text" /> {item.name}{' '}
+                    <i className="ar-icon-close-solid ar-red-text" /> {item}{' '}
                   </p>
                 </div>
               );

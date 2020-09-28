@@ -1,9 +1,10 @@
 import { actionNames } from '../utils/constants/actionConstants';
 
-export const changePlan = (plan) => {
+export const changePlan = (plan, rateSelected) => {
   return {
     type: actionNames.changePlan,
     plan,
+    rateSelected,
   };
 };
 

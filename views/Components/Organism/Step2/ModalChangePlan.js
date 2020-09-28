@@ -7,23 +7,23 @@ class ModalChangePlan extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      page: this.props.plan.id,
+      page: this.props.rateSelected,
     };
     this.dispatch = props.dispatch;
   }
 
   changePage = (page) => {
-    if (page <= 5 && page >= 0) {
+    if (page < this.props.carSelected.rates.length && page >= 0) {
       this.setState({ page });
     } else if (page < 0) {
-      this.setState({ page: 5 });
+      this.setState({ page: this.props.carSelected.rates.length - 1 });
     } else {
       this.setState({ page: 0 });
     }
   };
 
   changePlan = (page) => {
-    this.props.dispatch(this.props.changePlan(this.props.plans[page]));
+    this.props.dispatch(this.props.changePlan(this.props.plans[page], page));
     this.props.hideModal();
   };
 
@@ -53,24 +53,26 @@ class ModalChangePlan extends React.Component {
             <CardHeader className="pb-1">
               <Row>
                 <div className="col">
-                  <span className="ar-card-change-plan-title">{this.props.plans[this.state.page].title}</span>
+                  <span className="ar-card-change-plan-title">
+                    {this.props.carSelected.rates[this.state.page].name}
+                  </span>
                 </div>
               </Row>
             </CardHeader>
             <CardBody className="py-2 zi-1200">
-              {this.props.plans[this.state.page].includes.map((item, index) => {
+              {this.props.carSelected.rates[this.state.page].includes.map((item, index) => {
                 if (item.selected) {
                   return (
                     <p key={index} className="mb-1">
                       <i className="ar-icon-check-solid ar-green-text" />
-                      {'  ' + item.nickName}
+                      {'  ' + item}
                     </p>
                   );
                 }
                 return (
                   <p className=" mb-1">
                     <i className="ar-icon-close-solid ar-red-text" />
-                    {'  ' + item.nickName}
+                    {'  ' + item}
                   </p>
                 );
               })}

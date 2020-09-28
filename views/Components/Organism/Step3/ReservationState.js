@@ -2,12 +2,16 @@ import React from 'react';
 import { Row, Card, CardBody, Col, Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import CancelReservationModal from '../../Molecules/Modals/CancelReservationModal';
+import * as actions from '../../../../actions/generalActions';
+import SearchReservationModal from '../../Molecules/Modals/SearchReservationModal';
 
 class ReservationState extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       payed: false,
+      showCancelReservationModal: false,
     };
     this.dispatch = props.dispatch;
   }
@@ -16,9 +20,22 @@ class ReservationState extends React.Component {
 
   handleOnChange = (index) => {};
 
+  handleOnClickCancel = () => {
+    this.setState({ showCancelReservationModal: true });
+  };
+
+  hideModal = () => {
+    this.setState({ showCancelReservationModal: false });
+  };
+
   render() {
     return (
       <div className="ar-rent-state">
+        <CancelReservationModal
+          searchReservation={this.props.cancelReservation}
+          showModal={this.state.showCancelReservationModal}
+          hideModal={this.hideModal}
+        />
         {!this.state.payed ? (
           <div className="ar-rent-state-description-reserved">
             <img src="/img/custom/step3/reservation-success-image.png" alt="reservation success" />
@@ -59,7 +76,12 @@ class ReservationState extends React.Component {
                 </Col>
               </div>
               <div className="ar-rent-state-right">
-                <Button className="btn-icon ar-round-button ar-rent-state-button shadow" color="white-0" type="button">
+                <Button
+                  className="btn-icon ar-round-button ar-rent-state-button shadow"
+                  color="white-0"
+                  type="button"
+                  onClick={this.handleOnClickCancel}
+                >
                   Cancelar
                   <i className="ar-icon-chevron-right" />
                 </Button>
@@ -78,6 +100,7 @@ class ReservationState extends React.Component {
 
 ReservationState.propTypes = {
   dispatch: PropTypes.func,
+  cancelReservation: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
