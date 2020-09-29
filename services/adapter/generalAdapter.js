@@ -21,8 +21,9 @@ class generalAdapter {
     const { data } = response;
 
     if (data.success) {
-      return successfullyResponsesPresenter.withOnlyMessage(
+      return successfullyResponsesPresenter.reservationResponse(
         actionNames.searchReservationSuccessfully,
+        data.response,
         'Reservation found successfully',
       );
     }

@@ -34,38 +34,39 @@ class Details extends React.Component {
   };
 
   handleOnClick = () => {
-    // const formData = {
-    //   pickup_location: this.props.location.pickup.iata,
-    //   pickup_date: this.props.location.pickup.date,
-    //   pickup_time: this.props.location.pickup.time,
-    //   dropoff_location: this.props.location.dropoff.iata,
-    //   dropoff_date: this.props.location.dropoff.date,
-    //   dropoff_time: this.props.location.dropoff.time,
-    //   passenger_country_id: this.props.searchParams.passenger_country_id,
-    //   passenger_age: this.props.searchParams.passenger_age,
-    //   passenger_email: this.props.organization.organization_id
-    //     ? this.props.organization.email
-    //     : this.props.formData.email,
-    //   passenger_name: this.props.formData.name,
-    //   passenger_lastname: this.props.formData.surname,
-    //   passenger_phone: this.props.formData.phone,
-    //   rate_code: '4D',
-    //   vendor: this.props.carSelected.company.code,
-    //   sipp: this.props.carSelected.typeAlias,
-    //   partner_code: this.props.organization.organization_id ? this.props.organization.organization_id : null,
-    // };
-    //
+    const formData = {
+      pickup_location: this.props.location.pickup.iata,
+      pickup_date: this.props.location.pickup.date,
+      pickup_time: this.props.location.pickup.time,
+      dropoff_location: this.props.location.dropoff.iata,
+      dropoff_date: this.props.location.dropoff.date,
+      dropoff_time: this.props.location.dropoff.time,
+      passenger_country_id: this.props.searchParams.passenger_country_id,
+      passenger_age: this.props.searchParams.passenger_age,
+      passenger_email: this.props.organization.organization_id
+        ? this.props.organization.email
+        : this.props.formData.email,
+      passenger_name: this.props.formData.name,
+      passenger_lastname: this.props.formData.surname,
+      passenger_phone: this.props.formData.phone,
+      rate_code: '4D',
+      vendor: this.props.carSelected.company.code,
+      sipp: this.props.carSelected.typeAlias,
+      partner_code: this.props.organization.organization_id ? this.props.organization.organization_id : null,
+    };
+    console.log(formData);
+
     // this.dispatch(this.props.confirmReservation(formData));
 
-    this.dispatch(
-      this.props.createReservationSuccessfully(
-        this.props.carSelected,
-        this.props.location,
-        this.props.searchParams,
-        this.props.organization,
-      ),
-    );
-    redirectTo(pages.step3);
+    // this.dispatch(
+    //   this.props.createReservationSuccessfully(
+    //     this.props.carSelected,
+    //     this.props.location,
+    //     this.props.searchParams,
+    //     this.props.organization,
+    //   ),
+    // );
+    // redirectTo(pages.step3);
   };
 
   calucalteSubTotalsAndTotal = () => {

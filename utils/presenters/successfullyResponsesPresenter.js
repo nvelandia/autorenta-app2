@@ -16,7 +16,13 @@ class successfullyResponsesPresenter {
     for (const car of data.cars) {
       const company = data.companies.find((company) => company.code === car.company);
       const typeCar = data.car_features.find((carFeature) => {
-        if (car.type[1] === 'F' || car.type[1] === 'V') {
+        if (
+          car.type[1] === 'F' ||
+          car.type[1] === 'V' ||
+          car.type[1] === 'W' ||
+          car.type[1] === 'G' ||
+          car.type[1] === 'T'
+        ) {
           return carFeature.code === car.type[1] && carFeature.level === '2';
         } else {
           return carFeature.code === car.type[0] && carFeature.level === '1';
@@ -83,6 +89,19 @@ class successfullyResponsesPresenter {
         gears,
         bags,
       },
+      message,
+    };
+  };
+
+  reservationResponse = (type, data, message) => {
+    console.log(data);
+    const cars = data.cars;
+    cars.company = data.companies;
+
+    return {
+      type,
+      cars: cars,
+      location: data.location,
       message,
     };
   };

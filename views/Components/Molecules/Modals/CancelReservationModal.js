@@ -13,9 +13,6 @@ import {
   InputGroupText,
 } from 'reactstrap';
 import * as classnames from 'classnames';
-import { vehicleTypes } from '../../../../utils/constants/vehicleTypes';
-import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
-import NotificationAlert from 'react-notification-alert';
 
 class CancelReservationModal extends React.Component {
   constructor(props) {
@@ -24,12 +21,13 @@ class CancelReservationModal extends React.Component {
       surname: 'MINACORI',
       reservationNumber: 'AHYRGHDF',
       email: '',
-      agencyOrCorporationId: '',
+      corporationId: '',
+      agencyId: '',
       emailFocus: false,
       surnameFocus: false,
       reservationNumberFocus: false,
-      agencyOrCorporationIdFocus: false,
-      isAgencyOrCorporation: false,
+      corporationIdFocus: false,
+      agencyIdFocus: false,
       error: {},
     };
     this.dispatch = props.dispatch;
@@ -91,8 +89,8 @@ class CancelReservationModal extends React.Component {
         </div>
         <div className="modal-body pb-3 pt-0">
           <h6 className="ar-modal-cancel-reservation-subtitle">
-            ¡Atención! Estás a punto de cancelar tu reserva. ¿Deseas continuar? Una vez cancelada esta acción no podrá
-            deshacerse.
+            ¡Atención! Estás a punto de cancelar tu reserva. ¿Deseas continuar? <br /> Una vez cancelada esta acción no
+            podrá deshacerse.
           </h6>
           <FormGroup
             className={classnames(
@@ -156,37 +154,104 @@ class CancelReservationModal extends React.Component {
               />
             </InputGroup>
           </FormGroup>
-          <FormGroup
-            className={classnames(
-              {
-                focused: this.state.agencyOrCorporationIdFocus,
-              },
-              'ar-cancel-reservation-input',
-            )}
-          >
-            <InputGroup
-              className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                error.agencyOrCorporationId ? ' ar-error-border' : null
-              }`}
+
+          {!this.props.organization ? (
+            <FormGroup
+              className={classnames(
+                {
+                  focused: this.state.emailFocus,
+                },
+                'ar-cancel-reservation-input',
+              )}
             >
-              <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
-                <InputGroupText className="ar-round-input-left">
-                  <h6>Direccion de E-mail</h6>
-                </InputGroupText>
-              </InputGroupAddon>
-              <Input
-                name="agencyOrCorporationId"
-                onChange={this.handleOnChange}
-                className=" ar-round-input ar-cancel-reservation-form-input"
-                placeholder="ID de Agencia o Corporativo"
-                value={this.state.agencyOrCorporationId}
-                type="text"
-                autoComplete="off"
-                onFocus={() => this.setState({ agencyOrCorporationIdFocus: true })}
-                onBlur={() => this.setState({ agencyOrCorporationIdFocus: false })}
-              />
-            </InputGroup>
-          </FormGroup>
+              <InputGroup
+                className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                  error.email ? ' ar-error-border' : null
+                }`}
+              >
+                <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
+                  <InputGroupText className="ar-round-input-left">
+                    <h6>Direccion de E-mail</h6>
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  name="email"
+                  onChange={this.handleOnChange}
+                  className=" ar-round-input ar-cancel-reservation-form-input"
+                  placeholder="Direccion de E-mail"
+                  value={this.state.email}
+                  type="text"
+                  autoComplete="off"
+                  onFocus={() => this.setState({ emailFocus: true })}
+                  onBlur={() => this.setState({ emailFocus: false })}
+                />
+              </InputGroup>
+            </FormGroup>
+          ) : (
+            <FormGroup
+              className={classnames(
+                {
+                  focused: this.state.agencyIdFocus,
+                },
+                'ar-cancel-reservation-input',
+              )}
+            >
+              <InputGroup
+                className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                  error.agencyId ? ' ar-error-border' : null
+                }`}
+              >
+                <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
+                  <InputGroupText className="ar-round-input-left">
+                    <h6>Direccion de E-mail</h6>
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  name="agencyId"
+                  onChange={this.handleOnChange}
+                  className=" ar-round-input ar-cancel-reservation-form-input"
+                  placeholder="ID de Agencia de viajes"
+                  value={this.state.agencyId}
+                  type="text"
+                  autoComplete="off"
+                  onFocus={() => this.setState({ agencyIdFocus: true })}
+                  onBlur={() => this.setState({ agencyIdFocus: false })}
+                />
+              </InputGroup>
+            </FormGroup>
+          )}
+          {/*<FormGroup*/}
+          {/*  className={classnames(*/}
+          {/*    {*/}
+          {/*      focused: this.state.corporationIdFocus,*/}
+          {/*    },*/}
+          {/*    'ar-cancel-reservation-input',*/}
+          {/*  )}*/}
+          {/*>*/}
+          {/*  <InputGroup*/}
+          {/*    className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${*/}
+          {/*      error.corporationId ? ' ar-error-border' : null*/}
+          {/*    }`}*/}
+          {/*  >*/}
+          {/*    <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">*/}
+          {/*      <InputGroupText className="ar-round-input-left">*/}
+          {/*        <h6>Direccion de E-mail</h6>*/}
+          {/*      </InputGroupText>*/}
+          {/*    </InputGroupAddon>*/}
+          {/*    <Input*/}
+          {/*      name="corporationId"*/}
+          {/*      onChange={this.handleOnChange}*/}
+          {/*      className=" ar-round-input ar-cancel-reservation-form-input"*/}
+          {/*      placeholder="ID Corporativo"*/}
+          {/*      value={this.state.corporationId}*/}
+          {/*      type="text"*/}
+          {/*      autoComplete="off"*/}
+          {/*      onFocus={() => this.setState({ corporationIdFocus: true })}*/}
+          {/*      onBlur={() => this.setState({ corporationIdFocus: false })}*/}
+          {/*    />*/}
+          {/*  </InputGroup>*/}
+          {/*</FormGroup>*/}
+
           <div className="ar-cancel-button-container">
             <Button className=" btn-icon ar-round-button ar-cancel-button" color="red-0" onClick={this.handleOnClick}>
               <span className="nav-link-inner--text ml-3">Cancelar esta reserva </span>
@@ -209,7 +274,7 @@ CancelReservationModal.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.generalReducer;
+  return state.step3Reducer;
 };
 
 export default connect(mapStateToProps)(CancelReservationModal);

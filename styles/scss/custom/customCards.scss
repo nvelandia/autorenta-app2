@@ -110,16 +110,12 @@
         h3{
           margin: 0;
         }
-        h6{
-          text-transform: capitalize;
-        }
         @media (min-width: $ar-big-size){
           h3{
             margin: 0;
             font-size: 1.3em;
           }
           h6{
-            text-transform: capitalize;
             font-size: 0.8em;
             letter-spacing: .3px;
           }

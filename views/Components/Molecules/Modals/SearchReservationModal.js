@@ -11,10 +11,10 @@ class SearchReservationModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      surname: '',
-      reservationNumber: '',
-      surnameFocus: false,
-      reservationNumberFocus: false,
+      passenger_lastname: '',
+      reservation: '',
+      passenger_lastnameFocus: false,
+      reservationFocus: false,
       agencyOrCorporationId: '',
       agencyOrCorporationIdFocus: false,
       isAgencyOrCorporation: false,
@@ -36,8 +36,10 @@ class SearchReservationModal extends React.Component {
 
   handleOnClick = () => {
     const body = {
-      surname: this.state.surname,
-      reservationNumber: this.state.reservationNumber,
+      // passenger_lastname: this.state.passenger_lastname,
+      // reservation: this.state.reservation,
+      passenger_lastname: 'Francesch',
+      reservation: 'A22294',
     };
     if (this.state.isAgencyOrCorporation) {
       body.agencyOrCorporationId = this.state.agencyOrCorporationId;
@@ -82,52 +84,52 @@ class SearchReservationModal extends React.Component {
             <FormGroup
               className={classnames(
                 {
-                  focused: this.state.surnameFocus,
+                  focused: this.state.passenger_lastnameFocus,
                 },
                 'ar-search-reservation-input',
               )}
             >
               <InputGroup
                 className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                  error.surname ? ' ar-error-border' : null
+                  error.passenger_lastname ? ' ar-error-border' : null
                 }`}
               >
                 <Input
-                  name="surname"
+                  name="passenger_lastname"
                   onChange={this.handleOnChange}
                   className=" ar-round-input ar-search-reservation-form-input"
                   placeholder="Apellido del pasajero"
-                  value={this.state.surname}
+                  value={this.state.passenger_lastname}
                   type="text"
                   autoComplete="off"
-                  onFocus={() => this.setState({ surnameFocus: true })}
-                  onBlur={() => this.setState({ surnameFocus: false })}
+                  onFocus={() => this.setState({ passenger_lastnameFocus: true })}
+                  onBlur={() => this.setState({ passenger_lastnameFocus: false })}
                 />
               </InputGroup>
             </FormGroup>
             <FormGroup
               className={classnames(
                 {
-                  focused: this.state.reservationNumberFocus,
+                  focused: this.state.reservationFocus,
                 },
                 'ar-search-reservation-input',
               )}
             >
               <InputGroup
                 className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                  error.reservationNumber ? ' ar-error-border' : null
+                  error.reservation ? ' ar-error-border' : null
                 }`}
               >
                 <Input
-                  name="reservationNumber"
+                  name="reservation"
                   onChange={this.handleOnChange}
                   className=" ar-round-input ar-search-reservation-form-input"
                   placeholder="Número de reserva Autorenta"
-                  value={this.state.reservationNumber}
+                  value={this.state.reservation}
                   type="text"
                   autoComplete="off"
-                  onFocus={() => this.setState({ reservationNumberFocus: true })}
-                  onBlur={() => this.setState({ reservationNumberFocus: false })}
+                  onFocus={() => this.setState({ reservationFocus: true })}
+                  onBlur={() => this.setState({ reservationFocus: false })}
                 />
               </InputGroup>
             </FormGroup>

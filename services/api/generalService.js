@@ -22,7 +22,7 @@ class generalService {
       searchResponse = err;
     }
 
-    return generalAdapter.subscribeToNewsletter(searchResponse);
+    return generalAdapter.searchReservation(searchResponse);
   };
 }
 

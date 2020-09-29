@@ -39,6 +39,8 @@ const step3Reducer = (state = defaultState, action) => {
       };
     case actionNames.loadCountriesSuccessfully:
       return { ...state, countries: action.countries };
+    case actionNames.searchReservationSuccessfully:
+      return { ...state, car: action.cars, location: action.location };
     default:
       return state;
   }

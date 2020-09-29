@@ -100,16 +100,22 @@
   max-width: 500px;
 
   @media (min-width: $ar-big-size){
-    max-width: 700px;
+    max-width: 600px;
   }
   .ar-modal-cancel-reservation-title{
     margin: 1rem 0 1rem 1.5rem;
+    @media (min-width: $ar-big-size){
+      font-size: 1.2rem;
+    }
   }
   .ar-modal-cancel-reservation-subtitle{
     font-weight: 500;
     margin-left: .8rem;
     padding-right: 2rem;
     margin-bottom: 1rem;
+    @media (min-width: $ar-big-size){
+      font-size: 0.9rem;
+    }
   }
   .ar-cancel-reservation-input{
     width: 100%;
@@ -118,12 +124,18 @@
     margin-bottom: 1rem;
     .ar-cancel-reservation-input-left{
       padding-left: 0.5rem;
+      @media (min-width: $ar-big-size){
+        padding-left: 1rem;
+      }
       span{
         background-color: $ar-color-white-1 !important;
       }
       h6{
         font-weight: 500;
         margin-bottom: 0;
+        @media (min-width: $ar-big-size){
+          font-size: 0.9rem;
+        }
       }
     }
     .ar-cancel-reservation-form-input{
@@ -145,7 +157,7 @@
     padding: 0 0.5rem;
     display: flex;
     justify-content: flex-end;
-    margin-top: 1.5rem;
+    margin: 1.5rem 0 1rem 0;
     .ar-cancel-button{
       padding: 0.6rem 1rem;
       font-size: 0.7rem;
