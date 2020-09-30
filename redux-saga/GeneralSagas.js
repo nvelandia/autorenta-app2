@@ -36,7 +36,7 @@ export function* searchReservation(action) {
       yield all([put({ type: actionNames.handleError, error: res.error })]);
       redirectTo(pages.error);
     }
-    yield all([put(res), put(generalActions.hideLoader()), put(generalActions.showNotification('', res.error))]);
+    yield all([put(res), put(generalActions.hideLoader())]);
   } else {
     yield all([put(res), put(generalActions.hideLoader())]);
     redirectTo(pages.step3);

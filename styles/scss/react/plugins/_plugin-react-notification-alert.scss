@@ -8,7 +8,7 @@
     color: rgba($white, 0.85);
 
     &:hover {
-      z-index: 1081 !important;
+      z-index: 1081;
     }
 
     &:not(.alert-info):not(.alert-success):not(.alert-warning):not(.alert-danger) {

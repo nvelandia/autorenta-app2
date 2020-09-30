@@ -32,7 +32,7 @@ class ReservationState extends React.Component {
     return (
       <div className="ar-rent-state">
         <CancelReservationModal
-          searchReservation={this.props.cancelReservation}
+          cancelReservation={this.props.cancelReservation}
           showModal={this.state.showCancelReservationModal}
           hideModal={this.hideModal}
         />
@@ -66,7 +66,7 @@ class ReservationState extends React.Component {
               <div className="ar-rent-state-left">
                 <i className="ar-icon-reservation-number" />
                 <h6> Para gestionar tu reserva en Autorenta utiliza el número:</h6>
-                <h1> ARFNGZYC </h1>
+                <h1>{this.props.reservation.code}</h1>
               </div>
               <div className="ar-rent-state-center">
                 <i className="ar-icon-email" />

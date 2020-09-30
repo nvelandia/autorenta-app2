@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Modal, Row, InputGroup, Input, Button, FormGroup, Container } from 'reactstrap';
+import { Modal, Row, InputGroup, Input, Button, FormGroup, Container, Navbar } from 'reactstrap';
 import * as classnames from 'classnames';
 import { vehicleTypes } from '../../../../utils/constants/vehicleTypes';
 import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
@@ -11,8 +11,8 @@ class SearchReservationModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      passenger_lastname: '',
-      reservation: '',
+      passenger_lastname: 'minacori',
+      reservation: 'A87394',
       passenger_lastnameFocus: false,
       reservationFocus: false,
       agencyOrCorporationId: '',
@@ -36,10 +36,8 @@ class SearchReservationModal extends React.Component {
 
   handleOnClick = () => {
     const body = {
-      // passenger_lastname: this.state.passenger_lastname,
-      // reservation: this.state.reservation,
-      passenger_lastname: 'Francesch',
-      reservation: 'A22294',
+      passenger_lastname: this.state.passenger_lastname,
+      reservation: this.state.reservation,
     };
     if (this.state.isAgencyOrCorporation) {
       body.agencyOrCorporationId = this.state.agencyOrCorporationId;
@@ -57,14 +55,41 @@ class SearchReservationModal extends React.Component {
     }
   };
 
+  notify = (type) => {
+    let options = {
+      place: 'tc',
+      message: (
+        <div className="alert-text">
+          <span className="alert-title" data-notify="title">
+            {' '}
+            ¡Atención!
+          </span>
+          <span data-notify="message">Todos los campos son requeridos</span>
+        </div>
+      ),
+      type: type,
+      icon: 'ni ni-bell-55',
+      autoDismiss: 100,
+    };
+    this.refs.notificationAlert.notificationAlert(options);
+  };
+
   render() {
     const error = this.state.error;
+    if (this.props.error) {
+      this.notify('autorenta');
+    }
     return (
       <Modal
         className="modal-dialog-centered ar-modal-search-reservation"
         isOpen={this.props.showModal}
         toggle={() => this.props.hideModal()}
       >
+        <div className="probando">
+          <div className="rna-wrapper">
+            <NotificationAlert ref="notificationAlert" />
+          </div>
+        </div>
         <div className="modal-header pb-0">
           <h6 className="modal-title ar-modal-search-reservation-title" id="exampleModalLabel">
             Buscar una reserva

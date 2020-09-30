@@ -24,6 +24,7 @@ export const actionNames = {
   hideLoader: 'HIDE-LOADER',
   subscribeNewsletter: 'SUBSCRIBE_TO_NEWSLETTER',
   searchReservation: 'SEARCH_RESERVATION',
+  closeNotification: 'CLOSE_NOTIFICATION',
   //General-Service
   subscribedSuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_SUCCESSFULLY',
   subscribedUnsuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_UNSUCCESSFULLY',

@@ -95,13 +95,28 @@ class successfullyResponsesPresenter {
 
   reservationResponse = (type, data, message) => {
     console.log(data);
-    const cars = data.cars;
-    cars.company = data.companies;
+    const car = data.cars;
+    car.company = data.companies;
+
+    car.typeCar = data.car_features.find((carFeature) => {
+      if (
+        car.type[1] === 'F' ||
+        car.type[1] === 'V' ||
+        car.type[1] === 'W' ||
+        car.type[1] === 'G' ||
+        car.type[1] === 'T'
+      ) {
+        return carFeature.code === car.type[1] && carFeature.level === '2';
+      } else {
+        return carFeature.code === car.type[0] && carFeature.level === '1';
+      }
+    });
 
     return {
       type,
-      cars: cars,
+      cars: car,
       location: data.location,
+      reservation: data.reservation,
       message,
     };
   };

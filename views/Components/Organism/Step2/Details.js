@@ -56,7 +56,7 @@ class Details extends React.Component {
     };
     console.log(formData);
 
-    // this.dispatch(this.props.confirmReservation(formData));
+    this.dispatch(this.props.confirmReservation(formData));
 
     // this.dispatch(
     //   this.props.createReservationSuccessfully(

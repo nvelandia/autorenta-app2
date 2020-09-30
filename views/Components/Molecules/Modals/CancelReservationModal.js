@@ -18,14 +18,14 @@ class CancelReservationModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      surname: 'MINACORI',
-      reservationNumber: 'AHYRGHDF',
+      passenger_lastname: this.props.car.passenger_last_name,
+      reservation: this.props.reservation.code,
       email: '',
       corporationId: '',
       agencyId: '',
       emailFocus: false,
-      surnameFocus: false,
-      reservationNumberFocus: false,
+      passenger_lastnameFocus: false,
+      reservationFocus: false,
       corporationIdFocus: false,
       agencyIdFocus: false,
       error: {},
@@ -46,8 +46,8 @@ class CancelReservationModal extends React.Component {
 
   handleOnClick = () => {
     const body = {
-      surname: this.state.surname,
-      reservationNumber: this.state.reservationNumber,
+      passenger_lastname: this.state.passenger_lastname,
+      reservation: this.state.reservation,
     };
     if (this.state.isAgencyOrCorporation) {
       body.agencyOrCorporationId = this.state.agencyOrCorporationId;
@@ -61,7 +61,7 @@ class CancelReservationModal extends React.Component {
       }
       this.setState({ error: error });
     } else {
-      this.dispatch(this.props.searchReservation(body));
+      this.dispatch(this.props.cancelReservation(body));
     }
   };
 
@@ -95,14 +95,14 @@ class CancelReservationModal extends React.Component {
           <FormGroup
             className={classnames(
               {
-                focused: this.state.surnameFocus,
+                focused: this.state.passenger_lastnameFocus,
               },
               'ar-cancel-reservation-input',
             )}
           >
             <InputGroup
               className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                error.surname ? ' ar-error-border' : null
+                error.passenger_lastname ? ' ar-error-border' : null
               }`}
             >
               <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
@@ -111,29 +111,29 @@ class CancelReservationModal extends React.Component {
                 </InputGroupText>
               </InputGroupAddon>
               <Input
-                name="surname"
+                name="passenger_lastname"
                 onChange={this.handleOnChange}
                 className="ar-round-input ar-cancel-reservation-form-input"
                 placeholder="Apellido del pasajero"
-                value={this.state.surname}
+                value={this.state.passenger_lastname}
                 type="text"
                 autoComplete="off"
-                onFocus={() => this.setState({ surnameFocus: true })}
-                onBlur={() => this.setState({ surnameFocus: false })}
+                onFocus={() => this.setState({ passenger_lastnameFocus: true })}
+                onBlur={() => this.setState({ passenger_lastnameFocus: false })}
               />
             </InputGroup>
           </FormGroup>
           <FormGroup
             className={classnames(
               {
-                focused: this.state.reservationNumberFocus,
+                focused: this.state.reservationFocus,
               },
               'ar-cancel-reservation-input',
             )}
           >
             <InputGroup
               className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                error.reservationNumber ? ' ar-error-border' : null
+                error.reservation ? ' ar-error-border' : null
               }`}
             >
               <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
@@ -142,20 +142,20 @@ class CancelReservationModal extends React.Component {
                 </InputGroupText>
               </InputGroupAddon>
               <Input
-                name="reservationNumber"
+                name="reservation"
                 onChange={this.handleOnChange}
                 className=" ar-round-input ar-cancel-reservation-form-input"
                 placeholder="Número de reserva Autorenta"
-                value={this.state.reservationNumber}
+                value={this.state.reservation}
                 type="text"
                 autoComplete="off"
-                onFocus={() => this.setState({ reservationNumberFocus: true })}
-                onBlur={() => this.setState({ reservationNumberFocus: false })}
+                onFocus={() => this.setState({ reservationFocus: true })}
+                onBlur={() => this.setState({ reservationFocus: false })}
               />
             </InputGroup>
           </FormGroup>
 
-          {!this.props.organization ? (
+          {!this.props.organization.organization_id ? (
             <FormGroup
               className={classnames(
                 {
@@ -203,7 +203,7 @@ class CancelReservationModal extends React.Component {
               >
                 <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
                   <InputGroupText className="ar-round-input-left">
-                    <h6>Direccion de E-mail</h6>
+                    <h6>ID de Agencia de viajes</h6>
                   </InputGroupText>
                 </InputGroupAddon>
                 <Input
@@ -235,7 +235,7 @@ class CancelReservationModal extends React.Component {
           {/*  >*/}
           {/*    <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">*/}
           {/*      <InputGroupText className="ar-round-input-left">*/}
-          {/*        <h6>Direccion de E-mail</h6>*/}
+          {/*        <h6>ID Corporativo</h6>*/}
           {/*      </InputGroupText>*/}
           {/*    </InputGroupAddon>*/}
           {/*    <Input*/}

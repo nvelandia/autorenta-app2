@@ -95,7 +95,7 @@ class ReservationDetails extends React.Component {
                   <img src={this.props.car.company.logo} alt={'Company logo'} />
                 </div>
                 <div className="ar-car-type">
-                  <h3 className="ar-red-text">{/*this.props.car.typeCar.name*/}</h3>
+                  <h3 className="ar-red-text">{this.props.car.typeCar.name}</h3>
                   <h6 className="mb-0">{this.props.car.name.toLowerCase()}</h6>
                 </div>
               </div>

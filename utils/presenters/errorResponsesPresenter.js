@@ -3,6 +3,7 @@ class errorResponsesPresenter {
     return {
       data,
       type,
+      error: true,
     };
   };
 
@@ -10,6 +11,15 @@ class errorResponsesPresenter {
     return {
       data,
       type,
+      error: true,
+    };
+  };
+
+  onlyMessage = (message, type) => {
+    return {
+      type,
+      message,
+      error: true,
     };
   };
 }

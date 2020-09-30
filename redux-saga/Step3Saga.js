@@ -5,7 +5,7 @@ import { pages, redirectTo } from '../utils/helpers/redirectTo';
 import step3service from '../services/api/step3service';
 
 export function* cancelReservation(action) {
-  const body = {};
+  const { body } = action;
   body.language = 'es';
 
   const res = yield call(step3service.cancelReservation, body);

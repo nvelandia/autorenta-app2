@@ -19,8 +19,7 @@ class generalAdapter {
 
   searchReservation = (response) => {
     const { data } = response;
-
-    if (data.success) {
+    if (data.success && data.code === 200) {
       return successfullyResponsesPresenter.reservationResponse(
         actionNames.searchReservationSuccessfully,
         data.response,
@@ -28,7 +27,7 @@ class generalAdapter {
       );
     }
 
-    return errorResponsesPresenter.formError(data, actionNames.searchReservationUnsuccessfully);
+    return errorResponsesPresenter.onlyMessage(data.response, actionNames.searchReservationUnsuccessfully);
   };
 }
 export default new generalAdapter();

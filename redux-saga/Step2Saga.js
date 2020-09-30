@@ -51,8 +51,8 @@ export function* confirmReservation(action) {
     }
     yield all([put(res), put(generalActions.showNotification('', res.error))]);
   } else {
-    res.searchParams = body;
-    yield all([put(res)]);
+    const body2 = res.reservation;
+    yield all([put(generalActions.searchReservation(body2))]);
   }
 }
 

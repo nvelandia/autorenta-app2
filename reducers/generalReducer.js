@@ -2,6 +2,7 @@ import { actionNames } from '../utils/constants/actionConstants';
 
 const defaultState = {
   loader: false,
+  error: '',
 };
 
 const generalReducer = (state = defaultState, action) => {
@@ -14,6 +15,10 @@ const generalReducer = (state = defaultState, action) => {
       return { ...state };
     case actionNames.subscribedUnsuccessfully:
       return { ...state };
+    case actionNames.searchReservationUnsuccessfully:
+      return { ...state, error: action.message };
+    case actionNames.closeNotification:
+      return { ...state, error: '' };
     default:
       return state;
   }
