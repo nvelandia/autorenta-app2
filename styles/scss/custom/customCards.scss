@@ -1770,7 +1770,7 @@
       display: flex;
       align-items: center;
       .ar-payment-options-card{
-        width: 510px;
+        width: 70%;
         padding: 2rem 0;
         box-shadow: none;
         display: flex;
@@ -1780,7 +1780,6 @@
         margin: 0;
         background-color: $ar-color-white-1;
         @media (min-width: $ar-big-size){
-          width: 645px;
           justify-content: space-between;
         }
         .ar-payment-option-text{
@@ -1829,25 +1828,19 @@
         }
       }
       .ar-payment-form-credit-card{
-        width: 510px;
+        width: 70%;
         box-shadow: none;
         display: flex;
         flex-direction: column;
         margin: 0;
-        @media (min-width: $ar-big-size){
-          width: 635px;
-        }
         .ar-payment-form-top{
           margin: 0 0 0.8rem 1rem;
           @media (min-width: $ar-big-size){
             margin: 0 0 1rem 1.5rem;
           }
           .ar-card-form-input-container{
-            width: 300px;
+            width: 60.8%;
             margin: 0;
-            @media (min-width: $ar-big-size){
-              width: 375px;
-            }
             .ar-card-form-input{
               font-size: 0.7rem;
               padding: 0.5rem 0.75rem;
@@ -1863,9 +1856,8 @@
           }
           .ar-select-country-container{
             margin: 0 0.5rem;
-            width: 170px;
+            width: 34%;
             @media (min-width: $ar-big-size){
-              width: 210px;
               margin: 0 0.7rem;
             }
             .ar-select-country{
@@ -1891,11 +1883,11 @@
             margin: 0 0 0 1.5rem;
           }
           .ar-payment-security-code{
-            width: 170px;
+            width: 34.5%;
             color: $ar-color-blue-2;
             margin-bottom: 0;
             @media (min-width: $ar-big-size){
-              width: 210px;
+              width: 34%;
             }
             .ar-card-form-input{
               background-color: $ar-color-white-1;
@@ -1933,12 +1925,9 @@
             }
           }
           .ar-payment-postal-code{
-            width: 170px;
+            width: 34%;
             color: $ar-color-blue-2;
             margin-bottom: 0;
-            @media (min-width: $ar-big-size){
-              width: 210px;
-            }
             .ar-card-form-input{
               background-color: $ar-color-white-1;
               font-size: 0.7rem;
