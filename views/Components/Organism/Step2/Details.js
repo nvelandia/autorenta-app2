@@ -49,12 +49,11 @@ class Details extends React.Component {
       passenger_name: this.props.formData.name,
       passenger_lastname: this.props.formData.surname,
       passenger_phone: this.props.formData.phone,
-      rate_code: '4D',
+      rate_code: this.props.carSelected.rates[this.props.rateSelected].rate_code,
       vendor: this.props.carSelected.company.code,
       sipp: this.props.carSelected.typeAlias,
-      partner_code: this.props.organization.organization_id ? this.props.organization.organization_id : null,
     };
-    console.log(formData);
+    this.props.organization.customer_id ? (formData.partner_code = this.props.organization.customer_id) : null;
 
     this.dispatch(this.props.confirmReservation(formData));
 

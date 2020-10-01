@@ -106,10 +106,12 @@
         align-items: flex-start;
         justify-content: center;
         flex-direction: column;
+        text-transform: capitalize;
         h3{
           margin: 0;
         }
         b{
+          text-transform: lowercase;
           color: #97a0b6;
           font-weight: 600;
         }

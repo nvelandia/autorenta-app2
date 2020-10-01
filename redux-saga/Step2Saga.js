@@ -1,4 +1,4 @@
-import { all, call, put } from 'redux-saga/effects';
+import { all, call, put, putResolve } from 'redux-saga/effects';
 import * as generalActions from '../actions/generalActions';
 import { actionNames } from '../utils/constants/actionConstants';
 import { pages, redirectTo } from '../utils/helpers/redirectTo';
@@ -51,8 +51,11 @@ export function* confirmReservation(action) {
     }
     yield all([put(res), put(generalActions.showNotification('', res.error))]);
   } else {
-    const body2 = res.reservation;
-    yield all([put(generalActions.searchReservation(body2))]);
+    const body2 = {
+      reservation: res.reservation.reservation_code,
+      passenger_lastname: body.passenger_lastname,
+    };
+    yield all([putResolve(generalActions.searchReservation(body2))]);
   }
 }
 

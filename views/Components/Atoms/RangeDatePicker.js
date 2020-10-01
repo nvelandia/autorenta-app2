@@ -53,7 +53,7 @@ class RangeDatePicker extends React.Component {
                     className: 'form-control ar-round-input-right',
                     placeholder: 'Fecha y hora de retiro',
                   }}
-                  viewDate={moment().add(1, 'days')}
+                  viewDate={moment().add(1, 'days').set({ h: 10, m: 0 })}
                   timeFormat={'HH:mm'}
                   value={this.state.startDate}
                   timeConstraints={{ minutes: { step: 30 } }}
