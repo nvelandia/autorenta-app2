@@ -1741,7 +1741,8 @@
         font-size: 0.8rem;
         font-weight: 700;
         @media (min-width: $ar-big-size){
-          font-size: 1rem;
+          font-size: .9rem;
+          letter-spacing: 0.02em;
           margin: 0 0 0.4rem -2.5rem;
         }
         i{
@@ -1750,7 +1751,7 @@
           top: 0.25rem;
           left: -0.3rem;
           @media (min-width: $ar-big-size){
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             top: 0.25rem;
             left: -0.5rem;
           }
@@ -1760,7 +1761,8 @@
         font-size: 0.8rem;
         font-weight: 500;
         @media (min-width: $ar-big-size){
-          font-size: 1rem;
+          font-size: .9rem;
+          letter-spacing: 0.02em;
         }
       }
     }
