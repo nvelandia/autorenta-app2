@@ -1,4 +1,4 @@
-import { all, call, put } from 'redux-saga/effects';
+import { all, call, put, putResolve } from 'redux-saga/effects';
 import * as generalActions from '../actions/generalActions';
 import { actionNames } from '../utils/constants/actionConstants';
 import { pages, redirectTo } from '../utils/helpers/redirectTo';
@@ -38,7 +38,7 @@ export function* searchReservation(action) {
     }
     yield all([put(res), put(generalActions.hideLoader())]);
   } else {
-    yield all([put(res), put(generalActions.hideLoader())]);
+    yield all([putResolve(res)]);
     redirectTo(pages.step3);
   }
 }

@@ -10,7 +10,7 @@ class ReservationState extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      payed: false,
+      payed: this.props.reservation.status_id, //puede ser 1 pendiente, 2 no se, 3 cancelado
       showCancelReservationModal: false,
     };
     this.dispatch = props.dispatch;
@@ -36,7 +36,7 @@ class ReservationState extends React.Component {
           showModal={this.state.showCancelReservationModal}
           hideModal={this.hideModal}
         />
-        {!this.state.payed ? (
+        {this.state.payed === 1 ? (
           <div className="ar-rent-state-description-reserved">
             <img src="/img/custom/step3/reservation-success-image.png" alt="reservation success" />
             <div>
