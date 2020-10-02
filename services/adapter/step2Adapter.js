@@ -21,7 +21,6 @@ class step2Adapter {
 
   validateId = (response, body) => {
     const { data } = response;
-
     if (data.success) {
       return successfullyResponsesPresenter.withOnlyData(
         actionNames.validateIdSuccessfully,
@@ -49,7 +48,6 @@ class step2Adapter {
 
   validatePromotion = (response, body) => {
     const { data } = response;
-    console.log(response);
     if (data.success) {
       return successfullyResponsesPresenter.fleetResponse(
         actionNames.validatePromotionSuccessfully,

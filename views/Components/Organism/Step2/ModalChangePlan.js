@@ -23,8 +23,10 @@ class ModalChangePlan extends React.Component {
   };
 
   changePlan = (page) => {
-    if (this.props.discount) {
-      //aca se deberia volver a llmar a validate coupon tal vez
+    if (this.props.discount.rate_code) {
+      const body = this.props.searchParams;
+      body.rate = this.props.carSelected.rates[page].rate_code;
+      this.props.dispatch(this.props.validatePromotion(body));
     }
     this.props.dispatch(this.props.changePlan(this.props.plans[page], page));
     this.props.hideModal();
@@ -73,7 +75,7 @@ class ModalChangePlan extends React.Component {
                   );
                 }
                 return (
-                  <p className=" mb-1">
+                  <p key={index} className=" mb-1">
                     <i className="ar-icon-close-solid ar-red-text" />
                     {'  ' + item}
                   </p>
@@ -108,6 +110,7 @@ ModalChangePlan.propTypes = {
   showModal: PropTypes.bool,
   hideModal: PropTypes.func,
   changePlan: PropTypes.func,
+  validatePromotion: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

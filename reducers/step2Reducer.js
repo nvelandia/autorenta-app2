@@ -230,6 +230,13 @@ const step2Reducer = (state = defaultState, action) => {
       return {
         ...state,
         discount: action.cars[0].rates[0],
+        searchParams: action.searchParams,
+      };
+    case actionNames.validatePromotionUnsuccessfully:
+      return {
+        ...state,
+        discount: {},
+        error: { validationPromotion: 'Ingresa un número de cupón o código promocional válido' },
       };
     default:
       return state;

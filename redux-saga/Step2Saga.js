@@ -32,7 +32,7 @@ export function* validateId(action) {
       yield all([put({ type: actionNames.handleError, error: res.error })]);
       redirectTo(pages.error);
     }
-    yield all([put(res), put(generalActions.showNotification('', res.error))]);
+    yield all([put(res)]);
   } else {
     res.searchParams = body;
     yield all([put(res)]);

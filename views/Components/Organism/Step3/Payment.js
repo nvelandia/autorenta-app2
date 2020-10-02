@@ -14,7 +14,6 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as classnames from 'classnames';
-import CountryDropdown from '../../Molecules/dropdowns/CountryDropdown';
 import CreditCardPayment from './CreditCardPayment';
 
 import { Elements } from '@stripe/react-stripe-js';
@@ -27,7 +26,7 @@ class Payment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      paymentWay: '',
+      paymentWay: 'creditCard',
       paymentWaySelected: false,
       payed: false,
       error: {},
@@ -88,6 +87,7 @@ class Payment extends React.Component {
                         name={'paymentWay'}
                         id={'1'}
                         type="radio"
+                        checked={this.state.paymentWay === 'creditCard'}
                         onClick={() => this.handleOnChangePaymentWay('creditCard')}
                       />
                       <label className="custom-control-label ar-payment-radio-button" htmlFor="1">
@@ -100,6 +100,7 @@ class Payment extends React.Component {
                         name={'paymentWay'}
                         id={'2'}
                         type="radio"
+                        checked={this.state.paymentWay === 'PayPal'}
                         onClick={() => this.handleOnChangePaymentWay('PayPal')}
                       />
                       <label className="custom-control-label ar-payment-radio-button" htmlFor="2">
@@ -124,11 +125,11 @@ class Payment extends React.Component {
             {this.state.paymentWaySelected && this.state.paymentWay === 'creditCard' ? (
               <Elements stripe={stripePromise}>
                 <InjectedCheckoutForm />
-                <CreditCardPayment />
+                <CreditCardPayment handleBackClick={this.handleBackClick} />
               </Elements>
             ) : null}
             {this.state.paymentWaySelected && this.state.paymentWay === 'PayPal' ? (
-              <div className="ar-payment-right">
+              <div className="ar-payment-right fade-in">
                 <div className="ar-payment-form-paypal">
                   <div className="ar-payment-paypal-img-container">
                     <img src="/svg/step3/paypal-logo-white.svg" alt="Paypal" />

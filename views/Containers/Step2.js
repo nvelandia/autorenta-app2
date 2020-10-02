@@ -74,6 +74,7 @@ class Step2 extends React.Component {
                 createReservationSuccessfully={actions.createReservationSuccessfully}
                 changePlan={actions.changePlan}
                 confirmReservation={actions.confirmReservation}
+                validatePromotion={actions.validatePromotion}
               />
             </div>
           </div>

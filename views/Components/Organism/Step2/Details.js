@@ -6,6 +6,7 @@ import CustomButton from '../../Atoms/CustomButton';
 import ModalChangePlan from './ModalChangePlan';
 import { createReservationSuccessfully } from '../../../../actions/step2Actions';
 import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
+import * as actions from '../../../../actions/step2Actions';
 
 class Details extends React.Component {
   constructor(props) {
@@ -107,6 +108,7 @@ class Details extends React.Component {
           showModal={this.state.showChangePlanModal}
           hideModal={this.hideModal}
           changePlan={this.props.changePlan}
+          validatePromotion={this.props.validatePromotion}
         />
         <div className="ar-card-details-title">
           <h1>Detalles de la reserva</h1>
@@ -244,6 +246,7 @@ Details.propTypes = {
   changePlan: PropTypes.func,
   confirmReservation: PropTypes.func,
   createReservationSuccessfully: PropTypes.func,
+  validatePromotion: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

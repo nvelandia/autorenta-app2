@@ -4,7 +4,7 @@ import * as classnames from 'classnames';
 import CountryDropdown from '../../Molecules/dropdowns/CountryDropdown';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
+import { CardCvcElement, CardExpiryElement, CardNumberElement, ElementsConsumer } from '@stripe/react-stripe-js';
 
 class CreditCardPaymentForm extends React.Component {
   constructor(props) {
@@ -32,8 +32,21 @@ class CreditCardPaymentForm extends React.Component {
 
   render() {
     console.log(this.props);
+    const style = {
+      base: {
+        fontSize: '.9rem',
+        color: '#093061',
+        letterSpacing: '0.02em',
+        '::placeholder': {
+          color: '#aab7c4',
+        },
+      },
+      invalid: {
+        color: '#9e2146',
+      },
+    };
     return (
-      <div className="ar-payment-right">
+      <div className="ar-payment-right fade-in">
         <div className="ar-payment-form-credit-card">
           <Row className="ar-payment-form-top">
             <FormGroup
@@ -44,7 +57,7 @@ class CreditCardPaymentForm extends React.Component {
                 'ar-card-form-input-container',
               )}
             >
-              <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
+              <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 pr-3">
                 {/*<Input*/}
                 {/*  name="cardNumber"*/}
                 {/*  onChange={this.handleOnChange}*/}
@@ -56,15 +69,17 @@ class CreditCardPaymentForm extends React.Component {
                 {/*  onFocus={() => this.setState({ cardNumberFocus: true })}*/}
                 {/*  onBlur={() => this.setState({ cardNumberFocus: false })}*/}
                 {/*/>*/}
-                {/*<InputGroupAddon addonType="append">*/}
-                {/*  <InputGroupText className="ar-round-input-right">*/}
-                {/*    <img src="/img/custom/step3/amex-card.png" />*/}
-                {/*    <img src="/img/custom/step3/visa-card.jpg" />*/}
-                {/*    <img src="/img/custom/step3/master-card.jpg" />*/}
-                {/*    <img src="/img/custom/step3/visa-electron-card.jpg" />*/}
-                {/*  </InputGroupText>*/}
-                {/*</InputGroupAddon>*/}
-                <CardElement />
+
+                <CardNumberElement
+                  className="ar-round-input-left ar-card-form-input w-100 "
+                  name="cardNumber"
+                  onChange={(e) => console.log(e)}
+                  options={{
+                    placeholder: 'Número de la tarjeta',
+                    style,
+                    showIcon: true,
+                  }}
+                />
               </InputGroup>
             </FormGroup>
             <FormGroup
@@ -94,17 +109,25 @@ class CreditCardPaymentForm extends React.Component {
                 'ar-payment-security-code',
               )}
             >
-              <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                <Input
+              <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 pr-2">
+                {/*<Input*/}
+                {/*  name="securityCode"*/}
+                {/*  onChange={this.handleOnChange}*/}
+                {/*  className=" ar-round-input ar-card-form-input"*/}
+                {/*  placeholder="CVC (código de seguridad)"*/}
+                {/*  value={this.state.securityCode}*/}
+                {/*  type="text"*/}
+                {/*  autoComplete="off"*/}
+                {/*  onFocus={() => this.setState({ securityCodeFocus: true })}*/}
+                {/*  onBlur={() => this.setState({ securityCodeFocus: false })}*/}
+                {/*/>*/}
+                <CardCvcElement
+                  className="ar-round-input-left ar-card-form-input w-100 "
                   name="securityCode"
-                  onChange={this.handleOnChange}
-                  className=" ar-round-input ar-card-form-input"
-                  placeholder="CVC (código de seguridad)"
-                  value={this.state.securityCode}
-                  type="text"
-                  autoComplete="off"
-                  onFocus={() => this.setState({ securityCodeFocus: true })}
-                  onBlur={() => this.setState({ securityCodeFocus: false })}
+                  options={{
+                    placeholder: 'CVC (código de seguridad)',
+                    style,
+                  }}
                 />
               </InputGroup>
             </FormGroup>
@@ -116,17 +139,25 @@ class CreditCardPaymentForm extends React.Component {
                 'ar-payment-expiration-date',
               )}
             >
-              <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                <Input
+              <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 pr-2">
+                {/*<Input*/}
+                {/*  name="expirationDate"*/}
+                {/*  onChange={this.handleOnChange}*/}
+                {/*  className=" ar-round-input ar-card-form-input"*/}
+                {/*  placeholder="MM/AAAA"*/}
+                {/*  value={this.state.expirationDate}*/}
+                {/*  type="text"*/}
+                {/*  autoComplete="off"*/}
+                {/*  onFocus={() => this.setState({ expirationDateFocus: true })}*/}
+                {/*  onBlur={() => this.setState({ expirationDateFocus: false })}*/}
+                {/*/>*/}
+                <CardExpiryElement
                   name="expirationDate"
-                  onChange={this.handleOnChange}
-                  className=" ar-round-input ar-card-form-input"
-                  placeholder="MM/AAAA"
-                  value={this.state.expirationDate}
-                  type="text"
-                  autoComplete="off"
-                  onFocus={() => this.setState({ expirationDateFocus: true })}
-                  onBlur={() => this.setState({ expirationDateFocus: false })}
+                  className="ar-round-input-left ar-card-form-input w-100 "
+                  options={{
+                    placeholder: 'MM/AA',
+                    style,
+                  }}
                 />
               </InputGroup>
             </FormGroup>
@@ -167,7 +198,7 @@ class CreditCardPaymentForm extends React.Component {
             className="btn-icon ar-round-button ar-payment-button-back-2 shadow-none"
             color="white-0"
             type="button"
-            onClick={() => this.handleBackClick()}
+            onClick={() => this.props.handleBackClick()}
           >
             <i className="ar-icon-return" />
             Volver
@@ -180,6 +211,7 @@ class CreditCardPaymentForm extends React.Component {
 
 CreditCardPaymentForm.propTypes = {
   dispatch: PropTypes.func,
+  handleBackClick: PropTypes.func,
 };
 
 const CreditCardPayment = (props) => {
