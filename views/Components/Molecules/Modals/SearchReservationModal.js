@@ -51,7 +51,11 @@ class SearchReservationModal extends React.Component {
       }
       this.setState({ error: error });
     } else {
-      this.dispatch(this.props.searchReservation(body));
+      if (body.agencyOrCorporationId) {
+        redirectTo(`${pages.step3}/${body.passenger_lastname}/${body.reservation}/${body.agencyOrCorporationId}`);
+      } else {
+        redirectTo(`${pages.step3}/${body.passenger_lastname}/${body.reservation}`);
+      }
     }
   };
 

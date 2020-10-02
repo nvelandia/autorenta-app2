@@ -15,15 +15,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as classnames from 'classnames';
 import CountryDropdown from '../../Molecules/dropdowns/CountryDropdown';
+import CreditCardPayment from './CreditCardPayment';
+
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { InjectedCheckoutForm } from '../../Atoms/StripeComponent';
+
+const stripePromise = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
 
 class Payment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       paymentWay: '',
-      countrySelected: '',
-      cardNumber: '',
-      cardNumberFocus: false,
       paymentWaySelected: false,
       payed: false,
       error: {},
@@ -118,146 +122,10 @@ class Payment extends React.Component {
               </div>
             ) : null}
             {this.state.paymentWaySelected && this.state.paymentWay === 'creditCard' ? (
-              <div className="ar-payment-right">
-                <div className="ar-payment-form-credit-card">
-                  <Row className="ar-payment-form-top">
-                    <FormGroup
-                      className={classnames(
-                        {
-                          focused: this.state.cardNumberFocus,
-                        },
-                        'ar-card-form-input-container',
-                      )}
-                    >
-                      <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                        <Input
-                          name="cardNumber"
-                          onChange={this.handleOnChange}
-                          className=" ar-round-input-left ar-card-form-input"
-                          placeholder="Número de la tarjeta"
-                          value={this.state.cardNumber}
-                          type="text"
-                          autoComplete="off"
-                          onFocus={() => this.setState({ cardNumberFocus: true })}
-                          onBlur={() => this.setState({ cardNumberFocus: false })}
-                        />
-                        <InputGroupAddon addonType="append">
-                          <InputGroupText className="ar-round-input-right">
-                            <img src="/img/custom/step3/amex-card.png" />
-                            <img src="/img/custom/step3/visa-card.jpg" />
-                            <img src="/img/custom/step3/master-card.jpg" />
-                            <img src="/img/custom/step3/visa-electron-card.jpg" />
-                          </InputGroupText>
-                        </InputGroupAddon>
-                      </InputGroup>
-                    </FormGroup>
-                    <FormGroup
-                      className={classnames(
-                        {
-                          focused: this.state.countrySelected,
-                        },
-                        'ar-select-country-container',
-                      )}
-                    >
-                      <CountryDropdown
-                        items={this.props.countries}
-                        title={'País'}
-                        color={'white-0'}
-                        name={'countrySelected'}
-                        classes={'ar-select-country'}
-                        handleOnSelect={this.handleOnSelect}
-                      />
-                    </FormGroup>
-                  </Row>
-                  <div className="ar-payment-form-bottom">
-                    <FormGroup
-                      className={classnames(
-                        {
-                          focused: this.state.securityCodeFocus,
-                        },
-                        'ar-payment-security-code',
-                      )}
-                    >
-                      <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                        <Input
-                          name="securityCode"
-                          onChange={this.handleOnChange}
-                          className=" ar-round-input ar-card-form-input"
-                          placeholder="CVC (código de seguridad)"
-                          value={this.state.securityCode}
-                          type="text"
-                          autoComplete="off"
-                          onFocus={() => this.setState({ securityCodeFocus: true })}
-                          onBlur={() => this.setState({ securityCodeFocus: false })}
-                        />
-                      </InputGroup>
-                    </FormGroup>
-                    <FormGroup
-                      className={classnames(
-                        {
-                          focused: this.state.expirationDateFocus,
-                        },
-                        'ar-payment-expiration-date',
-                      )}
-                    >
-                      <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                        <Input
-                          name="expirationDate"
-                          onChange={this.handleOnChange}
-                          className=" ar-round-input ar-card-form-input"
-                          placeholder="MM/AAAA"
-                          value={this.state.expirationDate}
-                          type="text"
-                          autoComplete="off"
-                          onFocus={() => this.setState({ expirationDateFocus: true })}
-                          onBlur={() => this.setState({ expirationDateFocus: false })}
-                        />
-                      </InputGroup>
-                    </FormGroup>
-                    <FormGroup
-                      className={classnames(
-                        {
-                          focused: this.state.postalCodeFocus,
-                        },
-                        'ar-payment-postal-code',
-                      )}
-                    >
-                      <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                        <Input
-                          name="postalCode"
-                          onChange={this.handleOnChange}
-                          className=" ar-round-input ar-card-form-input"
-                          placeholder="Códigal postal"
-                          value={this.state.postalCode}
-                          type="text"
-                          autoComplete="off"
-                          onFocus={() => this.setState({ postalCodeFocus: true })}
-                          onBlur={() => this.setState({ postalCodeFocus: false })}
-                        />
-                      </InputGroup>
-                    </FormGroup>
-                  </div>
-                </div>
-                <div className="ar-payment-next-back">
-                  <Button
-                    className="btn-icon ar-round-button ar-payment-button-now box-shadow w-100"
-                    color="red-0"
-                    type="button"
-                  >
-                    Pagar esta reserva ahora
-                    <i className="ar-icon-chevron-right" />
-                  </Button>
-                  <Button
-                    className="btn-icon ar-round-button ar-payment-button-back-2 shadow-none"
-                    color="white-0"
-                    type="button"
-                    onClick={() => this.handleBackClick()}
-                  >
-                    <i className="ar-icon-return" />
-                    Volver
-                  </Button>
-                </div>
-              </div>
+              <Elements stripe={stripePromise}>
+                <InjectedCheckoutForm />
+                <CreditCardPayment />
+              </Elements>
             ) : null}
             {this.state.paymentWaySelected && this.state.paymentWay === 'PayPal' ? (
               <div className="ar-payment-right">
@@ -367,7 +235,7 @@ class Payment extends React.Component {
             </Card>
             <div className="ar-payment-number-reserve">
               <h5>Presenta en el mostrador el número de reserva:</h5>
-              <h4>26458978MX1</h4>
+              <h4>{this.props.reservation.code}</h4>
             </div>
           </div>
         </Card>

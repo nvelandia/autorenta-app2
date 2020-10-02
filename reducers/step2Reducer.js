@@ -5,6 +5,7 @@ const defaultState = {
   location: {},
   searchParams: {},
   rateSelected: '',
+  discount: false,
   plans: [
     {
       id: 0,
@@ -228,9 +229,8 @@ const step2Reducer = (state = defaultState, action) => {
     case actionNames.validatePromotionSuccessfully:
       return {
         ...state,
-        formData: {
-          ...state.formData,
-        },
+        carSelected: action.cars[0],
+        rateSelected: 0,
       };
     default:
       return state;
@@ -238,3 +238,5 @@ const step2Reducer = (state = defaultState, action) => {
 };
 
 export default step2Reducer;
+
+//ver de meter variable para vlaidar si se busco promotion, que el selectedRate sea 0

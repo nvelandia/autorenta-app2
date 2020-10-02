@@ -38,7 +38,6 @@ export function* searchReservation(action) {
     }
     yield all([put(res), put(generalActions.hideLoader())]);
   } else {
-    yield all([putResolve(res)]);
-    redirectTo(pages.step3);
+    yield all([putResolve(res), put(generalActions.hideLoader())]);
   }
 }

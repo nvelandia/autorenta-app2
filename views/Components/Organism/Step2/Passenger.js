@@ -39,8 +39,8 @@ class Passenger extends React.Component {
       phone: '',
       airlineCompany: '',
       flyNumber: '',
-      promotionCode: '',
-      couponNumber: '',
+      promotionCode: 'AWD N299900',
+      couponNumber: 'UUWA039',
     };
     this.dispatch = this.props.dispatch;
   }
@@ -59,7 +59,7 @@ class Passenger extends React.Component {
     this.dispatch(this.props.updateFormData({ [event.target.name]: event.target.value }));
   };
 
-  handleValidateClick = (event) => {
+  handleValidateClick = (type) => {
     const body = {
       pickup_location: this.props.searchParams.pickup_location,
       pickup_date: this.props.searchParams.pickup_date,
@@ -72,9 +72,9 @@ class Passenger extends React.Component {
       vehicle_type: this.props.searchParams.vehicle_type,
       vendor: this.props.carSelected.company.code,
       sipp: this.props.carSelected.typeAlias,
-      rate: this.props.carSelected.rates[0].rate_code,
+      rate: this.props.carSelected.rates[this.props.rateSelected].rate_code,
     };
-    if (event.target.name === 'couponNumber') {
+    if (type === 'couponNumber') {
       body.coupon = this.state.couponNumber;
     } else {
       body.discount_code = this.state.promotionCode;
@@ -242,7 +242,7 @@ class Passenger extends React.Component {
                       className=" btn-icon w-100 ar-validate-input-passenger-button"
                       color="red-0"
                       name="promotionCode"
-                      onClick={this.handleSearchClick}
+                      onClick={() => this.handleValidateClick('promotionCode')}
                     >
                       <span className="nav-link-inner--text">Validar </span>
                       <i className="ar-icon-chevron-right" />
@@ -272,7 +272,7 @@ class Passenger extends React.Component {
                     <Button
                       className=" btn-icon w-100 ar-validate-input-passenger-button"
                       color="red-0"
-                      onClick={this.handleSearchClick}
+                      onClick={() => this.handleValidateClick('couponNumber')}
                       name="couponNumber"
                     >
                       <span className="nav-link-inner--text">Validar </span>

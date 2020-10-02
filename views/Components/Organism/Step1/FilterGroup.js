@@ -98,7 +98,7 @@ class FilterGroup extends React.Component {
                           id={title + key}
                           type="checkbox"
                           checked={this.isChecked(category, key)}
-                          onClick={(e) => this.props.handleOnSelect(key, category)}
+                          onChange={(e) => this.props.handleOnSelect(key, category)}
                         />
                         <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
                           {key.charAt(0).toUpperCase() + key.slice(1) + `  ${text}`}

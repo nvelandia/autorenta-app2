@@ -23,6 +23,9 @@ class ModalChangePlan extends React.Component {
   };
 
   changePlan = (page) => {
+    if (this.props.discount) {
+      //aca se deberia volver a llmar a validate coupon tal vez
+    }
     this.props.dispatch(this.props.changePlan(this.props.plans[page], page));
     this.props.hideModal();
   };

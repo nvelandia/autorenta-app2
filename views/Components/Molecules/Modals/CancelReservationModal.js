@@ -155,7 +155,7 @@ class CancelReservationModal extends React.Component {
             </InputGroup>
           </FormGroup>
 
-          {!this.props.organization.organization_id ? (
+          {!this.props.organization.type ? (
             <FormGroup
               className={classnames(
                 {
@@ -187,7 +187,7 @@ class CancelReservationModal extends React.Component {
                 />
               </InputGroup>
             </FormGroup>
-          ) : (
+          ) : this.props.organization.type === 1 ? (
             <FormGroup
               className={classnames(
                 {
@@ -219,38 +219,39 @@ class CancelReservationModal extends React.Component {
                 />
               </InputGroup>
             </FormGroup>
+          ) : (
+            <FormGroup
+              className={classnames(
+                {
+                  focused: this.state.corporationIdFocus,
+                },
+                'ar-cancel-reservation-input',
+              )}
+            >
+              <InputGroup
+                className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                  error.corporationId ? ' ar-error-border' : null
+                }`}
+              >
+                <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
+                  <InputGroupText className="ar-round-input-left">
+                    <h6>ID Corporativo</h6>
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  name="corporationId"
+                  onChange={this.handleOnChange}
+                  className=" ar-round-input ar-cancel-reservation-form-input"
+                  placeholder="ID Corporativo"
+                  value={this.state.corporationId}
+                  type="text"
+                  autoComplete="off"
+                  onFocus={() => this.setState({ corporationIdFocus: true })}
+                  onBlur={() => this.setState({ corporationIdFocus: false })}
+                />
+              </InputGroup>
+            </FormGroup>
           )}
-          {/*<FormGroup*/}
-          {/*  className={classnames(*/}
-          {/*    {*/}
-          {/*      focused: this.state.corporationIdFocus,*/}
-          {/*    },*/}
-          {/*    'ar-cancel-reservation-input',*/}
-          {/*  )}*/}
-          {/*>*/}
-          {/*  <InputGroup*/}
-          {/*    className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${*/}
-          {/*      error.corporationId ? ' ar-error-border' : null*/}
-          {/*    }`}*/}
-          {/*  >*/}
-          {/*    <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">*/}
-          {/*      <InputGroupText className="ar-round-input-left">*/}
-          {/*        <h6>ID Corporativo</h6>*/}
-          {/*      </InputGroupText>*/}
-          {/*    </InputGroupAddon>*/}
-          {/*    <Input*/}
-          {/*      name="corporationId"*/}
-          {/*      onChange={this.handleOnChange}*/}
-          {/*      className=" ar-round-input ar-cancel-reservation-form-input"*/}
-          {/*      placeholder="ID Corporativo"*/}
-          {/*      value={this.state.corporationId}*/}
-          {/*      type="text"*/}
-          {/*      autoComplete="off"*/}
-          {/*      onFocus={() => this.setState({ corporationIdFocus: true })}*/}
-          {/*      onBlur={() => this.setState({ corporationIdFocus: false })}*/}
-          {/*    />*/}
-          {/*  </InputGroup>*/}
-          {/*</FormGroup>*/}
 
           <div className="ar-cancel-button-container">
             <Button className=" btn-icon ar-round-button ar-cancel-button" color="red-0" onClick={this.handleOnClick}>

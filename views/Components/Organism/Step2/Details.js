@@ -97,12 +97,14 @@ class Details extends React.Component {
     ];
     return (
       <Card>
-        <ModalChangePlan
-          showModal={this.state.showChangePlanModal}
-          hideModal={this.hideModal}
-          changePlan={this.props.changePlan}
-          information={[]}
-        />
+        {this.state.showChangePlanModal ? (
+          <ModalChangePlan
+            showModal={this.state.showChangePlanModal}
+            hideModal={this.hideModal}
+            changePlan={this.props.changePlan}
+            information={[]}
+          />
+        ) : null}
         <div className="ar-card-details-title">
           <h1>Detalles de la reserva</h1>
         </div>

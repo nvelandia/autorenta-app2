@@ -51,14 +51,14 @@ class step2Adapter {
     const { data } = response;
     console.log(response);
     if (data.success) {
-      return successfullyResponsesPresenter.withOnlyData(
-        actionNames.createReservationSuccessfully,
-        'reservation',
+      return successfullyResponsesPresenter.fleetResponse(
+        actionNames.validatePromotionSuccessfully,
         data.response,
+        'Promotion applied',
       );
     }
 
-    return errorResponsesPresenter.formError(data, actionNames.createReservationUnsuccessfully);
+    return errorResponsesPresenter.formError(data, actionNames.validatePromotionUnsuccessfully);
   };
 }
 export default new step2Adapter();

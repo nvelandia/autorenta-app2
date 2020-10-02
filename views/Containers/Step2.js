@@ -66,7 +66,7 @@ class Step2 extends React.Component {
                 />
               ) : null}
               {this.props.clientType === 'Pasajero / Cliente directo' ? (
-                <Passenger updateFormData={actions.updateFormData} />
+                <Passenger updateFormData={actions.updateFormData} validatePromotion={actions.validatePromotion} />
               ) : null}
             </Col>
             <div className="ar-card-details">

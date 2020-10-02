@@ -404,7 +404,7 @@ class AgencyOrOrganizationPayment extends React.Component {
               <div className="ar-payment-option-card-footer">
                 <div className="ar-payment-footer-text">
                   <h6>Presenta en el mostrador el número de reserva:</h6>
-                  <h5>26458978MX1</h5>
+                  <h5>{this.props.reservation.code}</h5>
                 </div>
               </div>
             </Card>

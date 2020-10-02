@@ -69,7 +69,7 @@ class AgencyOrCorporation extends React.Component {
       vehicle_type: this.props.searchParams.vehicle_type,
       vendor: this.props.carSelected.company.code,
       sipp: this.props.carSelected.typeAlias,
-      rate: this.props.carSelected.rates[0].rate_code,
+      rate: this.props.carSelected.rates[this.props.rateSelected].rate_code,
     };
     if (event.target.name === 'couponNumber') {
       body.coupon = this.state.couponNumber;

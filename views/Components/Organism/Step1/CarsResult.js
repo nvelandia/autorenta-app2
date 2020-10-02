@@ -30,9 +30,9 @@ class CarsResult extends React.Component {
     const rating = [];
     for (let index = 0; index < 5; index++) {
       if (index < ratingCar) {
-        rating.push(<i className="ar-icon-star-filled ar-yellow-text" />);
+        rating.push(<i key={index} className="ar-icon-star-filled ar-yellow-text" />);
       } else {
-        rating.push(<i className="ar-icon-star-regular ar-light-blue-3-text" />);
+        rating.push(<i key={index} className="ar-icon-star-regular ar-light-blue-3-text" />);
       }
     }
     return rating;

@@ -2215,7 +2215,7 @@
           h6{
             font-weight: 500;
             @media (min-width: $ar-big-size){
-              font-size: .95rem;
+              font-size: .9rem;
             }
           }
         }
@@ -2232,7 +2232,7 @@
           font-size: 0.8rem;
           margin-bottom: 0;
           @media (min-width: $ar-big-size){
-            font-size: 1.05rem;
+            font-size: 1rem;
           }
         }
         h4{
@@ -2536,12 +2536,8 @@
   }
   .ar-reserve-selected-plan{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    height: 225px;
-    @media (min-width: $ar-big-size){
-      height: 270px;
-    }
     .ar-reserve-selected-plan-text{
       display: flex;
       justify-content: space-between;
@@ -2626,7 +2622,7 @@
         letter-spacing: 0.05em;
         @media (min-width: $ar-big-size){
           font-size: 0.9rem;
-          letter-spacing: 0.04em;
+          letter-spacing: 0.02em;
         }
         i{
           position: absolute;
