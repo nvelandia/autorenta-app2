@@ -96,7 +96,9 @@ class ReservationDetails extends React.Component {
                 </div>
                 <div className="ar-car-type">
                   <h3 className="ar-red-text">{this.props.car.typeCar.name}</h3>
-                  <h6 className="mb-0">{this.props.car.name.toLowerCase()}</h6>
+                  <h6 className="mb-0">
+                    {this.props.car.name} <b>o similar</b>
+                  </h6>
                 </div>
               </div>
               <Row className="m-0 ar-car-features">

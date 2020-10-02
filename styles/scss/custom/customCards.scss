@@ -533,8 +533,12 @@
           margin: 0;
           font-size: 1rem;
         }
+        b{
+          text-transform: lowercase;
+          color: #97a0b6;
+          font-weight: 600;
+        }
         h6{
-          text-transform: capitalize;
           margin: 0.1rem 0 0.1rem 2.1rem;
         }
         .ar-car-type-key{
@@ -1481,6 +1485,11 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
+      &.disabled{
+        background-color: $ar-color-gray-1;
+        border-color: $ar-color-gray-1;
+        opacity: 1;
+      }
       @media (min-width: $ar-big-size){
         font-size: 0.85rem;
       }
@@ -2463,9 +2472,13 @@
           align-items: flex-start;
           justify-content: center;
           flex-direction: column;
-          text-transform: capitalize;
           h3{
             margin: 0;
+          }
+          b{
+            text-transform: lowercase;
+            color: #97a0b6;
+            font-weight: 600;
           }
           h6{
             text-transform: capitalize;

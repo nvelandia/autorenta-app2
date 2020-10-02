@@ -5,7 +5,7 @@ const defaultState = {
   location: {},
   searchParams: {},
   rateSelected: '',
-  discount: false,
+  discount: {},
   plans: [
     {
       id: 0,
@@ -229,8 +229,7 @@ const step2Reducer = (state = defaultState, action) => {
     case actionNames.validatePromotionSuccessfully:
       return {
         ...state,
-        carSelected: action.cars[0],
-        rateSelected: 0,
+        discount: action.cars[0].rates[0],
       };
     default:
       return state;

@@ -47,7 +47,9 @@ class CarSelected extends React.Component {
             <div className="ar-car-bottom-left">
               <div className="ar-car-type">
                 <h3 className="ar-icon-car-category ar-car-type-key">{car.typeCar.name}</h3>
-                <h6 className="mb-0">{car.name.toLowerCase()}</h6>
+                <h6 className="mb-0">
+                  {car.name} <b>o similar</b>
+                </h6>
               </div>
               <div className="ar-car-features">
                 <Row className="m-0 h-100">

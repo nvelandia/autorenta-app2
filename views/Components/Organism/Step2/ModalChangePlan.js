@@ -84,9 +84,10 @@ class ModalChangePlan extends React.Component {
                   className="btn-icon ar-round-button ar-button-confirm"
                   color="red-0"
                   type="button"
+                  disabled={this.state.page === this.props.rateSelected}
                   onClick={() => this.changePlan(this.state.page)}
                 >
-                  Cotizar esta tarifa
+                  {this.state.page !== this.props.rateSelected ? 'Cotizar esta tarifa' : 'Tarifa seleccionada'}
                   <i className="ar-icon-chevron-right" />
                 </Button>
               </div>
@@ -107,7 +108,6 @@ ModalChangePlan.propTypes = {
   showModal: PropTypes.bool,
   hideModal: PropTypes.func,
   changePlan: PropTypes.func,
-  information: PropTypes.array,
 };
 
 const mapStateToProps = (state) => {

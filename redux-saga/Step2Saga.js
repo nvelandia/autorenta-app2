@@ -55,7 +55,11 @@ export function* confirmReservation(action) {
       reservation: res.reservation.reservation_code,
       passenger_lastname: body.passenger_lastname,
     };
-    yield all([putResolve(generalActions.searchReservation(body2))]);
+    if (body.agencyOrCorporationId) {
+      redirectTo(`${pages.step3}/${body2.passenger_lastname}/${body2.reservation}/${body.agencyOrCorporationId}`);
+    } else {
+      redirectTo(`${pages.step3}/${body2.passenger_lastname}/${body2.reservation}`);
+    }
   }
 }
 

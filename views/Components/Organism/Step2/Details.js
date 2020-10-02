@@ -49,7 +49,9 @@ class Details extends React.Component {
       passenger_name: this.props.formData.name,
       passenger_lastname: this.props.formData.surname,
       passenger_phone: this.props.formData.phone,
-      rate_code: this.props.carSelected.rates[this.props.rateSelected].rate_code,
+      rate_code: this.props.discount
+        ? this.props.discount.rate_code
+        : this.props.carSelected.rates[this.props.rateSelected].rate_code,
       vendor: this.props.carSelected.company.code,
       sipp: this.props.carSelected.typeAlias,
     };
@@ -68,7 +70,7 @@ class Details extends React.Component {
     // redirectTo(pages.step3);
   };
 
-  calucalteSubTotalsAndTotal = () => {
+  calucalteSubTotalsAndTotal = (rate) => {
     let subtotal = 0;
     this.props.optionalEquipment.others.forEach((item) => {
       if (item.added) {
@@ -80,31 +82,32 @@ class Details extends React.Component {
         subtotal = subtotal + Number.parseFloat(item.price);
       }
     });
-    let total = subtotal + Number.parseFloat(this.props.carSelected.rates[this.props.rateSelected].price);
+    let total = subtotal + Number.parseFloat(rate.price);
 
     return {
       subtotal: subtotal.toFixed(2),
-      tarifa: this.props.carSelected.rates[this.props.rateSelected].price,
+      tarifa: rate.price,
       total: total.toFixed(2),
     };
   };
 
   render() {
+    const rate = this.props.discount.price
+      ? this.props.discount
+      : this.props.carSelected.rates[this.props.rateSelected];
+
     const charges = [
-      { name: 'Tarifa base', price: this.calucalteSubTotalsAndTotal().tarifa },
-      { name: 'Total de equipamiento adicional', price: this.calucalteSubTotalsAndTotal().subtotal },
+      { name: 'Tarifa base', price: this.calucalteSubTotalsAndTotal(rate).tarifa },
+      { name: 'Total de equipamiento adicional', price: this.calucalteSubTotalsAndTotal(rate).subtotal },
       { name: 'Impuestos y cargos', price: '0.00' },
     ];
     return (
       <Card>
-        {this.state.showChangePlanModal ? (
-          <ModalChangePlan
-            showModal={this.state.showChangePlanModal}
-            hideModal={this.hideModal}
-            changePlan={this.props.changePlan}
-            information={[]}
-          />
-        ) : null}
+        <ModalChangePlan
+          showModal={this.state.showChangePlanModal}
+          hideModal={this.hideModal}
+          changePlan={this.props.changePlan}
+        />
         <div className="ar-card-details-title">
           <h1>Detalles de la reserva</h1>
         </div>
@@ -120,14 +123,10 @@ class Details extends React.Component {
           />
         </div>
         <div className="ar-card-details-rates">
-          <h5>{this.props.carSelected.rates[this.props.rateSelected].name}</h5>
-          <h6>
-            {this.props.carSelected.rates[this.props.rateSelected].name +
-              ' - ' +
-              this.props.carSelected.rates[this.props.rateSelected].rate_code}
-          </h6>
+          <h5>{rate.name}</h5>
+          <h6>{rate.name + ' - ' + rate.rate_code}</h6>
           <div className="ar-card-details-rates-list">
-            {this.props.carSelected.rates[this.props.rateSelected].includes.map((item, index) => {
+            {rate.includes.map((item, index) => {
               if (item.selected) {
                 return (
                   <div key={index} className="ar-card-details-rate-item">
@@ -194,7 +193,7 @@ class Details extends React.Component {
             <h4>TOTAL ESTIMADO</h4>
             <div className="ar-card-details-total-amount">
               <p>USD</p>
-              <strong>{this.calucalteSubTotalsAndTotal().total}</strong>
+              <strong>{this.calucalteSubTotalsAndTotal(rate).total}</strong>
             </div>
           </div>
           <p className="ar-card-details-total-small-letter">
