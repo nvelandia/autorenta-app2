@@ -54,7 +54,7 @@ class Step3 extends React.Component {
               <Col>
                 <ReservationState cancelReservation={actions.cancelReservation} />
                 {!this.props.organization.name ? (
-                  <Payment loadCountries={actions.loadCountries} />
+                  <Payment loadCountries={actions.loadCountries} payReservation={actions.payReservation} />
                 ) : (
                   <AgencyOrOrganizationPayment loadCountries={actions.loadCountries} />
                 )}

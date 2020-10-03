@@ -20,7 +20,9 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { InjectedCheckoutForm } from '../../Atoms/StripeComponent';
 
-const stripePromise = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
+const stripePromise = loadStripe(
+  'pk_test_51Gr3HzJLMLJITI9DZyz3oQkB9pLy0N42fdYnRwA7agn8OEIHb0kfLnsjQvGfHiKSaE3YWu7nNf2UfZ8fg2nkjsBv009JbIH8IV',
+);
 
 class Payment extends React.Component {
   constructor(props) {
@@ -124,8 +126,7 @@ class Payment extends React.Component {
             ) : null}
             {this.state.paymentWaySelected && this.state.paymentWay === 'creditCard' ? (
               <Elements stripe={stripePromise}>
-                <InjectedCheckoutForm />
-                <CreditCardPayment handleBackClick={this.handleBackClick} />
+                <CreditCardPayment handleBackClick={this.handleBackClick} payReservation={this.props.payReservation} />
               </Elements>
             ) : null}
             {this.state.paymentWaySelected && this.state.paymentWay === 'PayPal' ? (
@@ -249,6 +250,7 @@ Payment.propTypes = {
   dispatch: PropTypes.func,
   image: PropTypes.string,
   loadCountries: PropTypes.func,
+  payReservation: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

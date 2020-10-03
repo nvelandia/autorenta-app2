@@ -19,3 +19,10 @@ export const cancelReservation = (body) => {
     body,
   };
 };
+
+export const payReservation = (body) => {
+  return {
+    type: actionNames.payReservation,
+    body,
+  };
+};

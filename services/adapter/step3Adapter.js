@@ -16,5 +16,18 @@ class step3Adapter {
 
     return errorResponsesPresenter.formError(data, actionNames.cancelReservationUnsuccessfully);
   };
+
+  payReservation = (response) => {
+    const { data } = response;
+    if (data.success) {
+      return successfullyResponsesPresenter.withOnlyData(
+        actionNames.payReservationSuccessfully,
+        'reservation',
+        data.response,
+      );
+    }
+
+    return errorResponsesPresenter.formError(data, actionNames.payReservationUnsuccessfully);
+  };
 }
 export default new step3Adapter();

@@ -19,3 +19,19 @@ export function* cancelReservation(action) {
     yield all([put(res)]);
   }
 }
+
+export function* payReservation(action) {
+  const { body } = action;
+  body.language = 'es';
+
+  const res = yield call(step3service.payReservation, body);
+  if (res.error) {
+    if (res.error.code === 401 || res.error.code === 403) {
+      yield all([put({ type: actionNames.handleError, error: res.error })]);
+      redirectTo(pages.error);
+    }
+    yield all([put(res), put(generalActions.showNotification('', res.error))]);
+  } else {
+    yield all([put(res)]);
+  }
+}

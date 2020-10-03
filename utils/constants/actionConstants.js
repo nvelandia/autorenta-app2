@@ -62,7 +62,10 @@ export const actionNames = {
   validatePromotionUnsuccessfully: 'VALIDATE_PROMOTION_UNSUCCESSFULLY',
   //Step3
   cancelReservation: 'CANCEL-RESERVATION',
+  payReservation: 'PAY_RESERVATION',
   //Step3-Service
   cancelReservationSuccessfully: 'CANCEL_RESERVATION_SUCCESSFULLY',
   cancelReservationUnsuccessfully: 'CANCEL_RESERVATION_UNSUCCESSFULLY',
+  payReservationSuccessfully: 'PAY_RESERVATION_SUCCESSFULLY',
+  payReservationUnsuccessfully: 'PAY_RESERVATION_UNSUCCESSFULLY',
 };
