@@ -22,12 +22,15 @@ class step3Adapter {
     if (data.success) {
       return successfullyResponsesPresenter.withOnlyData(
         actionNames.payReservationSuccessfully,
-        'reservation',
+        'reservationPayed',
         data.response,
       );
     }
 
-    return errorResponsesPresenter.formError(data, actionNames.payReservationUnsuccessfully);
+    return errorResponsesPresenter.onlyMessage(
+      'No se pudo abonar la reserva',
+      actionNames.payReservationUnsuccessfully,
+    );
   };
 }
 export default new step3Adapter();

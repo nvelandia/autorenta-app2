@@ -22,12 +22,7 @@ class CreditCardPaymentForm extends React.Component {
       postalCodeFocus: false,
     };
     this.dispatch = this.props.dispatch;
-    this.handleOnLoad();
   }
-
-  handleOnLoad = () => {
-    this.dispatch(this.props.payReservation({ hola: 'si' }));
-  };
 
   handleOnSelect = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -62,7 +57,7 @@ class CreditCardPaymentForm extends React.Component {
     if (!payload.error) {
       const body = {
         payment_method_id: payload.paymentMethod.id,
-        passenger_lastname: '',
+        passenger_lastname: this.props.car.passenger_last_name,
         reservation: this.props.reservation.code,
       };
       this.dispatch(this.props.payReservation(body));

@@ -30,7 +30,7 @@ export function* payReservation(action) {
       yield all([put({ type: actionNames.handleError, error: res.error })]);
       redirectTo(pages.error);
     }
-    yield all([put(res), put(generalActions.showNotification('', res.error))]);
+    yield all([put(res)]);
   } else {
     yield all([put(res)]);
   }

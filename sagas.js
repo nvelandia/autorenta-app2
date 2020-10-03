@@ -7,7 +7,7 @@ import { loadCountries, searchLocation, loadOffers, searchFleet } from './redux-
 import { searchReservation, subscribeToNewsletter } from './redux-saga/GeneralSagas';
 import { modifySearchFleet } from './redux-saga/Step1Saga';
 import { loadAirlines, validateId, confirmReservation, validatePromotion } from './redux-saga/Step2Saga';
-import { cancelReservation } from './redux-saga/Step3Saga';
+import { cancelReservation, payReservation } from './redux-saga/Step3Saga';
 
 //es6promise.polyfill();
 
@@ -29,6 +29,7 @@ const saga = [
   takeLatest(actionNames.validatePromotion, validatePromotion),
   //Step3
   takeLatest(actionNames.cancelReservation, cancelReservation),
+  takeLatest(actionNames.payReservation, payReservation),
 ];
 
 export default function* rootSaga() {
