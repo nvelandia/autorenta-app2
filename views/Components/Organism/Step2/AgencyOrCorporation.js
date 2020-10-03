@@ -20,6 +20,7 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 import ClientTypeDropdown from '../../Molecules/dropdowns/ClientTypeDropdown';
+import NotificationAlert from 'react-notification-alert';
 
 class AgencyOrCorporation extends React.Component {
   constructor(props) {
@@ -79,9 +80,36 @@ class AgencyOrCorporation extends React.Component {
     this.dispatch(this.props.validatePromotion(body));
   };
 
+  notify = (type) => {
+    let options = {
+      place: 'tc',
+      message: (
+        <div className="alert-text">
+          <span className="alert-title" data-notify="title">
+            {' '}
+            ¡Atención!
+          </span>
+          <span data-notify="message">El número de cupón o no código promocional no es valido</span>
+        </div>
+      ),
+      type: type,
+      icon: 'ni ni-bell-55',
+      autoDismiss: 10,
+    };
+    this.refs.notificationAlert.notificationAlert(options);
+  };
+
   render() {
+    const error = this.props.error;
+    if (error.validationPromotion) {
+      this.notify('autorenta');
+      this.dispatch(this.props.clearValidateIdError());
+    }
     return (
       <Card className="card-frame ar-passenger-card fade-in">
+        <div className="rna-wrapper">
+          <NotificationAlert ref="notificationAlert" />
+        </div>
         <CardBody className="p-0">
           <div className="ar-icon-customer-type ar-title-with-icon">Información del pasajero</div>
           <div className="ar-passenger-form-container">

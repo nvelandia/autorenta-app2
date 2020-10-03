@@ -40,8 +40,8 @@ class Passenger extends React.Component {
       phone: '',
       airlineCompany: '',
       flyNumber: '',
-      promotionCode: 'AWD N299900',
-      couponNumber: 'UUWA039',
+      promotionCode: '', //'AWD N299900',
+      couponNumber: '', // 'UUWA039',
     };
     this.dispatch = this.props.dispatch;
   }

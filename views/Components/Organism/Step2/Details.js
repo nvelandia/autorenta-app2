@@ -50,7 +50,7 @@ class Details extends React.Component {
       passenger_name: this.props.formData.name,
       passenger_lastname: this.props.formData.surname,
       passenger_phone: this.props.formData.phone,
-      rate_code: this.props.discount
+      rate_code: this.props.discount.rate_code
         ? this.props.discount.rate_code
         : this.props.carSelected.rates[this.props.rateSelected].rate_code,
       vendor: this.props.carSelected.company.code,
