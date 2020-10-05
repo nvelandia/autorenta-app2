@@ -1,6 +1,14 @@
-const es = {
+export const en = {
+  locale: 'en',
+  messages: {
+    hello: 'how are you {name}',
+  },
   common: {
-    navbar: {},
+    navbar: {
+      button: {
+        reserveNow: 'Reserve',
+      },
+    },
     banner: {},
     footer: {},
     loader: {},

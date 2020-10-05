@@ -36,8 +36,6 @@ import SearchReservationModal from '../Modals/SearchReservationModal';
 import * as actions from '../../../../actions/generalActions';
 import * as homeActions from '../../../../actions/homeActions';
 import NewSearchModal from '../Modals/NewSearchModal';
-import MakeYourReservation from '../../Organism/Home/MakeYourReservation';
-import NotificationAlert from 'react-notification-alert';
 
 class CustomNavbar extends React.Component {
   constructor(props) {

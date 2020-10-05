@@ -6,6 +6,9 @@ import Router from 'next/router';
 import { Provider } from 'react-redux';
 // import PageChange from "views/Components/Atoms/PageChange/PageChange.js";
 import configureStore from '../config/configureStore';
+// import Translator and its configs
+import { translations } from '../translates/translations';
+import { IntlProvider } from 'react-redux-multilingual';
 
 /**
  * unique import to styles with extension scss
@@ -53,13 +56,15 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <Provider store={store}>
-        <React.Fragment>
-          <Head>
-            <title>3 Clicks - AutoRenta</title>
-          </Head>
-          <Component {...pageProps} />
-          <div id="app"></div>
-        </React.Fragment>
+        <IntlProvider translations={translations} locale="es">
+          <React.Fragment>
+            <Head>
+              <title>3 Clicks - AutoRenta</title>
+            </Head>
+            <Component {...pageProps} />
+            <div id="app" />
+          </React.Fragment>
+        </IntlProvider>
       </Provider>
     );
   }

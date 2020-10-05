@@ -14,6 +14,8 @@ import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
 import { isServer } from '../../utils/helpers/isError';
 
+import { IntlActions } from 'react-redux-multilingual';
+
 const items = [
   {
     src: '/img/custom/slide-home-1.jpg',
@@ -55,9 +57,14 @@ class Home extends React.Component {
     }
   };
 
+  handleChangeLanguage = () => {
+    this.dispatch(IntlActions.setLocale('es'));
+  };
+
   render() {
     return (
       <>
+        <button onClick={this.handleChangeLanguage}>{this.props.translate('hello', { name: 'Ale' })}</button>
         <CustomNavBar />
         <CarouselHeader items={items} />
         <MakeYourReservation
