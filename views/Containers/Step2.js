@@ -38,35 +38,52 @@ class Step2 extends React.Component {
   render() {
     this.dispatch(generalActions.hideLoader());
     const params = this.props.searchParams;
+    const { translate } = this.props;
+
     return (
       <>
-        <CustomNavBar />
+        <CustomNavBar translate={translate} />
         <StepsHeader
           step={2}
           step1URL={`${pages.step1}/${params.pickup_location}/${params.pickup_date}/${params.pickup_time}/${params.dropoff_location}/${params.dropoff_date}/${params.dropoff_time}/${params.passenger_country_id}/${params.passenger_age}/${params.vehicle_type}`}
+          translate={translate}
         />
         <Row className="justify-content-center mt-4 ml-0 mr-0">
           <div className="ar-central-container d-flex">
             <Col>
-              <CarSelected car={this.props.carSelected} />
+              <CarSelected car={this.props.carSelected} translate={translate} />
               <div className="d-flex justify-content-between">
-                <LocationSelected location={this.props.location.pickup} title={'oficina de inicio'} />
-                <LocationSelected location={this.props.location.dropoff} title={'oficina de devolución'} />
+                <LocationSelected
+                  location={this.props.location.pickup}
+                  title={'oficina de inicio'}
+                  translate={translate}
+                />
+                <LocationSelected
+                  location={this.props.location.dropoff}
+                  title={'oficina de devolución'}
+                  translate={translate}
+                />
               </div>
-              <OptionalEquipment addOptionalEquipment={actions.addOptionalEquipment} />
+              <OptionalEquipment addOptionalEquipment={actions.addOptionalEquipment} translate={translate} />
               <ClientType
                 clearValidateIdError={actions.clearValidateIdError}
                 selectClientType={actions.selectClientType}
                 validateId={actions.validateId}
+                translate={translate}
               />
               {this.props.organization.organization_id ? (
                 <AgencyOrCorporation
                   updateFormData={actions.updateFormData}
                   validatePromotion={actions.validatePromotion}
+                  translate={translate}
                 />
               ) : null}
               {this.props.clientType === 'Pasajero / Cliente directo' ? (
-                <Passenger updateFormData={actions.updateFormData} validatePromotion={actions.validatePromotion} />
+                <Passenger
+                  updateFormData={actions.updateFormData}
+                  validatePromotion={actions.validatePromotion}
+                  translate={translate}
+                />
               ) : null}
             </Col>
             <div className="ar-card-details">
@@ -75,14 +92,15 @@ class Step2 extends React.Component {
                 changePlan={actions.changePlan}
                 confirmReservation={actions.confirmReservation}
                 validatePromotion={actions.validatePromotion}
+                translate={translate}
               />
             </div>
           </div>
         </Row>
-        <Banner />
-        <CustomFooter />
+        <Banner translate={translate} />
+        <CustomFooter translate={translate} />
         <UpToTop />
-        <AutorentaLoader />
+        <AutorentaLoader translate={translate} />
       </>
     );
   }

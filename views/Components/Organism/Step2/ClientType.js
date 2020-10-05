@@ -45,7 +45,6 @@ class ClientType extends React.Component {
       message: (
         <div className="alert-text">
           <span className="alert-title" data-notify="title">
-            {' '}
             ¡Atención!
           </span>
           <span data-notify="message">El número de ID ingresado no es valido</span>
@@ -59,6 +58,7 @@ class ClientType extends React.Component {
   };
 
   render() {
+    const { translate } = this.props;
     const error = this.props.error;
     if (error.validationId) {
       this.notify('autorenta');
@@ -70,22 +70,26 @@ class ClientType extends React.Component {
           <NotificationAlert ref="notificationAlert" />
         </div>
         <CardBody className="p-0">
-          <div className="ar-icon-customer-type ar-title-with-icon">Tipo de cliente</div>
+          <div className="ar-icon-customer-type ar-title-with-icon">{translate('step2.clientType.title')}</div>
           <Row className="m-0 align-items-center ar-client-type-container">
             <div className="ar-select-client-type-container">
               <ClientTypeDropdown
-                items={['Pasajero / Cliente directo', 'Agencia de viajes', 'Corporativo / Empresas']}
-                title={'Selecciona una opción'}
+                items={[
+                  translate('step2.clientType.passenger'),
+                  translate('step2.clientType.agency'),
+                  translate('step2.clientType.corporation'),
+                ]}
+                title={translate('step2.clientType.choose')}
                 color={'white-0'}
                 dispatch={this.props.dispatch}
                 classes={'ar-select-button'}
                 handleOnSelectClientType={this.handleOnSelect}
               />
             </div>
-            {this.state.clientType === 'Pasajero / Cliente directo' ? (
+            {this.state.clientType === translate('step2.clientType.passenger') ? (
               <img className="fade-in" src={'/img/custom/step2/banner-pay-online-discount.png'} alt="offer" />
             ) : null}
-            {this.state.clientType === 'Agencia de viajes' ? (
+            {this.state.clientType === translate('step2.clientType.agency') ? (
               <FormGroup
                 className={
                   'ar-validate-input-agency ' +
@@ -102,7 +106,9 @@ class ClientType extends React.Component {
                   <Input
                     className="ar-round-input ar-input-agency-code"
                     placeholder={
-                      !this.props.error.validationId ? 'Ingresa tu número de ID' : this.props.error.validationId
+                      !this.props.error.validationId
+                        ? translate('step2.clientType.typeYourId')
+                        : this.props.error.validationId
                     }
                     type="text"
                     name="agencyCode"
@@ -117,14 +123,14 @@ class ClientType extends React.Component {
                       color="red-0"
                       onClick={() => this.handleValidateClick(true)}
                     >
-                      <span className="nav-link-inner--text">Validar </span>
+                      <span className="nav-link-inner--text"> {translate('step2.clientType.validate')} </span>
                       <i className="ar-icon-chevron-right" />
                     </Button>
                   </InputGroupAddon>
                 </InputGroup>
               </FormGroup>
             ) : null}
-            {this.state.clientType === 'Corporativo / Empresas' ? (
+            {this.state.clientType === translate('step2.clientType.corporation') ? (
               <FormGroup
                 className={
                   'ar-validate-input-agency ' +
@@ -141,7 +147,9 @@ class ClientType extends React.Component {
                   <Input
                     className="ar-round-input ar-input-agency-code"
                     placeholder={
-                      !this.props.error.validationId ? 'Ingresa tu número de ID' : this.props.error.validationId
+                      !this.props.error.validationId
+                        ? translate('step2.clientType.typeYourId')
+                        : this.props.error.validationId
                     }
                     type="text"
                     name="corporationCode"
@@ -155,7 +163,7 @@ class ClientType extends React.Component {
                       color="red-0"
                       onClick={() => this.handleValidateClick(false)}
                     >
-                      <span className="nav-link-inner--text">Validar </span>
+                      <span className="nav-link-inner--text">{translate('step2.clientType.validate')} </span>
                       <i className="ar-icon-chevron-right" />
                     </Button>
                   </InputGroupAddon>

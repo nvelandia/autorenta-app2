@@ -24,7 +24,7 @@ class CarSelected extends React.Component {
   };
 
   render() {
-    const { car } = this.props;
+    const { car, translate } = this.props;
     return (
       <Card className="card-frame ar-car-selected">
         <CardBody className="p-0">
@@ -34,12 +34,12 @@ class CarSelected extends React.Component {
             </div>
             <div className="ar-car-data-left">
               <div className="ar-icon-info ar-data-icon ">
-                <p className="ml-2 ">Algunas rentadoras cobran un cargo extra a conductores menores de 25 años.</p>
+                <p className="ml-2 ">{translate('step2.carSelected.advise')}</p>
               </div>
             </div>
             <div className="ar-car-data-right">
               <div className="ar-icon-check-solid ar-data-icon ar-green-text">
-                <p className="ml-2 ar-blue-0-text">Cancela gratis tu reserva con 48 horas de anticipación.</p>
+                <p className="ml-2 ar-blue-0-text">{translate('step2.carSelected.cancel')}</p>
               </div>
             </div>
           </Row>
@@ -48,7 +48,7 @@ class CarSelected extends React.Component {
               <div className="ar-car-type">
                 <h3 className="ar-icon-car-category ar-car-type-key">{car.typeCar.name}</h3>
                 <h6 className="mb-0">
-                  {car.name} <b>o similar</b>
+                  {car.name} <b>{translate('step2.carSelected.orSimilar')}</b>
                 </h6>
               </div>
               <div className="ar-car-features">
@@ -56,31 +56,41 @@ class CarSelected extends React.Component {
                   <div className="ar-car-features-group">
                     <div className="ar-car-feature-item">
                       <i className="ar-icon-passenger ar-light-blue-3-text" />
-                      <h6>{car.seats} asientos</h6>
+                      <h6>
+                        {car.seats} {translate('step2.carSelected.seats')}
+                      </h6>
                     </div>
                     <div className="ar-car-feature-item">
                       <i className="ar-icon-doors ar-light-blue-3-text" />
-                      <h6>{car.doors} puertas</h6>
+                      <h6>
+                        {car.doors} {translate('step2.carSelected.doors')}
+                      </h6>
                     </div>
                   </div>
                   <div className="ar-car-features-group">
                     <div className="ar-car-feature-item">
                       <i className="ar-icon-luggage ar-light-blue-3-text" />
-                      <h6>{car.bags_big} maletas grandes</h6>
+                      <h6>
+                        {car.bags_big} {translate('step2.carSelected.bigBags')}
+                      </h6>
                     </div>
                     <div className="ar-car-feature-item">
                       <i className="ar-icon-carry-on ar-light-blue-3-text" />
-                      <h6>{car.bags_small} maletas pequeñas</h6>
+                      <h6>
+                        {car.bags_small} {translate('step2.carSelected.smallBags')}
+                      </h6>
                     </div>
                   </div>
                   <div className="ar-car-features-group">
                     <div className="ar-car-feature-item">
                       <i className="ar-icon-transmission ar-light-blue-3-text" />
-                      <h6>Transmisión {car.gear}</h6>
+                      <h6>
+                        {translate('step2.carSelected.gear')} {car.gear}
+                      </h6>
                     </div>
                     <div className="ar-car-feature-item">
                       <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
-                      <h6>{car.doors ? 'Aire acondicionado' : null}</h6>
+                      <h6>{car.doors ? translate('step2.carSelected.air') : null}</h6>
                     </div>
                   </div>
                 </Row>

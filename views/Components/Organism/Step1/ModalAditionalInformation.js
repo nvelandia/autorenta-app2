@@ -11,6 +11,7 @@ class ModalAditionalInformation extends React.Component {
   }
 
   render() {
+    const { translate } = this.props;
     return (
       <Modal
         className="modal-dialog-centered ar-modal-aditional-information"
@@ -19,7 +20,7 @@ class ModalAditionalInformation extends React.Component {
       >
         <div className="modal-header pb-0">
           <h2 className=" mt-3 pl-4" id="exampleModalLabel">
-            Información importante
+            {translate('step1.result.modalAdditionalInformation.title')}
           </h2>
           <button
             aria-label="Close"
@@ -37,12 +38,13 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Seguros y coberturas</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">
+                      {translate('step1.result.modalAdditionalInformation.secureTitle')}
+                    </CardTitle>
                     <i className="ar-icon-insurances-and-coverages ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
-                    Todos los vehículos se ofrecen con una cobertura básica que implica una franquicia / deducible y el
-                    bloqueo de un importe en la tarjeta de crédito del cliente en concepto de depósito o fianza.
+                    {translate('step1.result.modalAdditionalInformation.secureText')}
                   </p>
                 </CardBody>
               </Card>
@@ -51,13 +53,13 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Franquicia / Deducible</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">
+                      {translate('step1.result.modalAdditionalInformation.franTitle')}
+                    </CardTitle>
                     <i className="ar-icon-deductible ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
-                    La franquicia o deducible es la cantidad máxima que el cliente deberá abonar en caso de daños al
-                    vehículo. Algunas rentadoras ofrecen Cobertura total para recuperar el importe de la franquicia /
-                    deducible, pero esto no evita el depósito o fianza
+                    {translate('step1.result.modalAdditionalInformation.franText')}
                   </p>
                 </CardBody>
               </Card>
@@ -68,13 +70,13 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Depósito o bloqueo</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">
+                      {translate('step1.result.modalAdditionalInformation.depoTitle')}
+                    </CardTitle>
                     <i className="ar-icon-credit-card-block ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
-                    El depósito o bloqueo es el bloqueo de un iporte en la tarjeta de crédito del cliente en caso de
-                    daños o cualquier otro reclamo. El bloqueo sólo se puede reducir contratando un seguro adicional en
-                    la compañía rentadora dependiendo del destino.
+                    {translate('step1.result.modalAdditionalInformation.depoText')}
                   </p>
                 </CardBody>
               </Card>
@@ -83,13 +85,13 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Políticas de combustible</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">
+                      {translate('step1.result.modalAdditionalInformation.poliTitle')}
+                    </CardTitle>
                     <i className="ar-icon-fuel-policy ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
-                    Cada compañía tiene su propia política de combustible. La mayoría de las rentadoras entregan el
-                    vehículo con el tanque lleno y el cliente deberá devolverlo de la misma manera. En caso de no
-                    hacerlo se cobrará un cargo adicional de repostaje.
+                    {translate('step1.result.modalAdditionalInformation.poliText')}
                   </p>
                 </CardBody>
               </Card>
@@ -100,13 +102,13 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Kilometraje / Millaje</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">
+                      {translate('step1.result.modalAdditionalInformation.kiloTitle')}
+                    </CardTitle>
                     <i className="ar-icon-miles-kilometers ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
-                    En la mayoría de los casos la tarifa contratada incluirá kilometraje / millaje ilimitado, no
-                    obstante, para algunos vehículos o regiones particulares existe un límite de kilómetros o millas,
-                    superando ese limite el cliente deberá abonar un costo por kilometro / milla.
+                    {translate('step1.result.modalAdditionalInformation.kiloText')}
                   </p>
                 </CardBody>
               </Card>
@@ -115,13 +117,13 @@ class ModalAditionalInformation extends React.Component {
               <Card className="mb-0 shadow h-100">
                 <CardBody className="py-2">
                   <Row className="align-items-center justify-content-between m-0 py-3 px-1">
-                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">Tarjeta de crédito y débito</CardTitle>
+                    <CardTitle className="h3 font-weight-bold mb-0 ar-red-text">
+                      {translate('step1.result.modalAdditionalInformation.cardTitle')}
+                    </CardTitle>
                     <i className="ar-icon-credit-debit-card ar-red-text fs-4" />
                   </Row>
                   <p className="fs--1 pr-3 mb-0 pb-4 lh-normal">
-                    La mayoría de las compañías rentadoras requieren una tarjeta de crédito a nombre del condutor
-                    principal para efectuar una pre-autorizacion. No se aceptarán tarjetas de débito como método de pago
-                    o depósito / bloqueo.
+                    {translate('step1.result.modalAdditionalInformation.cardText')}
                   </p>
                 </CardBody>
               </Card>

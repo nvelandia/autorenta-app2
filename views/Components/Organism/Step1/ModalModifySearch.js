@@ -174,6 +174,7 @@ class ModalModifySearch extends React.Component {
 
   render() {
     const error = this.state.error;
+    const { translate } = this.props;
     return (
       <Modal
         className="modal-dialog-centered ar-modal-aditional-information"
@@ -185,7 +186,7 @@ class ModalModifySearch extends React.Component {
         </div>
         <div className="modal-header pb-0">
           <h6 className="modal-title mt-3 pl-1 mb-2" id="exampleModalLabel">
-            Modificar la búsqueda
+            {translate('step1.activeSearch.modifyModal.title')}
           </h6>
           <button
             aria-label="Close"
@@ -220,7 +221,7 @@ class ModalModifySearch extends React.Component {
                       name="placeToPickUp"
                       onChange={this.handleOnChange}
                       className="ar-round-input-right"
-                      placeholder="¿Dónde quieres retirar el vehículo?"
+                      placeholder={translate('home.makeYourReservation.placeToPickUp')}
                       value={this.state.placeToPickUp}
                       type="text"
                       autoComplete="off"
@@ -249,7 +250,7 @@ class ModalModifySearch extends React.Component {
                       name="placeToDropOff"
                       onChange={this.handleOnChange}
                       className="ar-round-input-right"
-                      placeholder="¿Dónde quieres entregar el vehículo?"
+                      placeholder={translate('home.makeYourReservation.placeToDropOff')}
                       type="text"
                       autoComplete="off"
                       value={this.state.placeToDropOff}
@@ -271,7 +272,7 @@ class ModalModifySearch extends React.Component {
                 >
                   <CustomDropDown
                     name={'ageSelected'}
-                    title={'Edad'}
+                    title={translate('home.makeYourReservation.age')}
                     items={['+25', '24', '23', '22', '21', '20', '19', '18']}
                     classes={'ar-dropdown-menu-age'}
                     handleSelect={this.handleOnSelect}
@@ -284,7 +285,7 @@ class ModalModifySearch extends React.Component {
                   color="red-0"
                   onClick={this.handleSearchClick}
                 >
-                  <span className="nav-link-inner--text">Modificar </span>
+                  <span className="nav-link-inner--text">{translate('step1.activeSearch.modify') + ' '}</span>
                   <span className="btn-inner--icon">
                     <span className="ar-icon-chevron-right" />
                   </span>

@@ -156,6 +156,8 @@ class Offer extends React.Component {
   // metodo con lo que viene del back
 
   renderCards = () => {
+    const { translate } = this.props;
+
     const cards = this.props.offers.map((offer, index) => {
       return (
         <Col key={index} className="justify-content-center d-flex" xl="3" lg="5" md="5" sm="10" xs="12">
@@ -173,7 +175,7 @@ class Offer extends React.Component {
                   style={{ backgroundColor: offer.company.color, borderColor: offer.company.color }}
                   onClick={() => this.handleSelectPromotion(index)}
                 >
-                  Más información
+                  {translate('home.offers.button')}
                 </Button>
               </Row>
             </CardBody>
@@ -190,14 +192,14 @@ class Offer extends React.Component {
   };
 
   render() {
-    const { dataCards } = this.props;
+    const { translate } = this.props;
     return (
       <div>
         <Row className="justify-content-center ml-0 mr-0">
           <div className="justify-content-center ar-central-container">
             <Row className="mb--3">
               <Col className="justify-content-center text-center">
-                <h2>Descubre todas las ofertas y promociones</h2>
+                <h2>{translate('home.offers.mainTitle')}</h2>
               </Col>
             </Row>
             <Row className=" justify-content-md-around justify-content-sm-center mt-5">

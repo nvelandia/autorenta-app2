@@ -47,18 +47,20 @@ class Step1 extends React.Component {
   };
 
   render() {
-    const { params } = this.props;
+    const { params, translate } = this.props;
     return (
       <>
-        <CustomNavBar />
+        <CustomNavBar translate={translate} />
         <StepsHeader
           step={1}
           step1URL={`${pages.step1}/${params[0]}/${params[1]}/${params[2]}/${params[3]}/${params[4]}/${params[5]}/${params[6]}/${params[7]}/${params[8]}`}
+          translate={translate}
         />
         <ActiveSearch
           searchLocation={homeActions.searchLocation}
           modifySearchFleet={actions.modifySearchFleet}
           haveToCloseModifyModal={actions.haveToCloseModifyModal}
+          translate={translate}
         />
         <Result
           addFitlter={actions.addFilter}
@@ -67,11 +69,12 @@ class Step1 extends React.Component {
           toggleShowFeaturedFirst={actions.toggleShowFeaturedFirst}
           selectCar={actions.selectCar}
           showLoader={generalActions.showLoader}
+          translate={translate}
         />
-        <Banner />
-        <CustomFooter />
+        <Banner translate={translate} />
+        <CustomFooter translate={translate} />
         <UpToTop />
-        <AutorentaLoader />
+        <AutorentaLoader translate={translate} />
       </>
     );
   }

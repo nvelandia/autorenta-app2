@@ -59,6 +59,7 @@ class CustomNavbar extends React.Component {
   };
 
   render() {
+    const { translate } = this.props;
     return (
       <Navbar className="sticky-top navbar-horizontal navbar-main bg-ar-navbar p-2" expand="xl" id="navbar-main">
         <Container className="ar-container-navbar">
@@ -107,35 +108,35 @@ class CustomNavbar extends React.Component {
               <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={routes.PROMOTIONS}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
-                    <strong>Promociones</strong>
+                    <strong>{translate('common.navbar.links.promotions')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
                 <NavLink className="ar-nav-link" onClick={this.showSearchReservationModal}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
-                    <strong>Buscar reservación</strong>
+                    <strong>{translate('common.navbar.links.searchReservation')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={routes.AGENTS}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
-                    <strong>Agentes de viaje</strong>
+                    <strong>{translate('common.navbar.links.travelAgency')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={routes.BUSINESS}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
-                    <strong>AutoRenta Business</strong>
+                    <strong>{translate('common.navbar.links.AutoRentaBusiness')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={routes.ON_THE_GO}>
                   <span className="nav-link-inner--text ar-nav-link-red">
-                    <strong>AutoRenta ON THE GO</strong>
+                    <strong>{translate('common.navbar.links.AutoRentaOnTheGo')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
@@ -145,7 +146,7 @@ class CustomNavbar extends React.Component {
                   color="blue-4"
                   onClick={this.showNewSearchModal}
                 >
-                  <span className="nav-link-inner--text">Reservar </span>
+                  <span className="nav-link-inner--text">{translate('common.navbar.button.reserve')}</span>
                   <span className="btn-inner--icon">
                     <span className="ar-icon-chevron-right va-middle fs-i--1" />
                   </span>

@@ -44,32 +44,38 @@ class Step3 extends React.Component {
   };
 
   render() {
+    const { translate } = this.props;
+
     if (this.props.reservation) {
       return (
         <>
-          <CustomNavBar />
-          <StepsHeader step={3} />
+          <CustomNavBar translate={translate} />
+          <StepsHeader step={3} translate={translate} />
           <Row className="justify-content-center mt-4 ml-0 mr-0">
             <div className="ar-central-container d-flex">
               <Col>
-                <ReservationState cancelReservation={actions.cancelReservation} />
+                <ReservationState cancelReservation={actions.cancelReservation} translate={translate} />
                 {!this.props.organization.name ? (
-                  <Payment loadCountries={actions.loadCountries} payReservation={actions.payReservation} />
+                  <Payment
+                    loadCountries={actions.loadCountries}
+                    payReservation={actions.payReservation}
+                    translate={translate}
+                  />
                 ) : (
-                  <AgencyOrOrganizationPayment loadCountries={actions.loadCountries} />
+                  <AgencyOrOrganizationPayment loadCountries={actions.loadCountries} translate={translate} />
                 )}
-                <ReservationDetails />
+                <ReservationDetails translate={translate} />
               </Col>
             </div>
           </Row>
-          <Banner />
-          <CustomFooter />
+          <Banner translate={translate} />
+          <CustomFooter translate={translate} />
           <UpToTop />
-          <AutorentaLoader />
+          <AutorentaLoader translate={translate} />
         </>
       );
     } else {
-      return <AutorentaLoader />;
+      return <AutorentaLoader translate={translate} />;
     }
   }
 }

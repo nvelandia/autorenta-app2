@@ -103,6 +103,7 @@ class Passenger extends React.Component {
   };
 
   render() {
+    const { translate } = this.props;
     const error = this.props.error;
     if (error.validationPromotion) {
       this.notify('autorenta');
@@ -114,9 +115,9 @@ class Passenger extends React.Component {
           <NotificationAlert ref="notificationAlert" />
         </div>
         <CardBody className="p-0">
-          <div className="ar-icon-customer-type ar-title-with-icon">Información del pasajero</div>
+          <div className="ar-icon-customer-type ar-title-with-icon">{translate('step2.agencyOrCorporation.title')}</div>
           <div className="ar-passenger-form-container">
-            <div className="ar-subtitle">Información personal del titular de la renta</div>
+            <div className="ar-subtitle">{translate('step2.agencyOrCorporation.subtitle')}</div>
             <Row className="ar-passenger-form-row">
               <Col className="pl-0">
                 <FormGroup
@@ -130,7 +131,7 @@ class Passenger extends React.Component {
                   <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
                     <Input
                       className="ar-round-input ar-input-passenger-data"
-                      placeholder="Nombre"
+                      placeholder={translate('step2.agencyOrCorporation.name')}
                       type="text"
                       name="name"
                       onFocus={() => this.setState({ nameFocus: true })}
@@ -152,7 +153,7 @@ class Passenger extends React.Component {
                   <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
                     <Input
                       className="ar-round-input ar-input-passenger-data"
-                      placeholder="Apellido"
+                      placeholder={translate('step2.agencyOrCorporation.surname')}
                       type="text"
                       name="surname"
                       onFocus={() => this.setState({ surnameFocus: true })}
@@ -174,7 +175,7 @@ class Passenger extends React.Component {
                   <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
                     <Input
                       className="ar-round-input ar-input-passenger-data"
-                      placeholder="E-mail"
+                      placeholder={translate('step2.passenger.email')}
                       type="email"
                       name="email"
                       onFocus={() => this.setState({ emailFocus: true })}
@@ -198,7 +199,7 @@ class Passenger extends React.Component {
                   <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
                     <Input
                       className="ar-round-input ar-input-passenger-data"
-                      placeholder="Teléfono"
+                      placeholder={translate('step2.agencyOrCorporation.phone')}
                       type="text"
                       name="phone"
                       onFocus={() => this.setState({ phoneFocus: true })}
@@ -214,7 +215,7 @@ class Passenger extends React.Component {
                     items={this.props.airlines.map((item) => {
                       return item.name;
                     })}
-                    title={'Compañía aérea (opcional)'}
+                    title={translate('step2.agencyOrCorporation.flyCompany')}
                     color={'white-0'}
                     dispatch={this.props.dispatch}
                     classes={'ar-select-button'}
@@ -234,7 +235,7 @@ class Passenger extends React.Component {
                   <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
                     <Input
                       className="ar-round-input ar-input-passenger-data"
-                      placeholder="Número de vuelo (opcional)"
+                      placeholder={translate('step2.agencyOrCorporation.flyNumber')}
                       type="text"
                       name="flyNumber"
                       onFocus={() => this.setState({ flyNumberFocus: true })}
@@ -245,7 +246,7 @@ class Passenger extends React.Component {
                 </FormGroup>
               </Col>
             </Row>
-            <div className="ar-subtitle">Información adicional</div>
+            <div className="ar-subtitle">{translate('step2.agencyOrCorporation.additionalInformation')}</div>
             <Row className="ar-passenger-form-row">
               <FormGroup
                 className={
@@ -258,7 +259,7 @@ class Passenger extends React.Component {
                 <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
                   <Input
                     className="ar-round-input ar-input-passenger-data"
-                    placeholder="Código promocional"
+                    placeholder={translate('step2.agencyOrCorporation.promotionalCode')}
                     type="text"
                     name="promotionCode"
                     onFocus={() => this.setState({ promotionCodeFocus: true })}
@@ -272,7 +273,7 @@ class Passenger extends React.Component {
                       name="promotionCode"
                       onClick={() => this.handleValidateClick('promotionCode')}
                     >
-                      <span className="nav-link-inner--text">Validar </span>
+                      <span className="nav-link-inner--text">{translate('step2.clientType.validate')} </span>
                       <i className="ar-icon-chevron-right" />
                     </Button>
                   </InputGroupAddon>
@@ -289,7 +290,7 @@ class Passenger extends React.Component {
                 <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
                   <Input
                     className="ar-round-input ar-input-passenger-data"
-                    placeholder="Número de cupón"
+                    placeholder={translate('step2.agencyOrCorporation.coupon')}
                     type="text"
                     name="couponNumber"
                     onFocus={() => this.setState({ couponNumberFocus: true })}
@@ -303,7 +304,7 @@ class Passenger extends React.Component {
                       onClick={() => this.handleValidateClick('couponNumber')}
                       name="couponNumber"
                     >
-                      <span className="nav-link-inner--text">Validar </span>
+                      <span className="nav-link-inner--text">{translate('step2.clientType.validate')} </span>
                       <i className="ar-icon-chevron-right" />
                     </Button>
                   </InputGroupAddon>

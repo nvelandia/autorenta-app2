@@ -60,6 +60,7 @@ class CustomFooter extends React.Component {
 
   render() {
     const error = this.state.error;
+    const { translate } = this.props;
     return (
       <div className="ar-footer">
         <div className="rna-wrapper">
@@ -69,7 +70,7 @@ class CustomFooter extends React.Component {
           <Col lg="9">
             <Row className="ar-subscribe">
               <div className="ar-subscribe-text">
-                <h2 className="m-0 ar-white-1-text">Suscríbete y recibe todas nuestras ofertas</h2>
+                <h2 className="m-0 ar-white-1-text">{translate('common.footer.subscribe')}</h2>
               </div>
               <Col>
                 <InputGroup
@@ -79,7 +80,7 @@ class CustomFooter extends React.Component {
                 >
                   <Input
                     className="ar-round-input h-auto"
-                    placeholder="Nombre y apellido"
+                    placeholder={translate('common.footer.fullName')}
                     type="text"
                     name="name"
                     onFocus={() => this.setState({ nameFocus: true })}
@@ -96,7 +97,7 @@ class CustomFooter extends React.Component {
                 >
                   <Input
                     className="ar-round-input h-auto"
-                    placeholder="Direccion de E-mail"
+                    placeholder={translate('common.footer.email')}
                     type="email"
                     name="email"
                     onFocus={() => this.setState({ emailFocus: true })}
@@ -107,7 +108,7 @@ class CustomFooter extends React.Component {
               </Col>
               <div className="ar-register-button-container">
                 <Button className=" btn-icon ar-round-button" color="red-0" onClick={this.handleOnClick}>
-                  <span className="nav-link-inner--text">Regístrate </span>
+                  <span className="nav-link-inner--text">{translate('common.footer.register')}</span>
                   <span className="btn-inner--icon">
                     <span className="ar-icon-chevron-right va-middle fs-i--1" />
                   </span>
@@ -138,51 +139,51 @@ class CustomFooter extends React.Component {
                     </Row>
                   </Col>
                   <div className="ar-group-links">
-                    <h3 className="ar-blue-6-text">Contáctenos</h3>
+                    <h3 className="ar-blue-6-text">{translate('common.footer.contactUs')}</h3>
                     <div>
-                      <a className="ar-link">1580 Sawgrass Corporate Parkway</a>
+                      <a className="ar-link">{translate('common.footer.sawgrass')}</a>
                     </div>
                     <div>
-                      <a className="ar-link">Suite 130, Sunrise, FL 33323</a>
+                      <a className="ar-link">{translate('common.footer.suite')}</a>
                     </div>
                     <div>
-                      <a className="ar-link">info@autorenta.com</a>
-                    </div>
-                  </div>
-                  <div className="ar-group-links">
-                    <h3 className="ar-blue-6-text">Atención al cliente</h3>
-                    <div>
-                      <a className="ar-link">Contacta a un asesor online</a>
-                    </div>
-                    <div>
-                      <a className="ar-link">Preguntas frecuentes</a>
-                    </div>
-                    <div>
-                      <a className="ar-link">Buscar una reservación</a>
+                      <a className="ar-link">{translate('common.footer.info')}</a>
                     </div>
                   </div>
                   <div className="ar-group-links">
-                    <h3 className="ar-blue-6-text">Afiliados</h3>
+                    <h3 className="ar-blue-6-text">{translate('common.footer.clientAttention')}</h3>
                     <div>
-                      <a className="ar-link">Acceder a tu cuenta</a>
+                      <a className="ar-link">{translate('common.footer.adviser')}</a>
                     </div>
                     <div>
-                      <a className="ar-link">Registrar una cuenta</a>
+                      <a className="ar-link">{translate('common.footer.faq')}</a>
                     </div>
                     <div>
-                      <a className="ar-link">Promociones vigentes</a>
+                      <a className="ar-link">{translate('common.footer.searchReservation')}</a>
                     </div>
                   </div>
                   <div className="ar-group-links">
-                    <h3 className="ar-blue-6-text">Sobre Autorenta</h3>
+                    <h3 className="ar-blue-6-text">{translate('common.footer.affiliates')}</h3>
                     <div>
-                      <a className="ar-link">Políticas de cancelación</a>
+                      <a className="ar-link">{translate('common.footer.access')}</a>
                     </div>
                     <div>
-                      <a className="ar-link">Términos y condiciones</a>
+                      <a className="ar-link">{translate('common.footer.registerAccount')}</a>
                     </div>
                     <div>
-                      <a className="ar-link">Políticas de privacidad</a>
+                      <a className="ar-link">{translate('common.footer.promotions')}</a>
+                    </div>
+                  </div>
+                  <div className="ar-group-links">
+                    <h3 className="ar-blue-6-text">{translate('common.footer.aboutUs')}</h3>
+                    <div>
+                      <a className="ar-link">{translate('common.footer.politics')}</a>
+                    </div>
+                    <div>
+                      <a className="ar-link">{translate('common.footer.terms')}</a>
+                    </div>
+                    <div>
+                      <a className="ar-link">{translate('common.footer.privacy')}</a>
                     </div>
                   </div>
                 </Row>
@@ -191,7 +192,7 @@ class CustomFooter extends React.Component {
           </Col>
         </Row>
         <Row className="ar-footer-down bg-ar-blue-5 justify-content-md-center text-center align-items-center ml-0 mr-0">
-          <p>Copyright © 2020 autorenta.com es una marca registrada de GMS. Todos los derechos reservados</p>
+          <p>{translate('common.footer.copyRight')}</p>
         </Row>
       </div>
     );

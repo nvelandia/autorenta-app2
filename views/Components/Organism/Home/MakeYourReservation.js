@@ -192,6 +192,7 @@ class MakeYourReservation extends React.Component {
 
   render() {
     const error = this.state.error;
+    const { translate } = this.props;
     return (
       <Container className="mt--10 pb-5">
         <div className="rna-wrapper">
@@ -203,8 +204,8 @@ class MakeYourReservation extends React.Component {
               <Col lg="7" md="8" sm="8" xs="11" className="ar-card-header">
                 <CardHeader className=" p-3 ar-border-round">
                   <Row className="text-muted text-center mb-0 justify-content-center">
-                    <h2 className="mb-0">Haz tu reserva en&nbsp;</h2>
-                    <h2 className="mb-0 ar-red-text">sólo 3 pasos</h2>
+                    <h2 className="mb-0">{translate('home.makeYourReservation.doYourReservationIn')}&nbsp;</h2>
+                    <h2 className="mb-0 ar-red-text">{translate('home.makeYourReservation.only3Steps')}</h2>
                   </Row>
                 </CardHeader>
               </Col>
@@ -212,7 +213,7 @@ class MakeYourReservation extends React.Component {
             <Card className=" border-0 mb-0 ar-border-round">
               <CardBody className="px-lg-5 py-lg-5">
                 <div className="text-center mb-4 ar-steps-bar">
-                  <ProgressBar step={0} />
+                  <ProgressBar step={0} translate={translate} />
                 </div>
                 <Form role="form">
                   <Row>
@@ -236,7 +237,7 @@ class MakeYourReservation extends React.Component {
                             name="placeToPickUp"
                             onChange={this.handleOnChange}
                             className="ar-round-input-right"
-                            placeholder="¿Dónde quieres retirar el vehículo?"
+                            placeholder={translate('home.makeYourReservation.placeToPickUp')}
                             value={this.state.placeToPickUp}
                             type="text"
                             autoComplete="off"
@@ -265,7 +266,7 @@ class MakeYourReservation extends React.Component {
                             name="placeToDropOff"
                             onChange={this.handleOnChange}
                             className="ar-round-input-right"
-                            placeholder="¿Dónde quieres entregar el vehículo?"
+                            placeholder={translate('home.makeYourReservation.placeToDropOff')}
                             type="text"
                             autoComplete="off"
                             value={this.state.placeToDropOff}
@@ -292,7 +293,7 @@ class MakeYourReservation extends React.Component {
                       >
                         <CustomDropDown
                           name={'passenger_country_id'}
-                          title={'País de residencia'}
+                          title={translate('home.makeYourReservation.country')}
                           items={this.props.countries}
                           classes={'ar-dropdown-menu-overflow'}
                           handleSelect={this.handleOnSelect}
@@ -311,7 +312,7 @@ class MakeYourReservation extends React.Component {
                       >
                         <CustomDropDown
                           name={'ageSelected'}
-                          title={'Edad'}
+                          title={translate('home.makeYourReservation.age')}
                           items={['+25', '24', '23', '22', '21', '20', '19', '18']}
                           classes={'ar-dropdown-menu-age'}
                           handleSelect={this.handleOnSelect}
@@ -330,7 +331,7 @@ class MakeYourReservation extends React.Component {
                       >
                         <CustomDropDown
                           name={'vehicleType'}
-                          title={'Tipo de vehículo'}
+                          title={translate('home.makeYourReservation.carType')}
                           items={vehicleTypes}
                           classes={'ar-dropdown-menu-car-type ar-dropdown-menu-overflow'}
                           handleSelect={this.handleOnSelect}
@@ -345,7 +346,9 @@ class MakeYourReservation extends React.Component {
                         type="button"
                         onClick={this.handleSearchClick}
                       >
-                        <span className="nav-link-inner--text text-sm">Buscar </span>
+                        <span className="nav-link-inner--text text-sm">
+                          {translate('home.makeYourReservation.search')}
+                        </span>
                         <span className="btn-inner--icon">
                           <span className="ar-icon-chevron-right va-middle fs-i--1" />
                         </span>

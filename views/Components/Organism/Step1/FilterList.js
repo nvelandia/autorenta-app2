@@ -49,63 +49,70 @@ class FilterList extends React.Component {
   };
 
   render() {
+    const { translate } = this.props;
     if (this.state !== this.props.filterBy) {
       this.updateValues();
     }
     const { gears, companies, types, seats, bags } = this.props.items;
     return (
       <Card>
-        <CardHeader className=" ar-filter-main-title">Filtrar resultados</CardHeader>
+        <CardHeader className=" ar-filter-main-title">{translate('step1.result.filterList.mainTitle')}</CardHeader>
         <FilterGroup
-          title={'COMPAÑÍA RENTADORA'}
+          title={translate('step1.result.filterList.companies')}
           items={companies}
           type={'check'}
           badge={true}
           text={''}
           category={'companies'}
           handleOnSelect={this.handleOnSelect}
+          translate={translate}
         />
         <FilterGroup
-          title={'TIPOS DE VEHÍCULO'}
+          title={translate('step1.result.filterList.types')}
           items={types}
           type={'check'}
           badge={true}
           text={''}
           category={'types'}
           handleOnSelect={this.handleOnSelect}
+          translate={translate}
         />
         <FilterGroup
-          title={'CANTIDAD DE PASAJEROS'}
+          title={translate('step1.result.filterList.seats')}
           items={seats}
           type={'check'}
           badge={false}
           text={'pasajeros'}
           category={'seats'}
           handleOnSelect={this.handleOnSelect}
+          translate={translate}
         />
         <FilterGroup
-          title={'CAPACIDAD DE MALETAS'}
+          title={translate('step1.result.filterList.bags')}
           items={bags}
           type={'radio'}
           badge={false}
           text={''}
           category={'bags'}
           handleOnChange={this.handleOnChange}
+          translate={translate}
         />
         <FilterGroup
-          title={'TIPO DE TRANSMISIÓN'}
+          title={translate('step1.result.filterList.gears')}
           items={gears}
           type={'check'}
           badge={false}
           text={''}
           category={'gears'}
           handleOnSelect={this.handleOnSelect}
+          translate={translate}
         />
         <FilterGroup
-          title={'RANGO DE PRECIO'}
+          title={translate('step1.result.filterList.price')}
           category={'price'}
           handlePriceChange={this.handlePriceChange}
           priceRange={this.props.priceRange}
+          translate={translate}
         />
       </Card>
     );

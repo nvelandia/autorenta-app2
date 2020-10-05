@@ -46,6 +46,7 @@ class CarsResult extends React.Component {
   };
 
   renderPrice = (car) => {
+    const { translate } = this.props;
     const prices = car.rates.map((rate, index) => {
       return (
         <Col xl="6" lg="6" className="ar-car-price" key={index}>
@@ -56,14 +57,14 @@ class CarsResult extends React.Component {
             <CardBody className="ar-car-price-body">
               <div className="ar-car-price-details" onClick={() => this.props.showDetailModal(rate)}>
                 <p>
-                  <i className="ar-icon-info va-middle" /> Ver detalle del plan
+                  <i className="ar-icon-info va-middle" /> {translate('step1.result.carsResult.seeDetails')}
                 </p>
               </div>
               <div className="mb-2">
                 <h1 className="ar-car-price-price">{rate.price}</h1>
               </div>
               <CustomButton
-                text={'Reservar ahora'}
+                text={translate('step1.result.carsResult.reserveNow')}
                 event={() => this.handleOnClick(car, index)}
                 color={'red-0'}
                 name={'ar-car-price-button'}
@@ -82,7 +83,7 @@ class CarsResult extends React.Component {
   };
 
   render() {
-    const { car } = this.props;
+    const { car, translate } = this.props;
     return (
       <Card className="card-frame ar-car-result mb-3">
         <CardBody className="p-0">
@@ -94,7 +95,7 @@ class CarsResult extends React.Component {
               <div className="ar-car-type">
                 <h3 className="ar-red-text">{car.category ? car.category : car.typeCar.name}</h3>
                 <h6 className="mb-0">
-                  {car.name} <b>o similar</b>
+                  {car.name} <b>{translate('step1.result.carsResult.orSimilar')}</b>
                 </h6>
               </div>
             </div>
@@ -102,33 +103,43 @@ class CarsResult extends React.Component {
               <div className="ar-car-features-group pl-0">
                 <div className="ar-car-feature-item">
                   <i className="ar-icon-passenger ar-light-blue-3-text" />
-                  <h6>{car.seats} asientos</h6>
+                  <h6>
+                    {car.seats} {translate('step1.result.carsResult.seats')}
+                  </h6>
                 </div>
                 <div className="ar-car-feature-item">
                   <i className="ar-icon-doors ar-light-blue-3-text" />
-                  <h6>{car.doors} puertas</h6>
+                  <h6>
+                    {car.doors} {translate('step1.result.carsResult.doors')}
+                  </h6>
                 </div>
               </div>
               <div className="ar-car-features-group">
                 <div className="ar-car-feature-item">
                   <i className="ar-icon-luggage ar-light-blue-3-text" />
-                  <h6>{car.bags_big} maletas grandes</h6>
+                  <h6>
+                    {car.bags_big} {translate('step1.result.carsResult.bigBags')}
+                  </h6>
                 </div>
                 <div className="ar-car-feature-item">
                   <i className="ar-icon-carry-on ar-light-blue-3-text" />
-                  <h6>{car.bags_small} maletas pequeñas</h6>
+                  <h6>
+                    {car.bags_small} {translate('step1.result.carsResult.smallBags')}
+                  </h6>
                 </div>
               </div>
               <div className="ar-car-features-group ">
                 <div className="ar-car-feature-item">
                   <i className="ar-icon-transmission ar-light-blue-3-text" />
-                  <h6>Transmisión {car.gear}</h6>
+                  <h6>
+                    {translate('step1.result.carsResult.gear')} {car.gear}
+                  </h6>
                 </div>
                 <div className="ar-car-feature-item">
                   {car.air ? (
                     <>
                       <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
-                      <h6>Aire acondicionado</h6>
+                      <h6>{translate('step1.result.carsResult.air')}</h6>
                     </>
                   ) : (
                     <i>&nbsp;</i>
@@ -148,7 +159,8 @@ class CarsResult extends React.Component {
                   <div className="ar-car-featured">
                     {car.featured ? (
                       <div className="ar-car-featured-label">
-                        <span className="ar-icon-featured-car va-middle" /> ¡Destacado!
+                        <span className="ar-icon-featured-car va-middle" />{' '}
+                        {translate('step1.result.carsResult.featured')}
                       </div>
                     ) : (
                       <div className="ar-car-featured-label-empty" />
@@ -158,19 +170,15 @@ class CarsResult extends React.Component {
                 <Col xl="6" lg="6" className="ar-car-data">
                   <div className="ar-car-data-text">
                     <div className="ar-icon-check-solid d-flex fs--1 ar-green-text">
-                      <h6 className="mt--1 ml-2 ar-blue-0-text mb-3">
-                        Cancela gratis tu reserva con 48 horas de anticipación.
-                      </h6>
+                      <h6 className="mt--1 ml-2 ar-blue-0-text mb-3">{translate('step1.result.carsResult.cancel')}</h6>
                     </div>
                     <div className="ar-icon-info d-flex fs--1">
-                      <h6 className="mt--1 ml-2">
-                        Algunas rentadoras cobran un cargo extra a conductores menores de 25 años.
-                      </h6>
+                      <h6 className="mt--1 ml-2">{translate('step1.result.carsResult.advise')}</h6>
                     </div>
                   </div>
                   <div className="ar-car-data-button-container">
                     <CustomButton
-                      text={'Información adicional'}
+                      text={translate('step1.result.carsResult.additionalInformation')}
                       event={this.props.showAditionalModal}
                       color={'white-0'}
                       fontSize={'fs--2'}

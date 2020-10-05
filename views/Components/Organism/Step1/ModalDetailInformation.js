@@ -11,7 +11,7 @@ class ModalDetailInformation extends React.Component {
   }
 
   render() {
-    const { rate } = this.props;
+    const { rate, translate } = this.props;
     return (
       <Modal
         className="modal-dialog-centered ar-modal-details-information"
@@ -20,7 +20,7 @@ class ModalDetailInformation extends React.Component {
       >
         <div className="modal-header pb-0">
           <h6 className="modal-title mt-3" id="exampleModalLabel">
-            Ver detalle de esta tarifa
+            {translate('step1.result.modalDetailInformation.title')}
           </h6>
           <button
             aria-label="Close"
@@ -38,7 +38,7 @@ class ModalDetailInformation extends React.Component {
               <Row>
                 <div className="col">
                   <CardTitle className="text-uppercase text-muted mb-0 ar-gray-2-text fs--2">
-                    Código de la tarifa: {rate.rate_code}
+                    {translate('step1.result.modalDetailInformation.subtitle')} {rate.rate_code}
                   </CardTitle>
                   <span className="h2 font-weight-bold  mb-2 ar-blue-text fs--1">{rate.name}</span>
                 </div>

@@ -67,6 +67,7 @@ class Result extends React.Component {
   };
 
   renderCarsResult = () => {
+    const { translate } = this.props;
     let cars = this.props.result.cars;
     if (this.props.showFeaturedFirst) {
       let simple = [];
@@ -92,6 +93,7 @@ class Result extends React.Component {
         return (
           <div key={index} className="fade-in">
             <CarsResult
+              translate={translate}
               car={car}
               selectCar={this.props.selectCar}
               showDetailModal={this.showDetailModal}
@@ -104,6 +106,7 @@ class Result extends React.Component {
         return (
           <div key={index} className="fade-out">
             <CarsResult
+              translate={translate}
               car={car}
               selectCar={this.props.selectCar}
               showDetailModal={this.showDetailModal}
@@ -118,15 +121,20 @@ class Result extends React.Component {
 
   render() {
     const priceRange = this.calculatePriceRange();
-
+    const { translate } = this.props;
     return (
       <Row className="m-4 justify-content-center">
         <ModalDetailInformation
           rate={this.state.rate}
           showModal={this.state.showDetailModal}
           hideModal={this.hideModal}
+          translate={translate}
         />
-        <ModalAditionalInformation showModal={this.state.showAditionalModal} hideModal={this.hideModal} />
+        <ModalAditionalInformation
+          translate={translate}
+          showModal={this.state.showAditionalModal}
+          hideModal={this.hideModal}
+        />
         <div className="ar-central-container">
           <Row className="justify-content-end m-0 mb-3">
             <div className="d-flex align-items-center">
@@ -138,12 +146,12 @@ class Result extends React.Component {
                   onClick={this.showFeaturedFirst}
                 />
                 <label className="custom-control-label ws-pre tx-bold mr-xl-4 mr-lg-4" htmlFor="customCheck1">
-                  Mostrar vehículos destacados primero
+                  {translate('step1.result.showFirst')}
                 </label>
               </div>
               <Dropdown
-                items={['De menor a mayor precio', 'De mayor a menor precio']}
-                title={'Ordenar por'}
+                items={[translate('step1.result.minToMax'), translate('step1.result.maxToMin')]}
+                title={translate('step1.result.orderBy')}
                 color={'white-3'}
                 classes={'ar-order-by-button'}
                 actions={[this.props.orderByMinToMax, this.props.orderByMaxToMin]}
@@ -154,7 +162,12 @@ class Result extends React.Component {
           <Row>
             <div className="ar-card-filters">
               {Object.entries(this.props.filters).length !== 0 ? (
-                <FilterList items={this.props.filters} addFitlter={this.props.addFitlter} priceRange={priceRange} />
+                <FilterList
+                  translate={translate}
+                  items={this.props.filters}
+                  addFitlter={this.props.addFitlter}
+                  priceRange={priceRange}
+                />
               ) : null}
             </div>
             <Col className="px-3">{this.props.result.cars.length !== 0 ? this.renderCarsResult() : null}</Col>

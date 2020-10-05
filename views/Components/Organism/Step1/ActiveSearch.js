@@ -39,6 +39,7 @@ class ActiveSearch extends React.Component {
   };
 
   render() {
+    const { translate } = this.props;
     if (this.props.needToCloseModifyModal) {
       this.hideModal();
       this.props.dispatch(this.props.haveToCloseModifyModal(false));
@@ -50,12 +51,13 @@ class ActiveSearch extends React.Component {
           hideModal={this.hideModal}
           searchLocation={this.props.searchLocation}
           modifySearchFleet={this.props.modifySearchFleet}
+          translate={translate}
         />
         <Row className="justify-content-center ar-search-banner p-4 mx-0">
           <div className="ar-central-container">
             <Row className="justify-content-between bg-ar-white-0 align-items-center ">
               <div>
-                <h3>Búsqueda activa</h3>
+                <h3>{translate('step1.activeSearch.title')}</h3>
               </div>
               <div className="ar-search-date-and-place">
                 <div className="ar-search-icon">
@@ -68,6 +70,7 @@ class ActiveSearch extends React.Component {
                         {isoStringToDateWithTimeInText(
                           this.props.result.locations.pickup.date,
                           this.props.result.locations.pickup.time,
+                          this.props.locale,
                         )}
                       </p>
                       <p className="ar-search-place">
@@ -91,6 +94,7 @@ class ActiveSearch extends React.Component {
                         {isoStringToDateWithTimeInText(
                           this.props.result.locations.dropoff.date,
                           this.props.result.locations.dropoff.time,
+                          this.props.locale,
                         )}
                       </p>
                       <p className="ar-search-place">
@@ -104,11 +108,11 @@ class ActiveSearch extends React.Component {
               <div className="d-flex justify-content-between pr-3">
                 <Label
                   classes={'ar-label-common fs--15 mr-3'}
-                  title={'Edad: '}
-                  value={this.props.searchParams.passenger_age + ' años'}
+                  title={translate('step1.activeSearch.age')}
+                  value={this.props.searchParams.passenger_age + translate('step1.activeSearch.years')}
                 />
                 <CustomButton
-                  text={'Modificar'}
+                  text={translate('step1.activeSearch.modify')}
                   event={this.showModifyModal}
                   color={'red-0'}
                   icon={'ar-icon-chevron-right'}
@@ -133,7 +137,7 @@ ActiveSearch.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return { ...state.searchReducer, ...state.Intl };
 };
 
 export default connect(mapStateToProps)(ActiveSearch);

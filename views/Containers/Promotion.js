@@ -36,14 +36,15 @@ class Promotion extends React.Component {
         style: 'ar-header-image',
       },
     ];
+    const { translate } = this.props;
     return (
       <>
-        <CustomNavBar />
-        <ImageHeader items={items} />
-        <Breadcrumbs />
-        <CardPromotion />
-        <Banner />
-        <CustomFooter subscribeToNewsletter={generalAction.subscribeNewsletter} />
+        <CustomNavBar translate={translate} />
+        <ImageHeader items={items} translate={translate} />
+        <Breadcrumbs translate={translate} />
+        <CardPromotion translate={translate} />
+        <Banner translate={translate} />
+        <CustomFooter subscribeToNewsletter={generalAction.subscribeNewsletter} translate={translate} />
         <UpToTop />
       </>
     );

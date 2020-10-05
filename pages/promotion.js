@@ -1,3 +1,8 @@
 import Promotion from '../views/Containers/Promotion';
+import { withTranslate } from 'react-redux-multilingual';
 
-export default Promotion;
+const promotion = ({ translate }) => {
+  return <Promotion translate={translate} />;
+};
+
+export default withTranslate(promotion);

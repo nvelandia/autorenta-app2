@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import configureStore from '../config/configureStore';
 // import Translator and its configs
 import { translations } from '../translates/translations';
-import { IntlProvider } from 'react-redux-multilingual';
+import { IntlProvider, IntlActions } from 'react-redux-multilingual';
 
 /**
  * unique import to styles with extension scss
@@ -42,6 +42,7 @@ Router.events.on('routeChangeError', () => {
   document.body.classList.remove('body-page-transition');
 });
 const store = configureStore();
+store.dispatch(IntlActions.setLocale('es'));
 
 class MyApp extends App {
   componentDidMount() {}

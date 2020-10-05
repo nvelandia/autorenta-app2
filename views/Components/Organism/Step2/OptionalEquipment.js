@@ -24,15 +24,14 @@ class OptionalEquipment extends React.Component {
   };
 
   render() {
+    const { translate } = this.props;
     return (
       <Card className="card-frame ar-optional-equipment">
         <CardBody className="p-0">
-          <div className="ar-icon-optional-equipment ar-title-with-icon">Agrega equipamiento opcional a tu renta</div>
-          <div className="ar-text-card">
-            El equipamietno opcional puede ser reservado, sólo quedará requerido a la compañía rentadora y será
-            confirmado y abonado en la oficina al inicio de la renta. Su costo no estincluido en el precio prepago de
-            esta reserva y se mostrará un precio estimado a modo orientativo pudiendo variar sin previo aviso.
+          <div className="ar-icon-optional-equipment ar-title-with-icon">
+            {translate('step2.optionalEquipment.title')}
           </div>
+          <div className="ar-text-card">{translate('step2.optionalEquipment.text')}</div>
           <div className="ar-options-section-card">
             <div className="ar-checkbox-options-container">
               {this.props.optionalEquipment.others.map((item, index) => {
@@ -48,7 +47,7 @@ class OptionalEquipment extends React.Component {
                       {item.name}
                     </label>
                     <label className="ar-optional-item">
-                      <strong>USD {item.price} </strong>(por día)
+                      <strong>USD {item.price} </strong> {translate('step2.optionalEquipment.perDay')}
                     </label>
                   </div>
                 );
@@ -69,7 +68,7 @@ class OptionalEquipment extends React.Component {
                       <label className="ar-select-description">{item.name}</label>
                     </div>
                     <label className="ar-optional-item">
-                      <strong>USD {item.price} </strong>(por día)
+                      <strong>USD {item.price} </strong> {translate('step2.optionalEquipment.perDay')}
                     </label>
                   </div>
                 );

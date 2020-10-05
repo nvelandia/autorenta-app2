@@ -18,22 +18,26 @@ class ProgressBar extends React.Component {
   };
 
   render() {
-    const { classes, step } = this.props;
+    const { classes, step, translate } = this.props;
     return (
       <>
         {step === 0 ? (
           <>
             <div className="progress-info">
               <Col className="justify-content-center p-0">
-                <p className={'ar-title-bar ' + classes}>Inicia tu búsqueda </p>
+                <p className={'ar-title-bar ' + classes}>{translate('common.progressBar.startYourSearch')}</p>
                 <span className="ar-circle ar-active">1</span>
               </Col>
               <Col className="justify-content-center p-0">
-                <p className={'ar-title-bar ar-light-blue-text  ' + classes}>Selecciona tu plan</p>
+                <p className={'ar-title-bar ar-light-blue-text  ' + classes}>
+                  {translate('common.progressBar.chooseYourPlan')}
+                </p>
                 <span className="ar-circle ar-pendant">2</span>
               </Col>
               <Col className="justify-content-center p-0">
-                <p className={'ar-title-bar ar-light-blue-text  ' + classes}>Confirma tu reserva</p>
+                <p className={'ar-title-bar ar-light-blue-text  ' + classes}>
+                  {translate('common.progressBar.confirmYourSearch')}
+                </p>
                 <span className="ar-circle ar-pendant">3</span>
               </Col>
             </div>
@@ -50,11 +54,15 @@ class ProgressBar extends React.Component {
                 </span>
               </Col>
               <Col className="justify-content-center p-0">
-                <p className={'ar-title-bar ar-white-text ' + classes}>Selecciona tu plan</p>
+                <p className={'ar-title-bar ar-white-text ' + classes}>
+                  {translate('common.progressBar.chooseYourPlan')}
+                </p>
                 <span className="ar-circle ar-active">2</span>
               </Col>
               <Col className="justify-content-center p-0">
-                <p className={'ar-title-bar ar-light-blue-text ' + classes}>Confirma tu reserva</p>
+                <p className={'ar-title-bar ar-light-blue-text ' + classes}>
+                  {translate('common.progressBar.confirmYourSearch')}
+                </p>
                 <span className="ar-circle ar-pendant">3</span>
               </Col>
             </div>
@@ -77,7 +85,9 @@ class ProgressBar extends React.Component {
                 </span>
               </Col>
               <Col className="justify-content-center p-0">
-                <p className={'ar-title-bar ar-white-text ' + classes}>Confirma tu reserva</p>
+                <p className={'ar-title-bar ar-white-text ' + classes}>
+                  {translate('common.progressBar.confirmYourSearch')}
+                </p>
                 <span className="ar-circle ar-active">3</span>
               </Col>
             </div>

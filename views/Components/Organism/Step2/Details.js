@@ -83,6 +83,8 @@ class Details extends React.Component {
   };
 
   render() {
+    const { translate } = this.props;
+
     const rate = this.props.discount.price
       ? this.props.discount
       : this.props.carSelected.rates[this.props.rateSelected];
@@ -101,12 +103,12 @@ class Details extends React.Component {
           validatePromotion={this.props.validatePromotion}
         />
         <div className="ar-card-details-title">
-          <h1>Detalles de la reserva</h1>
+          <h1>{translate('step2.details.title')}</h1>
         </div>
         <div className="ar-card-details-subtitle">
-          <h2>PLAN SELECCIONADO</h2>
+          <h2>{translate('step2.details.selectedPlan')}</h2>
           <CustomButton
-            text={'Cambiar plan'}
+            text={translate('step2.details.changePlan')}
             event={() => this.showChangePlanModal()}
             color={'red-0'}
             name={'ar-button-change-plan'}
@@ -116,7 +118,7 @@ class Details extends React.Component {
         </div>
         <div className="ar-card-details-rates">
           <h5>{rate.name}</h5>
-          <h6>{'Código de la tarifa: ' + rate.rate_code}</h6>
+          <h6>{translate('step2.details.feeCode') + rate.rate_code}</h6>
           <div className="ar-card-details-rates-list">
             {/*{rate.includes.map((item, index) => {*/}
             {/*  if (item.selected) {*/}
@@ -139,7 +141,7 @@ class Details extends React.Component {
           </div>
         </div>
         <div className="ar-card-details-subtitle">
-          <h2>EQUIPAMIENTO ADICIONAL SOLICITADO</h2>
+          <h2>{translate('step2.details.additionalEquipment')}</h2>
         </div>
         <div className="ar-card-details-additional-equipment">
           <div className="ar-card-details-additional-equipment-list">
@@ -166,7 +168,7 @@ class Details extends React.Component {
           </div>
         </div>
         <div className="ar-card-details-subtitle">
-          <h2>DETALLES DE CARGOS</h2>
+          <h2>{translate('step2.details.chargesDetail')}</h2>
         </div>
         <div className="ar-card-details-additional-equipment">
           <div className="ar-card-details-additional-equipment-list">
@@ -182,24 +184,15 @@ class Details extends React.Component {
         </div>
         <div className="ar-card-details-total">
           <div className="ar-card-details-total-title">
-            <h4>TOTAL ESTIMADO</h4>
+            <h4>{translate('step2.details.estimatedTotal')}</h4>
             <div className="ar-card-details-total-amount">
               <p>USD</p>
               <strong>{this.calucalteSubTotalsAndTotal(rate).total}</strong>
             </div>
           </div>
-          <p className="ar-card-details-total-small-letter">
-            Recuerda que deberás presentar una tarjeta de crédito internacional válida y a nombre del titular de la
-            renta al momento de retirar el vehículo por las oficinas de la compañía rentadora.
-          </p>
-          <p className="ar-card-details-total-small-letter">
-            Algunas compañías rentadoras podrían aplicar cargos y restricciones por conductores por debajo de la edad
-            mínima.
-          </p>
-          <p className="ar-card-details-total-small-letter">
-            Los impuestos y cargos mencionados NO están incluidos en la tarifa base, algunos de ellos sólo pueden ser
-            abonados en destino.
-          </p>
+          <p className="ar-card-details-total-small-letter">{translate('step2.details.text1')}</p>
+          <p className="ar-card-details-total-small-letter">{translate('step2.details.text2')}</p>
+          <p className="ar-card-details-total-small-letter">{translate('step2.details.text3')}</p>
           <div className="custom-control custom-checkbox">
             <input
               className="custom-control-input"
@@ -210,7 +203,7 @@ class Details extends React.Component {
               onChange={this.handleCheckbox}
             />
             <label className="custom-control-label ar-card-details-total-small-letter" htmlFor="customCheck1">
-              He leido y acepto los términos y condiciones vigentes en el país destino de la renta.
+              {translate('step2.details.agree')}
             </label>
           </div>
           <div className="ar-button-confirm-container">
@@ -221,7 +214,7 @@ class Details extends React.Component {
               disabled={!this.state.conditionsAndTerms}
               onClick={this.handleOnClick}
             >
-              Confirmar reserva
+              {translate('step2.details.confirm')}
               <i className="ar-icon-chevron-right" />
             </Button>
           </div>

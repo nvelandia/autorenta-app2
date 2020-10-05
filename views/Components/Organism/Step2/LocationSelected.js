@@ -38,7 +38,9 @@ class LocationSelected extends React.Component {
               {location ? (
                 <>
                   <h5 className="ar-location-title">{title}</h5>
-                  <p className="ar-location-date">{isoStringToDateWithTimeInText(location.date, location.time)}</p>
+                  <p className="ar-location-date">
+                    {isoStringToDateWithTimeInText(location.date, location.time, this.props.locale)}
+                  </p>
                   <p className="ar-location-place">{location.location + ` (${location.iata})`}</p>{' '}
                 </>
               ) : null}
@@ -61,7 +63,7 @@ LocationSelected.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return { ...state.searchReducer, ...state.Intl };
 };
 
 export default connect(mapStateToProps)(LocationSelected);
