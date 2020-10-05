@@ -27,7 +27,7 @@ class CountryDropdown extends React.Component {
             <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron-country ml-1 ar-blue-0-text" />
           </div>
         </DropdownToggle>
-        <DropdownMenu>
+        <DropdownMenu className={'ar-dropdown-menu-overflow'}>
           {items.map((item, index) => {
             return (
               <DropdownItem

@@ -11,7 +11,7 @@ class ModalDetailInformation extends React.Component {
   }
 
   render() {
-    const { information } = this.props;
+    const { rate } = this.props;
     return (
       <Modal
         className="modal-dialog-centered ar-modal-details-information"
@@ -38,9 +38,9 @@ class ModalDetailInformation extends React.Component {
               <Row>
                 <div className="col">
                   <CardTitle className="text-uppercase text-muted mb-0 ar-gray-2-text fs--2">
-                    iNCLUSIVE LDW - 89
+                    Código de la tarifa: {rate.rate_code}
                   </CardTitle>
-                  <span className="h2 font-weight-bold  mb-2 ar-blue-text fs--1">Tarifa con seguro</span>
+                  <span className="h2 font-weight-bold  mb-2 ar-blue-text fs--1">{rate.name}</span>
                 </div>
                 <Col className="col-auto">
                   <div className="icon bg-none text-dark rounded-circle mt--2">
@@ -50,14 +50,14 @@ class ModalDetailInformation extends React.Component {
               </Row>
             </CardHeader>
             <CardBody className="py-2">
-              {information.map((item, index) => {
-                return (
-                  <p key={index} className="fs--1 mb-1">
-                    <i className="ar-icon-check-solid ar-green-text" />
-                    {'  ' + item}
-                  </p>
-                );
-              })}
+              {/*{rate.includes.map((item, index) => {*/}
+              {/*  return (*/}
+              {/*    <p key={index} className="fs--1 mb-1">*/}
+              {/*      <i className="ar-icon-check-solid ar-green-text" />*/}
+              {/*      {'  ' + item}*/}
+              {/*    </p>*/}
+              {/*  );*/}
+              {/*})}*/}
             </CardBody>
           </Card>
         </div>
@@ -70,7 +70,7 @@ ModalDetailInformation.propTypes = {
   dispatch: PropTypes.func,
   showModal: PropTypes.bool,
   hideModal: PropTypes.func,
-  information: PropTypes.array,
+  rate: PropTypes.object,
 };
 
 const mapStateToProps = (state) => {

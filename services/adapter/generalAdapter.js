@@ -19,6 +19,7 @@ class generalAdapter {
 
   searchReservation = (response) => {
     const { data } = response;
+    console.log(data);
     if (data.success && data.code === 200) {
       return successfullyResponsesPresenter.reservationResponse(
         actionNames.searchReservationSuccessfully,

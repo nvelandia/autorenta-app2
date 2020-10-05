@@ -23,7 +23,7 @@ class Result extends React.Component {
       showDetailModal: false,
       showAditionalModal: false,
       showModifyModal: false,
-      information: [],
+      rate: {},
     };
     this.dispatch = props.dispatch;
   }
@@ -40,12 +40,12 @@ class Result extends React.Component {
     this.setState({ showAditionalModal: true });
   };
 
-  showDetailModal = (information) => {
-    this.setState({ showDetailModal: true, information });
+  showDetailModal = (rate) => {
+    this.setState({ showDetailModal: true, rate });
   };
 
   hideModal = () => {
-    this.setState({ showDetailModal: false, showAditionalModal: false, information: [] });
+    this.setState({ showDetailModal: false, showAditionalModal: false, rate: {} });
   };
 
   calculatePriceRange = () => {
@@ -122,15 +122,11 @@ class Result extends React.Component {
     return (
       <Row className="m-4 justify-content-center">
         <ModalDetailInformation
-          information={this.state.information}
+          rate={this.state.rate}
           showModal={this.state.showDetailModal}
           hideModal={this.hideModal}
         />
-        <ModalAditionalInformation
-          information={this.state.information}
-          showModal={this.state.showAditionalModal}
-          hideModal={this.hideModal}
-        />
+        <ModalAditionalInformation showModal={this.state.showAditionalModal} hideModal={this.hideModal} />
         <div className="ar-central-container">
           <Row className="justify-content-end m-0 mb-3">
             <div className="d-flex align-items-center">

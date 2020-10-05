@@ -65,22 +65,22 @@ class ModalChangePlan extends React.Component {
               </Row>
             </CardHeader>
             <CardBody className="py-2 zi-1200">
-              {this.props.carSelected.rates[this.state.page].includes.map((item, index) => {
-                if (item.selected) {
-                  return (
-                    <p key={index} className="mb-1">
-                      <i className="ar-icon-check-solid ar-green-text" />
-                      {'  ' + item}
-                    </p>
-                  );
-                }
-                return (
-                  <p key={index} className=" mb-1">
-                    <i className="ar-icon-close-solid ar-red-text" />
-                    {'  ' + item}
-                  </p>
-                );
-              })}
+              {/*{this.props.carSelected.rates[this.state.page].includes.map((item, index) => {*/}
+              {/*  if (item.selected) {*/}
+              {/*    return (*/}
+              {/*      <p key={index} className="mb-1">*/}
+              {/*        <i className="ar-icon-check-solid ar-green-text" />*/}
+              {/*        {'  ' + item}*/}
+              {/*      </p>*/}
+              {/*    );*/}
+              {/*  }*/}
+              {/*  return (*/}
+              {/*    <p key={index} className=" mb-1">*/}
+              {/*      <i className="ar-icon-close-solid ar-red-text" />*/}
+              {/*      {'  ' + item}*/}
+              {/*    </p>*/}
+              {/*  );*/}
+              {/*})}*/}
               <div className="ar-button-confirm-container">
                 <Button
                   className="btn-icon ar-round-button ar-button-confirm"

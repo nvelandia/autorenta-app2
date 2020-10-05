@@ -54,7 +54,7 @@ class CarsResult extends React.Component {
               <h4 className="mb-0">{rate.name}</h4>
             </CardHeader>
             <CardBody className="ar-car-price-body">
-              <div className="ar-car-price-details" onClick={() => this.props.showDetailModal(rate.includes)}>
+              <div className="ar-car-price-details" onClick={() => this.props.showDetailModal(rate)}>
                 <p>
                   <i className="ar-icon-info va-middle" /> Ver detalle del plan
                 </p>

@@ -165,9 +165,9 @@ class ReservationDetails extends React.Component {
                   <h6>Tarifa base</h6>
                   <strong>USD 1356.00</strong>
                 </div>
-                {this.props.car.fees.map((fee) => {
+                {this.props.car.fees.map((fee, index) => {
                   return (
-                    <div className="ar-reserve-selected-plan-prices-item">
+                    <div key={index} className="ar-reserve-selected-plan-prices-item">
                       <h6>{fee.description}</h6>
                       <strong>
                         {fee.currency} {fee.amount}

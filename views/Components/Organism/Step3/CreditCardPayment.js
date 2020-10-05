@@ -1,11 +1,13 @@
 import React from 'react';
-import { Button, FormGroup, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import { Button, Container, FormGroup, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 import * as classnames from 'classnames';
 import CountryDropdown from '../../Molecules/dropdowns/CountryDropdown';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { CardCvcElement, CardExpiryElement, CardNumberElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { isServer } from '../../../../utils/helpers/isError';
+import NotificationAlert from 'react-notification-alert';
+import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
 
 class CreditCardPaymentForm extends React.Component {
   constructor(props) {
@@ -20,12 +22,16 @@ class CreditCardPaymentForm extends React.Component {
       securityCodeFocus: false,
       expirationDateFocus: false,
       postalCodeFocus: false,
+      error: {},
     };
     this.dispatch = this.props.dispatch;
   }
 
   handleOnSelect = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+      error: { ...this.state.error, [event.target.name]: false },
+    });
   };
 
   handleOnChange = (event) => {
@@ -34,6 +40,11 @@ class CreditCardPaymentForm extends React.Component {
 
   handleOnClick = async () => {
     const cardNumberElement = this.props.elements.getElement(CardNumberElement);
+
+    if (this.state.countrySelected === 0 || this.state.postalCode === '') {
+      this.notify('autorenta');
+      return;
+    }
 
     const payload = await this.props.stripe.createPaymentMethod({
       type: 'card',
@@ -62,7 +73,7 @@ class CreditCardPaymentForm extends React.Component {
       };
       this.dispatch(this.props.payReservation(body));
     } else {
-      //mostrar error en los forms
+      this.notify('autorenta');
     }
   };
 
@@ -102,13 +113,34 @@ class CreditCardPaymentForm extends React.Component {
     }
   };
 
-  render() {
-    console.log(this.props);
+  notify = (type) => {
+    let options = {
+      place: 'tc',
+      message: (
+        <div className="alert-text">
+          <span className="alert-title" data-notify="title">
+            {' '}
+            ¡Atención!
+          </span>
+          <span data-notify="message">Todos los campos son requeridos</span>
+        </div>
+      ),
+      type: type,
+      icon: 'ni ni-bell-55',
+      autoDismiss: 10,
+    };
+    this.refs.notificationAlert.notificationAlert(options);
+  };
 
+  render() {
+    const error = this.state.error;
     const style = this.makeStyle();
     if (this.props.elements) {
       return (
         <div className="ar-payment-right fade-in">
+          <div className="rna-wrapper">
+            <NotificationAlert ref="notificationAlert" />
+          </div>
           <div className="ar-payment-form-credit-card">
             <Row className="ar-payment-form-top">
               <FormGroup
@@ -119,7 +151,11 @@ class CreditCardPaymentForm extends React.Component {
                   'ar-card-form-input-container ',
                 )}
               >
-                <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 pl-2 pr-3">
+                <InputGroup
+                  className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 pl-2 pr-3 ${
+                    error.cardNumber ? ' ar-error-border' : null
+                  }`}
+                >
                   <CardNumberElement
                     className="ar-round-input-left ar-card-form-input w-100"
                     name="cardNumber"
@@ -161,7 +197,11 @@ class CreditCardPaymentForm extends React.Component {
                   'ar-payment-security-code',
                 )}
               >
-                <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 pr-2">
+                <InputGroup
+                  className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 pr-2 ${
+                    error.securityCode ? ' ar-error-border' : null
+                  }`}
+                >
                   <CardCvcElement
                     className="ar-round-input-left ar-card-form-input w-100"
                     name="securityCode"
@@ -182,7 +222,11 @@ class CreditCardPaymentForm extends React.Component {
                   'ar-payment-expiration-date',
                 )}
               >
-                <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 px-3">
+                <InputGroup
+                  className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 px-3 ${
+                    error.expirationDate ? ' ar-error-border' : null
+                  }`}
+                >
                   <CardExpiryElement
                     name="expirationDate"
                     className="ar-round-input-left ar-card-form-input w-100 "
@@ -203,7 +247,11 @@ class CreditCardPaymentForm extends React.Component {
                   'ar-payment-postal-code',
                 )}
               >
-                <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
+                <InputGroup
+                  className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                    error.postalCode ? ' ar-error-border' : null
+                  }`}
+                >
                   <Input
                     name="postalCode"
                     onChange={this.handleOnChange}

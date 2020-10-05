@@ -90,7 +90,7 @@ class Payment extends React.Component {
                         id={'1'}
                         type="radio"
                         checked={this.state.paymentWay === 'creditCard'}
-                        onClick={() => this.handleOnChangePaymentWay('creditCard')}
+                        onChange={() => this.handleOnChangePaymentWay('creditCard')}
                       />
                       <label className="custom-control-label ar-payment-radio-button" htmlFor="1">
                         Pagar con Tarjeta de Crédito / Débito
@@ -103,7 +103,7 @@ class Payment extends React.Component {
                         id={'2'}
                         type="radio"
                         checked={this.state.paymentWay === 'PayPal'}
-                        onClick={() => this.handleOnChangePaymentWay('PayPal')}
+                        onChange={() => this.handleOnChangePaymentWay('PayPal')}
                       />
                       <label className="custom-control-label ar-payment-radio-button" htmlFor="2">
                         PayPal

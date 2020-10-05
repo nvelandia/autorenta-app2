@@ -59,16 +59,6 @@ class Details extends React.Component {
     this.props.organization.customer_id ? (formData.partner_code = this.props.organization.customer_id) : null;
 
     this.dispatch(this.props.confirmReservation(formData));
-
-    // this.dispatch(
-    //   this.props.createReservationSuccessfully(
-    //     this.props.carSelected,
-    //     this.props.location,
-    //     this.props.searchParams,
-    //     this.props.organization,
-    //   ),
-    // );
-    // redirectTo(pages.step3);
   };
 
   calucalteSubTotalsAndTotal = (rate) => {
@@ -126,26 +116,26 @@ class Details extends React.Component {
         </div>
         <div className="ar-card-details-rates">
           <h5>{rate.name}</h5>
-          <h6>{rate.name + ' - ' + rate.rate_code}</h6>
+          <h6>{'Código de la tarifa: ' + rate.rate_code}</h6>
           <div className="ar-card-details-rates-list">
-            {rate.includes.map((item, index) => {
-              if (item.selected) {
-                return (
-                  <div key={index} className="ar-card-details-rate-item">
-                    <p>
-                      <i className="ar-icon-check-solid ar-green-text" /> {item}{' '}
-                    </p>
-                  </div>
-                );
-              }
-              return (
-                <div key={index} className="ar-card-details-rate-item">
-                  <p>
-                    <i className="ar-icon-close-solid ar-red-text" /> {item}{' '}
-                  </p>
-                </div>
-              );
-            })}
+            {/*{rate.includes.map((item, index) => {*/}
+            {/*  if (item.selected) {*/}
+            {/*    return (*/}
+            {/*      <div key={index} className="ar-card-details-rate-item">*/}
+            {/*        <p>*/}
+            {/*          <i className="ar-icon-check-solid ar-green-text" /> {item}{' '}*/}
+            {/*        </p>*/}
+            {/*      </div>*/}
+            {/*    );*/}
+            {/*  }*/}
+            {/*  return (*/}
+            {/*    <div key={index} className="ar-card-details-rate-item">*/}
+            {/*      <p>*/}
+            {/*        <i className="ar-icon-close-solid ar-red-text" /> {item}{' '}*/}
+            {/*      </p>*/}
+            {/*    </div>*/}
+            {/*  );*/}
+            {/*})}*/}
           </div>
         </div>
         <div className="ar-card-details-subtitle">
