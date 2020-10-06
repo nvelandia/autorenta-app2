@@ -1,6 +1,4 @@
-import { Input } from 'reactstrap';
 import React from 'react';
-import Dropdown from '../../views/Components/Atoms/Dropdown';
 
 export const es = {
   locale: 'es',

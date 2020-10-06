@@ -1,6 +1,4 @@
-import { Input } from 'reactstrap';
 import React from 'react';
-import Dropdown from '../../views/Components/Atoms/Dropdown';
 
 export const pt = {
   locale: 'pt',
@@ -148,12 +146,73 @@ export const pt = {
       },
     },
     step2: {
-      details: {},
-      carSelected: {},
-      clientType: {},
-      passenger: {},
-      agencyOrCorporation: {},
-      optionalEquipment: {},
+      details: {
+        title: 'Detalles de la reserva',
+        selectedPlan: 'PLAN SELECCIONADO',
+        changePlan: 'Cambiar plan',
+        feeCode: 'Código de la tarifa: ',
+        additionalEquipment: 'EQUIPAMIENTO ADICIONAL SOLICITADO',
+        chargesDetail: 'DETALLES DE CARGOS',
+        estimatedTotal: 'TOTAL ESTIMADO',
+        text1:
+          'Recuerda que deberás presentar una tarjeta de crédito internacional válida y a nombre del titular de la ' +
+          'renta al momento de retirar el vehículo por las oficinas de la compañía rentadora.',
+        text2:
+          'Algunas compañías rentadoras podrían aplicar cargos y restricciones por conductores por debajo de la edad ' +
+          'mínima.',
+        text3:
+          'Los impuestos y cargos mencionados NO están incluidos en la tarifa base, algunos de ellos sólo pueden ser ' +
+          'abonados en destino.',
+        agree: 'He leido y acepto los términos y condiciones vigentes en el país destino de la renta.',
+        confirm: 'Confirmar reserva',
+      },
+      carSelected: {
+        orSimilar: 'o similar',
+        seats: 'asientos',
+        doors: 'puertas',
+        bigBags: 'maletas grandes',
+        smallBags: 'maletas pequeñas',
+        gear: 'Transmisión',
+        air: 'Aire acondicionado',
+        featured: '¡Destacado!',
+        cancel: 'Cancela gratis tu reserva con 48 horas de anticipación.',
+        advise: 'Algunas rentadoras cobran un cargo extra a conductores menores de 25 años.',
+        additionalInformation: 'Información adicional',
+        seeDetails: 'Ver detalle del plan',
+        reserveNow: 'Reservar ahora',
+      },
+      clientType: {
+        title: 'Tipo de cliente',
+        passenger: 'Pasajero / Cliente directo',
+        agency: 'Agencia de viajes',
+        corporation: 'Corporativo / Empresas',
+        choose: 'Selecciona una opción',
+        validate: 'Validar',
+        typeYourId: 'Ingresa tu número de ID',
+      },
+      passenger: {
+        email: 'E-mail',
+      },
+      agencyOrCorporation: {
+        title: 'Información del pasajero',
+        subtitle: 'Información personal del titular de la renta',
+        name: 'Nombre',
+        surname: 'Apellido',
+        phone: 'Teléfono',
+        flyCompany: 'Compañía aérea (opcional)',
+        flyNumber: 'Número de vuelo (opcional)',
+        additionalInformation: 'Información adicional',
+        promotionalCode: 'Código promocional',
+        coupon: 'Número de cupón',
+      },
+      optionalEquipment: {
+        title: 'Agrega equipamiento opcional a tu renta',
+        text:
+          'El equipamietno opcional puede ser reservado, sólo quedará requerido a la compañía rentadora y será ' +
+          'confirmado y abonado en la oficina al inicio de la renta. Su costo no estincluido en el precio prepago de ' +
+          'esta reserva y se mostrará un precio estimado a modo orientativo pudiendo variar sin previo aviso.',
+        perDay: '(por día)',
+      },
       locationSelected: {},
     },
     step3: {
