@@ -1,0 +1,199 @@
+.ar-footer{
+  .ar-footer-up{
+    height: 300px;
+    @media (max-width: $ar-small-size){
+      height: 950px;
+      margin: 0 !important;
+      padding: 0 !important;
+
+    }
+    .ar-subscribe{
+      @media (max-width: $ar-small-size){
+        border-bottom-width: 0px;
+        height: 340px;
+
+        div {
+          justify-content: center;
+          width: 80%;
+          div input {
+            text-align: center;
+          }
+        };
+      }
+      padding: 25px 0;
+      height: 40%;
+      width: 100%;
+      margin: 0;
+      border-bottom: solid;
+      border-bottom-color: #053e8a;
+      border-width: thin;
+      .ar-subscribe-text{
+        margin-left: 0 !important;
+        margin-right: 1rem;
+        h2{
+          font-size: .9em;
+          letter-spacing: 0.3px;
+        }
+        @media (max-width: $ar-small-size){
+          margin-right: 0;
+          flex: 1;
+          justify-content: center;
+          padding-top: 15px;
+          height: 80px;
+          h2{
+            text-align: center;
+            width: 290px;
+            font-size: 1.4rem;
+          }
+        }
+        @media (min-width: $ar-big-size){
+          h2{
+            font-size: 1em;
+            letter-spacing: 0.3px;
+          }
+        }
+      }
+      div{
+        display: flex;
+        align-items: center;
+      }
+      .ar-register-button-container{
+        margin-left: 10px;
+        @media (max-width: $ar-small-size){
+          margin-left: 0;
+          padding-left: 10px;
+          padding-right: 10px;
+          flex: 1;
+          justify-self: center;
+          button {
+            width: 80%;
+          }
+        }
+      }
+    }
+    .ar-links{
+      flex: 1;
+      padding-left: 15px;
+      height: 60%;
+      width: 100%;
+
+      @media (max-width: $ar-small-size){
+        justify-content: center;
+      }
+      .ar-group-links{
+        h3{
+          // flex: 1;
+          margin-bottom: 10px;
+        }
+
+        @media (max-width: $ar-small-size) {
+          h3 {
+            text-align: center;
+            padding-bottom: 0px;
+            margin-top: 10px;
+          }
+          div {
+            text-align: center;
+            font-size: 3px;
+          }
+        }
+        .ar-link{
+          color: $ar-color-white-1;
+          font-size: 0.80rem;
+          letter-spacing: 0.2px;
+          cursor: pointer;
+        }
+      }
+      .ar-group-logos{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0;
+        @media (max-width: $ar-small-size) {
+          padding: 30px 0;
+          margin: 0;
+        }
+        .ar-social-logos{
+          flex: 1;
+          text-align: center;
+          padding: 0;
+          margin-bottom: 5px;
+          @media (max-width: $ar-small-size) {
+            img {
+              width: 1em;
+            }
+            display: none;
+          }
+          @media (min-width: $ar-small-size) and (max-width:$ar-normal-size ) {
+            img{
+              width: 17px;
+            }
+          }
+          @media (min-width: $ar-normal-size) and (max-width:$ar-big-size ) {
+            img{
+              width: 20px;
+            }
+          }
+          @media (min-width: $ar-big-size) {
+            img{
+              width: 23px;
+            }
+          }
+        }
+        .ar-logo-footer{
+          width: 100%;
+          @media (max-width: $ar-small-size) {
+              height: 40px;
+              align-items: center;
+          }
+        }
+      }
+      .ar-social-logos-mobile-only {
+        text-align: center;
+        padding: 0;
+        margin-bottom: 5px;
+        img {
+          width: 1.5em;
+        }
+      }
+      .ar-social-logos-mobile-only-container {
+        // justify-content: center;
+        flex: 1;
+        height: 80px;
+        justify-items: center;
+        align-items: center;
+        margin: 0 !important;
+        justify-self: center;
+        border-top: thin solid #053e8a;
+        border-bottom: thin solid #053e8a;
+      }
+    }
+  }
+  .ar-footer-down{
+    height: 100px;
+    border-top: solid;
+    border-color: #053e8a;
+    border-width: thin;
+    color: $ar-color-white-1;
+    p{
+      font-size: 0.8rem;
+      margin-top: 15px;
+    }
+    @media (max-width: $ar-small-size) {
+      height: 80px;
+      p {
+        font-size: 0.6rem;
+        margin: 0 35px;
+      }
+  }
+  }
+}
+
+.ar-links-align-items-center {
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+  @media (max-width: $ar-small-size) {
+    flex: 1;
+    align-items: unset;
+  }}

@@ -1,0 +1,128 @@
+.ar-round-button{
+  border-radius: 2rem !important;
+  white-space: pre;
+}
+
+.ar-blue-button{
+  background-color: $ar-color-blue-4;
+  color: $ar-color-white-3;
+  height: 46px;
+  &:hover{
+    background-color: $ar-color-blue-4;
+  }
+}
+
+.ar-language-button{
+  font-size: 0.9em;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  color: $ar-color-blue-0;
+  padding: 0.45rem 0.5rem;
+  &:hover &:active{
+    color: $ar-color-blue-0;
+    background-color: $ar-color-white-3;
+    border-color: $ar-color-white-3;
+  }
+}
+
+.ar-promo-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $ar-color-white-1;
+  font-size: 0.8rem;
+  white-space: pre;
+  height: 45px;
+  padding-top: 8px;
+  &:hover{
+    color: $ar-color-white-0;
+  }
+
+  &.avis{
+    background-color: $ar-color-red-1;
+    border-color: $ar-color-red-1;
+  }
+  &.alamo{
+    background-color: $ar-color-blue-1;
+    border-color: $ar-color-blue-1;
+  }
+  &.budget{
+    background-color: $ar-color-orange-0;
+    border-color: $ar-color-orange-0;
+
+  }
+  &.payless{
+    background-color: $ar-color-blue-3;
+    border-color: $ar-color-blue-3;
+  }
+
+  //Mobile
+  @media (max-width: 451px){
+    font-size: 0.9rem;
+  }
+
+  //Small Monitor
+  @media (min-width: 1200px) and (max-width: 1471px) {
+    font-size: 0.82em;
+  }
+
+  //Normal Monitor
+  @media (min-width: 1490px) and (max-width: 1750px) {
+    font-size: 0.85em;
+  }
+
+  //Big Monitor
+  @media (min-width: 1751px){
+    font-size: .95em;
+  }
+}
+
+.ar-up-to-top-button{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: $ar-color-red-0;
+  color: $ar-color-white-1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+  position: fixed;
+  padding-left: 5px;
+  top: 87vh;
+  left: 90vw;
+  z-index: 100;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.ar-modify-search{
+  font-size: 0.8rem;
+  color: $ar-color-white-1;
+  padding: 0.825rem 1.25rem;
+  height: 47px;
+}
+
+.ar-step1-custom-button-modify-container {
+  @media (max-width: $ar-small-size){
+    flex: 1;
+    padding: 0 !important;
+    div {
+      margin: auto;
+      button {
+        width: max-content;
+        text-transform: uppercase;
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.ar-common-button{
+  border-radius: 2rem !important;
+  white-space: pre;
+}

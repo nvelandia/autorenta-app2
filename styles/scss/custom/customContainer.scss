@@ -1,0 +1,70 @@
+.ar-border-round{
+  box-shadow: $card-box-shadow;
+  border-radius: 10px !important;
+  @media (max-width: $ar-small-size){ 
+    margin-top: -10vh;
+  }
+  @media (max-width: $ar-mobile-size) {
+    border-radius: 18px !important;
+  }
+}
+
+.ar-make-your-reservation-button-container{
+  display: flex;
+  height: 45px;
+  .ar-blue-button{
+    width: 95%;
+    font-weight: 700;
+  }
+  @media (max-width: $ar-mobile-size) {
+    justify-content: center;
+    height: 40px;
+  }
+
+  @media (min-width: 1200px) {
+    align-items: start;
+    justify-content: start;
+  }
+}
+
+.ar-central-container{
+  width: 1150px;
+  @media (min-width: $ar-big-size){
+    width: 75%;
+  }
+}
+
+.ar-error-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.ar-step1-mobile-search-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+  .custom-checkbox{
+    max-width: 50%;
+    label{
+      font-size: .7em !important;
+    }
+  }
+}
+
+.ar-col-country{
+  @media(min-width: $ar-small-size){
+    max-width: 30.3333%;
+    flex: 0 0 30.3333%;
+  }
+}
+
+.ar-col-age{
+  @media(min-width: $ar-small-size){
+    max-width: 19.66667%;
+    flex: 0 0 19.66667%;
+  }
+}
