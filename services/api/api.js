@@ -7,7 +7,7 @@ import { config } from '../../config/configuration';
 class ApiFetch {
   constructor() {
     this.apiUrl = () => {
-      return 'https://pg01.cubiq.digital/api/';
+      return 'https://backoffice.autorenta.greenflame.com.ar/api/';
     };
   }
 
