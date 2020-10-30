@@ -20,6 +20,8 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 import ClientTypeDropdown from '../../Molecules/dropdowns/ClientTypeDropdown';
+import NotificationAlert from 'react-notification-alert';
+import SuccessNotification from '../../Molecules/Notifications/SuccessNotification';
 
 class AgencyOrCorporation extends React.Component {
   constructor(props) {
@@ -28,35 +30,51 @@ class AgencyOrCorporation extends React.Component {
       nameFocus: false,
       surnameFocus: false,
       phoneFocus: false,
-      flyNumberFocus: false,
+      airline_flightFocus: false,
       promotionCodeFocus: false,
       couponNumberFocus: false,
       name: '',
       surname: '',
       phone: '',
-      airlineCompany: '',
-      flyNumber: '',
+      airline_iata: '',
+      airline_flight: '',
       promotionCode: '',
       couponNumber: '',
+      error: {
+        name: false,
+        surname: false,
+        airline_iata: false,
+        airline_flight: false,
+      },
     };
     this.dispatch = this.props.dispatch;
   }
 
   handleOnSelect = (value) => {
-    this.setState({ airlineCompany: value });
-    this.dispatch(this.props.updateFormData({ airlineCompany: value }));
+    this.setState({ airline_iata: value, error: { ...this.state.error, airline_iata: false } });
+    this.dispatch(this.props.updateFormData({ airline_iata: value }));
+    if (value === '' && this.state.airline_flight === '') {
+      this.setState({ error: { ...this.state.error, airline_flight: false } });
+    }
   };
 
   handleOnChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+      error: { ...this.state.error, [event.target.name]: false },
+    });
+    if (event.target.name === 'airline_flight' && event.target.value === '' && this.state.airline_iata === '') {
+      this.setState({ error: { ...this.state.error, airline_iata: false } });
+    }
+
+    this.dispatch(this.props.updateFormData({ [event.target.name]: event.target.value }));
   };
 
   handleOnBlur = (event) => {
     this.setState({ [event.target.name + 'Focus']: false });
-    this.dispatch(this.props.updateFormData({ [event.target.name]: event.target.value }));
   };
 
-  handleValidateClick = (event) => {
+  handleValidateClick = (type) => {
     const body = {
       pickup_location: this.props.searchParams.pickup_location,
       pickup_date: this.props.searchParams.pickup_date,
@@ -69,9 +87,9 @@ class AgencyOrCorporation extends React.Component {
       vehicle_type: this.props.searchParams.vehicle_type,
       vendor: this.props.carSelected.company.code,
       sipp: this.props.carSelected.typeAlias,
-      rate: this.props.carSelected.rates[0].rate_code,
+      rate: this.props.carSelected.rates[this.props.rateSelected].rate_code,
     };
-    if (event.target.name === 'couponNumber') {
+    if (type === 'couponNumber') {
       body.coupon = this.state.couponNumber;
     } else {
       body.discount_code = this.state.promotionCode;
@@ -79,65 +97,338 @@ class AgencyOrCorporation extends React.Component {
     this.dispatch(this.props.validatePromotion(body));
   };
 
+  notify = (type, message) => {
+    let options = {
+      place: 'tc',
+      message: (
+        <div className="alert-text">
+          <span className="alert-title" data-notify="title">
+            {this.props.translate('common.error.attention')}
+          </span>
+          <span data-notify="message">{message}</span>
+        </div>
+      ),
+      type: type,
+      icon: 'ni ni-bell-55',
+      autoDismiss: 10,
+    };
+    this.refs.notificationAlert.notificationAlert(options);
+  };
+
+  prepareErrors = (error) => {
+    const errors = {};
+    if (error.name && !this.state.error.name) {
+      errors.name = true;
+    }
+    if (error.surname && !this.state.error.surname) {
+      errors.surname = true;
+    }
+    if (error.airline_iata && !this.state.error.airline_iata) {
+      errors.airline_iata = true;
+    }
+    if (error.airline_flight && !this.state.error.airline_flight) {
+      errors.airline_flight = true;
+    }
+    if (errors.name || errors.surname || errors.airline_iata || errors.airline_flight) {
+      this.setState({ error: { ...this.state.error, ...errors } });
+    }
+  };
+
   render() {
-    return (
-      <Card className="card-frame ar-passenger-card fade-in">
-        <CardBody className="p-0">
-          <div className="ar-icon-customer-type ar-title-with-icon">Información del pasajero</div>
-          <div className="ar-passenger-form-container">
-            <div className="ar-subtitle">Información personal del titular de la renta</div>
-            <Row className="ar-passenger-form-row">
-              <Col className="pl-0" xl={4} lg={4}>
+    const { translate, isMobile } = this.props;
+    const error = this.props.error;
+    if (error.validationPromotion) {
+      this.notify('autorenta', this.props.translate('common.error.couponORCodeInvalid'));
+      this.dispatch(this.props.clearValidateIdError());
+    }
+    if (this.props.showNotification) {
+      this.notify('success', this.props.translate('common.validationMessages.codePromotionalSuccess'));
+      this.setState({ showNotification: false });
+    }
+    let airlines = [{ name: translate('step2.agencyOrCorporation.flyCompany'), iata: '' }];
+    airlines = airlines.concat(this.props.airlines);
+    this.prepareErrors(error);
+
+    if (!isMobile) {
+      return (
+        <Card className="card-frame ar-passenger-card fade-in">
+          <div className="rna-wrapper">
+            <NotificationAlert ref="notificationAlert" />
+          </div>
+          <SuccessNotification translate={translate} />
+          <CardBody className="p-0">
+            <div className="ar-icon-customer-type ar-title-with-icon">
+              {translate('step2.agencyOrCorporation.title')}
+            </div>
+            <div className="ar-passenger-form-container">
+              <div className="ar-subtitle">{translate('step2.agencyOrCorporation.subtitle')}</div>
+              <Row className="ar-passenger-form-row">
+                <Col className="pl-0" xl={4} lg={4}>
+                  <FormGroup
+                    className={
+                      'm-0 ' +
+                      classnames({
+                        focused: this.state.nameFocus,
+                      })
+                    }
+                  >
+                    <InputGroup
+                      className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                        this.state.error.name ? ' ar-error-border' : null
+                      }`}
+                    >
+                      <Input
+                        className="ar-round-input ar-input-passenger-data"
+                        placeholder={translate('step2.agencyOrCorporation.name')}
+                        type="text"
+                        autoComplete="off"
+                        name="name"
+                        onFocus={() => this.setState({ nameFocus: true })}
+                        onBlur={this.handleOnBlur}
+                        onChange={this.handleOnChange}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+                <Col xl={4} lg={4}>
+                  <FormGroup
+                    className={
+                      'm-0 ' +
+                      classnames({
+                        focused: this.state.surnameFocus,
+                      })
+                    }
+                  >
+                    <InputGroup
+                      className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                        this.state.error.surname ? ' ar-error-border' : null
+                      }`}
+                    >
+                      <Input
+                        className="ar-round-input ar-input-passenger-data"
+                        placeholder={translate('step2.agencyOrCorporation.surname')}
+                        type="text"
+                        autoComplete="off"
+                        name="surname"
+                        required={true}
+                        onFocus={() => this.setState({ surnameFocus: true })}
+                        onBlur={this.handleOnBlur}
+                        onChange={this.handleOnChange}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+                <Col className="pr-0" xl={4} lg={4} />
+              </Row>
+              <Row className="ar-passenger-form-row">
+                <Col className="pl-0" xl={4} lg={4}>
+                  <FormGroup
+                    className={
+                      'm-0 ' +
+                      classnames({
+                        focused: this.state.phoneFocus,
+                      })
+                    }
+                  >
+                    <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
+                      <Input
+                        className="ar-round-input ar-input-passenger-data"
+                        placeholder={translate('step2.agencyOrCorporation.phone')}
+                        type="text"
+                        autoComplete="off"
+                        name="phone"
+                        onFocus={() => this.setState({ phoneFocus: true })}
+                        onBlur={this.handleOnBlur}
+                        onChange={this.handleOnChange}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+                <Col xl={4} lg={4}>
+                  <div className="ar-select-fly-agency-container">
+                    <ClientTypeDropdown
+                      items={airlines}
+                      title={translate('step2.agencyOrCorporation.flyCompany')}
+                      color={'white-0'}
+                      dispatch={this.props.dispatch}
+                      classes={`ar-select-button ${this.state.error.airline_iata ? 'ar-error-border' : ''}`}
+                      handleOnSelectClientType={this.handleOnSelect}
+                      airline={true}
+                    />
+                  </div>
+                </Col>
+                <Col className="pr-0" xl={4} lg={4}>
+                  <FormGroup
+                    className={
+                      'm-0 ' +
+                      classnames({
+                        focused: this.state.airline_flightFocus,
+                      })
+                    }
+                  >
+                    <InputGroup
+                      className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                        this.state.error.airline_flight ? ' ar-error-border' : null
+                      }`}
+                    >
+                      <Input
+                        className="ar-round-input ar-input-passenger-data"
+                        placeholder={translate('step2.agencyOrCorporation.flyNumber')}
+                        type="text"
+                        autoComplete="off"
+                        name="airline_flight"
+                        onFocus={() => this.setState({ airline_flightFocus: true })}
+                        onBlur={this.handleOnBlur}
+                        onChange={this.handleOnChange}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <div className="ar-subtitle">{translate('step2.agencyOrCorporation.additionalInformation')}</div>
+              <Row className="ar-passenger-form-row">
                 <FormGroup
                   className={
-                    'm-0 ' +
+                    'ar-validate-input-passenger ' +
+                    classnames({
+                      focused: this.state.promotionCodeFocus,
+                    })
+                  }
+                >
+                  <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
+                    <Input
+                      className="ar-round-input ar-input-passenger-data"
+                      placeholder={translate('step2.agencyOrCorporation.promotionalCode')}
+                      type="text"
+                      autoComplete="off"
+                      name="promotionCode"
+                      onFocus={() => this.setState({ promotionCodeFocus: true })}
+                      onBlur={this.handleOnBlur}
+                      onChange={this.handleOnChange}
+                    />
+                    <InputGroupAddon addonType="append">
+                      <Button
+                        className=" btn-icon w-100 ar-validate-input-passenger-button"
+                        color="red-0"
+                        name="promotionCode"
+                        onClick={() => this.handleValidateClick('promotionCode')}
+                      >
+                        <span className="nav-link-inner--text">{translate('step2.clientType.validate')} </span>
+                        <i className="ar-icon-chevron-right" />
+                      </Button>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup
+                  className={
+                    'ar-validate-input-passenger ' +
+                    classnames({
+                      focused: this.state.couponNumberFocus,
+                    })
+                  }
+                >
+                  <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
+                    <Input
+                      className="ar-round-input ar-input-passenger-data"
+                      placeholder={translate('step2.agencyOrCorporation.coupon')}
+                      type="text"
+                      autoComplete="off"
+                      name="couponNumber"
+                      onFocus={() => this.setState({ couponNumberFocus: true })}
+                      onBlur={this.handleOnBlur}
+                      onChange={this.handleOnChange}
+                    />
+                    <InputGroupAddon addonType="append">
+                      <Button
+                        className=" btn-icon w-100 ar-validate-input-passenger-button"
+                        color="red-0"
+                        onClick={() => this.handleValidateClick('couponNumber')}
+                        name="couponNumber"
+                      >
+                        <span className="nav-link-inner--text">{translate('step2.clientType.validate')} </span>
+                        <i className="ar-icon-chevron-right" />
+                      </Button>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </FormGroup>
+              </Row>
+            </div>
+          </CardBody>
+        </Card>
+      );
+    } else {
+      return (
+        <Card className="card-frame ar-passenger-card">
+          <div className="rna-wrapper">
+            <NotificationAlert ref="notificationAlert" />
+          </div>
+          <SuccessNotification translate={translate} />
+          <CardBody className="p-0">
+            <div className="ar-icon-customer-type ar-title-with-icon">
+              {translate('step2.agencyOrCorporation.title')}
+            </div>
+            <div className="ar-passenger-form-container">
+              <div className="ar-subtitle">{translate('step2.agencyOrCorporation.subtitle')}</div>
+              <div className="ar-passenger-form-row">
+                <FormGroup
+                  className={
+                    'm-0 w-100 ' +
                     classnames({
                       focused: this.state.nameFocus,
                     })
                   }
                 >
-                  <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
+                  <InputGroup
+                    className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                      this.state.error.name ? ' ar-error-border' : null
+                    }`}
+                  >
                     <Input
                       className="ar-round-input ar-input-passenger-data"
-                      placeholder="Nombre"
+                      placeholder={translate('step2.agencyOrCorporation.name')}
                       type="text"
+                      autoComplete="off"
                       name="name"
+                      required={true}
                       onFocus={() => this.setState({ nameFocus: true })}
                       onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
                 </FormGroup>
-              </Col>
-              <Col xl={4} lg={4}>
+              </div>
+              <div className="ar-passenger-form-row">
                 <FormGroup
                   className={
-                    'm-0 ' +
+                    'm-0 w-100 ' +
                     classnames({
                       focused: this.state.surnameFocus,
                     })
                   }
                 >
-                  <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
+                  <InputGroup
+                    className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                      this.state.error.surname ? ' ar-error-border' : null
+                    }`}
+                  >
                     <Input
                       className="ar-round-input ar-input-passenger-data"
-                      placeholder="Apellido"
+                      placeholder={translate('step2.agencyOrCorporation.surname')}
                       type="text"
+                      autoComplete="off"
                       name="surname"
+                      required={true}
                       onFocus={() => this.setState({ surnameFocus: true })}
                       onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
                 </FormGroup>
-              </Col>
-              <Col className="pr-0" xl={4} lg={4} />
-            </Row>
-            <Row className="ar-passenger-form-row">
-              <Col className="pl-0" xl={4} lg={4}>
+              </div>
+              <div className="ar-passenger-form-row">
                 <FormGroup
                   className={
-                    'm-0 ' +
+                    'm-0 w-100 ' +
                     classnames({
                       focused: this.state.phoneFocus,
                     })
@@ -146,8 +437,9 @@ class AgencyOrCorporation extends React.Component {
                   <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
                     <Input
                       className="ar-round-input ar-input-passenger-data"
-                      placeholder="Teléfono"
+                      placeholder={translate('step2.agencyOrCorporation.phone')}
                       type="text"
+                      autoComplete="off"
                       name="phone"
                       onFocus={() => this.setState({ phoneFocus: true })}
                       onBlur={this.handleOnBlur}
@@ -155,113 +447,121 @@ class AgencyOrCorporation extends React.Component {
                     />
                   </InputGroup>
                 </FormGroup>
-              </Col>
-              <Col xl={4} lg={4}>
-                <div className="ar-select-fly-agency-container">
+              </div>
+              <div className="ar-passenger-form-row">
+                <div className="ar-select-fly-agency-container w-100">
                   <ClientTypeDropdown
-                    items={this.props.airlines.map((item) => {
-                      return item.name;
-                    })}
-                    title={'Compañía aérea (opcional)'}
+                    items={this.props.airlines}
+                    title={translate('step2.agencyOrCorporation.flyCompany')}
                     color={'white-0'}
                     dispatch={this.props.dispatch}
-                    classes={'ar-select-button'}
+                    classes={`ar-select-button w-100 ${this.state.error.airline_iata ? 'ar-error-border' : ''}`}
                     handleOnSelectClientType={this.handleOnSelect}
+                    airline={true}
                   />
                 </div>
-              </Col>
-              <Col className="pr-0" xl={4} lg={4}>
+              </div>
+              <div className="ar-passenger-form-row">
                 <FormGroup
                   className={
-                    'm-0 ' +
+                    'm-0 w-100 ' +
                     classnames({
-                      focused: this.state.flyNumberFocus,
+                      focused: this.state.airline_flightFocus,
                     })
                   }
                 >
-                  <InputGroup className="input-group-merge input-group-alternative ar-round-input bg-ar-white-1 shadow-none">
+                  <InputGroup
+                    className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                      this.state.error.airline_flight ? ' ar-error-border' : null
+                    }`}
+                  >
                     <Input
                       className="ar-round-input ar-input-passenger-data"
-                      placeholder="Número de vuelo (opcional)"
+                      placeholder={translate('step2.agencyOrCorporation.flyNumber')}
                       type="text"
-                      name="flyNumber"
-                      onFocus={() => this.setState({ flyNumberFocus: true })}
+                      autoComplete="off"
+                      name="airline_flight"
+                      onFocus={() => this.setState({ airline_flightFocus: true })}
                       onBlur={this.handleOnBlur}
                       onChange={this.handleOnChange}
                     />
                   </InputGroup>
                 </FormGroup>
-              </Col>
-            </Row>
-            <div className="ar-subtitle">Información adicional</div>
-            <Row className="ar-passenger-form-row">
-              <FormGroup
-                className={
-                  'ar-validate-input-passenger ' +
-                  classnames({
-                    focused: this.state.promotionCodeFocus,
-                  })
-                }
-              >
-                <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
-                  <Input
-                    className="ar-round-input ar-input-passenger-data"
-                    placeholder="Código promocional"
-                    type="text"
-                    name="promotionCode"
-                    onFocus={() => this.setState({ promotionCodeFocus: true })}
-                    onBlur={() => this.setState({ promotionCodeFocus: false })}
-                    onChange={this.handleOnChange}
-                  />
-                  <InputGroupAddon addonType="append">
-                    <Button
-                      className=" btn-icon w-100 ar-validate-input-passenger-button"
-                      color="red-0"
+              </div>
+              <div className="ar-subtitle">{translate('step2.agencyOrCorporation.additionalInformation')}</div>
+              <div className="ar-passenger-form-row">
+                <FormGroup
+                  className={
+                    'ar-validate-input-passenger w-100 ' +
+                    classnames({
+                      focused: this.state.promotionCodeFocus,
+                    })
+                  }
+                >
+                  <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
+                    <Input
+                      className="ar-round-input ar-input-passenger-data"
+                      placeholder={translate('step2.agencyOrCorporation.promotionalCode')}
+                      type="text"
+                      autoComplete="off"
                       name="promotionCode"
-                      onClick={this.handleValidateClick}
-                    >
-                      <span className="nav-link-inner--text">Validar </span>
-                      <i className="ar-icon-chevron-right" />
-                    </Button>
-                  </InputGroupAddon>
-                </InputGroup>
-              </FormGroup>
-              <FormGroup
-                className={
-                  'ar-validate-input-passenger ' +
-                  classnames({
-                    focused: this.state.couponNumberFocus,
-                  })
-                }
-              >
-                <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
-                  <Input
-                    className="ar-round-input ar-input-passenger-data"
-                    placeholder="Número de cupón"
-                    type="text"
-                    name="couponNumber"
-                    onFocus={() => this.setState({ couponNumberFocus: true })}
-                    onBlur={() => this.setState({ couponNumberFocus: false })}
-                    onChange={this.handleOnChange}
-                  />
-                  <InputGroupAddon addonType="append">
-                    <Button
-                      className=" btn-icon w-100 ar-validate-input-passenger-button"
-                      color="red-0"
-                      onClick={this.handleValidateClick}
+                      onFocus={() => this.setState({ promotionCodeFocus: true })}
+                      onBlur={this.handleOnBlur}
+                      onChange={this.handleOnChange}
+                    />
+                    <InputGroupAddon addonType="append">
+                      <Button
+                        className=" btn-icon w-100 ar-validate-input-passenger-button"
+                        color="red-0"
+                        name="promotionCode"
+                        onClick={() => this.handleValidateClick('promotionCode')}
+                      >
+                        <span className="nav-link-inner--text">{translate('step2.clientType.validate')} </span>
+                        <i className="ar-icon-chevron-right" />
+                      </Button>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </FormGroup>
+              </div>
+              <div className="ar-passenger-form-row">
+                <FormGroup
+                  className={
+                    'ar-validate-input-passenger w-100 ' +
+                    classnames({
+                      focused: this.state.couponNumberFocus,
+                    })
+                  }
+                >
+                  <InputGroup className="input-group-merge input-group-alternative ar-round-input shadow-none">
+                    <Input
+                      className="ar-round-input ar-input-passenger-data"
+                      placeholder={translate('step2.agencyOrCorporation.coupon')}
+                      type="text"
+                      autoComplete="off"
                       name="couponNumber"
-                    >
-                      <span className="nav-link-inner--text">Validar </span>
-                      <i className="ar-icon-chevron-right" />
-                    </Button>
-                  </InputGroupAddon>
-                </InputGroup>
-              </FormGroup>
-            </Row>
-          </div>
-        </CardBody>
-      </Card>
-    );
+                      onFocus={() => this.setState({ couponNumberFocus: true })}
+                      onBlur={this.handleOnBlur}
+                      onChange={this.handleOnChange}
+                    />
+                    <InputGroupAddon addonType="append">
+                      <Button
+                        className=" btn-icon w-100 ar-validate-input-passenger-button"
+                        color="red-0"
+                        onClick={() => this.handleValidateClick('couponNumber')}
+                        name="couponNumber"
+                      >
+                        <span className="nav-link-inner--text">{translate('step2.clientType.validate')} </span>
+                        <i className="ar-icon-chevron-right" />
+                      </Button>
+                    </InputGroupAddon>
+                  </InputGroup>
+                </FormGroup>
+              </div>
+            </div>
+          </CardBody>
+        </Card>
+      );
+    }
   }
 }
 
@@ -269,6 +569,7 @@ AgencyOrCorporation.proptypes = {
   dispatch: PropTypes.func,
   updateFormData: PropTypes.func,
   validatePromotion: PropTypes.func,
+  clearValidateIdError: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

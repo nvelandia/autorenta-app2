@@ -27,6 +27,7 @@ import { isoStringToString, isoStringToStringTime } from '../../../../utils/help
 import { vehicleTypes } from '../../../../utils/constants/vehicleTypes';
 import NotificationAlert from 'react-notification-alert';
 import { redirectTo, pages } from '../../../../utils/helpers/redirectTo';
+import GoogleModal from '../../Molecules/Modals/GoogleModal';
 
 class MakeYourReservation extends React.Component {
   constructor(props) {
@@ -41,12 +42,17 @@ class MakeYourReservation extends React.Component {
       passenger_country_id: '',
       ageSelected: '',
       carTypeSelected: '',
-      iataToPickUp: '',
-      iataToDropOff: '',
+      pickup_place_id: '',
+      pickup_latitude: '',
+      pickup_longitude: '',
+      dropoff_place_id: '',
+      dropoff_latitude: '',
+      dropoff_longitude: '',
       timeToDropOff: '',
       timeToPickUp: '',
       vehicleType: '',
       error: {},
+      showGoogleModal: false,
     };
     this.dispatch = props.dispatch;
     this.handleOnLoad();
@@ -56,17 +62,125 @@ class MakeYourReservation extends React.Component {
     this.dispatch(this.props.loadCountries());
   };
 
-  handleOnSelect = (event, iata = null) => {
-    if (iata) {
+  handleOnSelect = (event, place = null) => {
+    if (place) {
+      const geocoder = new google.maps.Geocoder();
       if (event.target.name === 'placeToPickUp') {
-        this.setState({ [event.target.name]: event.target.value, iataToPickUp: iata });
+        geocoder.geocode({ placeId: place.place_id }, (result, status) => {
+          console.log(result);
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            pickup_latitude: latitude,
+            pickup_longitude: longitude,
+            placeToPickUp: place.description,
+            pickup_place_id: place.place_id,
+            dropoff_place_id: place.place_id,
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: place.description,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
       } else {
-        this.setState({ [event.target.name]: event.target.value, iataToDropOff: iata });
+        geocoder.geocode({ placeId: place.place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: place.description,
+            dropoff_place_id: place.place_id,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
       }
     }
     this.setState({
       [event.target.name]: event.target.value,
       error: { ...this.state.error, [event.target.name]: false },
+    });
+  };
+
+  showGoogleModal = (name) => {
+    this.setState({ showGoogleModal: name });
+
+    if (name === 'placeToPickUp') {
+      if (this.state.pickup_latitude) {
+        this.dispatch(
+          this.props.searchLocation({
+            latitude: this.state.pickup_latitude.toString(),
+            longitude: this.state.pickup_longitude.toString(),
+          }),
+        );
+      } else {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ placeId: this.props.locations[0].place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            pickup_latitude: latitude,
+            pickup_longitude: longitude,
+            placeToPickUp: this.props.locations[0].description,
+            pickup_place_id: this.props.locations[0].place_id,
+            dropoff_place_id: this.props.locations[0].place_id,
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: this.props.locations[0].description,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
+      }
+    } else {
+      if (this.state.dropoff_latitude) {
+        this.dispatch(
+          this.props.searchLocation({
+            latitude: this.state.dropoff_latitude.toString(),
+            longitude: this.state.dropoff_longitude.toString(),
+          }),
+        );
+      } else {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ placeId: this.props.locations[0].place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            dropoff_place_id: this.props.locations[0].place_id,
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: this.props.locations[0].description,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
+      }
+    }
+  };
+
+  hideGoogleModal = () => {
+    this.setState({
+      showGoogleModal: false,
+      placeToPickUpFocus: false,
+      placeToDropOffFocus: false,
     });
   };
 
@@ -96,8 +210,20 @@ class MakeYourReservation extends React.Component {
   };
 
   handleOnChange = (event) => {
-    if (this.state.placeToPickUpFocus || this.state.placeToDropOffFocus) {
-      this.dispatch(this.props.searchLocation(event.target.value));
+    if (
+      this.state.placeToPickUpFocus ||
+      this.state.placeToDropOffFocus ||
+      event.target.name === 'placeToPickUp' ||
+      event.target.name === 'placeToDropOff'
+    ) {
+      // you can create autocompleteService as variable outside the function as well
+      const autocompleteService = new google.maps.places.AutocompleteService();
+
+      if (event.target.value !== '') {
+        autocompleteService.getPlacePredictions({ input: event.target.value }, (predictions, status) => {
+          this.dispatch(this.props.loadLocation(predictions));
+        });
+      }
       this.setState({ [event.target.name]: event.target.value });
     }
     this.setState({
@@ -108,15 +234,15 @@ class MakeYourReservation extends React.Component {
 
   handleSearchClick = () => {
     const body = {
-      pickup_location: this.state.iataToPickUp,
       pickup_date: this.state.dateToPickUp,
       pickup_time: this.state.timeToPickUp,
-      dropoff_location: this.state.iataToDropOff,
       dropoff_date: this.state.dateToDropOff,
       dropoff_time: this.state.timeToDropOff,
       passenger_country_id: this.state.passenger_country_id,
       passenger_age: this.state.ageSelected,
       vehicle_type: vehicleTypes.indexOf(this.state.vehicleType) + 1,
+      pickup_place_id: this.state.pickup_place_id,
+      dropoff_place_id: this.state.dropoff_place_id,
     };
     if (Object.values(body).includes('') || Object.values(body).includes(0)) {
       const error = {};
@@ -128,47 +254,53 @@ class MakeYourReservation extends React.Component {
       this.setState({ error: error });
       this.notify('autorenta');
     } else {
-      this.dispatch(this.props.nextStep(body));
+      this.dispatch(this.props.showLoader());
       redirectTo(
-        `${pages.step1}/${body.pickup_location}/${body.pickup_date}/${body.pickup_time}/${body.dropoff_location}/${body.dropoff_date}/${body.dropoff_time}/${body.passenger_country_id}/${body.passenger_age}/${body.vehicle_type}`,
+        `${pages.step1}/${body.pickup_place_id}/${body.pickup_date}/${body.pickup_time}/${body.dropoff_place_id}/${body.dropoff_date}/${body.dropoff_time}/${body.passenger_country_id}/${body.passenger_age}/${body.vehicle_type}`,
       );
     }
   };
 
   renderListGroup = (name) => {
+    const { translate } = this.props;
     const placesOptions = this.props.locations;
-    if (Array.isArray(placesOptions)) {
-      return (
-        <ListGroup className="ar-list-group">
-          {placesOptions.map((option, index) => {
-            return (
-              <ListGroupItem key={index} className="p-0 ar-list-item" action>
-                <Button
-                  className="ar-list-item d-flex align-items-center p-3 w-100 ws-pre"
-                  name={name}
-                  value={option.label}
-                  onMouseDown={(e) => this.handleOnSelect(e, option.iata)}
-                >
-                  {option.airport ? (
-                    <>
-                      <span className="ar-icon-plane ar-red-text fs-2" />
-                      &nbsp;{option.label}
-                    </>
-                  ) : (
-                    <>
-                      <span className="ar-icon-office ar-red-text fs-2" />
-                      &nbsp;{option.label}
-                    </>
-                  )}
-                </Button>
-              </ListGroupItem>
-            );
-          })}
-        </ListGroup>
-      );
-    } else {
-      return null;
+    if (placesOptions) {
+      if (placesOptions.length !== 0) {
+        return (
+          <ListGroup className="ar-list-group zi-1200">
+            {placesOptions.map((option, index) => {
+              return (
+                <ListGroupItem key={index} className="p-0 ar-list-item" action>
+                  <Button
+                    className="ar-list-item-button d-flex  w-100 "
+                    name={name}
+                    value={option.description}
+                    onMouseDown={(e) => this.handleOnSelect(e, option)}
+                  >
+                    <span className="ar-icon-location ar-light-blue-1-text fs-2" />
+                    {option.description}
+                  </Button>
+                </ListGroupItem>
+              );
+            })}
+            <ListGroupItem key={10} className="p-0 ar-list-item" action>
+              <Button
+                className="ar-list-item-button d-flex w-100 ar-red-text"
+                name={name}
+                value={1}
+                onMouseDown={() => this.showGoogleModal(name)}
+              >
+                <span className="ar-icon-location ar-red-text fs-2" />
+                {translate('home.makeYourReservation.findOnMap')}
+              </Button>
+            </ListGroupItem>
+          </ListGroup>
+        );
+      } else {
+        return null;
+      }
     }
+    return null;
   };
 
   notify = (type) => {
@@ -177,10 +309,9 @@ class MakeYourReservation extends React.Component {
       message: (
         <div className="alert-text">
           <span className="alert-title" data-notify="title">
-            {' '}
-            ¡Atención!
+            {this.props.translate('common.error.attention')}
           </span>
-          <span data-notify="message">Todos los campos son requeridos</span>
+          <span data-notify="message">{this.props.translate('common.error.completeAllFields')}</span>
         </div>
       ),
       type: type,
@@ -190,29 +321,79 @@ class MakeYourReservation extends React.Component {
     this.refs.notificationAlert.notificationAlert(options);
   };
 
+  handleSetLocation = (latitude, longitude, showModal, place, place_id) => {
+    if (showModal === 'placeToPickUp') {
+      this.setState({
+        pickup_latitude: latitude,
+        pickup_longitude: longitude,
+        pickup_place_id: place_id,
+        placeToPickUp: place,
+        dropoff_latitude: latitude,
+        dropoff_longitude: longitude,
+        dropoff_place_id: place_id,
+        placeToDropOff: place,
+      });
+    } else {
+      this.setState({
+        dropoff_latitude: latitude,
+        dropoff_longitude: longitude,
+        dropoff_place_id: place_id,
+        placeToDropOff: place,
+      });
+    }
+  };
+
   render() {
     const error = this.state.error;
+    const { translate, isMobile } = this.props;
     return (
-      <Container className="mt--10 pb-5">
+      <Container className={`mt--10 ${!isMobile ? 'pb-5' : 'pb-45'}`}>
+        <GoogleModal
+          showModal={this.state.showGoogleModal}
+          translate={translate}
+          place={this.state.showGoogleModal === 'placeToPickUp' ? this.state.placeToPickUp : this.state.placeToDropOff}
+          error={this.state.error}
+          loadLocation={this.props.loadLocation}
+          hideModal={this.hideGoogleModal}
+          onChange={this.handleOnChange}
+          renderListGroup={this.renderListGroup}
+          handleOnSelect={this.handleOnSelect}
+          isMobile={isMobile}
+          searchLocation={this.props.searchLocation}
+          location={
+            this.state.showGoogleModal === 'placeToPickUp'
+              ? { lat: this.state.pickup_latitude, lng: this.state.pickup_longitude }
+              : { lat: this.state.dropoff_latitude, lng: this.state.dropoff_longitude }
+          }
+          onSetLocation={this.handleSetLocation}
+        />
         <div className="rna-wrapper">
           <NotificationAlert ref="notificationAlert" />
         </div>
-        <Row className="justify-content-center">
+        <Row className="justify-content-center mx-0">
           <Col lg="9" md="10">
-            <Row className="justify-content-center">
-              <Col lg="7" md="8" sm="8" xs="11" className="ar-card-header">
-                <CardHeader className=" p-3 ar-border-round">
-                  <Row className="text-muted text-center mb-0 justify-content-center">
-                    <h2 className="mb-0">Haz tu reserva en&nbsp;</h2>
-                    <h2 className="mb-0 ar-red-text">sólo 3 pasos</h2>
-                  </Row>
-                </CardHeader>
-              </Col>
-            </Row>
+            {!isMobile ? (
+              <Row className="justify-content-center">
+                <Col lg="7" md="8" sm="8" xs="11" className="ar-card-header">
+                  <CardHeader className=" p-3 ar-border-round">
+                    <Row className="text-muted text-center mb-0 justify-content-center">
+                      <h2 className="mb-0">{translate('home.makeYourReservation.doYourReservationIn')}&nbsp;</h2>
+                      <h2 className="mb-0 ar-red-text">{translate('home.makeYourReservation.only3Steps')}</h2>
+                    </Row>
+                  </CardHeader>
+                </Col>
+              </Row>
+            ) : null}
             <Card className=" border-0 mb-0 ar-border-round">
               <CardBody className="px-lg-5 py-lg-5">
-                <div className="text-center mb-4 ar-steps-bar">
-                  <ProgressBar step={0} />
+                {isMobile ? (
+                  <Row className="text-muted text-center mb-0 justify-content-center">
+                    <h4 className="mb-0">{translate('home.makeYourReservation.doYourReservationIn')}&nbsp;</h4>
+                    <h4 className="mb-0 ar-red-text">{translate('home.makeYourReservation.only3Steps')}</h4>
+                  </Row>
+                ) : null}
+                <div className="text-center ar-steps-bar">
+                  <ProgressBar step={0} translate={translate} isMobile={isMobile} />
                 </div>
                 <Form role="form">
                   <Row>
@@ -229,14 +410,14 @@ class MakeYourReservation extends React.Component {
                         >
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText className="ar-round-input-left">
-                              <i className="ar-icon-location ar-round-input-left" />
+                              <i className="ar-icon-location" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
                             name="placeToPickUp"
                             onChange={this.handleOnChange}
-                            className="ar-round-input-right"
-                            placeholder="¿Dónde quieres retirar el vehículo?"
+                            className="ar-round-input-right pr-3"
+                            placeholder={translate('home.makeYourReservation.placeToPickUp')}
                             value={this.state.placeToPickUp}
                             type="text"
                             autoComplete="off"
@@ -258,14 +439,14 @@ class MakeYourReservation extends React.Component {
                         >
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText className="ar-round-input-left">
-                              <i className="ar-icon-location ar-round-input-left" />
+                              <i className="ar-icon-location" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
                             name="placeToDropOff"
                             onChange={this.handleOnChange}
-                            className="ar-round-input-right"
-                            placeholder="¿Dónde quieres entregar el vehículo?"
+                            className="ar-round-input-right pr-3"
+                            placeholder={translate('home.makeYourReservation.placeToDropOff')}
                             type="text"
                             autoComplete="off"
                             value={this.state.placeToDropOff}
@@ -277,22 +458,27 @@ class MakeYourReservation extends React.Component {
                       </FormGroup>
                     </Col>
                     <Col lg="6" md="6">
-                      <RangeDatePicker error={error} handleDate={this.handleDate} />
+                      <RangeDatePicker
+                        error={error}
+                        handleDate={this.handleDate}
+                        translate={translate}
+                        isMobile={isMobile}
+                      />
                     </Col>
                   </Row>
                   <Row>
-                    <Col lg="4" md="6">
+                    <Col lg="4" md="6" className="ar-col-country">
                       <FormGroup
                         className={classnames(
                           {
                             focused: this.state.countrySelected,
                           },
-                          'mb-0',
+                          'ar-mb-1',
                         )}
                       >
                         <CustomDropDown
                           name={'passenger_country_id'}
-                          title={'País de residencia'}
+                          title={translate('home.makeYourReservation.country')}
                           items={this.props.countries}
                           classes={'ar-dropdown-menu-overflow'}
                           handleSelect={this.handleOnSelect}
@@ -300,37 +486,46 @@ class MakeYourReservation extends React.Component {
                         />
                       </FormGroup>
                     </Col>
-                    <Col lg="2" md="6" className="pl-lg-0">
+                    <Col lg="2" md="6" xs="5" className="pl-lg-0 ar-col-age">
                       <FormGroup
                         className={classnames(
                           {
                             focused: this.state.ageSelected,
                           },
-                          'mb-0',
+                          'ar-mb-1',
                         )}
                       >
                         <CustomDropDown
                           name={'ageSelected'}
-                          title={'Edad'}
-                          items={['+25', '24', '23', '22', '21', '20', '19', '18']}
+                          title={translate('home.makeYourReservation.age')}
+                          items={[
+                            { name: `+25 ${translate('home.makeYourReservation.years')}`, id: '+25' },
+                            { name: `24 ${translate('home.makeYourReservation.years')}`, id: '24' },
+                            { name: `23 ${translate('home.makeYourReservation.years')}`, id: '23' },
+                            { name: `22 ${translate('home.makeYourReservation.years')}`, id: '22' },
+                            { name: `21 ${translate('home.makeYourReservation.years')}`, id: '21' },
+                            { name: `20 ${translate('home.makeYourReservation.years')}`, id: '20' },
+                            { name: `19 ${translate('home.makeYourReservation.years')}`, id: '19' },
+                            { name: `18 ${translate('home.makeYourReservation.years')}`, id: '18' },
+                          ]}
                           classes={'ar-dropdown-menu-age'}
                           handleSelect={this.handleOnSelect}
                           error={error}
                         />
                       </FormGroup>
                     </Col>
-                    <Col lg="4" md="6" className="pl-1">
+                    <Col lg="4" md="6" xs="7" className="pl-1">
                       <FormGroup
                         className={classnames(
                           {
                             focused: this.state.ageSelected,
                           },
-                          'mb-0',
+                          'ar-mb-1',
                         )}
                       >
                         <CustomDropDown
                           name={'vehicleType'}
-                          title={'Tipo de vehículo'}
+                          title={translate('home.makeYourReservation.carType')}
                           items={vehicleTypes}
                           classes={'ar-dropdown-menu-car-type ar-dropdown-menu-overflow'}
                           handleSelect={this.handleOnSelect}
@@ -340,15 +535,21 @@ class MakeYourReservation extends React.Component {
                     </Col>
                     <Col lg="2" md="6" className="p-0 ar-make-your-reservation-button-container">
                       <Button
-                        className=" btn-icon ar-round-button ar-blue-button ar-last-row-make-your-reservation fs--1 h-100"
+                        className=" btn-icon ar-round-button ar-blue-button ar-last-row-make-your-reservation fs--1 h-100 "
                         color="default"
                         type="button"
                         onClick={this.handleSearchClick}
                       >
-                        <span className="nav-link-inner--text text-sm">Buscar </span>
-                        <span className="btn-inner--icon">
-                          <span className="ar-icon-chevron-right va-middle fs-i--1" />
-                        </span>
+                        {!isMobile ? (
+                          <span className="nav-link-inner--text text-sm d-flex align-items-center">
+                            {translate('home.makeYourReservation.search')}
+                            <i className="ar-icon-chevron-right va-middle fs-i--1 mt-i-1 d-flex" />
+                          </span>
+                        ) : (
+                          <span className="nav-link-inner--text text-sm">
+                            {translate('home.makeYourReservation.search')}
+                          </span>
+                        )}
                       </Button>
                     </Col>
                   </Row>
@@ -366,7 +567,8 @@ MakeYourReservation.propTypes = {
   dispatch: PropTypes.func,
   searchLocation: PropTypes.func,
   loadCountries: PropTypes.func,
-  nextStep: PropTypes.func,
+  showLoader: PropTypes.func,
+  loadLocation: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

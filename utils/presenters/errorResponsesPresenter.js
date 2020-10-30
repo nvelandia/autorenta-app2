@@ -8,8 +8,24 @@ class errorResponsesPresenter {
   };
 
   formError = (data, type) => {
+    console.log(data);
+    if (Object.keys(data).length !== 1) {
+      let fullMessage = '';
+      for (const field in data) {
+        for (const message of data[field]) {
+          console.log(fullMessage);
+          fullMessage = fullMessage ? `${fullMessage}\n${message}` : message;
+        }
+      }
+      return {
+        message: fullMessage,
+        type,
+        error: true,
+      };
+    }
+    console.log(data.message);
     return {
-      data,
+      message: data.message,
       type,
       error: true,
     };

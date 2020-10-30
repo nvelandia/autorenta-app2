@@ -8,13 +8,10 @@ class generalAdapter {
     const { data } = response;
 
     if (data.success) {
-      return successfullyResponsesPresenter.withOnlyMessage(
-        actionNames.subscribedSuccessfully,
-        'Subscribed to newsletter',
-      );
+      return successfullyResponsesPresenter.withOnlyMessage(actionNames.subscribedSuccessfully, 'subscriptionSuccess');
     }
 
-    return errorResponsesPresenter.formError(data, actionNames.subscribedUnsuccessfully);
+    return errorResponsesPresenter.onlyMessage('Error', actionNames.subscribedUnsuccessfully);
   };
 
   searchReservation = (response) => {
@@ -25,6 +22,9 @@ class generalAdapter {
         data.response,
         'Reservation found successfully',
       );
+    }
+    if (!data.response || data.code === 500) {
+      return errorResponsesPresenter.formError(500, actionNames.searchReservationUnsuccessfully);
     }
 
     return errorResponsesPresenter.onlyMessage(data.response, actionNames.searchReservationUnsuccessfully);

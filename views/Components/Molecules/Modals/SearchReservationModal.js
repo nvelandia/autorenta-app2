@@ -11,12 +11,12 @@ class SearchReservationModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      passenger_lastname: 'minacori',
-      reservation: 'A87394',
+      passenger_lastname: '',
+      reservation: '',
       passenger_lastnameFocus: false,
       reservationFocus: false,
-      agencyOrCorporationId: '',
-      agencyOrCorporationIdFocus: false,
+      partner_code: '',
+      partner_codeFocus: false,
       isAgencyOrCorporation: false,
       error: {},
     };
@@ -40,7 +40,7 @@ class SearchReservationModal extends React.Component {
       reservation: this.state.reservation,
     };
     if (this.state.isAgencyOrCorporation) {
-      body.agencyOrCorporationId = this.state.agencyOrCorporationId;
+      body.partner_code = this.state.partner_code;
     }
     if (Object.values(body).includes('')) {
       const error = {};
@@ -51,7 +51,11 @@ class SearchReservationModal extends React.Component {
       }
       this.setState({ error: error });
     } else {
-      this.dispatch(this.props.searchReservation(body));
+      if (body.partner_code) {
+        redirectTo(`${pages.step3}/${body.passenger_lastname}/${body.reservation}/${body.partner_code}`);
+      } else {
+        redirectTo(`${pages.step3}/${body.passenger_lastname}/${body.reservation}`);
+      }
     }
   };
 
@@ -62,7 +66,7 @@ class SearchReservationModal extends React.Component {
         <div className="alert-text">
           <span className="alert-title" data-notify="title">
             {' '}
-            ¡Atención!
+            {this.props.translate('common.error.attention')}
           </span>
           <span data-notify="message">Todos los campos son requeridos</span>
         </div>
@@ -76,7 +80,8 @@ class SearchReservationModal extends React.Component {
 
   render() {
     const error = this.state.error;
-    if (this.props.error) {
+    const { isMobile } = this.props;
+    if (this.props.error && this.props.actionWithError === 'searchReservation') {
       this.notify('autorenta');
     }
     return (
@@ -158,6 +163,34 @@ class SearchReservationModal extends React.Component {
                 />
               </InputGroup>
             </FormGroup>
+            {this.state.isAgencyOrCorporation && isMobile ? (
+              <FormGroup
+                className={classnames(
+                  {
+                    focused: this.state.partner_codeFocus,
+                  },
+                  'ar-search-reservation-input',
+                )}
+              >
+                <InputGroup
+                  className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                    error.partner_code ? ' ar-error-border' : null
+                  }`}
+                >
+                  <Input
+                    name="partner_code"
+                    onChange={this.handleOnChange}
+                    className=" ar-round-input ar-search-reservation-form-input"
+                    placeholder="ID de Agencia o Corporativo"
+                    value={this.state.partner_code}
+                    type="text"
+                    autoComplete="off"
+                    onFocus={() => this.setState({ partner_codeFocus: true })}
+                    onBlur={() => this.setState({ partner_codeFocus: false })}
+                  />
+                </InputGroup>
+              </FormGroup>
+            ) : null}
             <div className="ar-search-button-container">
               <Button className=" btn-icon ar-round-button ar-search-button" color="red-0" onClick={this.handleOnClick}>
                 <span className="nav-link-inner--text ml-3">Buscar </span>
@@ -180,31 +213,31 @@ class SearchReservationModal extends React.Component {
               Soy una Agencia de viajes o Cliente corporativo
             </label>
           </div>
-          {this.state.isAgencyOrCorporation ? (
+          {this.state.isAgencyOrCorporation && !isMobile ? (
             <Row className="m-0">
               <FormGroup
                 className={classnames(
                   {
-                    focused: this.state.agencyOrCorporationIdFocus,
+                    focused: this.state.partner_codeFocus,
                   },
                   'ar-search-reservation-input',
                 )}
               >
                 <InputGroup
                   className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                    error.agencyOrCorporationId ? ' ar-error-border' : null
+                    error.partner_code ? ' ar-error-border' : null
                   }`}
                 >
                   <Input
-                    name="agencyOrCorporationId"
+                    name="partner_code"
                     onChange={this.handleOnChange}
                     className=" ar-round-input ar-search-reservation-form-input"
                     placeholder="ID de Agencia o Corporativo"
-                    value={this.state.agencyOrCorporationId}
+                    value={this.state.partner_code}
                     type="text"
                     autoComplete="off"
-                    onFocus={() => this.setState({ agencyOrCorporationIdFocus: true })}
-                    onBlur={() => this.setState({ agencyOrCorporationIdFocus: false })}
+                    onFocus={() => this.setState({ partner_codeFocus: true })}
+                    onBlur={() => this.setState({ partner_codeFocus: false })}
                   />
                 </InputGroup>
               </FormGroup>

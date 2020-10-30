@@ -5,12 +5,44 @@ import ReactDatetime from 'react-datetime';
 // reactstrap components
 import { FormGroup, InputGroupAddon, InputGroupText, InputGroup, Col, Row, Input } from 'reactstrap';
 import moment from 'moment';
+import classnames from 'classnames';
+import { isServer } from '../../../utils/helpers/isError';
 
 class RangeDatePicker extends React.Component {
-  state = {};
+  state = {
+    startDate: this.props.defaultStartDate ? this.props.defaultStartDate : '',
+    endDate: this.props.defaultEndDate ? this.props.defaultEndDate : '',
+    dateToDropOffFocus: false,
+    dateToPickUpFocus: false,
+    selections: 0,
+  };
 
   handleOnBlur = (handleDate) => {
     handleDate(this.state.startDate, this.state.endDate);
+    this.setState({ dateToDropOffFocus: false, dateToPickUpFocus: false });
+  };
+
+  handleSelectDate = (e) => {
+    var m = moment(e._d, 'ddd MMM D YYYY HH:mm:ss ZZ');
+    if (m.hours() === 0) {
+      m.set({ h: 10, m: 0 });
+      e._d = m.toDate();
+    }
+
+    if (moment(this.state.startDate._d).format('DD-MM-YYYY') === moment(e._d).format('DD-MM-YYYY')) {
+      this.setState({ startDate: e, selections: 1 });
+    } else if (moment(this.state.endDate._d).format('DD-MM-YYYY') === moment(e._d).format('DD-MM-YYYY')) {
+      this.setState({ endDate: e, selections: 0 });
+    } else if (this.state.selections === 0) {
+      if (this.state.endDate) {
+        if (!moment(e).isBefore(this.state.endDate)) {
+          this.setState({ startDate: e, endDate: '', selections: 1 });
+        }
+      }
+      this.setState({ startDate: e, selections: 1 });
+    } else {
+      this.setState({ endDate: e, selections: 0 });
+    }
   };
 
   handleSelectStartDate = (e) => {
@@ -19,7 +51,7 @@ class RangeDatePicker extends React.Component {
       m.set({ h: 10, m: 0 });
       e._d = m.toDate();
     }
-    this.setState({ startDate: e });
+    this.setState({ startDate: e, dateToPickUpFocus: false });
   };
 
   handleSelectEndDate = (e) => {
@@ -28,16 +60,23 @@ class RangeDatePicker extends React.Component {
       m.set({ h: 10, m: 0 });
       e._d = m.toDate();
     }
-    this.setState({ endDate: e });
+    this.setState({ endDate: e, dateToDropOffFocus: false });
   };
 
   render() {
-    const { handleDate, error } = this.props;
+    const { handleDate, error, translate, isMobile } = this.props;
     return (
       <>
         <Row>
           <Col xs={12}>
-            <FormGroup>
+            <FormGroup
+              className={classnames(
+                {
+                  focused: this.state.dateToPickUpFocus,
+                },
+                'ar-date-container',
+              )}
+            >
               <InputGroup
                 className={`input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
                   error.dateToPickUp ? ' ar-error-border' : null
@@ -45,24 +84,35 @@ class RangeDatePicker extends React.Component {
               >
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText className="ar-round-input-left">
-                    <i className="ar-icon-calendar ar-round-input-left" />
+                    <i className="ar-icon-calendar ar-date " />
                   </InputGroupText>
                 </InputGroupAddon>
                 <ReactDatetime
                   inputProps={{
-                    className: 'form-control ar-round-input-right',
-                    placeholder: 'Fecha y hora de retiro',
+                    className: `form-control ar-round-input-right ar-date ${
+                      this.state.dateToPickUpFocus ? 'bg-ar-white-0' : ''
+                    }`,
+                    placeholder: translate('home.makeYourReservation.dateToPickUp'),
+                    readOnly: isMobile,
                   }}
-                  viewDate={moment().add(1, 'days').set({ h: 10, m: 0 })}
+                  viewDate={
+                    this.state.startDate
+                      ? moment(this.state.startDate).add(1, 'days').set({ h: 10, m: 0 })
+                      : moment().add(1, 'days').set({ h: 10, m: 0 })
+                  }
                   timeFormat={'HH:mm'}
                   value={this.state.startDate}
                   timeConstraints={{ minutes: { step: 30 } }}
                   isValidDate={(currentDate, selectedDate) => {
                     if (moment().isBefore(currentDate)) {
-                      if (this.state.endDate) {
-                        return moment(this.state.endDate).isAfter(currentDate);
+                      if (this.state.selections === 0) {
+                        return true;
+                      } else {
+                        if (this.state.startDate) {
+                          return moment(this.state.startDate).isBefore(currentDate);
+                        }
+                        return true;
                       }
-                      return true;
                     }
                     return false;
                   }}
@@ -97,14 +147,22 @@ class RangeDatePicker extends React.Component {
                       </td>
                     );
                   }}
-                  onChange={(e) => this.handleSelectStartDate(e)}
+                  onChange={(e) => this.handleSelectDate(e)}
                   onBlur={() => this.handleOnBlur(handleDate)}
+                  onFocus={() => this.setState({ dateToPickUpFocus: true })}
                 />
               </InputGroup>
             </FormGroup>
           </Col>
           <Col xs={12}>
-            <FormGroup>
+            <FormGroup
+              className={classnames(
+                {
+                  focused: this.state.dateToDropOffFocus,
+                },
+                'ar-date-container',
+              )}
+            >
               <InputGroup
                 className={`input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
                   error.dateToDropOff ? ' ar-error-border' : null
@@ -112,13 +170,16 @@ class RangeDatePicker extends React.Component {
               >
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText className="ar-round-input-left">
-                    <i className="ar-icon-calendar ar-round-input-left" />
+                    <i className="ar-icon-calendar ar-date" />
                   </InputGroupText>
                 </InputGroupAddon>
                 <ReactDatetime
                   inputProps={{
-                    className: 'form-control ar-round-input-right',
-                    placeholder: 'Fecha y hora de entrega',
+                    className: `form-control ar-round-input-right ar-date ${
+                      this.state.dateToDropOffFocus ? 'bg-ar-white-0' : ''
+                    }`,
+                    placeholder: translate('home.makeYourReservation.dateToDropOff'),
+                    readOnly: isMobile,
                   }}
                   viewDate={this.state.startDate}
                   timeFormat={'H:mm'}
@@ -126,10 +187,14 @@ class RangeDatePicker extends React.Component {
                   timeConstraints={{ minutes: { step: 30 } }}
                   isValidDate={(currentDate, selectedDate) => {
                     if (moment().isBefore(currentDate)) {
-                      if (this.state.startDate) {
-                        return moment(this.state.startDate).isBefore(currentDate);
+                      if (this.state.selections === 1) {
+                        if (this.state.startDate) {
+                          return moment(this.state.startDate).isBefore(currentDate);
+                        }
+                        return false;
+                      } else {
+                        return true;
                       }
-                      return true;
                     }
                     return false;
                   }}
@@ -163,8 +228,9 @@ class RangeDatePicker extends React.Component {
                       </td>
                     );
                   }}
-                  onChange={(e) => this.handleSelectEndDate(e)}
+                  onChange={(e) => this.handleSelectDate(e)}
                   onBlur={() => this.handleOnBlur(handleDate)}
+                  onFocus={() => this.setState({ dateToDropOffFocus: true })}
                 />
               </InputGroup>
             </FormGroup>

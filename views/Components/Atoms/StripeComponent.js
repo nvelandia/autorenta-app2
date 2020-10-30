@@ -1,85 +1,52 @@
-import React from 'react';
+import { CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 
-import { CardCvcElement, CardExpiryElement, CardNumberElement, useElements, useStripe } from '@stripe/react-stripe-js';
+class CheckoutForm extends React.Component {
+  handleSubmit = async (event) => {
+    // Block native form submission.
+    event.preventDefault();
 
-export const StripeComponent = function () {
-  {
-    const stripe = useStripe();
-    const elements = useElements();
+    const { stripe, elements } = this.props;
 
-    const handleSubmit = async (event) => {
-      event.preventDefault();
+    if (!stripe || !elements) {
+      // Stripe.js has not loaded yet. Make sure to disable
+      // form submission until Stripe.js has loaded.
+      return;
+    }
 
-      if (!stripe || !elements) {
-        // Stripe.js has not loaded yet. Make sure to disable
-        // form submission until Stripe.js has loaded.
-        return;
-      }
+    // Get a reference to a mounted CardElement. Elements knows how
+    // to find your CardElement because there can only ever be one of
+    // each type of element.
+    const cardElement = elements.getElement(CardElement);
 
-      const payload = await stripe.createPaymentMethod({
-        type: 'card',
-        card: elements.getElement(CardNumberElement),
-      });
-      console.log('[PaymentMethod]', payload);
-    };
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: cardElement,
+    });
 
+    if (error) {
+      console.log('[error]', error);
+    } else {
+      console.log('[PaymentMethod]', paymentMethod);
+    }
+  };
+
+  render() {
+    const { stripe } = this.props;
     return (
-      <form onSubmit={handleSubmit}>
-        <label>
-          Card number
-          <CardNumberElement
-            onReady={() => {
-              console.log('CardNumberElement [ready]');
-            }}
-            onChange={(event) => {
-              console.log('CardNumberElement [change]', event);
-            }}
-            onBlur={() => {
-              console.log('CardNumberElement [blur]');
-            }}
-            onFocus={() => {
-              console.log('CardNumberElement [focus]');
-            }}
-          />
-        </label>
-        <label>
-          Expiration date
-          <CardExpiryElement
-            onReady={() => {
-              console.log('CardNumberElement [ready]');
-            }}
-            onChange={(event) => {
-              console.log('CardNumberElement [change]', event);
-            }}
-            onBlur={() => {
-              console.log('CardNumberElement [blur]');
-            }}
-            onFocus={() => {
-              console.log('CardNumberElement [focus]');
-            }}
-          />
-        </label>
-        <label>
-          CVC
-          <CardCvcElement
-            onReady={() => {
-              console.log('CardNumberElement [ready]');
-            }}
-            onChange={(event) => {
-              console.log('CardNumberElement [change]', event);
-            }}
-            onBlur={() => {
-              console.log('CardNumberElement [blur]');
-            }}
-            onFocus={() => {
-              console.log('CardNumberElement [focus]');
-            }}
-          />
-        </label>
+      <form onSubmit={this.handleSubmit}>
+        {/*<CardElement />*/}
         <button type="submit" disabled={!stripe}>
           Pay
         </button>
       </form>
     );
   }
+}
+
+export const InjectedCheckoutForm = () => {
+  return (
+    <ElementsConsumer>
+      {({ elements, stripe }) => <CheckoutForm elements={elements} stripe={stripe} />}
+    </ElementsConsumer>
+  );
 };

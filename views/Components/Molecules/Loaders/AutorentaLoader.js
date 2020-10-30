@@ -10,6 +10,7 @@ class AutorentaLoader extends React.Component {
   }
 
   render() {
+    const { translate } = this.props;
     if (this.props.loader) {
       return (
         <div className="ar-loader-container">
@@ -18,7 +19,11 @@ class AutorentaLoader extends React.Component {
             <div className="circle" />
           </div>
           <div className="ar-text ar-blue-3-text">
-            <p>Estamos buscando las mejores ofertas de autos para las fechas escogidas.</p>
+            {this.props.loaderMessage === 'cancel' ? (
+              <p>{translate('common.loader.cancel')}</p>
+            ) : (
+              <p>{translate('common.loader.text')}</p>
+            )}
           </div>
         </div>
       );

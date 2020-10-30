@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import Router from 'next/router';
+import Error from '../views/Containers/Error';
+import { withTranslate } from 'react-redux-multilingual';
 
-export default class _error extends Component {
-  componentDidMount = () => {
-    Router.push('/');
-  };
+const _error = ({ translate }) => {
+  return <Error translate={translate} />;
+};
 
-  render() {
-    return <div />;
-  }
-}
+export default withTranslate(_error);

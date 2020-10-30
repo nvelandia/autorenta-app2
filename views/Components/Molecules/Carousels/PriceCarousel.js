@@ -38,12 +38,16 @@ class PriceCarousel extends React.Component {
           onExiting={() => this.setState({ animating: true })}
           onExited={() => this.setState({ animating: false })}
         >
-          <Row className="m-0">
-            {item[0]}
-            {item[1]}
-            {item[2]}
-            {item[3]}
-          </Row>
+          {!this.props.isMobile ? (
+            <Row className="m-0">
+              {item[0] ? item[0] : null}
+              {item[1] ? item[1] : null}
+              {item[2] ? item[2] : null}
+              {item[3] ? item[3] : null}
+            </Row>
+          ) : (
+            <Row className={`mx-0`}>{item[0] ? item[0] : null}</Row>
+          )}
         </CarouselItem>
       );
     });

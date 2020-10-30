@@ -37,8 +37,8 @@ class CustomDropDown extends React.Component {
             }`}
             color="asdas"
           >
-            <Row className="justify-content-between ar-pl-3 pr-3 align-items-center ">
-              <div className="tx-overflow-clip ws-nowrap mw-89">{this.state.value}</div>
+            <Row className="justify-content-between ar-dropdown-text-container align-items-center ">
+              <div className="tx-overflow-clip ws-nowrap mw-87 ar-dropdown-text">{this.state.value}</div>
               <span className="ar-icon-chevron-down fs-i--1 mt-i-1" />
             </Row>
           </DropdownToggle>
@@ -47,6 +47,7 @@ class CustomDropDown extends React.Component {
               if (typeof item === 'object') {
                 return (
                   <DropdownItem
+                    className="ws-break-space"
                     key={index}
                     id={index}
                     name={name}
@@ -59,7 +60,7 @@ class CustomDropDown extends React.Component {
               } else {
                 return (
                   <DropdownItem
-                    className="ls-3"
+                    className="ls-3 ws-break-space"
                     key={index}
                     id={index}
                     name={name}

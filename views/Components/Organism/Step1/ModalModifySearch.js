@@ -19,8 +19,16 @@ import {
 import classnames from 'classnames';
 import RangeDatePicker from '../../Atoms/RangeDatePicker';
 import CustomDropDown from '../../Atoms/CustomDropDown';
-import { isoStringToString, isoStringToStringTime } from '../../../../utils/helpers/dateHelpers';
+import {
+  isoStringToDateTime,
+  isoStringToDateWithTimeInText,
+  isoStringToString,
+  isoStringToStringTime,
+} from '../../../../utils/helpers/dateHelpers';
 import NotificationAlert from 'react-notification-alert';
+import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
+import { vehicleTypes } from '../../../../utils/constants/vehicleTypes';
+import GoogleModal from '../../Molecules/Modals/GoogleModal';
 
 class ModalModifySearch extends React.Component {
   constructor(props) {
@@ -30,6 +38,12 @@ class ModalModifySearch extends React.Component {
       placeToPickUpFocus: false,
       placeToDropOff: '',
       placeToDropOffFocus: false,
+      pickup_place_id: '',
+      pickup_latitude: '',
+      pickup_longitude: '',
+      dropoff_place_id: '',
+      dropoff_latitude: '',
+      dropoff_longitude: '',
       dateToPickUp: '',
       dateToDropOff: '',
       ageSelected: '',
@@ -37,22 +51,131 @@ class ModalModifySearch extends React.Component {
       iataToDropOff: '',
       timeToDropOff: '',
       timeToPickUp: '',
+      hydrated: false,
       error: {},
+      showGoogleModal: false,
     };
     this.dispatch = props.dispatch;
   }
 
-  handleOnSelect = (event, iata = null) => {
-    if (iata) {
+  handleOnSelect = (event, place = null) => {
+    if (place) {
+      const geocoder = new google.maps.Geocoder();
       if (event.target.name === 'placeToPickUp') {
-        this.setState({ [event.target.name]: event.target.value, iataToPickUp: iata });
+        geocoder.geocode({ placeId: place.place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            pickup_latitude: latitude,
+            pickup_longitude: longitude,
+            placeToPickUp: place.description,
+            pickup_place_id: place.place_id,
+            dropoff_place_id: place.place_id,
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: place.description,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
       } else {
-        this.setState({ [event.target.name]: event.target.value, iataToDropOff: iata });
+        geocoder.geocode({ placeId: place.place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: place.description,
+            dropoff_place_id: place.place_id,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
       }
     }
     this.setState({
       [event.target.name]: event.target.value,
       error: { ...this.state.error, [event.target.name]: false },
+    });
+  };
+
+  showGoogleModal = (name) => {
+    this.setState({ showGoogleModal: name });
+
+    if (name === 'placeToPickUp') {
+      if (this.state.pickup_latitude) {
+        this.dispatch(
+          this.props.searchLocation({
+            latitude: this.state.pickup_latitude.toString(),
+            longitude: this.state.pickup_longitude.toString(),
+          }),
+        );
+      } else {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ placeId: this.props.locations[0].place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            pickup_latitude: latitude,
+            pickup_longitude: longitude,
+            placeToPickUp: this.props.locations[0].description,
+            pickup_place_id: this.props.locations[0].place_id,
+            dropoff_place_id: this.props.locations[0].place_id,
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: this.props.locations[0].description,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
+      }
+    } else {
+      if (this.state.dropoff_latitude) {
+        this.dispatch(
+          this.props.searchLocation({
+            latitude: this.state.dropoff_latitude.toString(),
+            longitude: this.state.dropoff_longitude.toString(),
+          }),
+        );
+      } else {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ placeId: this.props.locations[0].place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            dropoff_place_id: this.props.locations[0].place_id,
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: this.props.locations[0].description,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
+      }
+    }
+  };
+
+  hideGoogleModal = () => {
+    this.setState({
+      showGoogleModal: false,
+      placeToPickUpFocus: false,
+      placeToDropOffFocus: false,
     });
   };
 
@@ -82,8 +205,20 @@ class ModalModifySearch extends React.Component {
   };
 
   handleOnChange = (event) => {
-    if (this.state.placeToPickUpFocus || this.state.placeToDropOffFocus) {
-      this.dispatch(this.props.searchLocation(event.target.value));
+    if (
+      this.state.placeToPickUpFocus ||
+      this.state.placeToDropOffFocus ||
+      event.target.name === 'placeToPickUp' ||
+      event.target.name === 'placeToDropOff'
+    ) {
+      // you can create autocompleteService as variable outside the function as well
+      const autocompleteService = new google.maps.places.AutocompleteService();
+
+      if (event.target.value !== '') {
+        autocompleteService.getPlacePredictions({ input: event.target.value }, (predictions, status) => {
+          this.dispatch(this.props.loadLocation(predictions));
+        });
+      }
       this.setState({ [event.target.name]: event.target.value });
     }
     this.setState({
@@ -94,14 +229,15 @@ class ModalModifySearch extends React.Component {
 
   handleSearchClick = () => {
     const body = {
-      pickup_location: this.state.iataToPickUp,
       pickup_date: this.state.dateToPickUp,
       pickup_time: this.state.timeToPickUp,
-      dropoff_location: this.state.iataToDropOff,
       dropoff_date: this.state.dateToDropOff,
       dropoff_time: this.state.timeToDropOff,
       passenger_country_id: this.props.searchParams.passenger_country_id,
       passenger_age: this.state.ageSelected,
+      vehicle_type: this.props.searchParams.vehicle_type,
+      pickup_place_id: this.state.pickup_place_id,
+      dropoff_place_id: this.state.dropoff_place_id,
     };
     if (Object.values(body).includes('') || Object.values(body).includes(0)) {
       const error = {};
@@ -113,44 +249,53 @@ class ModalModifySearch extends React.Component {
       this.setState({ error: error });
       this.notify('autorenta');
     } else {
-      this.dispatch(this.props.modifySearchFleet(body));
+      this.dispatch(this.props.showLoader());
+      redirectTo(
+        `${pages.step1}/${body.pickup_place_id}/${body.pickup_date}/${body.pickup_time}/${body.dropoff_place_id}/${body.dropoff_date}/${body.dropoff_time}/${body.passenger_country_id}/${body.passenger_age}/${body.vehicle_type}`,
+      );
     }
   };
 
   renderListGroup = (name) => {
+    const { translate } = this.props;
     const placesOptions = this.props.locations;
-    if (Array.isArray(placesOptions)) {
-      return (
-        <ListGroup className="ar-list-group">
-          {placesOptions.map((option) => {
-            return (
-              <ListGroupItem className="p-0 ar-list-item" action>
-                <Button
-                  className="ar-list-item d-flex align-items-center p-3 w-100 ws-pre"
-                  name={name}
-                  value={option.label}
-                  onMouseDown={(e) => this.handleOnSelect(e, option.iata)}
-                >
-                  {option.airport ? (
-                    <>
-                      <span className="ar-icon-plane ar-red-text fs-2" />
-                      &nbsp;{option.label}
-                    </>
-                  ) : (
-                    <>
-                      <span className="ar-icon-office ar-red-text fs-2" />
-                      &nbsp;{option.label}
-                    </>
-                  )}
-                </Button>
-              </ListGroupItem>
-            );
-          })}
-        </ListGroup>
-      );
-    } else {
-      return null;
+    if (placesOptions) {
+      if (placesOptions.length !== 0) {
+        return (
+          <ListGroup className="ar-list-group zi-1200">
+            {placesOptions.map((option, index) => {
+              return (
+                <ListGroupItem key={index} className="p-0 ar-list-item" action>
+                  <Button
+                    className="ar-list-item-button d-flex  w-100 "
+                    name={name}
+                    value={option.description}
+                    onMouseDown={(e) => this.handleOnSelect(e, option)}
+                  >
+                    <span className="ar-icon-location ar-light-blue-1-text fs-2" />
+                    {option.description}
+                  </Button>
+                </ListGroupItem>
+              );
+            })}
+            <ListGroupItem key={10} className="p-0 ar-list-item" action>
+              <Button
+                className="ar-list-item-button d-flex w-100 ar-red-text"
+                name={name}
+                value={1}
+                onMouseDown={() => this.showGoogleModal(name)}
+              >
+                <span className="ar-icon-location ar-red-text fs-2" />
+                {translate('home.makeYourReservation.findOnMap')}
+              </Button>
+            </ListGroupItem>
+          </ListGroup>
+        );
+      } else {
+        return null;
+      }
     }
+    return null;
   };
 
   notify = (type) => {
@@ -159,10 +304,9 @@ class ModalModifySearch extends React.Component {
       message: (
         <div className="alert-text">
           <span className="alert-title" data-notify="title">
-            {' '}
-            ¡Atención!
+            {this.props.translate('common.error.attention')}
           </span>
-          <span data-notify="message">Todos los campos son requeridos</span>
+          <span data-notify="message">{this.props.translate('common.error.completeAllFields')}</span>
         </div>
       ),
       type: type,
@@ -172,20 +316,80 @@ class ModalModifySearch extends React.Component {
     this.refs.notificationAlert.notificationAlert(options);
   };
 
+  handleSetLocation = (latitude, longitude, showModal, place, place_id) => {
+    if (showModal === 'placeToPickUp') {
+      this.setState({
+        pickup_latitude: latitude,
+        pickup_longitude: longitude,
+        pickup_place_id: place_id,
+        placeToPickUp: place,
+        dropoff_latitude: latitude,
+        dropoff_longitude: longitude,
+        dropoff_place_id: place_id,
+        placeToDropOff: place,
+      });
+    } else {
+      this.setState({
+        dropoff_latitude: latitude,
+        dropoff_longitude: longitude,
+        dropoff_place_id: place_id,
+        placeToDropOff: place,
+      });
+    }
+  };
   render() {
     const error = this.state.error;
+    const { translate, isMobile } = this.props;
+    if (!this.state.hydrated && this.props.result.locations.pickup) {
+      this.setState({
+        placeToPickUp: this.props.result.locations.pickup.formated_address,
+        placeToPickUpFocus: false,
+        placeToDropOff: this.props.result.locations.dropoff.formated_address,
+        placeToDropOffFocus: false,
+        dateToPickUp: this.props.result.locations.pickup.date,
+        timeToPickUp: this.props.result.locations.pickup.time,
+        dateToDropOff: this.props.result.locations.dropoff.date,
+        timeToDropOff: this.props.result.locations.dropoff.time,
+        ageSelected: this.props.searchParams.passenger_age,
+        pickup_latitude: this.props.searchParams.pickup_latitude,
+        pickup_longitude: this.props.searchParams.pickup_longitude,
+        dropoff_latitude: this.props.searchParams.dropoff_latitude,
+        dropoff_longitude: this.props.searchParams.dropoff_longitude,
+        hydrated: true,
+      });
+    }
+
     return (
       <Modal
         className="modal-dialog-centered ar-modal-aditional-information"
         isOpen={this.props.showModal}
         toggle={() => this.props.hideModal()}
       >
+        <GoogleModal
+          showModal={this.state.showGoogleModal}
+          translate={translate}
+          place={this.state.showGoogleModal === 'placeToPickUp' ? this.state.placeToPickUp : this.state.placeToDropOff}
+          error={this.state.error}
+          loadLocation={this.props.loadLocation}
+          hideModal={this.hideGoogleModal}
+          onChange={this.handleOnChange}
+          isMobile={isMobile}
+          renderListGroup={this.renderListGroup}
+          handleOnSelect={this.handleOnSelect}
+          searchLocation={this.props.searchLocation}
+          location={
+            this.state.showGoogleModal === 'placeToPickUp'
+              ? { lat: this.state.pickup_latitude, lng: this.state.pickup_longitude }
+              : { lat: this.state.dropoff_latitude, lng: this.state.dropoff_longitude }
+          }
+          onSetLocation={this.handleSetLocation}
+        />
         <div className="rna-wrapper">
           <NotificationAlert ref="notificationAlert" />
         </div>
         <div className="modal-header pb-0">
           <h6 className="modal-title mt-3 pl-1 mb-2" id="exampleModalLabel">
-            Modificar la búsqueda
+            {translate('step1.activeSearch.modifyModal.title')}
           </h6>
           <button
             aria-label="Close"
@@ -220,7 +424,7 @@ class ModalModifySearch extends React.Component {
                       name="placeToPickUp"
                       onChange={this.handleOnChange}
                       className="ar-round-input-right"
-                      placeholder="¿Dónde quieres retirar el vehículo?"
+                      placeholder={translate('home.makeYourReservation.placeToPickUp')}
                       value={this.state.placeToPickUp}
                       type="text"
                       autoComplete="off"
@@ -249,7 +453,7 @@ class ModalModifySearch extends React.Component {
                       name="placeToDropOff"
                       onChange={this.handleOnChange}
                       className="ar-round-input-right"
-                      placeholder="¿Dónde quieres entregar el vehículo?"
+                      placeholder={translate('home.makeYourReservation.placeToDropOff')}
                       type="text"
                       autoComplete="off"
                       value={this.state.placeToDropOff}
@@ -261,7 +465,14 @@ class ModalModifySearch extends React.Component {
                 </FormGroup>
               </Col>
               <Col lg="5" md="5">
-                <RangeDatePicker error={error} handleDate={this.handleDate} />
+                <RangeDatePicker
+                  error={error}
+                  handleDate={this.handleDate}
+                  defaultStartDate={isoStringToDateTime(this.state.dateToPickUp, this.state.timeToPickUp)}
+                  defaultEndDate={isoStringToDateTime(this.state.dateToDropOff, this.state.timeToDropOff)}
+                  translate={translate}
+                  isMobile={isMobile}
+                />
               </Col>
               <Col lg="2" md="6">
                 <FormGroup
@@ -271,7 +482,7 @@ class ModalModifySearch extends React.Component {
                 >
                   <CustomDropDown
                     name={'ageSelected'}
-                    title={'Edad'}
+                    title={this.props.searchParams.passenger_age}
                     items={['+25', '24', '23', '22', '21', '20', '19', '18']}
                     classes={'ar-dropdown-menu-age'}
                     handleSelect={this.handleOnSelect}
@@ -284,7 +495,7 @@ class ModalModifySearch extends React.Component {
                   color="red-0"
                   onClick={this.handleSearchClick}
                 >
-                  <span className="nav-link-inner--text">Modificar </span>
+                  <span className="nav-link-inner--text">{translate('step1.activeSearch.modify') + ' '}</span>
                   <span className="btn-inner--icon">
                     <span className="ar-icon-chevron-right" />
                   </span>
@@ -305,6 +516,8 @@ ModalModifySearch.propTypes = {
   modifySearch: PropTypes.func,
   searchLocation: PropTypes.func,
   modifySearchFleet: PropTypes.func,
+  showLoader: PropTypes.func,
+  loadLocation: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

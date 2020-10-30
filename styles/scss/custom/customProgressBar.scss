@@ -17,6 +17,14 @@
   &.ar-pendant{
     background-color: $ar-color-light-blue-0 !important;
   }
+  @media (max-width: $ar-mobile-size){
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.29rem solid $ar-color-white-3;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding-top: .05rem;
+  }
 }
 
 
@@ -24,6 +32,10 @@
 .ar-bar{
   margin-top: -1.9rem;
   margin-bottom: 2.3rem;
+  @media (max-width: $ar-mobile-size){
+    margin-top: -1.4rem;
+    margin-bottom: 1.8rem;
+  }
 }
 
 .ar-title-bar{
@@ -44,7 +56,9 @@
 }
 
 .ar-steps-bar{
+  margin-bottom: 1.5rem;
   @media (max-width: 520px) {
     margin-top: 15px;
+    margin-bottom: 1rem;
   }
 }

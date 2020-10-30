@@ -4,8 +4,8 @@ const defaultState = {
   car: {},
   location: {},
   countries: [],
-  searchParams: {},
-  organization: {},
+  airlines: [],
+  showPayOk: false,
   plan: {
     id: 0,
     title: 'Todo incluido',
@@ -42,6 +42,13 @@ const step3Reducer = (state = defaultState, action) => {
       return { ...state, countries: action.countries };
     case actionNames.searchReservationSuccessfully:
       return { ...state, car: action.cars, location: action.location, reservation: action.reservation };
+    case actionNames.loadAirlinesSuccessfully:
+      return {
+        ...state,
+        airlines: action.airlines,
+      };
+    case actionNames.payReservationSuccessfully:
+      return { ...state, showPayOk: true };
     default:
       return state;
   }

@@ -18,70 +18,177 @@ import ClientType from '../Components/Organism/Step2/ClientType';
 import Passenger from '../Components/Organism/Step2/Passenger';
 import AgencyOrCorporation from '../Components/Organism/Step2/AgencyOrCorporation';
 import { pages } from '../../utils/helpers/redirectTo';
-import { isServer } from '../../utils/helpers/isError';
+import { isMobile, isServer } from '../../utils/helpers/isError';
 
 class Step2 extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isMobile: false,
+    };
     this.dispatch = props.dispatch;
     this.handleOnLoad();
   }
 
   handleOnLoad = () => {
+    this.dispatch(generalActions.hideLoader());
     this.dispatch(actions.loadAirlines());
     if (!isServer()) {
+      this.dispatch(generalActions.addPageToHistory(window.location.pathname));
       window.scrollTo(0, 0);
     }
   };
 
+  componentDidMount() {
+    if (!this.state.isMobile && isMobile()) {
+      this.setState({ isMobile: true });
+    }
+  }
+
   render() {
-    this.dispatch(generalActions.hideLoader());
     const params = this.props.searchParams;
+    const { translate } = this.props;
+    const isMobile = this.state.isMobile;
+
     return (
       <>
-        <CustomNavBar />
+        <CustomNavBar translate={translate} isMobile={isMobile} />
         <StepsHeader
           step={2}
-          step1URL={`${pages.step1}/${params.pickup_location}/${params.pickup_date}/${params.pickup_time}/${params.dropoff_location}/${params.dropoff_date}/${params.dropoff_time}/${params.passenger_country_id}/${params.passenger_age}/${params.vehicle_type}`}
+          step1URL={`${pages.step1}/${params.pickup_place_id}/${params.pickup_date}/${params.pickup_time}/${params.dropoff_place_id}/${params.dropoff_date}/${params.dropoff_time}/${params.passenger_country_id}/${params.passenger_age}/${params.vehicle_type}`}
+          translate={translate}
+          isMobile={isMobile}
+          showLoader={() => this.dispatch(generalActions.showLoader())}
         />
-        <Row className="justify-content-center mt-4 ml-0 mr-0">
-          <div className="ar-central-container d-flex">
-            <Col>
-              <CarSelected car={this.props.carSelected} />
-              <div className="d-flex justify-content-between">
-                <LocationSelected location={this.props.location.pickup} title={'oficina de inicio'} />
-                <LocationSelected location={this.props.location.dropoff} title={'oficina de devolución'} />
-              </div>
-              <OptionalEquipment addOptionalEquipment={actions.addOptionalEquipment} />
-              <ClientType
-                clearValidateIdError={actions.clearValidateIdError}
-                selectClientType={actions.selectClientType}
-                validateId={actions.validateId}
-              />
-              {this.props.organization.organization_id ? (
-                <AgencyOrCorporation
-                  updateFormData={actions.updateFormData}
-                  validatePromotion={actions.validatePromotion}
+        {!isMobile ? (
+          <Row className="justify-content-center mt-4 ml-0 mr-0">
+            <div className="ar-central-container d-flex">
+              <Col>
+                <CarSelected car={this.props.carSelected} translate={translate} isMobile={isMobile} />
+                <div className="d-flex justify-content-between">
+                  <LocationSelected
+                    location={this.props.location.pickup}
+                    title={'oficina de inicio'}
+                    officeLocation={this.props.carSelected.pickup_office}
+                    translate={translate}
+                  />
+                  <LocationSelected
+                    location={this.props.location.dropoff}
+                    title={'oficina de devolución'}
+                    officeLocation={this.props.carSelected.dropoff_office}
+                    translate={translate}
+                  />
+                </div>
+                <OptionalEquipment
+                  addOptionalEquipment={actions.addOptionalEquipment}
+                  translate={translate}
+                  isMobile={isMobile}
                 />
-              ) : null}
-              {this.props.clientType === 'Pasajero / Cliente directo' ? (
-                <Passenger updateFormData={actions.updateFormData} />
-              ) : null}
-            </Col>
+                <ClientType
+                  clearValidateIdError={actions.clearValidateIdError}
+                  selectClientType={actions.selectClientType}
+                  validateId={actions.validateId}
+                  translate={translate}
+                  loadDiscount={actions.loadDiscount}
+                />
+                {this.props.organization.organization_id ? (
+                  <AgencyOrCorporation
+                    updateFormData={actions.updateFormData}
+                    validatePromotion={actions.validatePromotion}
+                    translate={translate}
+                    clearValidateIdError={actions.clearValidateIdError}
+                    isMobile={isMobile}
+                  />
+                ) : null}
+                {this.props.clientType === 'Pasajero / Cliente directo' ? (
+                  <Passenger
+                    updateFormData={actions.updateFormData}
+                    validatePromotion={actions.validatePromotion}
+                    clearValidateIdError={actions.clearValidateIdError}
+                    translate={translate}
+                    isMobile={isMobile}
+                  />
+                ) : null}
+              </Col>
+              <div className="ar-card-details">
+                <Details
+                  createReservationSuccessfully={actions.createReservationSuccessfully}
+                  changePlan={actions.changePlan}
+                  confirmReservation={actions.confirmReservation}
+                  validatePromotion={actions.validatePromotion}
+                  setErrors={actions.setErrors}
+                  translate={translate}
+                  showLoader={generalActions.showLoader}
+                  clearValidateIdError={actions.clearValidateIdError}
+                  isMobile={isMobile}
+                />
+              </div>
+            </div>
+          </Row>
+        ) : (
+          <Col className="px-3">
+            <CarSelected car={this.props.carSelected} translate={translate} isMobile={isMobile} />
+            <LocationSelected
+              location={this.props.location.pickup}
+              title={'oficina de inicio'}
+              officeLocation={this.props.carSelected.pickup_office}
+              translate={translate}
+            />
+            <LocationSelected
+              location={this.props.location.dropoff}
+              title={'oficina de devolución'}
+              officeLocation={this.props.carSelected.dropoff_office}
+              translate={translate}
+            />
+            <OptionalEquipment
+              addOptionalEquipment={actions.addOptionalEquipment}
+              translate={translate}
+              isMobile={isMobile}
+            />
+            <ClientType
+              clearValidateIdError={actions.clearValidateIdError}
+              selectClientType={actions.selectClientType}
+              validateId={actions.validateId}
+              translate={translate}
+              loadDiscount={actions.loadDiscount}
+            />
+            {this.props.organization.organization_id ? (
+              <AgencyOrCorporation
+                updateFormData={actions.updateFormData}
+                validatePromotion={actions.validatePromotion}
+                translate={translate}
+                clearValidateIdError={actions.clearValidateIdError}
+                isMobile={isMobile}
+              />
+            ) : null}
+            {this.props.clientType === 'Pasajero / Cliente directo' ? (
+              <Passenger
+                updateFormData={actions.updateFormData}
+                validatePromotion={actions.validatePromotion}
+                clearValidateIdError={actions.clearValidateIdError}
+                translate={translate}
+                isMobile={isMobile}
+              />
+            ) : null}
             <div className="ar-card-details">
               <Details
                 createReservationSuccessfully={actions.createReservationSuccessfully}
                 changePlan={actions.changePlan}
                 confirmReservation={actions.confirmReservation}
+                validatePromotion={actions.validatePromotion}
+                setErrors={actions.setErrors}
+                translate={translate}
+                isMobile={isMobile}
+                showLoader={generalActions.showLoader}
+                clearValidateIdError={actions.clearValidateIdError}
               />
             </div>
-          </div>
-        </Row>
-        <Banner />
-        <CustomFooter />
+          </Col>
+        )}
+        {!isMobile ? <Banner translate={translate} /> : <></>}
+        <CustomFooter translate={translate} isMobile={isMobile} />
         <UpToTop />
-        <AutorentaLoader />
+        <AutorentaLoader translate={translate} isMobile={isMobile} />
       </>
     );
   }

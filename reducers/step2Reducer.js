@@ -5,6 +5,7 @@ const defaultState = {
   location: {},
   searchParams: {},
   rateSelected: '',
+  discount: {},
   plans: [
     {
       id: 0,
@@ -140,26 +141,13 @@ const defaultState = {
       },
     ],
   },
-  optionalEquipment: {
-    others: [
-      { name: 'Radio Satelital XM', price: '16.99', added: false },
-      { name: 'Asistencia en la carretera', price: '7.99', added: false },
-      { name: 'Navegador satelital', price: '19.00', added: false },
-      { name: 'Conductor adicional', price: '13.00', added: false },
-      { name: 'Cobertura LDW', price: '34.99', added: false },
-      { name: 'Cobertura ALI', price: '16.37', added: false },
-    ],
-    additionalSeats: [
-      { name: 'Asiento para bebés', price: '14.00', quantity: 0, added: false },
-      { name: 'Asiento para niños', price: '14.00', quantity: 0, added: false },
-      { name: 'Asiento elevador para niños', price: '14.00', quantity: 0, added: false },
-    ],
-  },
+  optionalEquipment: [],
   clientType: '',
   airlines: [],
   organization: {},
   error: {},
   formData: {},
+  customerDiscount: {},
 };
 
 const step2Reducer = (state = defaultState, action) => {
@@ -170,36 +158,36 @@ const step2Reducer = (state = defaultState, action) => {
         plan: action.plan,
         rateSelected: action.rateSelected,
       };
-    case actionNames.selectCar:
+    case actionNames.selectCarSuccessfully:
       return {
-        ...state,
+        ...defaultState,
         carSelected: action.car,
         location: action.location,
         searchParams: action.searchParams,
         rateSelected: action.rateSelected,
+        clientType: action.clientType ? action.clientType : '',
       };
     case actionNames.addOptionalEquipment:
-      if (action.others) {
-        return {
-          ...state,
-          optionalEquipment: { ...state.optionalEquipment, others: action.optionalEquipment },
-        };
-      } else {
-        return {
-          ...state,
-          optionalEquipment: { ...state.optionalEquipment, additionalSeats: action.optionalEquipment },
-        };
-      }
+      return {
+        ...state,
+        optionalEquipment: action.optionalEquipment,
+      };
     case actionNames.selectClientType:
       return {
         ...state,
         clientType: action.clientType,
         organization: {},
+        error: {},
       };
     case actionNames.loadAirlinesSuccessfully:
       return {
         ...state,
         airlines: action.airlines,
+      };
+    case actionNames.loadDiscountSuccessfully:
+      return {
+        ...state,
+        customerDiscount: action.customerDiscount,
       };
     case actionNames.validateIdSuccessfully:
       return {
@@ -213,6 +201,14 @@ const step2Reducer = (state = defaultState, action) => {
         error: { validationId: 'Ingresa un número de ID válido' },
       };
     case actionNames.updateFormData:
+      if (Object.keys(action.data)[0] === 'airline_iata' && Object.values(action.data)[0] === '') {
+        const newFormData = { ...state.formData };
+        delete newFormData.airline_iata;
+        return {
+          ...state,
+          formData: newFormData,
+        };
+      }
       return {
         ...state,
         formData: {
@@ -228,9 +224,19 @@ const step2Reducer = (state = defaultState, action) => {
     case actionNames.validatePromotionSuccessfully:
       return {
         ...state,
-        formData: {
-          ...state.formData,
-        },
+        discount: action.cars[0].rates[0],
+        searchParams: action.searchParams,
+      };
+    case actionNames.validatePromotionUnsuccessfully:
+      return {
+        ...state,
+        discount: {},
+        error: { validationPromotion: 'Ingresa un número de cupón o código promocional válido' },
+      };
+    case actionNames.setErrorsStep2:
+      return {
+        ...state,
+        error: action.errors,
       };
     default:
       return state;
@@ -238,3 +244,5 @@ const step2Reducer = (state = defaultState, action) => {
 };
 
 export default step2Reducer;
+
+//ver de meter variable para vlaidar si se busco promotion, que el selectedRate sea 0

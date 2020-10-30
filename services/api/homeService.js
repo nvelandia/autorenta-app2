@@ -1,16 +1,16 @@
 // eslint-disable-next-line import/no-cycle
 import Api from './api';
+import GoogleApi from './googleApi';
 import homeAdapter from '../adapter/homeAdapter';
 
 class homeService {
   searchLocation = async (body) => {
     let searchResponse;
     try {
-      searchResponse = await Api.post('locations/find', body);
+      searchResponse = await Api.post('locations/offices_near', body);
     } catch (err) {
       searchResponse = err;
     }
-
     return homeAdapter.searchLocation(searchResponse);
   };
 
@@ -34,6 +34,17 @@ class homeService {
     }
 
     return homeAdapter.loadOffers(loadResponse);
+  };
+
+  loadBanners = async (body) => {
+    let loadResponse;
+    try {
+      loadResponse = await Api.post('common/banners', body);
+    } catch (err) {
+      loadResponse = err;
+    }
+
+    return homeAdapter.loadBanners(loadResponse);
   };
 
   searchFleet = async (body) => {

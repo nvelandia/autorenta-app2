@@ -15,15 +15,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import * as classnames from 'classnames';
 import CountryDropdown from '../../Molecules/dropdowns/CountryDropdown';
+import { Elements } from '@stripe/react-stripe-js';
+import CreditCardPayment from './CreditCardPayment';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(
+  'pk_test_51Gr3HzJLMLJITI9DZyz3oQkB9pLy0N42fdYnRwA7agn8OEIHb0kfLnsjQvGfHiKSaE3YWu7nNf2UfZ8fg2nkjsBv009JbIH8IV',
+);
 
 class AgencyOrOrganizationPayment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      paymentWay: '',
-      countrySelected: '',
-      cardNumber: '',
-      cardNumberFocus: false,
+      paymentWay: 'creditCard',
       paymentWaySelected: false,
       payed: false,
       error: {},
@@ -58,39 +62,46 @@ class AgencyOrOrganizationPayment extends React.Component {
 
   render() {
     const error = this.state.error;
+    const { translate } = this.props;
     return (
       <>
         <Card className="card-frame ar-payment-2">
           <div className="ar-payment-info">
             <div className="ar-payment-info-left">
               <i className="ar-icon-total-price" />
-              <h6>Valor total de la renta:</h6>
-              <strong>USD 1356.00</strong>
+              <h6>{translate('step3.agencyOrOrganizationPayment.reservationValue')}</h6>
+              <strong>USD {this.props.reservation.total}</strong>
             </div>
             <div className="ar-payment-info-center">
               <i className="ar-icon-comission" />
-              <h6>Descuento AutoRenta (sólo prepago):</h6>
-              <strong>15% (USD 203.40)</strong>
+              {this.props.reservation.organization.type === 1 ? (
+                <h6>{translate('step3.agencyOrOrganizationPayment.commission')}</h6>
+              ) : (
+                <h6>{translate('step3.agencyOrOrganizationPayment.discount')}</h6>
+              )}
+              <strong>15% (USD {(parseFloat(this.props.reservation.total) * 0.15).toFixed(2)})</strong>
             </div>
             <div className="ar-payment-info-right">
               <i className="ar-icon-net-payment" />
-              <h6>Neto a pagar (sólo prepago):</h6>
-              <strong>USD 1152.60</strong>
+              <h6>{translate('step3.agencyOrOrganizationPayment.neto')}</h6>
+              <strong>USD {(parseFloat(this.props.reservation.total) * 0.85).toFixed(2)}</strong>
             </div>
           </div>
         </Card>
         <Card className="card-frame ar-payment-2">
           <div className="ar-payment-options-container">
-            {!this.state.payed ? (
+            {!this.props.showPayOk ? (
               !this.state.paymentWaySelected ? (
                 <Card className="ar-payment-options-card ar-red-border shadow-none">
                   <div className="ar-payment-option-card-header">
                     <i className="ar-icon-online-payment ar-red-text" />
-                    <h5 className="ar-red-text">Pagar esta reserva con tarjeta de crédito</h5>
-                    <h6>El voucher y la factura se enviarán por E-mail y se cargarán en su perfil de usuario.</h6>
+                    <h5 className="ar-red-text">{translate('step3.agencyOrOrganizationPayment.titleReservation1')}</h5>
+                    <h6>{translate('step3.agencyOrOrganizationPayment.titleReservation2')}</h6>
                   </div>
                   <div className="ar-payment-option-card-body">
-                    <h6 className="ar-payment-radios-button-title">Seleccione el método de pago:</h6>
+                    <h6 className="ar-payment-radios-button-title">
+                      {translate('step3.agencyOrOrganizationPayment.choose')}
+                    </h6>
                     <div className="ar-payment-radios-button-container">
                       <div className="custom-control custom-radio ">
                         <input
@@ -98,10 +109,11 @@ class AgencyOrOrganizationPayment extends React.Component {
                           name={'paymentWay'}
                           id={'1'}
                           type="radio"
+                          checked={this.state.paymentWay === 'creditCard'}
                           onClick={() => this.handleOnChangePaymentWay('creditCard')}
                         />
                         <label className="custom-control-label ar-payment-radio-button" htmlFor="1">
-                          Pagar con Tarjeta de Crédito / Débito
+                          {translate('step3.payment.creditCard')}
                         </label>
                       </div>
                       <div className="custom-control custom-radio">
@@ -110,6 +122,7 @@ class AgencyOrOrganizationPayment extends React.Component {
                           name={'paymentWay'}
                           id={'2'}
                           type="radio"
+                          checked={this.state.paymentWay === 'PayPal'}
                           onClick={() => this.handleOnChangePaymentWay('PayPal')}
                         />
                         <label className="custom-control-label ar-payment-radio-button" htmlFor="2">
@@ -125,173 +138,31 @@ class AgencyOrOrganizationPayment extends React.Component {
                       type="button"
                       onClick={() => this.handleNextClick()}
                     >
-                      Siguiente
+                      {translate('step3.agencyOrOrganizationPayment.next')}
                       <i className="ar-icon-chevron-right" />
                     </Button>
                   </div>
                 </Card>
-              ) : this.state.paymentWay === 'creditCard' ? (
-                <Card className="ar-payment-options-card ar-red-border shadow-none">
-                  <div className="ar-payment-option-card-header">
-                    <i className="ar-icon-online-payment ar-red-text" />
-                    <h5 className="ar-red-text">Pagar esta reserva con tarjeta de crédito</h5>
-                    <h6>El voucher y la factura se enviarán por E-mail y se cargarán en su perfil de usuario.</h6>
-                  </div>
-                  <div className="ar-payment-option-card-body bg-ar-white-0 p-0 mt-0 mb-0">
-                    <div className="ar-payment-form-credit-card-2">
-                      <FormGroup
-                        className={classnames(
-                          {
-                            focused: this.state.cardNumberFocus,
-                          },
-                          'ar-card-form-input-container w-100',
-                        )}
-                      >
-                        <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                          <Input
-                            name="cardNumber"
-                            onChange={this.handleOnChange}
-                            className=" ar-round-input-left ar-card-form-input"
-                            placeholder="Número de la tarjeta"
-                            value={this.state.cardNumber}
-                            type="text"
-                            autoComplete="off"
-                            onFocus={() => this.setState({ cardNumberFocus: true })}
-                            onBlur={() => this.setState({ cardNumberFocus: false })}
-                          />
-                          <InputGroupAddon addonType="append">
-                            <InputGroupText className="ar-round-input-right">
-                              <img src="/img/custom/step3/amex-card.png" />
-                              <img src="/img/custom/step3/visa-card.jpg" />
-                              <img src="/img/custom/step3/master-card.jpg" />
-                              <img src="/img/custom/step3/visa-electron-card.jpg" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                        </InputGroup>
-                      </FormGroup>
-                      <Row className="m-0">
-                        <FormGroup
-                          className={classnames(
-                            {
-                              focused: this.state.securityCodeFocus,
-                            },
-                            'ar-payment-security-code',
-                          )}
-                        >
-                          <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                            <Input
-                              name="securityCode"
-                              onChange={this.handleOnChange}
-                              className=" ar-round-input ar-card-form-input"
-                              placeholder="CVC (código de seguridad)"
-                              value={this.state.securityCode}
-                              type="text"
-                              autoComplete="off"
-                              onFocus={() => this.setState({ securityCodeFocus: true })}
-                              onBlur={() => this.setState({ securityCodeFocus: false })}
-                            />
-                          </InputGroup>
-                        </FormGroup>
-                        <FormGroup
-                          className={classnames(
-                            {
-                              focused: this.state.expirationDateFocus,
-                            },
-                            'ar-payment-expiration-date',
-                          )}
-                        >
-                          <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                            <Input
-                              name="expirationDate"
-                              onChange={this.handleOnChange}
-                              className=" ar-round-input ar-card-form-input"
-                              placeholder="MM/AAAA"
-                              value={this.state.expirationDate}
-                              type="text"
-                              autoComplete="off"
-                              onFocus={() => this.setState({ expirationDateFocus: true })}
-                              onBlur={() => this.setState({ expirationDateFocus: false })}
-                            />
-                          </InputGroup>
-                        </FormGroup>
-                      </Row>
-                      <Row className="m-0">
-                        <FormGroup
-                          className={classnames(
-                            {
-                              focused: this.state.countrySelected,
-                            },
-                            'ar-select-country-container',
-                          )}
-                        >
-                          <CountryDropdown
-                            items={this.props.countries}
-                            title={'País'}
-                            color={'white-0'}
-                            name={'countrySelected'}
-                            classes={'ar-select-country'}
-                            handleOnSelect={this.handleOnSelect}
-                          />
-                        </FormGroup>
-                        <FormGroup
-                          className={classnames(
-                            {
-                              focused: this.state.postalCodeFocus,
-                            },
-                            'ar-payment-postal-code',
-                          )}
-                        >
-                          <InputGroup className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1">
-                            <Input
-                              name="postalCode"
-                              onChange={this.handleOnChange}
-                              className=" ar-round-input ar-card-form-input"
-                              placeholder="Códigal postal"
-                              value={this.state.postalCode}
-                              type="text"
-                              autoComplete="off"
-                              onFocus={() => this.setState({ postalCodeFocus: true })}
-                              onBlur={() => this.setState({ postalCodeFocus: false })}
-                            />
-                          </InputGroup>
-                        </FormGroup>
-                      </Row>
-                    </div>
-                  </div>
-                  <div className="ar-payment-option-card-footer">
-                    <div className="ar-payment-next-back-2">
-                      <Button
-                        className="btn-icon ar-round-button ar-payment-button-now box-shadow"
-                        color="red-0"
-                        type="button"
-                      >
-                        Pagar ahora
-                        <i className="ar-icon-chevron-right" />
-                      </Button>
-                      <Button
-                        className="btn-icon ar-round-button ar-payment-button-back-2 shadow-none"
-                        color="white-0"
-                        type="button"
-                        onClick={() => this.handleBackClick()}
-                      >
-                        <i className="ar-icon-return" />
-                        Volver
-                      </Button>
-                    </div>
-                  </div>
-                </Card>
+              ) : this.state.paymentWaySelected && this.state.paymentWay === 'creditCard' ? (
+                <Elements stripe={stripePromise}>
+                  <CreditCardPayment
+                    handleBackClick={this.handleBackClick}
+                    payReservation={this.props.payReservation}
+                    translate={translate}
+                  />
+                </Elements>
               ) : (
                 <Card className="ar-payment-options-card ar-red-border shadow-none">
                   <div className="ar-payment-option-card-header">
                     <i className="ar-icon-online-payment ar-red-text" />
-                    <h5 className="ar-red-text">Pagar esta reserva con tarjeta de crédito</h5>
-                    <h6>El voucher y la factura se enviarán por E-mail y se cargarán en su perfil de usuario.</h6>
+                    <h5 className="ar-red-text">{translate('step3.agencyOrOrganizationPayment.titleReservation1')}</h5>
+                    <h6>{translate('step3.agencyOrOrganizationPayment.titleReservation2')}</h6>
                   </div>
                   <div className="ar-payment-option-card-body bg-ar-white-0 p-0 mt-0 mb-0">
                     <div className="ar-payment-form-paypal-2">
                       <div className="ar-payment-paypal-img-container">
                         <img src="/svg/step3/paypal-logo-white.svg" alt="PayPal" />
-                        <h6>Ingresa los datos de tu cuenta</h6>
+                        <h6>{translate('step3.payment.account')}</h6>
                       </div>
                       <FormGroup
                         className={classnames(
@@ -306,7 +177,7 @@ class AgencyOrOrganizationPayment extends React.Component {
                             name="email"
                             onChange={this.handleOnChange}
                             className=" ar-round-input ar-card-form-input"
-                            placeholder="Direccion de E-mail"
+                            placeholder={translate('step3.payment.email')}
                             value={this.state.email}
                             type="text"
                             autoComplete="off"
@@ -328,7 +199,7 @@ class AgencyOrOrganizationPayment extends React.Component {
                             name="password"
                             onChange={this.handleOnChange}
                             className=" ar-round-input ar-card-form-input"
-                            placeholder="Contraseña"
+                            placeholder={translate('step3.payment.password')}
                             value={this.state.password}
                             type="password"
                             autoComplete="off"
@@ -346,7 +217,7 @@ class AgencyOrOrganizationPayment extends React.Component {
                         color="red-0"
                         type="button"
                       >
-                        Iniciar sesión
+                        {translate('step3.payment.login')}
                         <i className="ar-icon-chevron-right" />
                       </Button>
                       <Button
@@ -356,34 +227,34 @@ class AgencyOrOrganizationPayment extends React.Component {
                         onClick={() => this.handleBackClick()}
                       >
                         <i className="ar-icon-return" />
-                        Volver
+                        {translate('step3.payment.back')}
                       </Button>
                     </div>
                   </div>
                 </Card>
               )
             ) : (
-              <Card className="card-frame ar-payment-card-payed-2 shadow-none">
+              <Card className="card-frame ar-payment-card-payed-2 shadow-none fade-in">
                 <i className="ar-icon-plan-selected" />
-                <h1>¡Pago exitoso!</h1>
+                <h1>{translate('step3.payment.payOk')}</h1>
               </Card>
             )}
             <Card className="ar-payment-options-card shadow-none">
               <div className="ar-payment-option-card-header">
                 <i className="ar-icon-bank-transfer ar-light-blue-3-text" />
-                <h5 className="ar-gray-2-text">Para pagar con una transferencia bancaria</h5>
-                <h6>Realiza un depósito o transferencia a la siguiente cuenta bancaria.</h6>
+                <h5 className="ar-gray-2-text">{translate('step3.agencyOrOrganizationPayment.bankTitle')}</h5>
+                <h6>{translate('step3.agencyOrOrganizationPayment.bankSubtitle')}</h6>
               </div>
               <div className="ar-payment-option-card-body">
-                <h6>Banco: Wells Fargo</h6>
-                <h6>Número de cuenta: 756896476</h6>
-                <h6>Número de ruta: Giros Electrónicos: 1548281</h6>
-                <h6>Depósitos directos: 065607879</h6>
-                <h6>SWIFT: 81821814-ABA: 847519919</h6>
+                <h6>{translate('step3.agencyOrOrganizationPayment.bank')}Wells Fargo</h6>
+                <h6>{translate('step3.agencyOrOrganizationPayment.accountNumber')}756896476</h6>
+                <h6>{translate('step3.agencyOrOrganizationPayment.routeNumber')}1548281</h6>
+                <h6>{translate('step3.agencyOrOrganizationPayment.deposit')}065607879</h6>
+                <h6>{translate('step3.agencyOrOrganizationPayment.swift')}81821814-ABA: 847519919</h6>
               </div>
               <div className="ar-payment-option-card-footer">
                 <div className="ar-payment-footer-text">
-                  <h6>Luego, envía el comprobante electrónico por E-mail a:</h6>
+                  <h6>{translate('step3.agencyOrOrganizationPayment.message')}</h6>
                   <h5>pagos@autorenta.com</h5>
                 </div>
               </div>
@@ -391,20 +262,16 @@ class AgencyOrOrganizationPayment extends React.Component {
             <Card className="ar-payment-options-card shadow-none">
               <div className="ar-payment-option-card-header">
                 <i className="ar-icon-pay-on-destination ar-light-blue-3-text" />
-                <h5 className="ar-gray-2-text">Para pagar esta reserva en destino (POD)</h5>
-                <h6>Dirígete a la oficina de la compañía rentadora y menciona el número de esta reserva.</h6>
+                <h5 className="ar-gray-2-text">{translate('step3.payment.text1')}</h5>
+                <h6>{translate('step3.payment.text2')}</h6>
               </div>
               <div className="ar-payment-option-card-body">
-                <h6 className="ar-payment-text-data">
-                  El conductor titular deberá mostrar una licencia de válida y una tarjeta de crédito internacional a su
-                  nombre al momento de retirar el vehículo. Sobre la misma, la compañía rentadora realizará el bloqueo
-                  correspondiente a modo de garantía.
-                </h6>
+                <h6 className="ar-payment-text-data">{translate('step3.payment.text3')}</h6>
               </div>
               <div className="ar-payment-option-card-footer">
                 <div className="ar-payment-footer-text">
-                  <h6>Presenta en el mostrador el número de reserva:</h6>
-                  <h5>26458978MX1</h5>
+                  <h6>{translate('step3.payment.reservationNumber')}</h6>
+                  <h5>{this.props.reservation.code}</h5>
                 </div>
               </div>
             </Card>
@@ -419,6 +286,7 @@ AgencyOrOrganizationPayment.propTypes = {
   dispatch: PropTypes.func,
   image: PropTypes.string,
   loadCountries: PropTypes.func,
+  payReservation: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

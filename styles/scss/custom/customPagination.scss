@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
   margin-top: 30px;
+  @media (max-width: $ar-mobile-size){
+    margin-bottom: 10px;
+  }
   @media (min-width: $ar-big-size) {
     margin: -15px 0 35px 0;
   }

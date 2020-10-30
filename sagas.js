@@ -3,11 +3,18 @@ import { all, call, delay, put, take, takeLatest } from 'redux-saga/effects';
 //import 'isomorphic-unfetch'
 
 import { actionNames } from './utils/constants/actionConstants';
-import { loadCountries, searchLocation, loadOffers, searchFleet } from './redux-saga/HomeSaga';
+import { loadCountries, searchLocation, loadOffers, searchFleet, loadBanners } from './redux-saga/HomeSaga';
 import { searchReservation, subscribeToNewsletter } from './redux-saga/GeneralSagas';
-import { modifySearchFleet } from './redux-saga/Step1Saga';
-import { loadAirlines, validateId, confirmReservation, validatePromotion } from './redux-saga/Step2Saga';
-import { cancelReservation } from './redux-saga/Step3Saga';
+import { modifySearchFleet, selectCar, seeBaseRateDetails } from './redux-saga/Step1Saga';
+import {
+  loadAirlines,
+  validateId,
+  confirmReservation,
+  validatePromotion,
+  changePlan,
+  loadDiscount,
+} from './redux-saga/Step2Saga';
+import { cancelReservation, payReservation } from './redux-saga/Step3Saga';
 
 //es6promise.polyfill();
 
@@ -17,18 +24,24 @@ const saga = [
   takeLatest(actionNames.loadCountries, loadCountries),
   takeLatest(actionNames.loadOffers, loadOffers),
   takeLatest(actionNames.searchFleet, searchFleet),
+  takeLatest(actionNames.loadBanners, loadBanners),
   //General
   takeLatest(actionNames.subscribeNewsletter, subscribeToNewsletter),
   takeLatest(actionNames.searchReservation, searchReservation),
   //Step1
   takeLatest(actionNames.modifySearchFleet, modifySearchFleet),
+  takeLatest(actionNames.selectCar, selectCar),
+  takeLatest(actionNames.seeBaseRateDetails, seeBaseRateDetails),
   //Step2
   takeLatest(actionNames.loadAirlines, loadAirlines),
   takeLatest(actionNames.validateId, validateId),
   takeLatest(actionNames.confirmReservation, confirmReservation),
   takeLatest(actionNames.validatePromotion, validatePromotion),
+  takeLatest(actionNames.changePlan, changePlan),
+  takeLatest(actionNames.loadDiscount, loadDiscount),
   //Step3
   takeLatest(actionNames.cancelReservation, cancelReservation),
+  takeLatest(actionNames.payReservation, payReservation),
 ];
 
 export default function* rootSaga() {

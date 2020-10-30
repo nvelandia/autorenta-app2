@@ -3,6 +3,9 @@
     font-size: 0.75rem;
     margin-bottom: 0;
   }
+  @media (max-width: $ar-small-size){
+    padding-top: 20px;
+  }
   @media (min-width: $ar-normal-size) and (max-width: $ar-big-size){
     h5{
       font-size: 0.75rem;
@@ -42,6 +45,11 @@
 .ar-filter-main-title{
   color: $ar-color-blue-0;
   font-weight: 600;
+  @media(max-width: $ar-mobile-size){
+    i{
+      cursor: pointer;
+    }
+  }
   @media (min-width: $ar-normal-size) and (max-width: $ar-big-size){
     font-size: 1em;
   }
@@ -50,3 +58,50 @@
   }
 }
 
+.ar-faq-collapse{
+  .ar-faq-collapse-main-titles{
+    margin: 2rem 2.5rem;
+    h1{
+      color: $ar-color-red-0;
+      font-size: 1.5rem;
+    }
+    h6{
+      font-size: .9rem;
+    }
+  }
+  .ar-faq-collapse-options-container{
+    margin: 0 2.5rem;
+  }
+
+}
+
+.ar-filter-button{
+  @media(max-width: $ar-small-size){
+    margin: auto;
+    font-size: .7em;
+    border: 2px solid #7fccbc;
+    border-radius: 30px !important;
+    height: auto;
+    padding: 0.65em 0;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: #7fccbc;
+    font-weight: bold;
+    background-color: transparent;
+    &:hover, &:active, &:focus{
+      margin: auto;
+      font-size: .7em;
+      border: 2px solid #7fccbc;
+      border-radius: 30px !important;
+      height: auto;
+      padding: 0.65em 0;
+      width: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      color: #7fccbc;
+      font-weight: bold;
+      background-color: transparent;
+    }
+  }
+}

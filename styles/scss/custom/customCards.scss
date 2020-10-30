@@ -8,6 +8,9 @@
   font-size: 14px;
   padding: 0;
   font-weight: 600;
+  @media (max-width: $ar-mobile-size){
+    font-size: 20px;
+  }
 
   @media (min-width: 1200px) and (max-width: 1471px) {
     font-size: 16px;
@@ -34,6 +37,10 @@
     width: 100%;
     border-top-left-radius: 0.4rem;
     border-top-right-radius: 0.4rem;
+    @media (max-width: $ar-small-size){
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+    }
   }
   .ar-logo{
     border-radius: 11px;
@@ -42,6 +49,9 @@
     position: absolute;
     top: 5%;
     left: 5%;
+    @media (max-width: $ar-small-size){
+      height: auto !important;
+    }
   }
   .ar-border-image-offer{
     width: 100%;
@@ -63,9 +73,15 @@
 }
 
 .ar-card-body-offer{
-  padding: 1.1em 1.9em 2em 1.9em;
   @media (min-width: 1700px){
-    padding: 1.0rem 1.8rem 2.1rem 1.8rem;
+    padding: .7rem 1.5rem 2.0rem 1.5rem;
+  }
+}
+
+.ar-offer-card{
+  padding: 0 1.1rem;
+  @media (max-width: $ar-mobile-size){
+    padding: 0 25px;
   }
 }
 
@@ -76,12 +92,16 @@
     border-bottom-width: thin;
     margin: 0;
     height: 80px;
+    @media (max-width: $ar-mobile-size){
+      border: none;
+    }
+
     @media (min-width: $ar-big-size){
       height: 110px;
     }
     .ar-car-top-left{
       padding: 0;
-      width: 47%;
+      width: 49%;
       display: flex;
       height: 100%;
       .ar-car-company-logo{
@@ -91,17 +111,17 @@
         border-right: solid;
         border-right-color: #ececec;
         border-right-width: thin;
-        padding: 0 2.65rem;
+        padding: 0 1.8rem;
         img{
           width: 100%;
         }
         @media (min-width: $ar-big-size){
-          padding: 0 3.5rem;
+          padding: 0 2.3rem;
         }
       }
       .ar-car-type{
         padding-left: 2rem;
-        width: 55%;
+        width: 90%;
         display: flex;
         align-items: flex-start;
         justify-content: center;
@@ -118,7 +138,7 @@
         @media (min-width: $ar-big-size){
           h3{
             margin: 0;
-            font-size: 1.3em;
+            font-size: 1.2em;
           }
           h6{
             font-size: 0.8em;
@@ -127,20 +147,19 @@
         }
       }
     }
-
     .ar-car-features{
       padding: 1rem 0;
-      width: 53%;
+      width: 51%;
       @media (min-width: $ar-big-size){
         padding: 1.4rem 0;
       }
       .ar-car-features-group{
-        padding: 0 .9em;
+        padding: 0 .7em;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         @media (min-width: $ar-big-size){
-          padding: 0 1.2em;
+          padding: 0 1em;
         }
         .ar-car-feature-item {
           display: flex;
@@ -151,7 +170,7 @@
 
           h6 {
             color: $ar-color-blue-0;
-            margin: 0 0 0 0.4em;
+            margin: 0 0 0 0.3em;
             font-weight: 500;
             font-size: .75em;
           }
@@ -179,9 +198,13 @@
   }
   .ar-car-bottom{
     margin: 0;
+    @media (max-width: $ar-mobile-size){
+
+    }
     @media (min-width: $ar-big-size) {
       height: 300px;
     }
+
     .ar-car-left{
       width: 47%;
       border-right: solid;
@@ -307,6 +330,9 @@
     }
     .ar-car-right{
       width: 53%;
+      @media (max-width: $ar-mobile-size){
+        width: 100%;
+      }
       .ar-car-chevron{
         position: absolute;
         width: calc(53% + 2.1rem);
@@ -316,6 +342,11 @@
         justify-content: space-between;
         align-items: center;
         font-size: 0.5rem;
+        @media (max-width: $ar-mobile-size){
+          margin-left: - 1.8rem;
+          width: calc(100% + 2.1rem);
+          height: auto;
+        }
         @media (min-width: $ar-big-size){
           margin-left: - 2.5rem;
           width: calc(53% + 1.3rem);
@@ -533,8 +564,12 @@
           margin: 0;
           font-size: 1rem;
         }
+        b{
+          text-transform: lowercase;
+          color: #97a0b6;
+          font-weight: 600;
+        }
         h6{
-          text-transform: capitalize;
           margin: 0.1rem 0 0.1rem 2.1rem;
         }
         .ar-car-type-key{
@@ -624,15 +659,147 @@
       }
     }
   }
+  @media (max-width: $ar-mobile-size){
+    border-radius: 1.2rem;
+    margin-top: 1rem;
+    .ar-car-top{
+      border-bottom: solid;
+      border-bottom-color: $ar-color-white-7;
+      border-bottom-width: thin;
+      margin: 0;
+      height: auto;
+      .ar-car-company-logo{
+        border-right: none;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 0;
+        img{
+          margin: 0 0 1.5rem 0;
+          width: 35%;
+        }
+      }
+    }
+    .ar-car-middle{
+      .ar-car-image{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border-radius: 0.5rem;
+        img{
+          border-radius: 0.5rem;
+          width: 65%;
+        }
+      }
+      .ar-car-type{
+        margin-top: 0rem;
+        padding: 0rem;
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        h3{
+          margin: 0;
+          font-size: 1.2rem;
+        }
+        b{
+          text-transform: lowercase;
+          color: #97a0b6;
+          font-weight: 600;
+        }
+        h6{
+          margin: 0.1rem 0 0.1rem 2.1rem;
+          font-size: .7rem;
+        }
+        .ar-car-type-key{
+          color: $ar-color-red-0;
+          &:before{
+            font-size: 1.1rem;
+            transform: rotate(40deg);
+            margin-right: 12px;
+            position: relative;
+            top: 3px;
+          }
+        }
+      }
+      .ar-car-features{
+        margin: 1rem 0 0 0;
+        padding-left: 0;
+        .ar-car-features-group{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          padding: 0;
+          .ar-car-feature-item{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin: 0.1rem 0;
+            width: 100%;
+            h6{
+              color: $ar-color-blue-0;
+              margin: 0 0 0 0.2rem;
+              font-size: 0.68rem;
+              font-weight: 500;
+            }
+            i{
+              font-size: .9em;
+              &:before{
+                margin-right: 0.2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+    .ar-car-bottom{
+      height: auto;
+      margin: 1.5rem 0 0 0;
+      padding: 1.5rem 0 0 0;
+      border-top: solid;
+      border-width: thin;
+      border-top-color: $ar-color-white-7;
+      .ar-car-data-text{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+      }
+      .ar-data-icon{
+        display: flex;
+        font-size: 0.7rem;
+        &:before{
+          margin-top: 0.2rem;
+        }
+      }
+      p{
+        font-size: 0.7rem;
+        line-height: normal;
+        margin-bottom: 0;
+        font-weight: 500;
+      }
+    }
+  }
 }
 
 .ar-card-filters{
-
-    width: 240px;
-
+  width: 240px;
+  @media (max-width: $ar-small-size){
+    width: 100%;
+    justify-content: center;
+  }
   @media (min-width: $ar-big-size){
     width: 300px;
   }
+}
+
+.ar-card-faq-container{
+  display: flex;
+  width: 100%;
 }
 
 .ar-card-promotion-container{
@@ -732,27 +899,47 @@
 
 .ar-location-selected{
   width: 48.8%;
-  height: 208px;
   margin-bottom: 1rem;
+  height: auto;
+  @media (max-width: $ar-mobile-size){
+    width: 100%;
+    border-radius: 1.2rem;
+  }
   @media (min-width: $ar-big-size){
-    height: 275px;
+    margin-bottom: 1.5rem;
   }
   .ar-location-top{
     margin: 1rem;
+    @media (max-width: $ar-mobile-size){
+      margin: 1.2rem 1.2rem 1rem 1.2rem;
+    }
     .ar-location-icon{
       margin-right: 0.65rem;
       color: $ar-color-red-0;
       font-size: 1rem;
+      @media (max-width: $ar-mobile-size){
+        font-size: 1.1rem;
+        margin-right: 0.3rem;
+      }
+    }
+    .ar-location-text-container{
+      max-width: 85%;
     }
     .ar-location-date{
       font-size: 0.85rem;
       margin:0;
       font-weight: 500;
+      @media (max-width: $ar-mobile-size){
+        font-weight: 600;
+      }
     }
     .ar-location-place{
       font-size: 0.6rem;
       margin:0;
       font-weight: 500;
+      @media (max-width: $ar-mobile-size){
+        font-size: 0.7rem;
+      }
     }
     h5{
         margin-top: 0.2rem;
@@ -760,12 +947,16 @@
         color: $ar-color-red-0;
         text-transform: uppercase;
         font-size: 0.7rem;
+      @media (max-width: $ar-mobile-size){
+        font-size: 0.85rem;
+      }
     }
     @media (min-width: $ar-big-size){
       margin: 1.2rem;
       .ar-location-icon{
         margin-right: 0.8rem;
         font-size: 1.2em;
+        margin-top: 0.2rem;
       }
       .ar-location-date{
         font-size: 1.15rem;
@@ -780,14 +971,17 @@
       h5{
         margin-top: .4rem;
         margin-bottom: .4rem;
-        font-size: .75rem;
+        font-size: .9rem;
         letter-spacing: .5px;
       }
     }
 
   }
   .ar-location-bottom{
-    margin: 0;
+    margin: 0 0 .9rem 0;
+    @media (max-width: $ar-mobile-size){
+      margin: 0 .5rem 1.4rem .5rem;
+    }
     .map-canvas{
       height: 100px;
     }
@@ -803,6 +997,9 @@
 .ar-optional-equipment{
   padding: 1rem 1.5rem 1rem 3.2rem;
   margin-bottom: 1rem;
+  @media (max-width: $ar-mobile-size){
+    border-radius: 1.2rem
+  }
   .ar-title-with-icon{
     margin: 0 0.3rem 1.3rem -1.7rem;
     color: $ar-color-red-0;
@@ -820,29 +1017,38 @@
   .ar-text-card{
     font-size: 0.7rem;
     margin-bottom: 1rem;
+    @media (max-width: $ar-mobile-size){
+      margin-right: .5rem;
+    }
   }
   .ar-options-section-card{
     display: flex;
     justify-content: space-between;
+    @media (max-width: $ar-mobile-size){
+      margin-left: -1rem;
+      margin-right: .5rem;
+    }
     .ar-checkbox-options-container{
-      width: 50%;
-      padding-right: 3.5rem;
+      width: 55%;
+      padding-right: 0;
+      @media (max-width: $ar-mobile-size){
+        width: 100%;
+      }
       .ar-optional-equipment-checkbox{
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 0.7rem;
+        padding-left: 3.75rem;
+        padding-top: 0.1rem;
         .ar-optional-item{
           font-size: 0.7rem;
           margin-bottom: 0.8rem;
-          &:before{
+          &:before, &:after{
             width: 0.8rem;
             height: 0.8rem;
             top: 0.16rem;
-          }
-          &:after{
-            top:0.1rem;
-            left: -1.8rem;
+            left: -2.6rem;
           }
           strong{
             color: $ar-color-red-0;
@@ -854,9 +1060,9 @@
       }
     }
     .ar-select-options-container{
-      width: 50%;
-      padding-left: 1.25rem;
-      padding-right: 0.75rem;
+      padding-left: 0;
+      padding-right: 0;
+      margin-top: -0.15rem;
       .ar-select-option{
         border: 1.5px solid $ar-color-white-5;
         padding: 0;
@@ -891,7 +1097,9 @@
     }
   }
   @media (min-width: $ar-big-size){
-    padding: 1.4rem 2rem 0.7rem 4.2rem;
+    margin-bottom: 1.5rem;
+
+    padding: 1.4rem 2rem 1.4rem 4.2rem;
     .ar-title-with-icon{
       margin: 0 0.3rem 1.25rem -2.1rem;
       font-size: 0.9rem;
@@ -907,20 +1115,19 @@
     }
     .ar-options-section-card{
       .ar-checkbox-options-container{
-        padding-right: 4.8rem;
+        padding-right: 0;
         .ar-optional-equipment-checkbox{
           font-size: 1rem;
+          padding-left: 4.9rem;
+          padding-top: 0.3rem;
           .ar-optional-item{
             font-size: 0.85rem;
             margin-bottom: 1.15rem;
-            &:before{
+            &:before, &:after{
               width: 1rem;
               height: 1rem;
               top: 0.15rem;
-            }
-            &:after{
-              top:0.2rem;
-              left: -1.7rem;
+              left: -3.2rem;
             }
             strong{
               font-size: 0.85rem;
@@ -929,9 +1136,9 @@
         }
       }
       .ar-select-options-container{
-        width: 50%;
-        padding-left: 1.25rem;
-        padding-right: 1.5rem;
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: -0.3rem;
         .ar-select-option{
           border: 2px solid $ar-color-white-5;
           padding: 0;
@@ -972,6 +1179,10 @@
   height: 140px;
   padding: 1rem 1.5rem 1rem 3.2rem;
   margin-bottom: 1rem;
+  @media (max-width: $ar-mobile-size) {
+    height: auto;
+    border-radius: 1.2rem;
+  }
   .ar-title-with-icon{
     margin: 0 0.3rem 1.3rem -1.7rem;
     color: $ar-color-red-0;
@@ -996,6 +1207,10 @@
       margin-left: -0.25rem;
       height: 36.6px;
       margin-right: 20px;
+      @media (max-width: $ar-mobile-size) {
+        width: 100%;
+        margin-left: 0;
+      }
       @media (min-width: $ar-big-size) {
         height: 45px;
       }
@@ -1040,9 +1255,14 @@
       position: absolute;
       left: 52.7%;
       top: 6%;
+      @media (max-width: $ar-mobile-size) {
+        position: inherit;
+        width: 92.5%;
+        margin: 1rem 0;
+      }
       @media (min-width: $ar-big-size) {
         left: 52.5%;
-        top: 7%;
+        top: 9%;
       }
     }
     .ar-input-agency-code{
@@ -1051,6 +1271,9 @@
       font-size: .7em;
       font-weight: 600;
       color: $ar-color-red-0;
+      @media (max-width: $ar-mobile-size) {
+        width: 92.5%;
+      }
       @media (min-width: $ar-big-size) {
         height: 45px;
         font-size: .9rem;
@@ -1063,6 +1286,10 @@
       margin-right: 20px;
       margin-bottom: 0;
       width: 43%;
+      @media (max-width: $ar-mobile-size) {
+        width: 92.5%;
+        margin: 1rem 0;
+      }
       .ar-validate-input-agency-button{
         white-space: pre;
         border-radius: 0 2rem 2rem 0;
@@ -1084,6 +1311,7 @@
 
   @media (min-width: $ar-big-size) {
     height: 180px;
+    margin-bottom: 1.5rem;
     padding: 1.4rem 2rem 0.7rem 4.2rem;
     .ar-title-with-icon {
       margin: 0 0.3rem 1.25rem -2.1rem;
@@ -1101,6 +1329,9 @@
 .ar-passenger-card{
   height: 300px;
   padding: 1rem 1.5rem 1rem 3.2rem;
+  @media (max-width: $ar-mobile-size){
+    height: auto;
+  }
   .ar-title-with-icon{
     margin: 0 0.3rem 1.3rem -1.7rem;
     color: $ar-color-red-0;
@@ -1117,6 +1348,11 @@
   }
   .ar-passenger-form-container{
     padding-left: .3rem;
+    @media (max-width: $ar-mobile-size){
+      padding-right: .7rem;
+      padding-left: 0;
+      margin-left:-1rem;
+    }
     @media (min-width: $ar-big-size){
       padding-left: 0rem;
     }
@@ -1148,6 +1384,9 @@
         font-size: .7em;
         font-weight: 600;
         color: $ar-color-red-0;
+        @media (max-width: $ar-mobile-size){
+          height: 35px;
+        }
         @media (min-width: $ar-big-size){
           height: 45px;
           font-size: 0.9rem;
@@ -1200,6 +1439,9 @@
         margin-right: 20px;
         margin-bottom: 0;
         width: 43%;
+        @media (max-width: $ar-mobile-size){
+          margin-right: 0px;
+        }
         .ar-validate-input-passenger-button{
           white-space: pre;
           border-radius: 0 2rem 2rem 0;
@@ -1240,12 +1482,21 @@
 .ar-card-details{
   width: 30%;
   padding: 0 10px;
+  @media (max-width: $ar-mobile-size){
+    width: 100%;
+    padding: 0;
+    border-radius: 1.2rem;
+    .card{
+      border-radius: 1.2rem;
+    }
+  }
   @media (min-width: $ar-big-size){
     margin-bottom: 2rem;
   }
   .ar-card-details-title{
     padding: 1em 1.2em;
     h1{
+      margin-top: 0.5rem;
       font-size: 1em;
       color: $ar-color-red-0;
     }
@@ -1302,10 +1553,20 @@
     .ar-card-details-rates-list{
       padding-top: .1em;
       .ar-card-details-rate-item{
+        display: flex;
+        align-items: flex-start;
+        i{
+          font-size: .8em;
+          font-weight: 500;
+          margin: .7em .3em 0 0;
+          @media (min-width: $ar-big-size){
+            font-size: 0.9rem;
+          }
+        }
         p{
           font-size: .8em;
-          margin: .6em 0;
           font-weight: 500;
+          margin: .6em 0 0 0;
           @media (min-width: $ar-big-size){
             font-size: 0.9rem;
           }
@@ -1331,8 +1592,9 @@
         strong{
           color: $ar-color-red-0;
           font-size: .7em;
-          text-align: left;
+          text-align: right;
           width: 25%;
+          white-space: pre;
           @media (min-width: $ar-big-size){
             font-size: 0.9rem;
           }
@@ -1371,6 +1633,7 @@
           font-size: 1.7em;
           text-align: left;
           padding-left: 0.1em;
+          margin-left: 0.2em;
           @media (min-width: $ar-big-size){
             font-size: 2rem;
           }
@@ -1445,14 +1708,15 @@
   .ar-car-chevron{
     margin-left: -4rem;
     position: absolute;
-    width: calc(100% + 8rem);
+    width: calc(100% - 1rem);
     height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 1rem;
+    top: 0;
     @media (min-width: $ar-big-size){
-      width: calc(100% + 8rem);
+      width: calc(100% - 1rem);
     }
     span{
       margin-right: -.5rem;
@@ -1481,6 +1745,11 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
+      &.disabled{
+        background-color: $ar-color-gray-1;
+        border-color: $ar-color-gray-1;
+        opacity: 1;
+      }
       @media (min-width: $ar-big-size){
         font-size: 0.85rem;
       }
@@ -1506,9 +1775,11 @@
     img{
       width: 150px;
       margin-right: 1rem;
+      height: 100%;
       @media (min-width: $ar-big-size){
         width: 200px;
         margin-right: 1rem;
+        height: 100%;
       }
     }
     div{
@@ -1634,44 +1905,89 @@
       }
     }
       .ar-rent-state-center{
-      display: flex;
-      align-items: center;
-      padding: 0 1.5rem;
-      border-left: solid;
-      border-right: solid;
-      border-color: $ar-color-green-1;
-      @media (min-width: $ar-big-size){
-        padding: 0 2rem;
-      }
-      i{
-        font-size: 2.5rem;
-        margin: 0 0 -5px -5px;
+        display: flex;
+        align-items: center;
+        padding: 0 1.5rem;
+        border-left: solid;
+        border-right: solid;
+        border-color: $ar-color-green-1;
         @media (min-width: $ar-big-size){
-          font-size: 3rem;
+          padding: 0 2rem;
+        }
+        &.ar-finger{
+          border-left:none;
+          padding-left: 0;
+          margin-left: 0rem;
+          padding-right: 1.5rem;
+          @media (min-width: $ar-big-size){
+            margin-left: -1rem;
+          }
+          .row{
+            width: 320px;
+            margin-left: .5rem !important;
+            @media (min-width: $ar-big-size){
+              width: 370px;
+              margin-left: 0;
+            }
+          }
+          h1{
+            color: $ar-color-white-0;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            @media (min-width: $ar-big-size){
+              font-size: 2rem;
+            }
+          }
+          h6{
+            width: 120px;
+            color: $ar-color-white-0;
+            margin: 0;
+            letter-spacing: 0.03em;
+            font-weight: 400;
+            @media (min-width: $ar-big-size){
+              font-size: 1em;
+              width: 140px;
+              letter-spacing: 0.02em;
+              line-height: 1.3em;
+            }
+          }
+        }
+        i{
+          font-size: 2.5rem;
+          margin: 0 0 -5px -5px;
+          @media (min-width: $ar-big-size){
+            font-size: 3rem;
+          }
+        }
+        h4{
+          color: $ar-color-white-0;
+          margin: 0 0 0 -8px;
+          font-weight: 700;
+          &.ar-reduce-font-in-big{
+            font-size: .8rem;
+          }
+          @media (min-width: $ar-big-size){
+            font-size: 1.25rem;
+            &.ar-reduce-font-in-big{
+              font-size: 1.1rem;
+            }
+          }
+        }
+        h6{
+          width: 200px;
+          color: $ar-color-white-0;
+          margin: 0 0 -3px -8px;
+          letter-spacing: 0.03em;
+          font-weight: 400;
+          @media (min-width: $ar-big-size){
+            font-size: 1em;
+            width: 275px;
+            letter-spacing: 0.02em;
+            line-height: 1.1em;
+          }
         }
       }
-      h4{
-        color: $ar-color-white-0;
-        margin: 0 0 0 -8px;
-        font-weight: 700;
-        @media (min-width: $ar-big-size){
-          font-size: 1.25rem;
-        }
-      }
-      h6{
-        width: 200px;
-        color: $ar-color-white-0;
-        margin: 0 0 -3px -8px;
-        letter-spacing: 0.03em;
-        font-weight: 400;
-        @media (min-width: $ar-big-size){
-          font-size: 1em;
-          width: 275px;
-          letter-spacing: 0.02em;
-          line-height: 1.1em;
-        }
-      }
-    }
       .ar-rent-state-right{
       display: flex;
       align-items: center;
@@ -1680,7 +1996,7 @@
       width: 100%;
         button:first-child{
           @media (min-width: $ar-big-size){
-            margin-left: 1rem;
+            margin-left: 0rem;
           }
         }
       .ar-rent-state-button{
@@ -1835,6 +2151,12 @@
         display: flex;
         flex-direction: column;
         margin: 0;
+        .StripeElement--invalid{
+          border: solid;
+          border-color: #ff9fb5 !important;
+          border-width: 2px !important;
+          height: auto !important;
+        }
         .ar-payment-form-top{
           margin: 0 0 0.8rem 1rem;
           @media (min-width: $ar-big-size){
@@ -1846,13 +2168,13 @@
             .ar-card-form-input{
               font-size: 0.7rem;
               padding: 0.5rem 0.75rem;
-              height: auto;
+              height: 32px;
               color: $ar-color-blue-2;
-              width: 300px;
+              width: 100%;
               @media (min-width: $ar-big-size){
-                width: 375px;
                 font-size: 0.9rem;
-                padding: 0.7rem 0.95rem;
+                padding: 0.85rem 0.95rem;
+                height: 43px;
               }
             }
           }
@@ -1896,11 +2218,12 @@
               font-size: 0.7rem;
               font-weight: 500;
               padding: 0.5rem 0.75rem;
-              height: auto;
+              height: 32px;
               text-align: center;
               @media (min-width: $ar-big-size){
                 font-size: 0.9rem;
-                padding: 0.7rem 0.95rem;
+                padding: 0.85rem 0.95rem;
+                height: 43px;
               }
             }
           }
@@ -1917,18 +2240,19 @@
               font-size: 0.7rem;
               font-weight: 500;
               padding: 0.5rem 0.75rem;
-              height: auto;
+              height: 32px;
               text-align: center;
               @media (min-width: $ar-big-size){
                 font-size: 0.9rem;
-                padding: 0.7rem 0.95rem;
+                padding: 0.85rem 0.95rem;
+                height: 43px;
               }
 
             }
           }
           .ar-payment-postal-code{
             width: 34%;
-            color: $ar-color-blue-2;
+            color: $ar-color-blue-2 !important;
             margin-bottom: 0;
             .ar-card-form-input{
               background-color: $ar-color-white-1;
@@ -2215,7 +2539,7 @@
           h6{
             font-weight: 500;
             @media (min-width: $ar-big-size){
-              font-size: .95rem;
+              font-size: .9rem;
             }
           }
         }
@@ -2232,7 +2556,7 @@
           font-size: 0.8rem;
           margin-bottom: 0;
           @media (min-width: $ar-big-size){
-            font-size: 1.05rem;
+            font-size: 1rem;
           }
         }
         h4{
@@ -2241,7 +2565,7 @@
           color: $ar-color-green-0;
           margin-bottom: 0;
           @media (min-width: $ar-big-size){
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
           }
         }
@@ -2263,20 +2587,21 @@
       margin-bottom: 1.5rem;
     }
     i{
-      font-size: 4rem;
+      font-size: 2.5rem;
       color: $ar-color-white-0;
-      margin-right: -1rem;
+      margin-right: -0.5rem;
+      margin-bottom: -0.5rem;
       @media (min-width: $ar-big-size){
-        font-size: 5rem;
+        font-size: 3rem;
       }
     }
     h1{
       color: $ar-color-white-0;
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       @media (min-width: $ar-big-size){
-        font-size: 1.4rem;
+        font-size: 1.2rem;
       }
     }
   }
@@ -2291,7 +2616,7 @@
     }
   }
   .ar-reserve-details-text-container{
-    width: 37%;
+    width: 36%;
     height: 208px;
     padding: 0 0 0 3.2rem;
     display: flex;
@@ -2331,7 +2656,7 @@
       font-weight: 500;
       margin-bottom: 0.2rem;
       @media (min-width: $ar-big-size){
-        font-size: .85rem;
+        font-size: .9rem;
         margin-bottom: 0.3rem;
       }
       strong{
@@ -2343,7 +2668,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 63%;
+    width: 64%;
     .ar-location-selected{
       width: 48.8%;
       height: auto;
@@ -2355,8 +2680,11 @@
           color: $ar-color-red-0;
           font-size: 1.1rem;
           @media (min-width: $ar-big-size){
-            font-size: 1.5rem !important;
+            font-size: 1.3rem !important;
           }
+        }
+        .ar-location-text-container{
+          max-width: 85%;
         }
         .ar-location-date{
           font-size: 0.95rem;
@@ -2439,13 +2767,18 @@
             position: absolute;
             width: 15%;
             top: -1.8rem;
+            @media (min-width: $ar-big-size) {
+              position: absolute;
+              width: 17%;
+              top: -2.5rem;
+            }
           }
         }
         .ar-car-company-logo{
           display: flex;
           align-items: center;
           width: 25%;
-          padding: 0 2.65rem;
+          padding: 0 1.65rem;
           img{
             width: 100%;
           }
@@ -2463,9 +2796,13 @@
           align-items: flex-start;
           justify-content: center;
           flex-direction: column;
-          text-transform: capitalize;
           h3{
             margin: 0;
+          }
+          b{
+            text-transform: lowercase;
+            color: #97a0b6;
+            font-weight: 600;
           }
           h6{
             text-transform: capitalize;
@@ -2473,7 +2810,7 @@
           @media (min-width: $ar-big-size){
             h3{
               margin: 0;
-              font-size: 1.4em;
+              font-size: 1.2em;
             }
             h6{
               text-transform: capitalize;
@@ -2536,12 +2873,8 @@
   }
   .ar-reserve-selected-plan{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    height: 225px;
-    @media (min-width: $ar-big-size){
-      height: 270px;
-    }
     .ar-reserve-selected-plan-text{
       display: flex;
       justify-content: space-between;
@@ -2566,9 +2899,9 @@
           left: 2rem;
           top: 1.7rem;
           @media (min-width: $ar-big-size){
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             left: 2.2rem;
-            top: 2.1rem;
+            top: 2.2rem;
           }
         }
       }
@@ -2614,7 +2947,7 @@
       flex-direction: column;
       justify-content: space-between;
       @media (min-width: $ar-big-size){
-        padding: 1.8rem 1.8rem 0.8rem 4.7rem;
+        padding: 1.8rem 2rem 1.2rem 4.7rem;
       }
       .ar-reserve-selected-plan-prices-title{
         display: flex;
@@ -2626,17 +2959,23 @@
         letter-spacing: 0.05em;
         @media (min-width: $ar-big-size){
           font-size: 0.9rem;
-          letter-spacing: 0.04em;
+          letter-spacing: 0.02em;
         }
         i{
           position: absolute;
           left: 1.5rem;
           top: 1.75rem;
           font-size: 1.3rem;
+          &.ar-icon-optional-equipment{
+            top: 1.65rem;
+          }
           @media (min-width: $ar-big-size){
             left: 1.8rem;
-            top: 1.4rem;
-            font-size: 1.6rem;
+            top: 1.55rem;
+            font-size: 1.4rem;
+            &.ar-icon-taxes{
+              margin-top: 0.2rem;
+            }
           }
         }
       }
@@ -2656,6 +2995,8 @@
           strong{
             color: $ar-color-red-0;
             font-size: .7rem;
+            white-space: pre;
+            text-align: right;
             @media (min-width: $ar-big-size){
               font-size: .9rem;
             }
@@ -2681,7 +3022,7 @@
           margin: 0;
           font-size: 1.7rem;
           @media (min-width: $ar-big-size){
-            font-size: 2.1rem;
+            font-size: 2rem;
             letter-spacing: 0.02em;
           }
           &:before{
@@ -2733,8 +3074,8 @@
         margin: 0;
         line-height: 0.8rem;
         @media (min-width: $ar-big-size){
-          font-size: 0.9rem;
-          line-height: 1.05rem;
+          font-size: 0.85rem;
+          line-height: 1.3rem;
         }
       }
     }
@@ -2786,7 +3127,7 @@
       }
       h6{
         margin-left: 0.3rem;
-        width: 30%;
+        width: 32%;
       }
       strong{
         color: $ar-color-green-0;
@@ -2860,7 +3201,7 @@
           @media (min-width: $ar-big-size){
             margin-top: 0.5rem;
             padding-left: 3.2rem;
-            font-size: .95rem;
+            font-size: .90rem;
           }
         }
         h6{
@@ -2872,7 +3213,7 @@
           @media (min-width: $ar-big-size){
             margin-top: 0.3rem;
             padding-left: 3.2rem;
-            font-size: .95rem;
+            font-size: .90rem;
           }
         }
       }
@@ -2946,7 +3287,13 @@
         }
         .ar-payment-form-credit-card-2{
           @media (min-width: $ar-big-size){
-            padding-top: 0.4rem;
+            padding: 0.5rem 0 0.8rem 0;
+          }
+          .StripeElement--invalid{
+            border: solid;
+            border-color: #ff9fb5 !important;
+            border-width: 2px !important;
+            height: auto !important;
           }
           .ar-card-form-input-container{
             margin: .3rem 0 1rem 0;
@@ -2954,11 +3301,12 @@
             .ar-card-form-input{
               font-size: 0.7rem;
               padding: 0.5rem 0.75rem 0.5rem 1rem;
-              height: auto;
+              height: 32px;
               color: $ar-color-blue-2;
               @media (min-width: $ar-big-size){
                 font-size: 0.9rem;
                 padding: 0.7rem 0.75rem 0.7rem 1.5rem;
+                height: 43px;
               }
             }
           }
@@ -2972,11 +3320,12 @@
               font-size: 0.7rem;
               font-weight: 500;
               padding: 0.5rem 0.75rem;
-              height: auto;
+              height: 32px;
               text-align: center;
               @media (min-width: $ar-big-size){
                 font-size: 0.9rem;
                 padding: 0.7rem 0.8rem;
+                height: 43px;
               }
             }
           }
@@ -2990,11 +3339,13 @@
               font-size: 0.7rem;
               font-weight: 500;
               padding: 0.5rem 0.75rem;
-              height: auto;
+              height: 32px;
               text-align: center;
               @media (min-width: $ar-big-size){
                 font-size: 0.9rem;
                 padding: 0.7rem 0.8rem;
+                height: 43px;
+
               }
             }
           }
@@ -3012,7 +3363,7 @@
               font-weight: 500;
               @media (min-width: $ar-big-size){
                 font-size: 0.9rem;
-                padding: 0.7rem 0.8rem;
+                padding: 0.6rem 0.95rem;
               }
             }
           }
@@ -3030,7 +3381,7 @@
               text-align: center;
               @media (min-width: $ar-big-size){
                 font-size: 0.9rem;
-                padding: 0.7rem 0.8rem;
+                padding: 0.6rem 0.95rem;
               }
             }
           }
@@ -3133,7 +3484,7 @@
           h6{
             margin: 0;
             @media (min-width: $ar-big-size){
-              font-size: .9rem;
+              font-size: .85rem;
               letter-spacing: 0.02em;
             }
           }
@@ -3219,4 +3570,174 @@
       }
     }
   }
+}
+
+.ar-car-featured-mobile-row{
+  top: 20px;
+}
+
+.ar-car-company-logo-mobile {
+  display: flex;
+  border: none;
+  vertical-align: middle;
+  img{
+    height: 35px;
+  }
+}
+
+.ar-car-featured-mobile {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: $ar-color-white-0;
+  background-color: $ar-color-yellow-0;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  padding: 0px !important;
+  justify-content: center !important;
+  span {
+    text-align: center;
+    color: $ar-color-yellow-1;
+  }
+}
+.ar-car-featured-mobile-empty{
+  height: 40px;
+}
+
+.ar-car-image-container-mobile {
+  img {
+    width: auto;
+    max-height: 125px;
+    margin-left: -10%;
+  }
+}
+
+.ar-car-rate-mobile {
+  margin-top: 1.2rem;
+  font-size: .9rem;
+  i {
+    &:before{
+      margin: 2px !important;
+      padding: 0 !important;
+    }
+  }      
+}
+
+
+.ar-car-result{
+  @media (max-width: $ar-mobile-size){
+    border-radius: 1.2rem;
+    .card-body{
+      border-radius: inherit;
+    }
+    .ar-divider{
+      border-bottom: solid;
+      border-width: thin;
+      border-bottom-color: $ar-color-white-7;
+      height: 1px;
+      width: 90%;
+    }
+  }
+  .ar-car-middle-mobile {
+    margin: 0;
+    height: 120px;
+    .ar-car-middle-mobile-left{
+      padding-left: 0.8rem;
+      width: 37%;
+    }
+  }
+
+  .ar-car-middle-information-mobile {
+    margin: 0;
+    height: 50px;
+
+    h6 {
+      font-size: .7em;
+      color: gray;
+      b {
+        font-size: .9em;
+        font-weight: normal;
+      }
+    }
+    
+  }
+
+  .ar-car-feature-item-row-mobile{
+    margin: 0;
+    padding-left: .8rem;
+    text-align: center;
+    justify-content: flex-start !important;
+    .ar-car-features{
+      margin: 0;
+      padding-left: 0;
+      .ar-car-features-group{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 0;
+        .ar-car-feature-item{
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          margin: 0.1rem 0;
+          width: 100%;
+          h6{
+            color: $ar-color-blue-0;
+            margin: 0 0 0 0.2rem;
+            font-size: 0.68rem;
+            font-weight: 500;
+          }
+          i{
+            font-size: .9em;
+            &:before{
+              margin-right: 0.2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .ar-car-bottom-mobile {
+    justify-content: center;
+    padding: 0 0.8rem;
+    .ar-car-bottom{
+      height: auto;
+      .ar-car-data-text{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+      }
+      .ar-data-icon{
+        display: flex;
+        font-size: 0.7rem;
+        &:before{
+          margin-top: 0.2rem;
+        }
+      }
+      p{
+        font-size: 0.7rem;
+        line-height: normal;
+        margin-bottom: 0;
+        font-weight: 500;
+      }
+    }
+  }
+  
+}
+
+.ar-car-data-button-container-mobile {
+  width: 100%;
+  font-size: 0.75em;
+  font-weight: 700;
+  background-color: $ar-color-white-0 !important;
+  border-color: $ar-color-green-0 !important;
+  border-width: 2px !important;
+  color: $ar-color-green-0 !important;
+  text-align: center;
+  padding: 10px 60px;
 }

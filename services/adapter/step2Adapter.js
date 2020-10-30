@@ -21,7 +21,6 @@ class step2Adapter {
 
   validateId = (response, body) => {
     const { data } = response;
-
     if (data.success) {
       return successfullyResponsesPresenter.withOnlyData(
         actionNames.validateIdSuccessfully,
@@ -30,10 +29,10 @@ class step2Adapter {
       );
     }
 
-    return errorResponsesPresenter.formError(data, actionNames.validateIdUnsuccessfully);
+    return errorResponsesPresenter.onlyMessage('Error', actionNames.validateIdUnsuccessfully);
   };
 
-  createReservation = (response, body) => {
+  createReservation = (response) => {
     const { data } = response;
 
     if (data.success) {
@@ -44,21 +43,37 @@ class step2Adapter {
       );
     }
 
-    return errorResponsesPresenter.formError(data, actionNames.createReservationUnsuccessfully);
+    return errorResponsesPresenter.formError(data.response, actionNames.createReservationUnsuccessfully);
   };
 
   validatePromotion = (response, body) => {
     const { data } = response;
-    console.log(response);
+    if (data.success && data.response.cars.length !== 0) {
+      return successfullyResponsesPresenter.fleetResponse(
+        actionNames.validatePromotionSuccessfully,
+        data.response,
+        'Promotion applied',
+      );
+    }
+    if (data.response.cars.length === 0) {
+      return errorResponsesPresenter.onlyMessage('Error', actionNames.validatePromotionUnsuccessfully);
+    }
+
+    return errorResponsesPresenter.formError(data, actionNames.validatePromotionUnsuccessfully);
+  };
+
+  loadDiscount = (response) => {
+    const { data } = response;
+
     if (data.success) {
       return successfullyResponsesPresenter.withOnlyData(
-        actionNames.createReservationSuccessfully,
-        'reservation',
+        actionNames.loadDiscountSuccessfully,
+        'customerDiscount',
         data.response,
       );
     }
 
-    return errorResponsesPresenter.formError(data, actionNames.createReservationUnsuccessfully);
+    return errorResponsesPresenter.onlyMessage('', actionNames.loadDiscountUnsuccessfully);
   };
 }
 export default new step2Adapter();

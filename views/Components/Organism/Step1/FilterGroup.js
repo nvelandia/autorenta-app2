@@ -69,7 +69,7 @@ class FilterGroup extends React.Component {
   };
 
   render() {
-    const { title, items, priceRange, badge, type, text, category } = this.props;
+    const { title, items, priceRange, badge, type, text, category, translate } = this.props;
     let filters;
     if (items) {
       filters = Object.keys(items);
@@ -98,7 +98,7 @@ class FilterGroup extends React.Component {
                           id={title + key}
                           type="checkbox"
                           checked={this.isChecked(category, key)}
-                          onClick={(e) => this.props.handleOnSelect(key, category)}
+                          onChange={(e) => this.props.handleOnSelect(key, category)}
                         />
                         <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
                           {key.charAt(0).toUpperCase() + key.slice(1) + `  ${text}`}
@@ -115,14 +115,20 @@ class FilterGroup extends React.Component {
                           onClick={(e) => this.props.handleOnChange(key)}
                         />
                         <label className="custom-control-label ar-filter-items" htmlFor={title + key}>
-                          {key + '  ó  más  maletas'}
+                          {key + translate('step1.result.filterList.moreBags')}
                         </label>
                       </div>
                     ) : null}
                     {badge ? (
-                      <Badge className={key === 'total' ? 'ar-badge-total' : 'ar-badge'} pill>
-                        &nbsp;{`${items[key]}`}&nbsp;
-                      </Badge>
+                      !items[key].quantity ? (
+                        <Badge className={key === 'total' ? 'ar-badge-total' : 'ar-badge'} pill>
+                          &nbsp;{`${items[key]}`}&nbsp;
+                        </Badge>
+                      ) : (
+                        <Badge className={key === 'total' ? 'ar-badge-total' : 'ar-badge'} pill>
+                          &nbsp;{`${items[key].quantity}`}&nbsp;
+                        </Badge>
+                      )
                     ) : null}
                   </div>
                 );

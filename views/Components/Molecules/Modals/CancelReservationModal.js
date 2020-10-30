@@ -20,14 +20,12 @@ class CancelReservationModal extends React.Component {
     this.state = {
       passenger_lastname: this.props.car.passenger_last_name,
       reservation: this.props.reservation.code,
-      email: '',
-      corporationId: '',
-      agencyId: '',
-      emailFocus: false,
+      passenger_email: '',
+      partner_code: '',
+      passenger_emailFocus: false,
       passenger_lastnameFocus: false,
       reservationFocus: false,
-      corporationIdFocus: false,
-      agencyIdFocus: false,
+      partner_codeFocus: false,
       error: {},
     };
     this.dispatch = props.dispatch;
@@ -40,17 +38,15 @@ class CancelReservationModal extends React.Component {
     });
   };
 
-  handleCheckbox = () => {
-    this.setState({ isAgencyOrCorporation: !this.state.isAgencyOrCorporation });
-  };
-
   handleOnClick = () => {
     const body = {
       passenger_lastname: this.state.passenger_lastname,
       reservation: this.state.reservation,
     };
-    if (this.state.isAgencyOrCorporation) {
-      body.agencyOrCorporationId = this.state.agencyOrCorporationId;
+    if (!this.props.reservation.organization) {
+      body.passenger_email = this.state.passenger_email;
+    } else {
+      body.partner_code = this.state.partner_code;
     }
     if (Object.values(body).includes('')) {
       const error = {};
@@ -62,10 +58,12 @@ class CancelReservationModal extends React.Component {
       this.setState({ error: error });
     } else {
       this.dispatch(this.props.cancelReservation(body));
+      this.props.hideModal();
     }
   };
 
   render() {
+    const { translate } = this.props;
     const error = this.state.error;
     return (
       <Modal
@@ -75,7 +73,7 @@ class CancelReservationModal extends React.Component {
       >
         <div className="modal-header pb-0">
           <h6 className="modal-title ar-modal-cancel-reservation-title" id="exampleModalLabel">
-            Cancelar una reserva
+            {translate('step3.reservationState.cancelReservationModal.title')}
           </h6>
           <button
             aria-label="Close"
@@ -89,8 +87,7 @@ class CancelReservationModal extends React.Component {
         </div>
         <div className="modal-body pb-3 pt-0">
           <h6 className="ar-modal-cancel-reservation-subtitle">
-            ¡Atención! Estás a punto de cancelar tu reserva. ¿Deseas continuar? <br /> Una vez cancelada esta acción no
-            podrá deshacerse.
+            {translate('step3.reservationState.cancelReservationModal.subtitle')}
           </h6>
           <FormGroup
             className={classnames(
@@ -107,14 +104,14 @@ class CancelReservationModal extends React.Component {
             >
               <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
                 <InputGroupText className="ar-round-input-left">
-                  <h6>Apellido del pasajero</h6>
+                  <h6>{translate('step3.reservationState.cancelReservationModal.lastname')}</h6>
                 </InputGroupText>
               </InputGroupAddon>
               <Input
                 name="passenger_lastname"
                 onChange={this.handleOnChange}
                 className="ar-round-input ar-cancel-reservation-form-input"
-                placeholder="Apellido del pasajero"
+                placeholder={translate('step3.reservationState.cancelReservationModal.lastname')}
                 value={this.state.passenger_lastname}
                 type="text"
                 autoComplete="off"
@@ -138,14 +135,14 @@ class CancelReservationModal extends React.Component {
             >
               <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
                 <InputGroupText className="ar-round-input-left">
-                  <h6>Número de reserva Autorenta</h6>
+                  <h6>{translate('step3.reservationState.cancelReservationModal.reservationNumber')}</h6>
                 </InputGroupText>
               </InputGroupAddon>
               <Input
                 name="reservation"
                 onChange={this.handleOnChange}
                 className=" ar-round-input ar-cancel-reservation-form-input"
-                placeholder="Número de reserva Autorenta"
+                placeholder={translate('step3.reservationState.cancelReservationModal.reservationNumber')}
                 value={this.state.reservation}
                 type="text"
                 autoComplete="off"
@@ -155,35 +152,67 @@ class CancelReservationModal extends React.Component {
             </InputGroup>
           </FormGroup>
 
-          {!this.props.organization.organization_id ? (
+          {!this.props.reservation.organization ? (
             <FormGroup
               className={classnames(
                 {
-                  focused: this.state.emailFocus,
+                  focused: this.state.passenger_emailFocus,
                 },
                 'ar-cancel-reservation-input',
               )}
             >
               <InputGroup
                 className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                  error.email ? ' ar-error-border' : null
+                  error.passenger_email ? ' ar-error-border' : null
                 }`}
               >
                 <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
                   <InputGroupText className="ar-round-input-left">
-                    <h6>Direccion de E-mail</h6>
+                    <h6>{translate('step3.reservationState.cancelReservationModal.email')}</h6>
                   </InputGroupText>
                 </InputGroupAddon>
                 <Input
-                  name="email"
+                  name="passenger_email"
                   onChange={this.handleOnChange}
                   className=" ar-round-input ar-cancel-reservation-form-input"
-                  placeholder="Direccion de E-mail"
-                  value={this.state.email}
+                  placeholder={translate('step3.reservationState.cancelReservationModal.email')}
+                  value={this.state.passenger_email}
                   type="text"
                   autoComplete="off"
-                  onFocus={() => this.setState({ emailFocus: true })}
-                  onBlur={() => this.setState({ emailFocus: false })}
+                  onFocus={() => this.setState({ passenger_emailFocus: true })}
+                  onBlur={() => this.setState({ passenger_emailFocus: false })}
+                />
+              </InputGroup>
+            </FormGroup>
+          ) : this.props.reservation.organization.type === 1 ? (
+            <FormGroup
+              className={classnames(
+                {
+                  focused: this.state.partner_codeFocus,
+                },
+                'ar-cancel-reservation-input',
+              )}
+            >
+              <InputGroup
+                className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                  error.partner_code ? ' ar-error-border' : null
+                }`}
+              >
+                <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
+                  <InputGroupText className="ar-round-input-left">
+                    <h6>{translate('step3.reservationState.cancelReservationModal.agency')}</h6>
+                  </InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  name="partner_code"
+                  onChange={this.handleOnChange}
+                  className=" ar-round-input ar-cancel-reservation-form-input"
+                  placeholder={translate('step3.reservationState.cancelReservationModal.agency')}
+                  value={this.state.partner_code}
+                  type="text"
+                  autoComplete="off"
+                  onFocus={() => this.setState({ partner_codeFocus: true })}
+                  onBlur={() => this.setState({ partner_codeFocus: false })}
                 />
               </InputGroup>
             </FormGroup>
@@ -191,70 +220,41 @@ class CancelReservationModal extends React.Component {
             <FormGroup
               className={classnames(
                 {
-                  focused: this.state.agencyIdFocus,
+                  focused: this.state.partner_codeFocus,
                 },
                 'ar-cancel-reservation-input',
               )}
             >
               <InputGroup
                 className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                  error.agencyId ? ' ar-error-border' : null
+                  error.partner_code ? ' ar-error-border' : null
                 }`}
               >
                 <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
                   <InputGroupText className="ar-round-input-left">
-                    <h6>ID de Agencia de viajes</h6>
+                    <h6>{translate('step3.reservationState.cancelReservationModal.corporation')}</h6>
                   </InputGroupText>
                 </InputGroupAddon>
                 <Input
-                  name="agencyId"
+                  name="partner_code"
                   onChange={this.handleOnChange}
                   className=" ar-round-input ar-cancel-reservation-form-input"
-                  placeholder="ID de Agencia de viajes"
-                  value={this.state.agencyId}
+                  placeholder={translate('step3.reservationState.cancelReservationModal.corporation')}
+                  value={this.state.partner_code}
                   type="text"
                   autoComplete="off"
-                  onFocus={() => this.setState({ agencyIdFocus: true })}
-                  onBlur={() => this.setState({ agencyIdFocus: false })}
+                  onFocus={() => this.setState({ partner_codeFocus: true })}
+                  onBlur={() => this.setState({ partner_codeFocus: false })}
                 />
               </InputGroup>
             </FormGroup>
           )}
-          {/*<FormGroup*/}
-          {/*  className={classnames(*/}
-          {/*    {*/}
-          {/*      focused: this.state.corporationIdFocus,*/}
-          {/*    },*/}
-          {/*    'ar-cancel-reservation-input',*/}
-          {/*  )}*/}
-          {/*>*/}
-          {/*  <InputGroup*/}
-          {/*    className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${*/}
-          {/*      error.corporationId ? ' ar-error-border' : null*/}
-          {/*    }`}*/}
-          {/*  >*/}
-          {/*    <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">*/}
-          {/*      <InputGroupText className="ar-round-input-left">*/}
-          {/*        <h6>ID Corporativo</h6>*/}
-          {/*      </InputGroupText>*/}
-          {/*    </InputGroupAddon>*/}
-          {/*    <Input*/}
-          {/*      name="corporationId"*/}
-          {/*      onChange={this.handleOnChange}*/}
-          {/*      className=" ar-round-input ar-cancel-reservation-form-input"*/}
-          {/*      placeholder="ID Corporativo"*/}
-          {/*      value={this.state.corporationId}*/}
-          {/*      type="text"*/}
-          {/*      autoComplete="off"*/}
-          {/*      onFocus={() => this.setState({ corporationIdFocus: true })}*/}
-          {/*      onBlur={() => this.setState({ corporationIdFocus: false })}*/}
-          {/*    />*/}
-          {/*  </InputGroup>*/}
-          {/*</FormGroup>*/}
 
           <div className="ar-cancel-button-container">
             <Button className=" btn-icon ar-round-button ar-cancel-button" color="red-0" onClick={this.handleOnClick}>
-              <span className="nav-link-inner--text ml-3">Cancelar esta reserva </span>
+              <span className="nav-link-inner--text ml-3">
+                {translate('step3.reservationState.cancelReservationModal.cancel')}
+              </span>
               <span className="btn-inner--icon">
                 <span className="ar-icon-chevron-right va-middle ml-2 fs-i--1" />
               </span>

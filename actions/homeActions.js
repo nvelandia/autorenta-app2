@@ -1,12 +1,5 @@
 import { actionNames } from '../utils/constants/actionConstants';
 
-export const nextStep = (body) => {
-  return {
-    type: actionNames.nextStep,
-    body,
-  };
-};
-
 export const searchLocation = (query) => {
   return {
     type: actionNames.searchLocation,
@@ -20,15 +13,22 @@ export const loadCountries = () => {
   };
 };
 
-export const loadOffers = () => {
+export const loadOffers = (promotionSelected = null) => {
   return {
     type: actionNames.loadOffers,
+    promotionSelected,
   };
 };
 
-export const selectPromotion = (promotion) => {
+export const loadBanners = () => {
   return {
-    type: actionNames.selectPromotion,
-    promotion,
+    type: actionNames.loadBanners,
+  };
+};
+
+export const loadLocations = (locations) => {
+  return {
+    type: actionNames.loadLocationsSuccessfully,
+    locations,
   };
 };

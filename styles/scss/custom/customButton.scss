@@ -105,6 +105,23 @@
   height: 47px;
 }
 
+.ar-step1-custom-button-modify-container {
+  @media (max-width: $ar-small-size){
+    flex: 1;
+    padding: 0 !important;
+    div {
+      margin: auto;
+      button {
+        width: max-content;
+        text-transform: uppercase;
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 .ar-common-button{
   border-radius: 2rem !important;
   white-space: pre;

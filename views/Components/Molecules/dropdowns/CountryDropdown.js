@@ -18,16 +18,19 @@ class CountryDropdown extends React.Component {
   };
 
   render() {
-    const { items, classes, name, color } = this.props;
+    const { items, classes, name, color, error } = this.props;
     return (
       <UncontrolledDropdown group className="w-100">
-        <DropdownToggle color={color} className={`ar-round-button ${classes}`}>
+        <DropdownToggle
+          color={color}
+          className={`ar-round-button ${classes} ${error[name] ? 'ar-error-border' : null}`}
+        >
           <div>
             {this.state.value}
             <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron-country ml-1 ar-blue-0-text" />
           </div>
         </DropdownToggle>
-        <DropdownMenu>
+        <DropdownMenu className={'ar-dropdown-menu-overflow'}>
           {items.map((item, index) => {
             return (
               <DropdownItem

@@ -4,3 +4,9 @@ export const isError = (code) => {
 };
 
 export const isServer = () => typeof window === 'undefined';
+
+export const isMobile = () => {
+  if (!isServer()) {
+    return window.matchMedia('(max-width: 451px)').matches;
+  }
+};

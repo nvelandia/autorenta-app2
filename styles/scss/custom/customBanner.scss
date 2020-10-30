@@ -74,6 +74,7 @@
   @media (min-width: $ar-big-size) {
     .ar-app-logo{
       width: 77%;
+      height: 100%;
     }
     div{
       display: flex;
@@ -86,6 +87,9 @@
 .ar-search-banner{
   background-color: $ar-color-white-0;
   box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
+  @media (max-width: $ar-small-size) {
+    padding-top: 0 !important;
+  }
   @media (min-width: $ar-big-size) {
     h3{
       font-size: 1.1em;
@@ -94,17 +98,52 @@
   }
   .ar-modify-button{
     font-size: 0.7rem;
+    @media (max-width:$ar-mobile-size) {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+      width: 90%;
+    }
     @media (min-width:$ar-big-size) {
       font-size: 0.9rem;
+    }
+  }
+  .ar-step1-active-search-title-container {
+    @media (max-width: $ar-small-size){
+      width: 100%;
+      text-align: center;
+      padding-bottom: 30px;
+      margin-top: 15px;
     }
   }
   .ar-search-date-and-place{
     margin: 5px;
     display: flex;
     align-items: center;
+    @media (max-width: $ar-small-size){
+      width: 100%;
+      justify-content: center;
+      padding-bottom: 20px;
+      .ar-pseudo-arrow {
+        width: 5px;
+        margin-top: 4px;
+        margin-left: 9px;
+        height: 36px;
+        position: absolute;
+        background-color: lightgray;
+      }
+    }
+    @media (min-width: $ar-normal-size){
+      max-width: 27%;
+    }
     .ar-search-icon{
       margin-right: 20px;
       color: $ar-color-red-0;
+      padding-right: 5px;
+      @media (max-width: $ar-small-size){
+        margin-right: 5px;
+      }
     }
     .ar-search-date{
       font-size: 0.9rem;

@@ -49,9 +49,31 @@ export const selectCar = (car, location, searchParams, rateSelected) => {
   };
 };
 
-export const searchFleet = (body) => {
+export const searchFleet = (body, googleLocation, placesId) => {
   return {
     type: actionNames.searchFleet,
     body,
+    googleLocation,
+    placesId,
+  };
+};
+
+export const seeBaseRateDetails = (body) => {
+  return {
+    type: actionNames.seeBaseRateDetails,
+    body,
+  };
+};
+
+export const seeBaseRateDetailsSuccessfully = (car) => {
+  return {
+    type: actionNames.seeBaseRateDetailsSuccessfully,
+    car,
+  };
+};
+
+export const closeDetailsModal = () => {
+  return {
+    type: actionNames.closeDetailsModal,
   };
 };

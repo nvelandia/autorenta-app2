@@ -1,6 +1,10 @@
 .ar-dropdown-menu-overflow{
   height: 300px;
   overflow-y: scroll;
+  @media (max-width: $ar-mobile-size){
+    width: 90vw;
+    transform: translate3d(-25px, 50px, 0px) !important;
+  }
 }
 
 .ar-dropdown-menu-age{
@@ -11,12 +15,18 @@
 .ar-dropdown-menu-car-type{
   transform: translate3d(25px, 50px, 0px) !important;
   min-width: 11rem;
+  @media (max-width: $ar-mobile-size){
+    width: 90vw;
+    transform: translate3d(-39vw, 50px, 0px) !important;
+  }
 }
 
 .ar-dropdown-optional-equipment{
   transform: translate3d(4px, 22px, 0px) !important;
   min-width: 2rem;
+  font-size: .8rem;
   @media (min-width: $ar-big-size) {
+    font-size: .9rem;
     transform: translate3d(13px, 30px, 0px) !important;
   }
 }
@@ -31,6 +41,12 @@
 
 .ar-order-by-button{
   margin-bottom: 10px;
+  @media (max-width: $ar-small-size){
+      div {
+        font-size: .8em;
+        text-align: center;
+      }
+  }
 }
 
 .ar-dropdown-chevron-country{
@@ -42,5 +58,18 @@
     font-size: 0.8em;
     left: 82%;
     top: 20%;
+  }
+}
+
+.ar-dropdown-text-container{
+  padding: 0 .8em;
+  @media (max-width: $ar-mobile-size){
+    padding: 0 .4em;
+  }
+  .ar-dropdown-text{
+    @media (max-width: $ar-mobile-size){
+      font-size: .7rem;
+      font-weight: 500;
+    }
   }
 }

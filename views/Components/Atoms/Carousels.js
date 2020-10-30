@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Carousel, CarouselItem, CarouselControl } from 'reactstrap';
 
 const Carousels = (props) => {
-  const { items } = props;
+  const { items, translate } = props;
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -26,7 +26,7 @@ const Carousels = (props) => {
   const slides = items.map((item) => {
     return (
       <CarouselItem
-        className="custom-tag"
+        className="custom-tag ar-custom-tag-carousel"
         tag="div"
         key={item.id}
         onExiting={() => setAnimating(true)}
@@ -38,13 +38,20 @@ const Carousels = (props) => {
   });
 
   return (
-    <div>
+    <div style={{ height: '25vw' }} className="fade-in">
       <style>{`.custom-tag { max-width: 100%; height: 25vw; }`}</style>
       <Carousel activeIndex={activeIndex} next={next} previous={previous}>
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
       </Carousel>
+      {props.isMobile ? (
+        <div className="ar-carousel-header-border">
+          <div className="ar-carousel-border-left" />
+          <div className="ar-carousel-border-center" />
+          <div className="ar-carousel-border-right" />
+        </div>
+      ) : null}
     </div>
   );
 };

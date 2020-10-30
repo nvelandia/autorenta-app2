@@ -1,4 +1,15 @@
-Tarjetas de precios en las cards de result
-notificaciones al enviar data o mostrar errores
-data de offers (mostrar la que recibo contra la mock)
-preguntar sobre los steps (progress bar)
+reservationState
+ ->numero de telefono del "comunicate telefonicamente al 954.237.4737"
+
+ ->el monto que s einforma que fue cobrado al pagar con tarjeta de credito
+ ->la frase final que indica que se aplico un descuento de tanto
+ ->los ultimos numeros de la tarjeta con que pago
+
+Payment
+ ->el descuento de 50 USD
+
+ ->el porcentaje de descuento o comision
+
+ReservationDetails
+ ->Que valores debo colocar en cada card
+

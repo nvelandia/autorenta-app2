@@ -26,7 +26,7 @@ class LocationSelected extends React.Component {
   };
 
   render() {
-    const { location, title } = this.props;
+    const { location, title, officeLocation } = this.props;
     return (
       <Card className="card-frame ar-location-selected">
         <CardBody className="p-0">
@@ -34,18 +34,32 @@ class LocationSelected extends React.Component {
             <div className="ar-location-icon">
               <i className="ar-icon-calendar" />
             </div>
-            <div>
-              {location ? (
+            <div className="ar-location-text-container">
+              {location && officeLocation ? (
                 <>
                   <h5 className="ar-location-title">{title}</h5>
-                  <p className="ar-location-date">{isoStringToDateWithTimeInText(location.date, location.time)}</p>
+                  <p className="ar-location-date">
+                    {isoStringToDateWithTimeInText(location.date, location.time, this.props.locale)}
+                  </p>
+                  <p className="ar-location-place">{`${officeLocation.city},${officeLocation.country} (${officeLocation.location})`}</p>{' '}
+                </>
+              ) : (
+                <>
+                  <h5 className="ar-location-title">{title}</h5>
+                  <p className="ar-location-date">
+                    {isoStringToDateWithTimeInText(location.date, location.time, this.props.locale)}
+                  </p>
                   <p className="ar-location-place">{location.location + ` (${location.iata})`}</p>{' '}
                 </>
-              ) : null}
+              )}
             </div>
           </Row>
           <Row className="ar-location-bottom">
-            <Google lat={parseFloat(location.latitude)} lng={parseFloat(location.longitude)} />
+            {officeLocation ? (
+              <Google lat={parseFloat(officeLocation.latitude)} lng={parseFloat(officeLocation.longitude)} />
+            ) : (
+              <Google lat={parseFloat(location.latitude)} lng={parseFloat(location.longitude)} />
+            )}
           </Row>
         </CardBody>
       </Card>
@@ -61,7 +75,7 @@ LocationSelected.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return { ...state.searchReducer, ...state.Intl };
 };
 
 export default connect(mapStateToProps)(LocationSelected);

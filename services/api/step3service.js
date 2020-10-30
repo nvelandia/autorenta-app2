@@ -13,6 +13,17 @@ class step3Service {
 
     return step3Adapter.cancelReservation(cancelResponse);
   };
+
+  payReservation = async (body) => {
+    let payResponse;
+    try {
+      payResponse = await Api.post('pays/create', body);
+    } catch (err) {
+      payResponse = err;
+    }
+
+    return step3Adapter.payReservation(payResponse);
+  };
 }
 
 export default new step3Service();

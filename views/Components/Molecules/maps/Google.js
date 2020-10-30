@@ -72,7 +72,7 @@ const MapCustom = withScriptjs(
         ],
       }}
     >
-      <Marker position={{ lat: 40.748817, lng: -73.985428 }} />
+      <Marker position={props.defaultCenter} />
     </GoogleMap>
   )),
 );
@@ -80,32 +80,42 @@ const MapCustom = withScriptjs(
 const MapDefault = withScriptjs(
   withGoogleMap((props) => (
     <GoogleMap
-      defaultZoom={8}
-      defaultCenter={{ lat: 40.748817, lng: -73.985428 }}
+      defaultZoom={12}
+      defaultCenter={props.defaultCenter}
+      center={props.center}
       defaultOptions={{
-        scrollwheel: false,
+        scrollwheel: true,
       }}
+      onClick={props.onMapClick}
     >
-      <Marker position={{ lat: 40.748817, lng: -73.985428 }} />
+      {props.companies ? props.companies : <Marker position={props.defaultCenter} />}
+      <Marker position={{ lat: props.lat, lng: props.lng }} />
+      <Marker position={props.markerPosition} />
     </GoogleMap>
   )),
 );
 
 class Google extends React.Component {
   render() {
-    const { lat, lng } = this.props;
+    const { lat, lng, companies, markerPosition, onMapClick, height } = this.props;
     return (
       <>
         <Container fluid>
           <Row className="m-0">
-            <div className="col p-0">
-              <Card className="border-0 mb-0">
-                <MapCustom
+            <div className={`col p-0 ${height ? height : ''}`}>
+              <Card className={`border-0 mb-0 ${height ? 'h-100' : ''}`}>
+                <MapDefault
                   googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBHQl7lKVzqxKiLvKVmeY0S7LkVy-HVSY"
                   loadingElement={<div style={{ height: `100%` }} />}
                   containerElement={<div className="map-canvas" id="map-custom" />}
                   mapElement={<div style={{ height: `100%`, borderRadius: 'inherit' }} />}
                   defaultCenter={{ lat: lat, lng: lng }}
+                  center={{ lat: lat, lng: lng }}
+                  companies={companies}
+                  markerPosition={markerPosition}
+                  onMapClick={onMapClick}
+                  lat={lat}
+                  lng={lng}
                 />
               </Card>
             </div>

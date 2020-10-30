@@ -14,12 +14,21 @@ class ClientTypeDropdown extends React.Component {
   }
 
   handleOnSelect = (event) => {
-    this.setState({ value: event.target.value, changeColor: 'ar-red-text' });
+    if (!this.props.airline) {
+      this.setState({ value: event.target.value, changeColor: 'ar-red-text' });
+    } else {
+      if (event.target.value === '') {
+        this.setState({ value: event.target.name, changeColor: false });
+      } else {
+        this.setState({ value: event.target.name, changeColor: 'ar-red-text' });
+      }
+    }
+
     this.props.handleOnSelectClientType(event.target.value);
   };
 
   render() {
-    const { items, classes, name, color } = this.props;
+    const { items, classes, name, color, airline } = this.props;
     return (
       <UncontrolledDropdown group className="w-100">
         <DropdownToggle color={color} className={`ar-round-button ${classes}`}>
@@ -29,13 +38,21 @@ class ClientTypeDropdown extends React.Component {
           </div>
         </DropdownToggle>
         <DropdownMenu>
-          {items.map((item, index) => {
-            return (
-              <DropdownItem key={index} id={index} name={name} value={item} onClick={this.handleOnSelect}>
-                {item}
-              </DropdownItem>
-            );
-          })}
+          {!airline
+            ? items.map((item, index) => {
+                return (
+                  <DropdownItem key={index} id={index} name={name} value={item} onClick={this.handleOnSelect}>
+                    {item}
+                  </DropdownItem>
+                );
+              })
+            : items.map((item, index) => {
+                return (
+                  <DropdownItem key={index} id={index} name={item.name} value={item.iata} onClick={this.handleOnSelect}>
+                    {item.name}
+                  </DropdownItem>
+                );
+              })}
         </DropdownMenu>
       </UncontrolledDropdown>
     );

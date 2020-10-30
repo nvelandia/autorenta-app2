@@ -1,4 +1,12 @@
 .ar-container-navbar{
+  @media (max-width: $ar-small-size){
+    justify-content: center !important;
+    .navbar-toggler {
+      color: lightGray;
+      position: absolute;
+      left: 10px;
+    }
+  }
   @media (min-width: 1200px){
     max-width: 77%;
   }
@@ -23,6 +31,9 @@
 .ar-nav-link-red{
   color: $ar-color-red-0;
   font-size: .95em;
+  @media (max-width: $ar-mobile-size) {
+    margin: 0 !important;
+  }
 }
 
 .ar-nav-link{
@@ -32,6 +43,9 @@
   white-space: pre;
   &:hover{
     cursor: pointer;
+  }
+  @media (max-width: $ar-mobile-size) {
+    font-size: 0.85rem !important;
   }
   @media (min-width: 1500px) {
     font-size: 0.9em !important;
@@ -59,7 +73,22 @@
 }
 
 .ar-nav-brand{
+  @media (max-width: $ar-small-size){
+    height: 35px !important;
+    margin: 10px 0px;
+  }
     height: 40px !important;
+  @media (min-width: 1400px) {
+    height: 50px !important;
+  }
+}
+
+.ar-nav-brand-mobile{
+  @media (max-width: $ar-small-size){
+    height: 35px !important;
+    margin-left: 2rem;
+  }
+  height: 40px !important;
   @media (min-width: 1400px) {
     height: 50px !important;
   }
@@ -73,6 +102,9 @@
     font-size: 1em;
     &::before{
       display: none !important;
+    }
+    @media (max-width: $ar-small-size){
+      transform: translate3d(20px, 50px, 0px) !important;
     }
     .ar-dropdown-item{
       display: flex;

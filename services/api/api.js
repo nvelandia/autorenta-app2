@@ -86,7 +86,7 @@ class ApiFetch {
         data: requestData.body ? requestData.body : null,
         headers: { ...requestData.customHeaders },
       }).catch((error) => {
-        handler(error.response);
+        //handler(error.response);
         reject(error.response);
       });
 

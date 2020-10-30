@@ -14,13 +14,13 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React from 'react';
 // nodejs library that concatenates classes
-import classnames from "classnames";
+import classnames from 'classnames';
 // react plugin for creating notifications over the dashboard
-import NotificationAlert from "react-notification-alert";
+import NotificationAlert from 'react-notification-alert';
 // react component used to create sweet alerts
-import ReactBSAlert from "react-bootstrap-sweetalert";
+import ReactBSAlert from 'react-bootstrap-sweetalert';
 // reactstrap components
 import {
   UncontrolledAlert,
@@ -37,40 +37,38 @@ import {
   Modal,
   Container,
   Row,
-  Col
-} from "reactstrap";
+  Col,
+} from 'reactstrap';
 // core components
-import SimpleHeader from "components/Headers/SimpleHeader.js";
+import SimpleHeader from 'components/Headers/SimpleHeader.js';
 
 class Notifications extends React.Component {
   state = {
     defaultModal: false,
     notificationModal: false,
     formModal: false,
-    alert: null
+    alert: null,
   };
-  toggleModal = state => {
+  toggleModal = (state) => {
     this.setState({
-      [state]: !this.state[state]
+      [state]: !this.state[state],
     });
   };
-  notify = type => {
+  notify = (type) => {
     let options = {
-      place: "tc",
+      place: 'tc',
       message: (
         <div className="alert-text">
           <span className="alert-title" data-notify="title">
-            {" "}
+            {' '}
             Bootstrap Notify
           </span>
-          <span data-notify="message">
-            Turning standard Bootstrap alerts into awesome notifications
-          </span>
+          <span data-notify="message">Turning standard Bootstrap alerts into awesome notifications</span>
         </div>
       ),
       type: type,
-      icon: "ni ni-bell-55",
-      autoDismiss: 7
+      icon: 'ni ni-bell-55',
+      autoDismiss: 7,
     };
     this.refs.notificationAlert.notificationAlert(options);
   };
@@ -78,7 +76,7 @@ class Notifications extends React.Component {
     this.setState({
       alert: (
         <ReactBSAlert
-          style={{ display: "block", marginTop: "-100px" }}
+          style={{ display: 'block', marginTop: '-100px' }}
           title="Here's a message!"
           onConfirm={() => this.hideAlert()}
           onCancel={() => this.hideAlert()}
@@ -87,7 +85,7 @@ class Notifications extends React.Component {
         >
           A few words about this sweet alert ...
         </ReactBSAlert>
-      )
+      ),
     });
   };
   infoAlert = () => {
@@ -95,7 +93,7 @@ class Notifications extends React.Component {
       alert: (
         <ReactBSAlert
           info
-          style={{ display: "block", marginTop: "-100px" }}
+          style={{ display: 'block', marginTop: '-100px' }}
           title="Info"
           onConfirm={() => this.hideAlert()}
           onCancel={() => this.hideAlert()}
@@ -105,7 +103,7 @@ class Notifications extends React.Component {
         >
           A few words about this sweet alert ...
         </ReactBSAlert>
-      )
+      ),
     });
   };
   successAlert = () => {
@@ -113,7 +111,7 @@ class Notifications extends React.Component {
       alert: (
         <ReactBSAlert
           success
-          style={{ display: "block", marginTop: "-100px" }}
+          style={{ display: 'block', marginTop: '-100px' }}
           title="Success"
           onConfirm={() => this.hideAlert()}
           onCancel={() => this.hideAlert()}
@@ -123,7 +121,7 @@ class Notifications extends React.Component {
         >
           A few words about this sweet alert ...
         </ReactBSAlert>
-      )
+      ),
     });
   };
   warningAlert = () => {
@@ -131,7 +129,7 @@ class Notifications extends React.Component {
       alert: (
         <ReactBSAlert
           warning
-          style={{ display: "block", marginTop: "-100px" }}
+          style={{ display: 'block', marginTop: '-100px' }}
           title="Warning"
           onConfirm={() => this.hideAlert()}
           onCancel={() => this.hideAlert()}
@@ -141,7 +139,7 @@ class Notifications extends React.Component {
         >
           A few words about this sweet alert ...
         </ReactBSAlert>
-      )
+      ),
     });
   };
   questionAlert = () => {
@@ -149,13 +147,10 @@ class Notifications extends React.Component {
       alert: (
         <ReactBSAlert
           custom
-          style={{ display: "block", marginTop: "-100px" }}
+          style={{ display: 'block', marginTop: '-100px' }}
           title="Question"
           customIcon={
-            <div
-              className="swal2-icon swal2-question swal2-animate-question-icon"
-              style={{ display: "flex" }}
-            >
+            <div className="swal2-icon swal2-question swal2-animate-question-icon" style={{ display: 'flex' }}>
               <span className="swal2-icon-text">?</span>
             </div>
           }
@@ -167,12 +162,12 @@ class Notifications extends React.Component {
         >
           A few words about this sweet alert ...
         </ReactBSAlert>
-      )
+      ),
     });
   };
   hideAlert = () => {
     this.setState({
-      alert: null
+      alert: null,
     });
   };
   render() {
@@ -196,8 +191,7 @@ class Notifications extends React.Component {
                       <i className="ni ni-like-2" />
                     </span>
                     <span className="alert-text ml-1">
-                      <strong>Default!</strong> This is a default alert—check it
-                      out!
+                      <strong>Default!</strong> This is a default alert—check it out!
                     </span>
                   </UncontrolledAlert>
                   <UncontrolledAlert color="primary">
@@ -205,8 +199,7 @@ class Notifications extends React.Component {
                       <i className="ni ni-like-2" />
                     </span>
                     <span className="alert-text ml-1">
-                      <strong>Primary!</strong> This is a primary alert—check it
-                      out!
+                      <strong>Primary!</strong> This is a primary alert—check it out!
                     </span>
                   </UncontrolledAlert>
                   <UncontrolledAlert color="secondary">
@@ -214,8 +207,7 @@ class Notifications extends React.Component {
                       <i className="ni ni-like-2" />
                     </span>
                     <span className="alert-text ml-1">
-                      <strong>Secondary!</strong> This is a secondary
-                      alert—check it out!
+                      <strong>Secondary!</strong> This is a secondary alert—check it out!
                     </span>
                   </UncontrolledAlert>
                   <UncontrolledAlert color="info">
@@ -231,8 +223,7 @@ class Notifications extends React.Component {
                       <i className="ni ni-like-2" />
                     </span>
                     <span className="alert-text ml-1">
-                      <strong>Success!</strong> This is a success alert—check it
-                      out!
+                      <strong>Success!</strong> This is a success alert—check it out!
                     </span>
                   </UncontrolledAlert>
                   <UncontrolledAlert color="danger">
@@ -240,8 +231,7 @@ class Notifications extends React.Component {
                       <i className="ni ni-like-2" />
                     </span>
                     <span className="alert-text ml-1">
-                      <strong>Danger!</strong> This is a danger alert—check it
-                      out!
+                      <strong>Danger!</strong> This is a danger alert—check it out!
                     </span>
                   </UncontrolledAlert>
                   <UncontrolledAlert color="warning">
@@ -249,8 +239,7 @@ class Notifications extends React.Component {
                       <i className="ni ni-like-2" />
                     </span>
                     <span className="alert-text ml-1">
-                      <strong>Warning!</strong> This is a warning alert—check it
-                      out!
+                      <strong>Warning!</strong> This is a warning alert—check it out!
                     </span>
                   </UncontrolledAlert>
                 </CardBody>
@@ -263,18 +252,13 @@ class Notifications extends React.Component {
                 <CardBody>
                   <Row>
                     <Col md="4">
-                      <Button
-                        block
-                        className="mb-3"
-                        color="primary"
-                        onClick={() => this.toggleModal("defaultModal")}
-                      >
+                      <Button block className="mb-3" color="primary" onClick={() => this.toggleModal('defaultModal')}>
                         Default
                       </Button>
                       <Modal
                         className="modal-dialog-centered"
                         isOpen={this.state.defaultModal}
-                        toggle={() => this.toggleModal("defaultModal")}
+                        toggle={() => this.toggleModal('defaultModal')}
                       >
                         <div className="modal-header">
                           <h6 className="modal-title" id="modal-title-default">
@@ -285,24 +269,21 @@ class Notifications extends React.Component {
                             className="close"
                             data-dismiss="modal"
                             type="button"
-                            onClick={() => this.toggleModal("defaultModal")}
+                            onClick={() => this.toggleModal('defaultModal')}
                           >
                             <span aria-hidden={true}>×</span>
                           </button>
                         </div>
                         <div className="modal-body">
                           <p>
-                            Far far away, behind the word mountains, far from
-                            the countries Vokalia and Consonantia, there live
-                            the blind texts. Separated they live in
-                            Bookmarksgrove right at the coast of the Semantics,
-                            a large language ocean.
+                            Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
+                            there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the
+                            Semantics, a large language ocean.
                           </p>
                           <p>
-                            A small river named Duden flows by their place and
-                            supplies it with the necessary regelialia. It is a
-                            paradisematic country, in which roasted parts of
-                            sentences fly into your mouth.
+                            A small river named Duden flows by their place and supplies it with the necessary
+                            regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your
+                            mouth.
                           </p>
                         </div>
                         <div className="modal-footer">
@@ -314,7 +295,7 @@ class Notifications extends React.Component {
                             color="link"
                             data-dismiss="modal"
                             type="button"
-                            onClick={() => this.toggleModal("defaultModal")}
+                            onClick={() => this.toggleModal('defaultModal')}
                           >
                             Close
                           </Button>
@@ -326,7 +307,7 @@ class Notifications extends React.Component {
                         block
                         className="mb-3"
                         color="warning"
-                        onClick={() => this.toggleModal("notificationModal")}
+                        onClick={() => this.toggleModal('notificationModal')}
                       >
                         Notification
                       </Button>
@@ -334,13 +315,10 @@ class Notifications extends React.Component {
                         className="modal-dialog-centered modal-danger"
                         contentClassName="bg-gradient-danger"
                         isOpen={this.state.notificationModal}
-                        toggle={() => this.toggleModal("notificationModal")}
+                        toggle={() => this.toggleModal('notificationModal')}
                       >
                         <div className="modal-header">
-                          <h6
-                            className="modal-title"
-                            id="modal-title-notification"
-                          >
+                          <h6 className="modal-title" id="modal-title-notification">
                             Your attention is required
                           </h6>
                           <button
@@ -348,9 +326,7 @@ class Notifications extends React.Component {
                             className="close"
                             data-dismiss="modal"
                             type="button"
-                            onClick={() =>
-                              this.toggleModal("notificationModal")
-                            }
+                            onClick={() => this.toggleModal('notificationModal')}
                           >
                             <span aria-hidden={true}>×</span>
                           </button>
@@ -358,21 +334,15 @@ class Notifications extends React.Component {
                         <div className="modal-body">
                           <div className="py-3 text-center">
                             <i className="ni ni-bell-55 ni-3x" />
-                            <h4 className="heading mt-4">
-                              You should read this!
-                            </h4>
+                            <h4 className="heading mt-4">You should read this!</h4>
                             <p>
-                              A small river named Duden flows by their place and
-                              supplies it with the necessary regelialia.
+                              A small river named Duden flows by their place and supplies it with the necessary
+                              regelialia.
                             </p>
                           </div>
                         </div>
                         <div className="modal-footer">
-                          <Button
-                            className="btn-white"
-                            color="default"
-                            type="button"
-                          >
+                          <Button className="btn-white" color="default" type="button">
                             Ok, Got it
                           </Button>
                           <Button
@@ -380,9 +350,7 @@ class Notifications extends React.Component {
                             color="link"
                             data-dismiss="modal"
                             type="button"
-                            onClick={() =>
-                              this.toggleModal("notificationModal")
-                            }
+                            onClick={() => this.toggleModal('notificationModal')}
                           >
                             Close
                           </Button>
@@ -390,18 +358,14 @@ class Notifications extends React.Component {
                       </Modal>
                     </Col>
                     <Col md="4">
-                      <Button
-                        block
-                        color="default"
-                        onClick={() => this.toggleModal("formModal")}
-                      >
+                      <Button block color="default" onClick={() => this.toggleModal('formModal')}>
                         Form
                       </Button>
                       <Modal
                         className="modal-dialog-centered"
                         size="sm"
                         isOpen={this.state.formModal}
-                        toggle={() => this.toggleModal("formModal")}
+                        toggle={() => this.toggleModal('formModal')}
                       >
                         <div className="modal-body p-0">
                           <Card className="bg-secondary border-0 mb-0">
@@ -414,33 +378,23 @@ class Notifications extends React.Component {
                                   className="btn-neutral btn-icon"
                                   color="default"
                                   href="#pablo"
-                                  onClick={e => e.preventDefault()}
+                                  onClick={(e) => e.preventDefault()}
                                 >
                                   <span className="btn-inner--icon mr-1">
-                                    <img
-                                      alt="..."
-                                      src={"/img/icons/common/github.svg")}
-                                    />
+                                    <img alt="..." src={'/img/icons/common/github.svg'} />
                                   </span>
-                                  <span className="btn-inner--text">
-                                    Github
-                                  </span>
+                                  <span className="btn-inner--text">Github</span>
                                 </Button>
                                 <Button
                                   className="btn-neutral btn-icon"
                                   color="default"
                                   href="#pablo"
-                                  onClick={e => e.preventDefault()}
+                                  onClick={(e) => e.preventDefault()}
                                 >
                                   <span className="btn-inner--icon mr-1">
-                                    <img
-                                      alt="..."
-                                      src={"/img/icons/common/google.svg")}
-                                    />
+                                    <img alt="..." src={'/img/icons/common/google.svg'} />
                                   </span>
-                                  <span className="btn-inner--text">
-                                    Google
-                                  </span>
+                                  <span className="btn-inner--text">Google</span>
                                 </Button>
                               </div>
                             </CardHeader>
@@ -450,8 +404,8 @@ class Notifications extends React.Component {
                               </div>
                               <Form role="form">
                                 <FormGroup
-                                  className={classnames("mb-3", {
-                                    focused: this.state.focusedEmail
+                                  className={classnames('mb-3', {
+                                    focused: this.state.focusedEmail,
                                   })}
                                 >
                                   <InputGroup className="input-group-merge input-group-alternative">
@@ -463,18 +417,14 @@ class Notifications extends React.Component {
                                     <Input
                                       placeholder="Email"
                                       type="email"
-                                      onFocus={() =>
-                                        this.setState({ focusedEmail: true })
-                                      }
-                                      onBlur={() =>
-                                        this.setState({ focusedEmail: false })
-                                      }
+                                      onFocus={() => this.setState({ focusedEmail: true })}
+                                      onBlur={() => this.setState({ focusedEmail: false })}
                                     />
                                   </InputGroup>
                                 </FormGroup>
                                 <FormGroup
                                   className={classnames({
-                                    focused: this.state.focusedPassword
+                                    focused: this.state.focusedPassword,
                                   })}
                                 >
                                   <InputGroup className="input-group-merge input-group-alternative">
@@ -486,38 +436,23 @@ class Notifications extends React.Component {
                                     <Input
                                       placeholder="Password"
                                       type="password"
-                                      onFocus={() =>
-                                        this.setState({ focusedPassword: true })
-                                      }
+                                      onFocus={() => this.setState({ focusedPassword: true })}
                                       onBlur={() =>
                                         this.setState({
-                                          focusedPassword: false
+                                          focusedPassword: false,
                                         })
                                       }
                                     />
                                   </InputGroup>
                                 </FormGroup>
                                 <div className="custom-control custom-control-alternative custom-checkbox">
-                                  <input
-                                    className="custom-control-input"
-                                    id=" customCheckLogin"
-                                    type="checkbox"
-                                  />
-                                  <label
-                                    className="custom-control-label"
-                                    htmlFor=" customCheckLogin"
-                                  >
-                                    <span className="text-muted">
-                                      Remember me
-                                    </span>
+                                  <input className="custom-control-input" id=" customCheckLogin" type="checkbox" />
+                                  <label className="custom-control-label" htmlFor=" customCheckLogin">
+                                    <span className="text-muted">Remember me</span>
                                   </label>
                                 </div>
                                 <div className="text-center">
-                                  <Button
-                                    className="my-4"
-                                    color="primary"
-                                    type="button"
-                                  >
+                                  <Button className="my-4" color="primary" type="button">
                                     Sign in
                                   </Button>
                                 </div>
@@ -536,28 +471,19 @@ class Notifications extends React.Component {
                   <h3 className="mb-0">Notifications</h3>
                 </CardHeader>
                 <CardBody>
-                  <Button
-                    color="default"
-                    onClick={() => this.notify("default")}
-                  >
+                  <Button color="default" onClick={() => this.notify('default')}>
                     Default
                   </Button>
-                  <Button color="info" onClick={() => this.notify("info")}>
+                  <Button color="info" onClick={() => this.notify('info')}>
                     Info
                   </Button>
-                  <Button
-                    color="success"
-                    onClick={() => this.notify("success")}
-                  >
+                  <Button color="success" onClick={() => this.notify('success')}>
                     Success
                   </Button>
-                  <Button
-                    color="warning"
-                    onClick={() => this.notify("warning")}
-                  >
+                  <Button color="warning" onClick={() => this.notify('warning')}>
                     Warning
                   </Button>
-                  <Button color="danger" onClick={() => this.notify("danger")}>
+                  <Button color="danger" onClick={() => this.notify('danger')}>
                     Danger
                   </Button>
                 </CardBody>

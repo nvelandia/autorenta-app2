@@ -30,6 +30,9 @@
         line-height: 20px;
         font-size: 13px;
     }
+    @media (max-width: $ar-mobile-size){
+        height: 4px;
+    }
 }
 
 

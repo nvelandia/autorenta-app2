@@ -39,6 +39,7 @@ class ActiveSearch extends React.Component {
   };
 
   render() {
+    const { translate, isMobile } = this.props;
     if (this.props.needToCloseModifyModal) {
       this.hideModal();
       this.props.dispatch(this.props.haveToCloseModifyModal(false));
@@ -50,16 +51,20 @@ class ActiveSearch extends React.Component {
           hideModal={this.hideModal}
           searchLocation={this.props.searchLocation}
           modifySearchFleet={this.props.modifySearchFleet}
+          translate={translate}
+          showLoader={this.props.showLoader}
+          loadLocation={this.props.loadLocation}
         />
         <Row className="justify-content-center ar-search-banner p-4 mx-0">
           <div className="ar-central-container">
             <Row className="justify-content-between bg-ar-white-0 align-items-center ">
-              <div>
-                <h3>Búsqueda activa</h3>
+              <div className="ar-step1-active-search-title-container">
+                <h3>{translate('step1.activeSearch.title')}</h3>
               </div>
               <div className="ar-search-date-and-place">
                 <div className="ar-search-icon">
                   <i className="ar-icon-calendar" />
+                  {isMobile ? <div className="ar-pseudo-arrow"></div> : null}
                 </div>
                 <div>
                   {this.props.result.locations.pickup ? (
@@ -68,18 +73,19 @@ class ActiveSearch extends React.Component {
                         {isoStringToDateWithTimeInText(
                           this.props.result.locations.pickup.date,
                           this.props.result.locations.pickup.time,
+                          this.props.locale,
                         )}
                       </p>
-                      <p className="ar-search-place">
-                        {this.props.result.locations.pickup.location + ` (${this.props.result.locations.pickup.iata})`}
-                      </p>{' '}
+                      <p className="ar-search-place">{this.props.result.locations.pickup.formated_address}</p>{' '}
                     </>
                   ) : null}
                 </div>
               </div>
-              <div className="mr--4 ml--4">
-                <img src={'/svg/searchView/next-arrow.svg'} width={'20px'} />
-              </div>
+              {!isMobile ? (
+                <div className="mr--4 ml--4">
+                  <img src={'/svg/searchView/next-arrow.svg'} width={'20px'} />
+                </div>
+              ) : null}
               <div className="ar-search-date-and-place">
                 <div className="ar-search-icon">
                   <i className="ar-icon-calendar" />
@@ -91,31 +97,40 @@ class ActiveSearch extends React.Component {
                         {isoStringToDateWithTimeInText(
                           this.props.result.locations.dropoff.date,
                           this.props.result.locations.dropoff.time,
+                          this.props.locale,
                         )}
                       </p>
-                      <p className="ar-search-place">
-                        {this.props.result.locations.dropoff.location +
-                          ` (${this.props.result.locations.dropoff.iata})`}
-                      </p>{' '}
+                      <p className="ar-search-place">{this.props.result.locations.dropoff.formated_address}</p>
                     </>
                   ) : null}
                 </div>
               </div>
-              <div className="d-flex justify-content-between pr-3">
-                <Label
-                  classes={'ar-label-common fs--15 mr-3'}
-                  title={'Edad: '}
-                  value={this.props.searchParams.passenger_age + ' años'}
-                />
+              {!isMobile ? (
+                <div className="d-flex justify-content-between pr-3 ar-step1-custom-button-modify-container">
+                  <Label
+                    classes={'ar-label-common fs--15 mr-3'}
+                    title={translate('step1.activeSearch.age')}
+                    value={this.props.searchParams.passenger_age + translate('step1.activeSearch.years')}
+                  />
+                  <CustomButton
+                    text={translate('step1.activeSearch.modify')}
+                    event={this.showModifyModal}
+                    color={'red-0'}
+                    icon={'ar-icon-chevron-right'}
+                    fontSize={'fs--15'}
+                    name={'ar-modify-button'}
+                  />
+                </div>
+              ) : (
                 <CustomButton
-                  text={'Modificar'}
+                  text={translate('step1.activeSearch.modify')}
                   event={this.showModifyModal}
                   color={'red-0'}
-                  icon={'ar-icon-chevron-right'}
                   fontSize={'fs--15'}
                   name={'ar-modify-button'}
+                  width={'d-flex justify-content-center w-100 mb-25'}
                 />
-              </div>
+              )}
             </Row>
           </div>
         </Row>
@@ -130,10 +145,12 @@ ActiveSearch.propTypes = {
   loadCountries: PropTypes.func,
   modifySearchFleet: PropTypes.func,
   haveToCloseModifyModal: PropTypes.func,
+  showLoader: PropTypes.func,
+  loadLocation: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
-  return state.searchReducer;
+  return { ...state.searchReducer, ...state.Intl };
 };
 
 export default connect(mapStateToProps)(ActiveSearch);

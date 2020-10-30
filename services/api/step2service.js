@@ -46,6 +46,17 @@ class step2Service {
 
     return step2Adapter.validatePromotion(validateResponse);
   };
+
+  loadDiscount = async (body) => {
+    let loadResponse;
+    try {
+      loadResponse = await Api.post('common/customer_discount', body);
+    } catch (err) {
+      loadResponse = err;
+    }
+
+    return step2Adapter.loadDiscount(loadResponse);
+  };
 }
 
 export default new step2Service();

@@ -5,8 +5,20 @@ import { actionNames } from '../../utils/constants/actionConstants';
 
 class homeAdapter {
   searchLocation = (response) => {
-    const { data } = response;
+    let { data } = response;
     if (data.success) {
+      const newData = [];
+      if (!Array.isArray(data.response)) {
+        for (const field in data.response) {
+          newData.push(data.response[field]);
+        }
+        return successfullyResponsesPresenter.listResponse(
+          actionNames.searchLocationSuccessfully,
+          'locations',
+          newData,
+          'Locations found',
+        );
+      }
       return successfullyResponsesPresenter.listResponse(
         actionNames.searchLocationSuccessfully,
         'locations',
@@ -14,8 +26,7 @@ class homeAdapter {
         'Locations found',
       );
     }
-
-    return errorResponsesPresenter.listError(data, actionNames.searchLocationUnsuccessfully);
+    return errorResponsesPresenter.onlyMessage(data.response.query[0], actionNames.searchLocationUnsuccessfully);
   };
 
   loadCountries = (response) => {
@@ -26,16 +37,7 @@ class homeAdapter {
         .map((country) => {
           return { name: country.name, id: country.country_id };
         })
-        .filter((country) => country.name !== null)
-        .sort(function (country1, country2) {
-          if (country1.name > country2.name) {
-            return 1;
-          }
-          if (country1.name < country2.name) {
-            return -1;
-          }
-          return 0;
-        });
+        .filter((country) => country.name !== null);
 
       return successfullyResponsesPresenter.listResponse(
         actionNames.loadCountriesSuccessfully,
@@ -61,6 +63,32 @@ class homeAdapter {
     }
 
     return errorResponsesPresenter.listError(data, actionNames.loadOffersUnsuccessfully);
+  };
+
+  loadBanners = (response) => {
+    const { data } = response;
+
+    if (data.success) {
+      const banners = data.response.map((banner, index) => {
+        return {
+          src: banner.image,
+          altText: '',
+          caption: '',
+          header: '',
+          id: index + 1,
+          style: 'ar-header-image',
+        };
+      });
+
+      return successfullyResponsesPresenter.listResponse(
+        actionNames.loadBannersSuccessfully,
+        'banners',
+        banners,
+        'Banners loaded',
+      );
+    }
+
+    return errorResponsesPresenter.listError(data, actionNames.loadBannersUnsuccessfully);
   };
 
   searchFleet = (response) => {

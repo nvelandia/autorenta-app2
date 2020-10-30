@@ -11,68 +11,106 @@ class OptionalEquipment extends React.Component {
     this.dispatch = props.dispatch;
   }
 
-  handleOnSelect = (value, propertyIndex) => {
-    let newOptionalEquipmentAdditionalSeats = this.props.optionalEquipment.additionalSeats;
-    newOptionalEquipmentAdditionalSeats[propertyIndex].quantity = value;
-    this.dispatch(this.props.addOptionalEquipment(newOptionalEquipmentAdditionalSeats));
+  handleOnSelect = (value, item) => {
+    const optionalEquipment = this.props.optionalEquipment.map((item) => {
+      return item;
+    });
+    let newOptionalEquipment = [];
+    if (value === 0) {
+      newOptionalEquipment = optionalEquipment.filter((equipment) => equipment.name !== item.name);
+    } else {
+      newOptionalEquipment = optionalEquipment.filter((equipment) => equipment.name !== item.name);
+      item.quantity = value;
+      newOptionalEquipment.push(item);
+    }
+    this.dispatch(this.props.addOptionalEquipment(newOptionalEquipment));
   };
 
-  handleOnChange = (index) => {
-    let newOptionalEquipmentOthers = this.props.optionalEquipment.others;
-    newOptionalEquipmentOthers[index].added = !newOptionalEquipmentOthers[index].added;
-    this.dispatch(this.props.addOptionalEquipment(newOptionalEquipmentOthers, true));
+  handleOnChange = (item, e) => {
+    const optionalEquipment = this.props.optionalEquipment.map((item) => {
+      return item;
+    });
+    let newOptionalEquipment = [];
+    if (!e.target.checked) {
+      newOptionalEquipment = optionalEquipment.filter((equipment) => equipment.name !== item.name);
+    } else {
+      newOptionalEquipment = optionalEquipment;
+      newOptionalEquipment.push(item);
+    }
+    this.dispatch(this.props.addOptionalEquipment(newOptionalEquipment));
   };
 
   render() {
+    const { translate, isMobile } = this.props;
+
+    let elevatorSeat;
+    let title;
+    if (!isMobile) {
+      elevatorSeat = translate('step2.optionalEquipment.elevatorSeat');
+      title = translate('step2.optionalEquipment.title');
+    } else {
+      elevatorSeat = translate('step2.optionalEquipment.elevatorSeatMobile');
+      title = translate('step2.optionalEquipment.titleMobile');
+    }
+    const optionalEquipment = {
+      others: [{ name: translate('step2.optionalEquipment.GPS'), price: 19.0 }],
+      additionalSeats: [
+        { name: translate('step2.optionalEquipment.babySeat'), price: 14.0, quantity: 0 },
+        { name: translate('step2.optionalEquipment.childrenSeat'), price: 14.0, quantity: 0 },
+        { name: elevatorSeat, price: 14.0, quantity: 0 },
+      ],
+    };
+
     return (
       <Card className="card-frame ar-optional-equipment">
         <CardBody className="p-0">
-          <div className="ar-icon-optional-equipment ar-title-with-icon">Agrega equipamiento opcional a tu renta</div>
-          <div className="ar-text-card">
-            El equipamietno opcional puede ser reservado, sólo quedará requerido a la compañía rentadora y será
-            confirmado y abonado en la oficina al inicio de la renta. Su costo no estincluido en el precio prepago de
-            esta reserva y se mostrará un precio estimado a modo orientativo pudiendo variar sin previo aviso.
-          </div>
+          <div className="ar-icon-optional-equipment ar-title-with-icon">{title}</div>
+          <div className="ar-text-card">{translate('step2.optionalEquipment.text')}</div>
           <div className="ar-options-section-card">
             <div className="ar-checkbox-options-container">
-              {this.props.optionalEquipment.others.map((item, index) => {
-                return (
-                  <div key={index} className="custom-control custom-checkbox ar-optional-equipment-checkbox mr-1">
-                    <input
-                      className="custom-control-input"
-                      id={item.name}
-                      type="checkbox"
-                      onClick={(e) => this.handleOnChange(index)}
-                    />
-                    <label className="custom-control-label ar-optional-item" htmlFor={item.name}>
-                      {item.name}
-                    </label>
-                    <label className="ar-optional-item">
-                      <strong>USD {item.price} </strong>(por día)
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="ar-select-options-container">
-              {this.props.optionalEquipment.additionalSeats.map((item, index) => {
-                return (
-                  <div key={index} className="d-flex justify-content-between align-items-center mb-1">
-                    <div className="d-flex align-items-center">
-                      <OptionalEquipmentDropdown
-                        values={[0, 1, 2, 3]}
-                        title={item.quantity.toString()}
-                        color={'white-0'}
-                        handleOnSelect={this.handleOnSelect}
-                        propertyIndex={index}
+              <div className="ar-select-options-container">
+                {this.props.carSelected.extras.map((item, index) => {
+                  if (item.multiple) {
+                    return (
+                      <div key={index} className="d-flex justify-content-between align-items-center mb-1">
+                        <div className="d-flex align-items-center">
+                          <OptionalEquipmentDropdown
+                            values={[0, 1, 2, 3]}
+                            title={0}
+                            color={'white-0'}
+                            handleOnSelect={this.handleOnSelect}
+                            itemOriginal={item}
+                          />
+                          <label className="ar-select-description">{item.name}</label>
+                        </div>
+                        <label className="ar-optional-item">
+                          <strong>USD {parseFloat(item.base_amount).toFixed(2)} </strong>
+                        </label>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+              {this.props.carSelected.extras.map((item, index) => {
+                if (!item.multiple) {
+                  return (
+                    <div key={index} className="custom-control custom-checkbox ar-optional-equipment-checkbox">
+                      <input
+                        className="custom-control-input"
+                        id={item.name}
+                        type="checkbox"
+                        defaultChecked={false}
+                        onClick={(e) => this.handleOnChange(item, e)}
                       />
-                      <label className="ar-select-description">{item.name}</label>
+                      <label className="custom-control-label ar-optional-item" htmlFor={item.name}>
+                        {item.name}
+                      </label>
+                      <label className="ar-optional-item">
+                        <strong>USD {parseFloat(item.base_amount).toFixed(2)} </strong>
+                      </label>
                     </div>
-                    <label className="ar-optional-item">
-                      <strong>USD {item.price} </strong>(por día)
-                    </label>
-                  </div>
-                );
+                  );
+                }
               })}
             </div>
           </div>
@@ -85,8 +123,6 @@ class OptionalEquipment extends React.Component {
 OptionalEquipment.propTypes = {
   dispatch: PropTypes.func,
   image: PropTypes.string,
-  showDetailModal: PropTypes.func,
-  showAditionalModal: PropTypes.func,
   addOptionalEquipment: PropTypes.func,
 };
 

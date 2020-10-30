@@ -12,13 +12,13 @@ class OptionalEquipmentDropdown extends React.Component {
     };
   }
 
-  handleOnSelect = (item, propertyIndex) => {
-    this.props.handleOnSelect(item, propertyIndex);
+  handleOnSelect = (item, itemOriginal) => {
+    this.props.handleOnSelect(item, itemOriginal);
     this.setState({ value: item });
   };
 
   render() {
-    const { values, propertyIndex, color } = this.props;
+    const { values, itemOriginal, color } = this.props;
     return (
       <UncontrolledDropdown group>
         <DropdownToggle color={color} className="ar-round-button ar-select-option">
@@ -33,9 +33,9 @@ class OptionalEquipmentDropdown extends React.Component {
               <DropdownItem
                 key={index}
                 id={index}
-                name={propertyIndex}
+                name={itemOriginal.name}
                 value={item}
-                onClick={() => this.handleOnSelect(item, propertyIndex)}
+                onClick={() => this.handleOnSelect(item, itemOriginal)}
               >
                 {item}
               </DropdownItem>

@@ -8,6 +8,7 @@ export const actionNames = {
   searchLocation: 'SEARCH_LOCATION',
   loadCountries: 'LOAD_COUNTRIES',
   loadOffers: 'LOAD_OFFERS',
+  loadBanners: 'LOAD_BANNERS',
   searchFleet: 'SEARCH_FLEET',
   selectPromotion: 'SELECT_PROMOTION',
   //Home-Service
@@ -19,12 +20,18 @@ export const actionNames = {
   loadOffersUnsuccessfully: 'OFFERS_LOADED_UNSUCCESSFULLY',
   searchFleetSuccessfully: 'SEARCH_FLEET_SUCCESSFULLY',
   searchFleetUnsuccessfully: 'SEARCH_FLEET_UNSUCCESSFULLY',
+  loadBannersSuccessfully: 'BANNERS_LOADED_SUCCESSFULLY',
+  loadBannersUnsuccessfully: 'BANNERS_LOADED_UNSUCCESSFULLY',
+  loadLocationsSuccessfully: 'LOCATIONS_LOADED_SUCCESSFULLY',
   //General
   showLoader: 'SHOW_LOADER',
   hideLoader: 'HIDE-LOADER',
   subscribeNewsletter: 'SUBSCRIBE_TO_NEWSLETTER',
   searchReservation: 'SEARCH_RESERVATION',
   closeNotification: 'CLOSE_NOTIFICATION',
+  addPageToHistory: 'ADD_PAGE_TO_HISTORY',
+  showNotification: 'SHOW_NOTIFICATION',
+  hideNotification: 'HIDE_NOTIFICATION',
   //General-Service
   subscribedSuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_SUCCESSFULLY',
   subscribedUnsuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_UNSUCCESSFULLY',
@@ -38,9 +45,14 @@ export const actionNames = {
   modifySearchFleet: 'MODIFY_SEARCH_FLEET',
   haveToCloseModifyModal: 'HAVE_TO_CLOSE_MODIFY_MODAL',
   selectCar: 'SELECT_CAR',
+  seeBaseRateDetails: 'SEE_BASE_RATE_DETAILS',
+  closeDetailsModal: 'CLOSE_DETAILS_MODAL',
   //Step1-Service
   modifySearchFleetSuccessfully: 'MODIFY_SEARCH_FLEET_SUCCESSFULLY',
   modifySearchFleetUnsuccessfully: 'MODIFY_SEARCH_FLEET_UNSUCCESSFULLY',
+  selectCarSuccessfully: 'SELECT_CAR_SUCCESSFULLY',
+  seeBaseRateDetailsSuccessfully: 'SEE_BASE_RATE_DETAILS_SUCCESSFULLY',
+  seeBaseRateDetailsUnsuccessfully: 'SEE_BASE_RATE_DETAILS_UNSUCCESSFULLY',
   //Step2
   changePlan: 'CHANGE_PLAN',
   addOptionalEquipment: 'ADD_OPTIONAL_EQUIPMENT',
@@ -51,6 +63,8 @@ export const actionNames = {
   confirmReservation: 'CONFIRM_RESERVATION',
   clearValidateIdError: 'CLEAR_VALIDATE_ID_ERROR',
   validatePromotion: 'VALIDATE_PROMOTION',
+  setErrorsStep2: 'SET_ERRORS_STEP2',
+  loadDiscount: 'LOAD_DISCOUNT',
   //Step2-Service
   loadAirlinesSuccessfully: 'LOAD_AIRLINES_SUCCESSFULLY',
   loadAirlinesUnsuccessfully: 'LOAD_AIRLINES_UNSUCCESSFULLY',
@@ -60,9 +74,14 @@ export const actionNames = {
   createReservationUnsuccessfully: 'CREATE_RESERVATION_UNSUCCESSFULLY',
   validatePromotionSuccessfully: 'VALIDATE_PROMOTION_SUCCESSFULLY',
   validatePromotionUnsuccessfully: 'VALIDATE_PROMOTION_UNSUCCESSFULLY',
+  loadDiscountSuccessfully: 'LOAD_DISCOUNT_SUCCESSFULLY',
+  loadDiscountUnsuccessfully: 'LOAD_DISCOUNT_UNSUCCESSFULLY',
   //Step3
   cancelReservation: 'CANCEL-RESERVATION',
+  payReservation: 'PAY_RESERVATION',
   //Step3-Service
   cancelReservationSuccessfully: 'CANCEL_RESERVATION_SUCCESSFULLY',
   cancelReservationUnsuccessfully: 'CANCEL_RESERVATION_UNSUCCESSFULLY',
+  payReservationSuccessfully: 'PAY_RESERVATION_SUCCESSFULLY',
+  payReservationUnsuccessfully: 'PAY_RESERVATION_UNSUCCESSFULLY',
 };

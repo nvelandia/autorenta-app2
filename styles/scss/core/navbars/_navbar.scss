@@ -251,7 +251,7 @@
             right: 0;
             z-index: 1050;
             margin: .7rem;
-            overflow-y: auto;
+            //overflow-y: auto;
             height: auto !important;
             opacity: 0;
 
@@ -284,7 +284,7 @@
 
             .navbar-collapse-header {
                 display: block;
-                padding-bottom: 1rem;
+                padding-bottom: 1.7rem;
                 margin-bottom: 1rem;
                 border-bottom: 1px solid rgba(0, 0, 0, .1);
             }

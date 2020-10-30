@@ -29,15 +29,13 @@ import {
   Col,
   Button,
 } from 'reactstrap';
-import { routes } from '../../../../utils/constants/routes';
 import Flags from '../../Atoms/Flags';
 import SearchReservationModal from '../Modals/SearchReservationModal';
 
 import * as actions from '../../../../actions/generalActions';
 import * as homeActions from '../../../../actions/homeActions';
 import NewSearchModal from '../Modals/NewSearchModal';
-import MakeYourReservation from '../../Organism/Home/MakeYourReservation';
-import NotificationAlert from 'react-notification-alert';
+import { pages } from '../../../../utils/helpers/redirectTo';
 
 class CustomNavbar extends React.Component {
   constructor(props) {
@@ -59,8 +57,8 @@ class CustomNavbar extends React.Component {
   hideModal = () => {
     this.setState({ showSearchReservationModal: false, showNewSearchModal: false });
   };
-
   render() {
+    const { translate, isMobile } = this.props;
     return (
       <Navbar className="sticky-top navbar-horizontal navbar-main bg-ar-navbar p-2" expand="xl" id="navbar-main">
         <Container className="ar-container-navbar">
@@ -77,13 +75,19 @@ class CustomNavbar extends React.Component {
             id="navbar-collapse"
             type="button"
           >
-            <span className="ar-icon-chevron-down" />
+            <img src={'/svg/bars-solid.svg'} alt={'menu'} className="w-25px" />
           </button>
-          <UncontrolledCollapse className="navbar-custom-collapse m-2" navbar toggler="#navbar-collapse">
+          <UncontrolledCollapse
+            className="navbar-custom-collapse m-2 ar-modal-navbar"
+            navbar
+            toggler="#navbar-collapse"
+          >
             <div className="navbar-collapse-header">
               <Row>
-                <Col className="collapse-brand" xs="6" />
-                <Col className="collapse-close" xs="6">
+                <Col className="collapse-brand" xs="6">
+                  <img className="ar-nav-brand-mobile" alt="..." src={'/svg/autorenta-logo.svg'} />
+                </Col>
+                <Col className="collapse-close d-flex align-items-center justify-content-end" xs="5">
                   <button
                     aria-controls="navbar-collapse"
                     aria-expanded={false}
@@ -94,68 +98,95 @@ class CustomNavbar extends React.Component {
                     id="navbar-collapse"
                     type="button"
                   >
-                    <span />
-                    <span />
+                    <i className="ar-icon-close-solid" />
                   </button>
                 </Col>
               </Row>
             </div>
             <Nav className="d-flex justify-content-between ml-4 w-100" navbar>
               <NavItem className="m-0">
-                <NavLink className="ar-nav-link ar-nav-link-blue " href={routes.HOME}>
-                  <span className="ar-icon-home" />
+                <NavLink className="ar-nav-link ar-nav-link-blue " href={pages.home}>
+                  {!isMobile ? (
+                    <span className="ar-icon-home" />
+                  ) : (
+                    <span className="nav-link-inner--text ar-nav-link-blue">
+                      <strong>Home</strong>
+                    </span>
+                  )}
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
-                <NavLink className="ar-nav-link" href={routes.PROMOTIONS}>
+                <NavLink className="ar-nav-link" href={pages.promotion + '/0'}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
-                    <strong>Promociones</strong>
+                    <strong>{translate('common.navbar.links.promotions')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
                 <NavLink className="ar-nav-link" onClick={this.showSearchReservationModal}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
-                    <strong>Buscar reservación</strong>
+                    <strong>{translate('common.navbar.links.searchReservation')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
-                <NavLink className="ar-nav-link" href={routes.AGENTS}>
+                <NavLink className="ar-nav-link" href={pages.agents}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
-                    <strong>Agentes de viaje</strong>
+                    <strong>{translate('common.navbar.links.travelAgency')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
-                <NavLink className="ar-nav-link" href={routes.BUSINESS}>
+                <NavLink className="ar-nav-link" href={pages.business}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
-                    <strong>AutoRenta Business</strong>
+                    <strong>{translate('common.navbar.links.AutoRentaBusiness')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
-                <NavLink className="ar-nav-link" href={routes.ON_THE_GO}>
+                <NavLink className="ar-nav-link" href={pages.onTheGo}>
                   <span className="nav-link-inner--text ar-nav-link-red">
-                    <strong>AutoRenta ON THE GO</strong>
+                    <strong>{translate('common.navbar.links.AutoRentaOnTheGo')}</strong>
                   </span>
                 </NavLink>
               </NavItem>
-              <NavItem className="d-none d-lg-block ar-nav-button-link ml-3 mr-0">
-                <Button
-                  className=" btn-icon ar-round-button ar-nav-button"
-                  color="blue-4"
-                  onClick={this.showNewSearchModal}
-                >
-                  <span className="nav-link-inner--text">Reservar </span>
-                  <span className="btn-inner--icon">
-                    <span className="ar-icon-chevron-right va-middle fs-i--1" />
-                  </span>
-                </Button>
-              </NavItem>
-              <NavItem className="d-none d-lg-block ar-nav-button-link mr-0">
-                <Flags className="ar-nav-button-link" />
-              </NavItem>
+              {!isMobile ? (
+                <>
+                  <NavItem className="d-none d-lg-block ar-nav-button-link ml-3 mr-0">
+                    <Button
+                      className=" btn-icon ar-round-button ar-nav-button"
+                      color="blue-4"
+                      onClick={this.showNewSearchModal}
+                    >
+                      <span className="nav-link-inner--text">{translate('common.navbar.button.reserve')}</span>
+                      <span className="btn-inner--icon">
+                        <span className="ar-icon-chevron-right va-middle fs-i--1" />
+                      </span>
+                    </Button>
+                  </NavItem>
+                  <NavItem className="d-none d-lg-block ar-nav-button-link mr-0">
+                    <Flags className="ar-nav-button-link" />
+                  </NavItem>
+                </>
+              ) : (
+                <Row className="mx-0 mt-25 mb-1">
+                  <NavItem className="d-none d-lg-block ar-nav-button-link ml-0 mr-0">
+                    <Button
+                      className=" btn-icon ar-round-button ar-nav-button"
+                      color="blue-4"
+                      onClick={this.showNewSearchModal}
+                    >
+                      <span className="nav-link-inner--text">{translate('common.navbar.button.reserve')}</span>
+                      <span className="btn-inner--icon">
+                        <span className="ar-icon-chevron-right va-middle fs-i--1" />
+                      </span>
+                    </Button>
+                  </NavItem>
+                  <NavItem className="d-none d-lg-block ar-nav-button-link mr-0">
+                    <Flags className="ar-nav-button-link" />
+                  </NavItem>
+                </Row>
+              )}
             </Nav>
           </UncontrolledCollapse>
         </Container>
@@ -163,13 +194,16 @@ class CustomNavbar extends React.Component {
           searchReservation={actions.searchReservation}
           showModal={this.state.showSearchReservationModal}
           hideModal={this.hideModal}
+          translate={translate}
+          isMobile={isMobile}
         />
         <NewSearchModal
           searchLocation={homeActions.searchLocation}
           loadCountries={homeActions.loadCountries}
-          nextStep={homeActions.nextStep}
           showModal={this.state.showNewSearchModal}
           hideModal={this.hideModal}
+          translate={translate}
+          isMobile={isMobile}
         />
       </Navbar>
     );

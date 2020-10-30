@@ -49,7 +49,6 @@ function stripePaymentMethodHandler(result) {
       }),
     }).then(function (result) {
       // Handle server response (see Step 4)
-      console.log('Response status: ' + result.status);
       result.json().then(function (json) {
         handleServerResponse(json.response);
       });

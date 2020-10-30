@@ -170,7 +170,7 @@ class NewSearchModal extends React.Component {
         <div className="alert-text">
           <span className="alert-title" data-notify="title">
             {' '}
-            ¡Atención!
+            {this.props.translate('common.error.attention')}
           </span>
           <span data-notify="message">Todos los campos son requeridos</span>
         </div>
@@ -184,6 +184,7 @@ class NewSearchModal extends React.Component {
 
   render() {
     const error = this.state.error;
+    const { translate, isMobile } = this.props;
     return (
       <Modal
         className="modal-dialog-centered ar-modal-new-search"
@@ -195,20 +196,28 @@ class NewSearchModal extends React.Component {
         </div>
         <Row className="justify-content-center">
           <Col lg="12" md="12">
-            <Row className="justify-content-center">
-              <Col lg="7" md="8" sm="8" xs="11" className="ar-card-header">
-                <CardHeader className=" p-3 ar-border-round">
-                  <Row className="text-muted text-center mb-0 justify-content-center">
-                    <h2 className="mb-0">Haz tu reserva en&nbsp;</h2>
-                    <h2 className="mb-0 ar-red-text">sólo 3 pasos</h2>
-                  </Row>
-                </CardHeader>
-              </Col>
-            </Row>
+            {!isMobile ? (
+              <Row className="justify-content-center">
+                <Col lg="7" md="8" sm="8" xs="11" className="ar-card-header">
+                  <CardHeader className=" p-3 ar-border-round">
+                    <Row className="text-muted text-center mb-0 justify-content-center">
+                      <h2 className="mb-0">{translate('home.makeYourReservation.doYourReservationIn')}&nbsp;</h2>
+                      <h2 className="mb-0 ar-red-text">{translate('home.makeYourReservation.only3Steps')}</h2>
+                    </Row>
+                  </CardHeader>
+                </Col>
+              </Row>
+            ) : null}
             <Card className=" border-0 mb-0 ar-border-round">
               <CardBody className="px-lg-5 py-lg-5">
+                {isMobile ? (
+                  <Row className="text-muted text-center mb-0 justify-content-center">
+                    <h4 className="mb-0">{translate('home.makeYourReservation.doYourReservationIn')}&nbsp;</h4>
+                    <h4 className="mb-0 ar-red-text">{translate('home.makeYourReservation.only3Steps')}</h4>
+                  </Row>
+                ) : null}
                 <div className="text-center mb-4 ar-steps-bar">
-                  <ProgressBar step={0} />
+                  <ProgressBar step={0} translate={translate} isMobile={isMobile} />
                 </div>
                 <Form role="form">
                   <Row>
@@ -225,14 +234,14 @@ class NewSearchModal extends React.Component {
                         >
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText className="ar-round-input-left">
-                              <i className="ar-icon-location ar-round-input-left" />
+                              <i className="ar-icon-location" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
                             name="placeToPickUp"
                             onChange={this.handleOnChange}
                             className="ar-round-input-right"
-                            placeholder="¿Dónde quieres retirar el vehículo?"
+                            placeholder={translate('home.makeYourReservation.placeToPickUp')}
                             value={this.state.placeToPickUp}
                             type="text"
                             autoComplete="off"
@@ -254,14 +263,14 @@ class NewSearchModal extends React.Component {
                         >
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText className="ar-round-input-left">
-                              <i className="ar-icon-location ar-round-input-left" />
+                              <i className="ar-icon-location" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
                             name="placeToDropOff"
                             onChange={this.handleOnChange}
                             className="ar-round-input-right"
-                            placeholder="¿Dónde quieres entregar el vehículo?"
+                            placeholder={translate('home.makeYourReservation.placeToDropOff')}
                             type="text"
                             autoComplete="off"
                             value={this.state.placeToDropOff}
@@ -273,7 +282,7 @@ class NewSearchModal extends React.Component {
                       </FormGroup>
                     </Col>
                     <Col lg="6" md="6">
-                      <RangeDatePicker error={error} handleDate={this.handleDate} />
+                      <RangeDatePicker error={error} handleDate={this.handleDate} translate={translate} />
                     </Col>
                   </Row>
                   <Row>
@@ -283,12 +292,12 @@ class NewSearchModal extends React.Component {
                           {
                             focused: this.state.countrySelected,
                           },
-                          'mb-0',
+                          'ar-mb-1',
                         )}
                       >
                         <CustomDropDown
                           name={'passenger_country_id'}
-                          title={'País de residencia'}
+                          title={translate('home.makeYourReservation.country')}
                           items={this.props.countries}
                           classes={'ar-dropdown-menu-overflow'}
                           handleSelect={this.handleOnSelect}
@@ -302,12 +311,12 @@ class NewSearchModal extends React.Component {
                           {
                             focused: this.state.ageSelected,
                           },
-                          'mb-0',
+                          'ar-mb-1',
                         )}
                       >
                         <CustomDropDown
                           name={'ageSelected'}
-                          title={'Edad'}
+                          title={translate('home.makeYourReservation.age')}
                           items={['+25', '24', '23', '22', '21', '20', '19', '18']}
                           classes={'ar-dropdown-menu-age'}
                           handleSelect={this.handleOnSelect}
@@ -321,12 +330,12 @@ class NewSearchModal extends React.Component {
                           {
                             focused: this.state.ageSelected,
                           },
-                          'mb-0',
+                          'ar-mb-1',
                         )}
                       >
                         <CustomDropDown
                           name={'vehicleType'}
-                          title={'Tipo de vehículo'}
+                          title={translate('home.makeYourReservation.carType')}
                           items={vehicleTypes}
                           classes={'ar-dropdown-menu-car-type ar-dropdown-menu-overflow'}
                           handleSelect={this.handleOnSelect}
@@ -341,10 +350,16 @@ class NewSearchModal extends React.Component {
                         type="button"
                         onClick={this.handleSearchClick}
                       >
-                        <span className="nav-link-inner--text text-sm">Buscar </span>
-                        <span className="btn-inner--icon">
-                          <span className="ar-icon-chevron-right va-middle fs-i--1" />
-                        </span>
+                        {!isMobile ? (
+                          <span className="nav-link-inner--text text-sm d-flex align-items-center">
+                            {translate('home.makeYourReservation.search')}
+                            <i className="ar-icon-chevron-right va-middle fs-i--1 mt-i-1 d-flex" />
+                          </span>
+                        ) : (
+                          <span className="nav-link-inner--text text-sm">
+                            {translate('home.makeYourReservation.search')}
+                          </span>
+                        )}
                       </Button>
                     </Col>
                   </Row>

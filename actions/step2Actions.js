@@ -1,18 +1,21 @@
 import { actionNames } from '../utils/constants/actionConstants';
 
-export const changePlan = (plan, rateSelected) => {
+export const changePlan = (car, location, searchParams, rateSelected, clientType, nextAction = null) => {
   return {
     type: actionNames.changePlan,
-    plan,
+    car,
+    location,
+    searchParams,
     rateSelected,
+    clientType,
+    nextAction,
   };
 };
 
-export const addOptionalEquipment = (optionalEquipment, others = false) => {
+export const addOptionalEquipment = (optionalEquipment) => {
   return {
     type: actionNames.addOptionalEquipment,
     optionalEquipment,
-    others,
   };
 };
 
@@ -70,5 +73,18 @@ export const validatePromotion = (body) => {
   return {
     type: actionNames.validatePromotion,
     body,
+  };
+};
+
+export const setErrors = (errors) => {
+  return {
+    type: actionNames.setErrorsStep2,
+    errors,
+  };
+};
+
+export const loadDiscount = () => {
+  return {
+    type: actionNames.loadDiscount,
   };
 };

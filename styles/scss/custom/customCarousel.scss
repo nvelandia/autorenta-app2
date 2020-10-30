@@ -1,5 +1,33 @@
 .ar-header-image{
   margin-top: -7vw;
+  @media (max-width: $ar-small-size){ 
+      margin: 0;
+    }
+}
+
+.ar-custom-tag-carousel{
+    @media (max-width: $ar-small-size){ 
+        height: 72vw !important;
+        img {
+            height: 100%;
+            width: auto !important;
+        }
+      }
+}
+
+.ar-offer-carousel{
+    margin: 3.5rem 0 0 0;
+    @media (max-width: $ar-mobile-size){
+        margin-top: 3rem;
+    }
+    .custom-tag {
+        @media (max-width: $ar-small-size){
+            height: 100% !important;
+            img {
+                height: 100%;
+            }
+        }
+    }
 }
 
 .ar-carousel-header-border{
@@ -14,6 +42,9 @@
     .ar-carousel-border-center{
         width: 900px;
         background-color: $ar-color-blue-9;
+        @media (max-width: $ar-small-size){ 
+            height: 20px;
+          }
     }
 }
 
