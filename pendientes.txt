@@ -13,3 +13,4 @@ Payment
 ReservationDetails
  ->Que valores debo colocar en cada card
 
+asdasd
