@@ -45,6 +45,8 @@ class CarsResult extends React.Component {
       vendor: car.company.code,
       sipp: car.type,
     };
+    body.pickup_location = car.pickup_office.location;
+    body.dropoff_location = car.dropoff_office.location;
     this.props.dispatch(this.props.selectCar(car, this.props.result.locations, body, selectedRate));
   };
 
