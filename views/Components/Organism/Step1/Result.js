@@ -48,6 +48,8 @@ class Result extends React.Component {
       body.vendor = car.company.code;
       body.sipp = car.type;
       body.rate = rate.rate_code;
+      body.pickup_location = car.pickup_office.location;
+      body.dropoff_location = car.dropoff_office.location;
       this.dispatch(this.props.seeBaseRateDetails(body));
     } else {
       this.setState({ showDetailModal: true, rate });

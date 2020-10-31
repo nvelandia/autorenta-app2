@@ -39,6 +39,7 @@ class Step1 extends React.Component {
       const geocoder = new google.maps.Geocoder();
       geocoder.geocode({ placeId: this.props.params[0] }, (result, status) => {
         pickup = result[0];
+        console.log(pickup);
         for (const component of pickup.address_components) {
           if (component.types.includes('country')) {
             pickup.countryCode = component.short_name;
