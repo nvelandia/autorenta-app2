@@ -144,9 +144,7 @@ class Step1 extends React.Component {
           </Row>
         ) : (
           <Row className="m-4 justify-content-center">
-            <div className="ar-central-container d-flex justify-content-center mb-4">
-              <h1>{translate('common.loader.text')}</h1>
-            </div>
+            <div className="ar-central-container mt-8 mb-8" />
           </Row>
         )}
         {!isMobile ? <Banner translate={translate} /> : <></>}

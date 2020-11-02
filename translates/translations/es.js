@@ -331,6 +331,8 @@ export const es = {
         titlePayment: '¡Pagaste tu reserva correctamente!',
         textPayment1: 'Cobramos ',
         textPayment2: ' a tu tarjeta finalizada en ',
+        textPayment25:
+          'Recuerda que los impuestos y cargos así como el equipamiento adicional requerido deberás abonarlos en destino en las oficinas de la compañía rentadora al inicio de tu renta.',
         textPayment3: '. ¡Obtuviste un descuento de ',
         textPayment4: 'En breve te enviaremos la factura y el voucher correspondiente',
         subtitle: 'Para gestionar tu reserva en Autorenta utiliza el número:',

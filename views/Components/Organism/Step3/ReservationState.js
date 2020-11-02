@@ -69,12 +69,13 @@ class ReservationState extends React.Component {
                   {(parseFloat(this.props.reservation.total) - parseFloat(this.props.reservation.discount)).toFixed(2)}
                 </strong>
                 {translate('step3.reservationState.textPayment2')}
-                <strong>4242 (este numero esta hardcodeado)</strong>
+                <strong>4242</strong>
                 {this.props.reservation.discount !== '0' ? (
                   <>
                     {translate('step3.reservationState.textPayment3')}USD {this.props.reservation.discount}!
                   </>
                 ) : null}
+                {translate('step3.reservationState.textPayment25')}
               </h6>
               <h5>{translate('step3.reservationState.textPayment4')}</h5>
             </div>
