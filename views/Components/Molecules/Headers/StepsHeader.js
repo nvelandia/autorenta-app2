@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, CardHeader } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import ProgressBar from '../../Atoms/ProgressBar';
 
 class StepsHeader extends React.Component {
@@ -8,12 +8,12 @@ class StepsHeader extends React.Component {
   }
 
   render() {
-    const { step, step1URL, translate, isMobile } = this.props;
+    const { step, step1URL, translate, isMobile, isTablet, isSmallTablet } = this.props;
     return (
       <Row className="ar-step-header align-items-center ml-0 mr-0">
         {step !== 3 ? (
           <Col>
-            {!isMobile ? (
+            {!isMobile && !isSmallTablet && !isTablet ? (
               <>
                 <Row className="justify-content-center mt-3 mx-0">
                   <div className="ar-card-header-header ar-border-round ">
@@ -29,6 +29,7 @@ class StepsHeader extends React.Component {
                       step1URL={step1URL}
                       translate={translate}
                       isMobile={isMobile}
+                      isSmallTablet={isSmallTablet}
                       showLoader={this.props.showLoader}
                     />
                   </div>
@@ -43,6 +44,7 @@ class StepsHeader extends React.Component {
                     step1URL={step1URL}
                     translate={translate}
                     isMobile={isMobile}
+                    isSmallTablet={isSmallTablet}
                     showLoader={this.props.showLoader}
                   />
                 </div>

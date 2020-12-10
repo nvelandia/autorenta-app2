@@ -42,35 +42,35 @@ class successfullyResponsesPresenter {
       }
 
       if (car.type[0] === 'M' && car.type[1] === 'V') {
-        if (!types['Minivans']) {
-          types['Minivans'] = { quantity: 1, sipp: [car.type] };
+        if (!types['Minivan']) {
+          types['Minivan'] = { quantity: 1, sipp: [car.type] };
         } else {
-          const sipp = types['Minivans'].sipp;
+          const sipp = types['Minivan'].sipp;
           !sipp.includes(car.type) ? sipp.push(car.type) : null;
-          types['Minivans'] = {
-            quantity: types['Minivans'].quantity + 1,
+          types['Minivan'] = {
+            quantity: types['Minivan'].quantity + 1,
             sipp: sipp,
           };
         }
       } else if (car.type[0] === 'F' && car.type[1] === 'V') {
-        if (!types['Maxivans']) {
-          types['Maxivans'] = { quantity: 1, sipp: [car.type] };
+        if (!types['Maxivan']) {
+          types['Maxivan'] = { quantity: 1, sipp: [car.type] };
         } else {
-          const sipp = types['Maxivans'].sipp;
+          const sipp = types['Maxivan'].sipp;
           !sipp.includes(car.type) ? sipp.push(car.type) : null;
-          types['Maxivans'] = {
-            quantity: types['Maxivans'].quantity + 1,
+          types['Maxivan'] = {
+            quantity: types['Maxivan'].quantity + 1,
             sipp: sipp,
           };
         }
       } else if (car.type[1] === 'V') {
-        if (!types['Vans']) {
-          types['Vans'] = { quantity: 1, sipp: [car.type] };
+        if (!types['Van']) {
+          types['Van'] = { quantity: 1, sipp: [car.type] };
         } else {
-          const sipp = types['Vans'].sipp;
+          const sipp = types['Van'].sipp;
           !sipp.includes(car.type) ? sipp.push(car.type) : null;
-          types['Vans'] = {
-            quantity: types['Vans'].quantity + 1,
+          types['Van'] = {
+            quantity: types['Van'].quantity + 1,
             sipp: sipp,
           };
         }
@@ -79,13 +79,13 @@ class successfullyResponsesPresenter {
         (car.type[0] === 'M' && car.type[1] === 'C') ||
         (car.type[0] === 'M' && car.type[1] === 'D')
       ) {
-        if (!types['Minis']) {
-          types['Minis'] = { quantity: 1, sipp: [car.type] };
+        if (!types['Mini']) {
+          types['Mini'] = { quantity: 1, sipp: [car.type] };
         } else {
-          const sipp = types['Minis'].sipp;
+          const sipp = types['Mini'].sipp;
           !sipp.includes(car.type) ? sipp.push(car.type) : null;
-          types['Minis'] = {
-            quantity: types['Minis'].quantity + 1,
+          types['Mini'] = {
+            quantity: types['Mini'].quantity + 1,
             sipp: sipp,
           };
         }
@@ -101,46 +101,46 @@ class successfullyResponsesPresenter {
           };
         }
       } else if (car.type[1] === 'F') {
-        if (!types['SUVs']) {
-          types['SUVs'] = { quantity: 1, sipp: [car.type] };
+        if (!types['SUV']) {
+          types['SUV'] = { quantity: 1, sipp: [car.type] };
         } else {
-          const sipp = types['SUVs'].sipp;
+          const sipp = types['SUV'].sipp;
           !sipp.includes(car.type) ? sipp.push(car.type) : null;
-          types['SUVs'] = {
-            quantity: types['SUVs'].quantity + 1,
+          types['SUV'] = {
+            quantity: types['SUV'].quantity + 1,
             sipp: sipp,
           };
         }
       } else if (car.type[1] === 'W') {
-        if (!types['Station Wagons']) {
-          types['Station Wagons'] = { quantity: 1, sipp: [car.type] };
+        if (!types['Station Wagon']) {
+          types['Station Wagon'] = { quantity: 1, sipp: [car.type] };
         } else {
-          const sipp = types['Station Wagons'].sipp;
+          const sipp = types['Station Wagon'].sipp;
           !sipp.includes(car.type) ? sipp.push(car.type) : null;
-          types['Station Wagons'] = {
-            quantity: types['Station Wagons'].quantity + 1,
+          types['Station Wagon'] = {
+            quantity: types['Station Wagon'].quantity + 1,
             sipp: sipp,
           };
         }
       } else if (car.type[0] === 'X' && car.type[1] === 'X') {
-        if (!types['Especiales']) {
-          types['Especiales'] = { quantity: 1, sipp: [car.type] };
+        if (!types['Especial']) {
+          types['Especial'] = { quantity: 1, sipp: [car.type] };
         } else {
-          const sipp = types['Especiales'].sipp;
+          const sipp = types['Especial'].sipp;
           !sipp.includes(car.type) ? sipp.push(car.type) : null;
-          types['Especiales'] = {
-            quantity: types['Especiales'].quantity + 1,
+          types['Especial'] = {
+            quantity: types['Especial'].quantity + 1,
             sipp: sipp,
           };
         }
       } else if (car.type[0] === 'G' && car.type[1] === 'X') {
-        if (!types['Superiores']) {
-          types['Superiores'] = { quantity: 1, sipp: [car.type] };
+        if (!types['Superior']) {
+          types['Superior'] = { quantity: 1, sipp: [car.type] };
         } else {
-          const sipp = types['Superiores'].sipp;
+          const sipp = types['Superior'].sipp;
           !sipp.includes(car.type) ? sipp.push(car.type) : null;
-          types['Superiores'] = {
-            quantity: types['Superiores'].quantity + 1,
+          types['Superior'] = {
+            quantity: types['Superior'].quantity + 1,
             sipp: sipp,
           };
         }
@@ -157,9 +157,8 @@ class successfullyResponsesPresenter {
         }
       } else {
         console.log(car.typeCar1.name, car.typeCar2.name);
-        types['zzz'] = 'Al menos 1';
+        types['No definido'] = 'Al menos 1';
       }
-
       if (!seats[car.seats]) {
         seats[car.seats] = 1;
       } else {

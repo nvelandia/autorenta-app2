@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomButton from '../../Atoms/CustomButton';
 import ModalChangePlan from './ModalChangePlan';
-import { createReservationSuccessfully } from '../../../../actions/step2Actions';
-import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
-import * as actions from '../../../../actions/step2Actions';
 import NotificationAlert from 'react-notification-alert';
 import SuccessNotification from '../../Molecules/Notifications/SuccessNotification';
 
@@ -41,6 +38,8 @@ class Details extends React.Component {
       pickup_location: this.props.carSelected.pickup_office.location,
       pickup_date: this.props.location.pickup.date,
       pickup_time: this.props.location.pickup.time,
+      pickup_extended_location: this.props.carSelected.pickup_office.extended_location,
+      dropoff_extended_location: this.props.carSelected.dropoff_office.extended_location,
       dropoff_location: this.props.carSelected.dropoff_office.location,
       dropoff_date: this.props.location.dropoff.date,
       dropoff_time: this.props.location.dropoff.time,
@@ -69,6 +68,36 @@ class Details extends React.Component {
     this.props.customerDiscount.customer_discount_id
       ? (formData.customer_discount_id = this.props.customerDiscount.customer_discount_id)
       : null;
+    if (this.props.discount.name) {
+      this.props.formData.discount_code ? (formData.discount_code = this.props.formData.discount_code) : null;
+      this.props.formData.coupon ? (formData.coupon = this.props.formData.coupon) : null;
+    }
+    if (this.props.optionalEquipment.length !== 0) {
+      const extras = [];
+      for (const item of this.props.optionalEquipment) {
+        if (item.multiple === 1) {
+          switch (item.quantity) {
+            case 1:
+              extras.push(item.code);
+              break;
+            case 2:
+              extras.push(item.code);
+              extras.push(item.code);
+              break;
+            case 3:
+              extras.push(item.code);
+              extras.push(item.code);
+              extras.push(item.code);
+              break;
+            default:
+              break;
+          }
+        } else {
+          extras.push(item.code);
+        }
+      }
+      formData.extras = extras;
+    }
     if (
       !formData.passenger_email ||
       !formData.passenger_name ||
@@ -86,7 +115,7 @@ class Details extends React.Component {
       !formData.airline_flight && formData.airline_iata ? (errors.airline_flight = true) : null;
       this.dispatch(this.props.setErrors(errors));
     } else {
-      this.dispatch(this.props.showLoader());
+      this.dispatch(this.props.showLoader('creating'));
       this.dispatch(this.props.confirmReservation(formData));
     }
   };
@@ -156,12 +185,12 @@ class Details extends React.Component {
         total = total + parseFloat(item.base_amount);
       }
     }
-    total = total + rate.price;
+    total = total + parseFloat(rate.price);
     return total.toFixed(2);
   };
 
   render() {
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isTablet, isSmallTablet } = this.props;
 
     const rate = this.props.discount.price
       ? this.props.discount
@@ -187,6 +216,12 @@ class Details extends React.Component {
     if (needClear) {
       this.dispatch(this.props.clearValidateIdError());
     }
+    const extraTaxes = rate.fees.filter(
+      (item) =>
+        item.description === 'Impuestos extras' ||
+        item.description === 'Extra taxes' ||
+        item.description === 'Impostos extras',
+    );
     return (
       <Card>
         <div className="rna-wrapper">
@@ -199,6 +234,8 @@ class Details extends React.Component {
           changePlan={this.props.changePlan}
           validatePromotion={this.props.validatePromotion}
           isMobile={isMobile}
+          isSmallTablet={isSmallTablet}
+          isTablet={isTablet}
           translate={translate}
         />
         <div className="ar-card-details-title">
@@ -254,12 +291,18 @@ class Details extends React.Component {
             {rate.fees
               ? rate.fees.map((item, index) => {
                   if (item.amount !== 0) {
-                    return (
-                      <div key={index} className="ar-card-details-additional-equipment-item">
-                        <p>{item.description}</p>
-                        <strong>USD {parseFloat(item.amount).toFixed(2)}</strong>
-                      </div>
-                    );
+                    if (
+                      item.description !== 'Impuestos extras' &&
+                      item.description !== 'Extra taxes' &&
+                      item.description !== 'Impostos extras'
+                    ) {
+                      return (
+                        <div key={index} className="ar-card-details-additional-equipment-item">
+                          <p>{item.description}</p>
+                          <strong>USD {parseFloat(item.amount).toFixed(2)}</strong>
+                        </div>
+                      );
+                    }
                   }
                 })
               : null}
@@ -268,6 +311,12 @@ class Details extends React.Component {
               <p>{translate('step2.details.baseFee')}</p>
               <strong>USD {rate.base_rate.toFixed(2)}</strong>
             </div>
+            {extraTaxes.length !== 0 ? (
+              <div className="ar-card-details-additional-equipment-item">
+                <p>{extraTaxes[0].description}</p>
+                <strong>USD {extraTaxes[0].amount.toFixed(2)}</strong>
+              </div>
+            ) : null}
             <div className="ar-card-details-additional-equipment-item">
               <p>{translate('step2.details.totalFee')}</p>
               <strong>USD {rate.fees_total.toFixed(2)}</strong>
@@ -311,7 +360,7 @@ class Details extends React.Component {
               onClick={this.handleOnClick}
             >
               {translate('step2.details.confirm')}
-              <i className="ar-icon-chevron-right" />
+              {!isMobile && !isTablet && !isSmallTablet ? <i className="ar-icon-chevron-right" /> : null}
             </Button>
           </div>
         </div>

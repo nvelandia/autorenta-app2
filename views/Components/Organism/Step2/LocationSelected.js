@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardBody, CardHeader, CardText, Col, Row } from 'reactstrap';
+import { Card, CardBody, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { isoStringToDateWithTimeInText } from '../../../../utils/helpers/dateHelpers';
@@ -41,7 +41,10 @@ class LocationSelected extends React.Component {
                   <p className="ar-location-date">
                     {isoStringToDateWithTimeInText(location.date, location.time, this.props.locale)}
                   </p>
-                  <p className="ar-location-place">{`${officeLocation.city},${officeLocation.country} (${officeLocation.location})`}</p>{' '}
+                  <p className="ar-location-place">
+                    {`${officeLocation.city.toUpperCase()},${officeLocation.country.toUpperCase()} ` +
+                      (officeLocation.location ? `(${officeLocation.location.toUpperCase()})` : '')}
+                  </p>
                 </>
               ) : (
                 <>
@@ -49,7 +52,9 @@ class LocationSelected extends React.Component {
                   <p className="ar-location-date">
                     {isoStringToDateWithTimeInText(location.date, location.time, this.props.locale)}
                   </p>
-                  <p className="ar-location-place">{location.location + ` (${location.iata})`}</p>{' '}
+                  <p className="ar-location-place">
+                    {location.location.toUpperCase() + (location.iata ? ` (${location.iata})` : '')}
+                  </p>
                 </>
               )}
             </div>

@@ -107,6 +107,10 @@ const searchReducer = (state = defaultState, action) => {
         detailsBaseRate: {},
         showDetailsModal: false,
       };
+    case actionNames.setLocale:
+      return {
+        ...defaultState,
+      };
     default:
       return state;
   }

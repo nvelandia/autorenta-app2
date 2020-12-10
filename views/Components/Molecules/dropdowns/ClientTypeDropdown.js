@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // reactstrap components
-import { DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown, Row } from 'reactstrap';
+import { DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from 'reactstrap';
 
 class ClientTypeDropdown extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class ClientTypeDropdown extends React.Component {
             <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron ml-1 ar-blue-0-text" />
           </div>
         </DropdownToggle>
-        <DropdownMenu>
+        <DropdownMenu className={`${airline ? 'ar-dropdown-menu-overflow' : ''}`}>
           {!airline
             ? items.map((item, index) => {
                 return (

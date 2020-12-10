@@ -56,7 +56,6 @@
         // .navbar-main {
         //     padding: 1rem 0;
         // }
-
         .navbar-nav {
             .nav-item {
                 margin-right: .5rem;
@@ -224,7 +223,8 @@
         display: none;
     }
 
-    @include media-breakpoint-down(md) {
+    //@include media-breakpoint-down(md) {
+    @media (max-width: $ar-small-size){
         .navbar-nav {
             .nav-link {
                 padding: .625rem 0;

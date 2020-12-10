@@ -23,8 +23,9 @@ export function* cancelReservation(action) {
     yield all([
       put(res),
       put(generalActions.hideLoader()),
-      put(generalActions.showNotification('reservationCancelled')),
+      put(generalActions.showNotification('reservationCancelled', true)),
     ]);
+    setTimeout(() => redirectTo(pages.home), 4000);
   }
 }
 
@@ -32,12 +33,13 @@ export function* payReservation(action) {
   const { body } = action;
   const state = yield select();
   body.language = state.Intl.locale;
+  yield all([put(generalActions.showLoader('paying'))]);
 
   const res = yield call(step3service.payReservation, body);
   if (res.error) {
-    yield all([put(res)]);
+    yield all([put(res), put(generalActions.showNotification('canNotPay', true)), put(generalActions.hideLoader())]);
   } else {
-    yield all([put(res)]);
+    yield all([put(res), put(generalActions.hideLoader())]);
     setTimeout(() => window.location.reload(), 3000);
   }
 }

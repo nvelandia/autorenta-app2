@@ -71,9 +71,53 @@
   }
   .ar-faq-collapse-options-container{
     margin: 0 2.5rem;
+    h5{
+      font-size: .85em;
+    }
+    .card-body{
+      font-size: .85em;
+    }
   }
 
 }
+
+.ar-req-collapse{
+  .ar-title-with-icon{
+    margin: 0 0.3rem 1rem -1.7rem;
+    color: $ar-color-red-0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem .5rem 3.2rem;
+    @media(min-width: $ar-big-size){
+      margin: 0 0.3rem 0.7rem -2.1rem;
+      font-size: 0.9rem;
+      padding: 1.4rem 2rem 0.7rem 4.2rem;
+    }
+    &:before{
+      margin-right: .3rem;
+      font-size: 1.2rem;
+      position: relative;
+      top: 0.3rem;
+      left: -0.5rem;
+      @media(min-width: $ar-big-size){
+        font-size: 1.4rem;
+        top: 0.3rem;
+        left: -0.8rem;
+      }
+    }
+  }
+  .ar-req-collapse-options-container{
+    margin: 0 2rem;
+    h5{
+      font-size: .85em;
+    }
+    .card-body{
+      font-size: .85em;
+    }
+  }
+}
+
 
 .ar-filter-button{
   @media(max-width: $ar-small-size){
@@ -82,7 +126,7 @@
     border: 2px solid #7fccbc;
     border-radius: 30px !important;
     height: auto;
-    padding: 0.65em 0;
+    padding: 0.565rem 0;
     width: 100%;
     text-align: center;
     text-transform: uppercase;
@@ -95,7 +139,6 @@
       border: 2px solid #7fccbc;
       border-radius: 30px !important;
       height: auto;
-      padding: 0.65em 0;
       width: 100%;
       text-align: center;
       text-transform: uppercase;

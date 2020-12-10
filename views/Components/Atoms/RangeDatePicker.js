@@ -5,6 +5,9 @@ import ReactDatetime from 'react-datetime';
 // reactstrap components
 import { FormGroup, InputGroupAddon, InputGroupText, InputGroup, Col, Row, Input } from 'reactstrap';
 import moment from 'moment';
+import 'moment/locale/es';
+import 'moment/locale/en-gb';
+import 'moment/locale/pt';
 import classnames from 'classnames';
 import { isServer } from '../../../utils/helpers/isError';
 
@@ -64,177 +67,175 @@ class RangeDatePicker extends React.Component {
   };
 
   render() {
-    const { handleDate, error, translate, isMobile } = this.props;
+    const { handleDate, error, translate, isMobile, isTablet, isSmallTablet, locale } = this.props;
     return (
       <>
-        <Row>
-          <Col xs={12}>
-            <FormGroup
-              className={classnames(
-                {
-                  focused: this.state.dateToPickUpFocus,
-                },
-                'ar-date-container',
-              )}
+        <Row className="mx-0">
+          <FormGroup
+            className={classnames(
+              {
+                focused: this.state.dateToPickUpFocus,
+              },
+              'ar-date-container',
+            )}
+          >
+            <InputGroup
+              className={`input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                error.dateToPickUp ? ' ar-error-border' : null
+              }`}
             >
-              <InputGroup
-                className={`input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                  error.dateToPickUp ? ' ar-error-border' : null
-                }`}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText className="ar-round-input-left">
-                    <i className="ar-icon-calendar ar-date " />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <ReactDatetime
-                  inputProps={{
-                    className: `form-control ar-round-input-right ar-date ${
-                      this.state.dateToPickUpFocus ? 'bg-ar-white-0' : ''
-                    }`,
-                    placeholder: translate('home.makeYourReservation.dateToPickUp'),
-                    readOnly: isMobile,
-                  }}
-                  viewDate={
-                    this.state.startDate
-                      ? moment(this.state.startDate).add(1, 'days').set({ h: 10, m: 0 })
-                      : moment().add(1, 'days').set({ h: 10, m: 0 })
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText className="ar-round-input-left">
+                  <i className="ar-icon-calendar ar-date " />
+                </InputGroupText>
+              </InputGroupAddon>
+              <ReactDatetime
+                inputProps={{
+                  className: `form-control ar-round-input-right ar-date ${
+                    this.state.dateToPickUpFocus ? 'bg-ar-white-0' : ''
+                  }`,
+                  placeholder: translate('home.makeYourReservation.dateToPickUp'),
+                  readOnly: isMobile || isTablet || isSmallTablet,
+                }}
+                viewDate={
+                  this.state.startDate
+                    ? moment(this.state.startDate).add(1, 'days').set({ h: 10, m: 0 })
+                    : moment().add(1, 'days').set({ h: 10, m: 0 })
+                }
+                timeFormat={'HH:mm'}
+                locale={locale}
+                value={this.state.startDate}
+                timeConstraints={{ minutes: { step: 30 } }}
+                isValidDate={(currentDate, selectedDate) => {
+                  if (moment().isBefore(currentDate) && moment(currentDate).isBefore(moment().add(365, 'days'))) {
+                    if (this.state.selections === 0) {
+                      return true;
+                    } else {
+                      if (this.state.startDate) {
+                        return moment(this.state.startDate).isBefore(currentDate);
+                      }
+                      return true;
+                    }
                   }
-                  timeFormat={'HH:mm'}
-                  value={this.state.startDate}
-                  timeConstraints={{ minutes: { step: 30 } }}
-                  isValidDate={(currentDate, selectedDate) => {
-                    if (moment().isBefore(currentDate)) {
-                      if (this.state.selections === 0) {
-                        return true;
-                      } else {
-                        if (this.state.startDate) {
-                          return moment(this.state.startDate).isBefore(currentDate);
-                        }
-                        return true;
-                      }
-                    }
-                    return false;
-                  }}
-                  renderDay={(props, currentDate, selectedDate) => {
-                    let classes = props.className;
-                    if (
-                      this.state.startDate &&
-                      this.state.endDate &&
-                      moment(this.state.startDate._d).format('DD-MM-YYYY') + '' ===
-                        moment(currentDate._d).format('DD-MM-YYYY') + ''
-                    ) {
-                      classes += ' start-date';
-                    } else if (
-                      this.state.startDate &&
-                      this.state.endDate &&
-                      moment(this.state.startDate._d).format('MM-DD-YYYY') + '' <
-                        moment(currentDate._d).format('MM-DD-YYYY') + '' &&
-                      moment(this.state.endDate._d).format('MM-DD-YYYY') + '' >
-                        moment(currentDate._d).format('MM-DD-YYYY') + ''
-                    ) {
-                      classes += ' middle-date';
-                    } else if (
-                      this.state.endDate &&
-                      moment(this.state.endDate._d).format('DD-MM-YYYY') + '' ===
-                        moment(currentDate._d).format('DD-MM-YYYY') + ''
-                    ) {
-                      classes += ' end-date';
-                    }
-                    return (
-                      <td {...props} className={classes}>
-                        {currentDate.date()}
-                      </td>
-                    );
-                  }}
-                  onChange={(e) => this.handleSelectDate(e)}
-                  onBlur={() => this.handleOnBlur(handleDate)}
-                  onFocus={() => this.setState({ dateToPickUpFocus: true })}
-                />
-              </InputGroup>
-            </FormGroup>
-          </Col>
-          <Col xs={12}>
-            <FormGroup
-              className={classnames(
-                {
-                  focused: this.state.dateToDropOffFocus,
-                },
-                'ar-date-container',
-              )}
+                  return false;
+                }}
+                renderDay={(props, currentDate, selectedDate) => {
+                  let classes = props.className;
+                  if (
+                    this.state.startDate &&
+                    this.state.endDate &&
+                    moment(this.state.startDate._d).format('DD-MM-YYYY') + '' ===
+                      moment(currentDate._d).format('DD-MM-YYYY') + ''
+                  ) {
+                    classes += ' start-date';
+                  } else if (
+                    this.state.startDate &&
+                    this.state.endDate &&
+                    moment(this.state.startDate._d).format('MM-DD-YYYY') + '' <
+                      moment(currentDate._d).format('MM-DD-YYYY') + '' &&
+                    moment(this.state.endDate._d).format('MM-DD-YYYY') + '' >
+                      moment(currentDate._d).format('MM-DD-YYYY') + ''
+                  ) {
+                    classes += ' middle-date';
+                  } else if (
+                    this.state.endDate &&
+                    moment(this.state.endDate._d).format('DD-MM-YYYY') + '' ===
+                      moment(currentDate._d).format('DD-MM-YYYY') + ''
+                  ) {
+                    classes += ' end-date';
+                  }
+                  return (
+                    <td {...props} className={classes}>
+                      {currentDate.date()}
+                    </td>
+                  );
+                }}
+                onChange={(e) => this.handleSelectDate(e)}
+                onClose={() => this.handleOnBlur(handleDate)}
+                onOpen={() => this.setState({ dateToPickUpFocus: true })}
+              />
+            </InputGroup>
+          </FormGroup>
+          <FormGroup
+            className={classnames(
+              {
+                focused: this.state.dateToDropOffFocus,
+              },
+              'ar-date-container',
+            )}
+          >
+            <InputGroup
+              className={`input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                error.dateToDropOff ? ' ar-error-border' : null
+              }`}
             >
-              <InputGroup
-                className={`input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
-                  error.dateToDropOff ? ' ar-error-border' : null
-                }`}
-              >
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText className="ar-round-input-left">
-                    <i className="ar-icon-calendar ar-date" />
-                  </InputGroupText>
-                </InputGroupAddon>
-                <ReactDatetime
-                  inputProps={{
-                    className: `form-control ar-round-input-right ar-date ${
-                      this.state.dateToDropOffFocus ? 'bg-ar-white-0' : ''
-                    }`,
-                    placeholder: translate('home.makeYourReservation.dateToDropOff'),
-                    readOnly: isMobile,
-                  }}
-                  viewDate={this.state.startDate}
-                  timeFormat={'H:mm'}
-                  value={this.state.endDate}
-                  timeConstraints={{ minutes: { step: 30 } }}
-                  isValidDate={(currentDate, selectedDate) => {
-                    if (moment().isBefore(currentDate)) {
-                      if (this.state.selections === 1) {
-                        if (this.state.startDate) {
-                          return moment(this.state.startDate).isBefore(currentDate);
-                        }
-                        return false;
-                      } else {
-                        return true;
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText className="ar-round-input-left">
+                  <i className="ar-icon-calendar ar-date" />
+                </InputGroupText>
+              </InputGroupAddon>
+              <ReactDatetime
+                inputProps={{
+                  className: `form-control ar-round-input-right ar-date ${
+                    this.state.dateToDropOffFocus ? 'bg-ar-white-0' : ''
+                  }`,
+                  placeholder: translate('home.makeYourReservation.dateToDropOff'),
+                  readOnly: isMobile || isTablet || isSmallTablet,
+                }}
+                viewDate={this.state.startDate}
+                timeFormat={'H:mm'}
+                value={this.state.endDate}
+                locale={locale}
+                timeConstraints={{ minutes: { step: 30 } }}
+                isValidDate={(currentDate, selectedDate) => {
+                  if (moment().isBefore(currentDate) && moment(currentDate).isBefore(moment().add(365, 'days'))) {
+                    if (this.state.selections === 1) {
+                      if (this.state.startDate) {
+                        return moment(this.state.startDate).isBefore(currentDate);
                       }
+                      return false;
+                    } else {
+                      return true;
                     }
-                    return false;
-                  }}
-                  renderDay={(props, currentDate, selectedDate) => {
-                    let classes = props.className;
-                    if (
-                      this.state.startDate &&
-                      moment(this.state.startDate._d).format('DD-MM-YYYY') + '' ===
-                        moment(currentDate._d).format('DD-MM-YYYY') + ''
-                    ) {
-                      classes += ' start-date';
-                    } else if (
-                      this.state.startDate &&
-                      this.state.endDate &&
-                      moment(this.state.startDate._d).format('MM-DD-YYYY') + '' <
-                        moment(currentDate._d).format('MM-DD-YYYY') + '' &&
-                      moment(this.state.endDate._d).format('MM-DD-YYYY') + '' >
-                        moment(currentDate._d).format('MM-DD-YYYY') + ''
-                    ) {
-                      classes += ' middle-date';
-                    } else if (
-                      this.state.endDate &&
-                      moment(this.state.endDate._d).format('DD-MM-YYYY') + '' ===
-                        moment(currentDate._d).format('DD-MM-YYYY') + ''
-                    ) {
-                      classes += ' end-date';
-                    }
-                    return (
-                      <td {...props} className={classes}>
-                        {currentDate.date()}
-                      </td>
-                    );
-                  }}
-                  onChange={(e) => this.handleSelectDate(e)}
-                  onBlur={() => this.handleOnBlur(handleDate)}
-                  onFocus={() => this.setState({ dateToDropOffFocus: true })}
-                />
-              </InputGroup>
-            </FormGroup>
-          </Col>
+                  }
+                  return false;
+                }}
+                renderDay={(props, currentDate, selectedDate) => {
+                  let classes = props.className;
+                  if (
+                    this.state.startDate &&
+                    moment(this.state.startDate._d).format('DD-MM-YYYY') + '' ===
+                      moment(currentDate._d).format('DD-MM-YYYY') + ''
+                  ) {
+                    classes += ' start-date';
+                  } else if (
+                    this.state.startDate &&
+                    this.state.endDate &&
+                    moment(this.state.startDate._d).format('MM-DD-YYYY') + '' <
+                      moment(currentDate._d).format('MM-DD-YYYY') + '' &&
+                    moment(this.state.endDate._d).format('MM-DD-YYYY') + '' >
+                      moment(currentDate._d).format('MM-DD-YYYY') + ''
+                  ) {
+                    classes += ' middle-date';
+                  } else if (
+                    this.state.endDate &&
+                    moment(this.state.endDate._d).format('DD-MM-YYYY') + '' ===
+                      moment(currentDate._d).format('DD-MM-YYYY') + ''
+                  ) {
+                    classes += ' end-date';
+                  }
+                  return (
+                    <td {...props} className={classes}>
+                      {currentDate.date()}
+                    </td>
+                  );
+                }}
+                onChange={(e) => this.handleSelectDate(e)}
+                onClose={() => this.handleOnBlur(handleDate)}
+                onOpen={() => this.setState({ dateToDropOffFocus: true })}
+              />
+            </InputGroup>
+          </FormGroup>
         </Row>
       </>
     );

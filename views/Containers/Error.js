@@ -1,52 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/homeActions';
 import * as generalAction from '../../actions/generalActions';
 import CustomNavBar from '../Components/Molecules/Navbars/CustomNavBar';
-import CarouselHeader from '../Components/Molecules/Headers/CarouselHeader';
 import CustomFooter from '../Components/Molecules/Footers/CustomFooter';
-import Banner from '../Components/Molecules/banners/Banner';
 import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
 import UpToTop from '../Components/Atoms/UpToTop';
-import { isMobile, isServer } from '../../utils/helpers/isError';
+import { isMobile, isServer, isSmallTablet, isTablet } from '../../utils/helpers/isError';
 import * as generalActions from '../../actions/generalActions';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
-import { Button, Row } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { pages as page, redirectTo } from '../../utils/helpers/redirectTo';
-
-const items = [
-  {
-    src: '/img/custom/slide-home-1.jpg',
-    altText: '',
-    caption: '',
-    header: '',
-    id: 1,
-    style: 'ar-header-image',
-  },
-  {
-    src: '/img/custom/slide-home-2.jpg',
-    altText: '',
-    caption: '',
-    header: '',
-    id: 2,
-    style: 'ar-header-image',
-  },
-  {
-    src: '/img/custom/slide-home-3.jpg',
-    altText: '',
-    caption: '',
-    header: '',
-    id: 3,
-    style: 'ar-header-image',
-  },
-];
 
 class Error extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isMobile: false,
+      isTablet: false,
+      isSmallTablet: false,
     };
     this.dispatch = props.dispatch;
     this.handleOnLoad();
@@ -61,8 +33,33 @@ class Error extends React.Component {
   };
 
   componentDidMount() {
-    if (!this.state.isMobile && isMobile()) {
+    if (isMobile()) {
       this.setState({ isMobile: true });
+    }
+    if (isTablet()) {
+      this.setState({ isTablet: true });
+    }
+    if (isSmallTablet()) {
+      this.setState({ isSmallTablet: true });
+    }
+    if (!isServer()) {
+      window.addEventListener('resize', () => {
+        if (isMobile()) {
+          this.setState({ isMobile: true, isTablet: false, isSmallTablet: false });
+        } else if (isTablet()) {
+          this.setState({ isMobile: false, isTablet: true, isSmallTablet: false });
+        } else if (isSmallTablet()) {
+          this.setState({ isMobile: false, isTablet: false, isSmallTablet: true });
+        } else {
+          this.setState({ isMobile: false, isTablet: false, isSmallTablet: false });
+        }
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if (!isServer()) {
+      window.removeEventListener('resize', null);
     }
   }
 
@@ -71,22 +68,48 @@ class Error extends React.Component {
   };
 
   render() {
-    const { translate } = this.props;
-    const isMobile = this.state.isMobile;
+    const { translate, params } = this.props;
+    const { isMobile, isSmallTablet, isTablet } = this.state;
+    let message = translate('error.message');
+    let message2 = null;
+    let img = '/img/custom/Error/bug-image.png';
+    if (params) {
+      if (params.code === '1') {
+        message = translate('step1.resultMessage');
+      }
+      if (params.code === '2') {
+        message = translate('error.access1_1');
+        message2 = translate('error.access1_2');
+        img = '/img/custom/Error/bug-search-image.png';
+      }
+      if (params.code === '3') {
+        message = translate('error.canceled');
+        img = '/img/custom/Error/bug-search-image.png';
+      }
+    }
+    console.log(params);
     return (
       <>
-        <CustomNavBar translate={translate} isMobile={isMobile} />
+        <CustomNavBar translate={translate} isMobile={isMobile} isSmallTablet={isSmallTablet} isTablet={isTablet} />
         <StepsHeader step={3} translate={translate} />
         <div className="ar-error-container">
+          <img src={img} alt="" />
+          <div className="ar-central-container d-flex justify-content-center">
+            <h1>{translate('common.error.attention')}</h1>
+          </div>
           <div className="ar-central-container d-flex justify-content-center mb-4">
-            <h1>{translate('error.message')}</h1>
+            {!message2 ? (
+              <h3>{message}</h3>
+            ) : (
+              <div className="d-flex flex-column align-items-center">
+                <h3 className="mb-0">{message}</h3>
+                <h3 className="mb-0">{message2}</h3>
+              </div>
+            )}
           </div>
           <div className="ar-register-button-container">
             <Button className=" btn-icon ar-round-button" color="red-0" onClick={this.handleOnClick}>
               <span className="nav-link-inner--text">{translate('error.goHome')}</span>
-              <span className="btn-inner--icon">
-                <span className="ar-icon-chevron-right va-middle fs-i--1" />
-              </span>
             </Button>
           </div>
         </div>
@@ -94,9 +117,14 @@ class Error extends React.Component {
           subscribeToNewsletter={generalAction.subscribeNewsletter}
           translate={translate}
           isMobile={isMobile}
+          isTablet={isTablet}
+          isSmallTablet={isSmallTablet}
         />
-        {!isMobile ? <UpToTop /> : null}
-        <AutorentaLoader translate={translate} />
+        {!isMobile && !isTablet && !isSmallTablet ? <UpToTop /> : null}
+
+        <div>
+          <AutorentaLoader translate={translate} />
+        </div>
       </>
     );
   }

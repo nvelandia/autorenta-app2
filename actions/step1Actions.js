@@ -39,13 +39,14 @@ export const haveToCloseModifyModal = (value) => {
   };
 };
 
-export const selectCar = (car, location, searchParams, rateSelected) => {
+export const selectCar = (car, location, searchParams, rateSelected, oldRates) => {
   return {
     type: actionNames.selectCar,
     car,
     location,
     searchParams,
     rateSelected,
+    oldRates,
   };
 };
 

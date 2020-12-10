@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Carousel, CarouselControl, CarouselItem } from 'reactstrap';
+import { isMobile } from '../../../../utils/helpers/isError';
 
 class ImageHeader extends React.Component {
   constructor(props) {
@@ -32,13 +33,21 @@ class ImageHeader extends React.Component {
     return this.props.items.map((item) => {
       return (
         <CarouselItem
-          className="custom-tag"
+          className={`custom-tag ar-custom-tag-carousel ${
+            this.props.isMobile || this.props.isSmallTablet ? 'd-flex justify-content-center ar-promotion-header' : ''
+          }`}
           tag="div"
           key={item.id}
           onExiting={() => this.setState({ animating: true })}
           onExited={() => this.setState({ animating: false })}
         >
-          <img className={'d-block w-100 ' + item.style} src={item.src} alt={item.altText} />
+          <img
+            className={`d-block ${this.props.isMobile || this.props.isSmallTablet ? 'w-auto h-100 ' : 'w-100 '}  ${
+              item.style
+            }`}
+            src={item.src}
+            alt={item.altText}
+          />
         </CarouselItem>
       );
     });

@@ -1,17 +1,37 @@
 .ar-footer{
   .ar-footer-up{
     height: 300px;
-    @media (max-width: $ar-small-size){
+    .ar-footer-up-container{
+      display: flex;
+      flex-direction: column;
+      width: 75%;
+      justify-content: center;
+      @media (min-width: 751px) and (max-width: $ar-small-size){
+        width: 88%;
+        max-width: 870px;
+      }
+    }
+    @media (max-width: 750px){
       height: 950px;
       margin: 0 !important;
       padding: 0 !important;
-
+    }
+    @media (min-width: 751px) and (max-width: $ar-small-size){
+      height: auto;
+      margin: 0 !important;
+      padding: 0 !important;
     }
     .ar-subscribe{
-      @media (max-width: $ar-small-size){
+      padding: 25px 0;
+      height: 40%;
+      width: 100%;
+      margin: 0;
+      border-bottom: solid;
+      border-bottom-color: #053e8a;
+      border-width: thin;
+      @media (max-width: 750px){
         border-bottom-width: 0px;
         height: 340px;
-
         div {
           justify-content: center;
           width: 80%;
@@ -20,13 +40,20 @@
           }
         };
       }
-      padding: 25px 0;
-      height: 40%;
-      width: 100%;
-      margin: 0;
-      border-bottom: solid;
-      border-bottom-color: #053e8a;
-      border-width: thin;
+      @media (min-width: 751px) and (max-width: $ar-small-size){
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        border-bottom-width: 0px;
+        height: auto;
+        div {
+          justify-content: center;
+          width: 100%;
+          div input {
+            text-align: center;
+          }
+        };
+      }
       .ar-subscribe-text{
         margin-left: 0 !important;
         margin-right: 1rem;
@@ -34,7 +61,7 @@
           font-size: .9em;
           letter-spacing: 0.3px;
         }
-        @media (max-width: $ar-small-size){
+        @media (max-width: 750px){
           margin-right: 0;
           flex: 1;
           justify-content: center;
@@ -44,6 +71,16 @@
             text-align: center;
             width: 290px;
             font-size: 1.4rem;
+          }
+        }
+        @media (min-width: 751px) and (max-width: $ar-small-size){
+          margin-right: 0;
+          justify-content: center;
+          padding: 25px 0;
+          h2{
+            text-align: center;
+            width:100%;
+            font-size: 1.1rem;
           }
         }
         @media (min-width: $ar-big-size){
@@ -59,7 +96,7 @@
       }
       .ar-register-button-container{
         margin-left: 10px;
-        @media (max-width: $ar-small-size){
+        @media (max-width: 750px){
           margin-left: 0;
           padding-left: 10px;
           padding-right: 10px;
@@ -69,6 +106,16 @@
             width: 80%;
           }
         }
+        @media (min-width: 751px) and (max-width: $ar-small-size){
+          margin-left: 0;
+          padding-left: 10px;
+          padding-right: 10px;
+          flex: 1;
+          justify-self: center;
+          button {
+            width: 100%;
+          }
+        }
       }
     }
     .ar-links{
@@ -76,16 +123,25 @@
       padding-left: 15px;
       height: 60%;
       width: 100%;
-
-      @media (max-width: $ar-small-size){
+      @media (max-width: 750px){
         justify-content: center;
+      }
+      @media (min-width: 751px) and (max-width: $ar-small-size){
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        margin-bottom: 1rem;
       }
       .ar-group-links{
         h3{
-          // flex: 1;
           margin-bottom: 10px;
         }
-
+        .ar-link{
+          color: $ar-color-white-1;
+          font-size: 0.80rem;
+          letter-spacing: 0.2px;
+          cursor: pointer;
+        }
         @media (max-width: $ar-small-size) {
           h3 {
             text-align: center;
@@ -97,32 +153,41 @@
             font-size: 3px;
           }
         }
-        .ar-link{
-          color: $ar-color-white-1;
-          font-size: 0.80rem;
-          letter-spacing: 0.2px;
-          cursor: pointer;
-        }
       }
       .ar-group-logos{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         padding: 0;
-        @media (max-width: $ar-small-size) {
+        @media (max-width: 750px) {
           padding: 30px 0;
           margin: 0;
+        }
+        @media (min-width: 751px) and (max-width: $ar-small-size){
+          width: 100%;
+          max-width: 100%;
+          flex-direction: row;
+          margin: 25px 0;
         }
         .ar-social-logos{
           flex: 1;
           text-align: center;
           padding: 0;
           margin-bottom: 5px;
-          @media (max-width: $ar-small-size) {
+          @media (max-width: 750px) {
             img {
               width: 1em;
             }
             display: none;
+          }
+          @media (min-width: 751px) and (max-width:$ar-small-size ) {
+            margin-bottom: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            img{
+              width: 20px;
+            }
           }
           @media (min-width: $ar-small-size) and (max-width:$ar-normal-size ) {
             img{
@@ -142,9 +207,12 @@
         }
         .ar-logo-footer{
           width: 100%;
-          @media (max-width: $ar-small-size) {
+          @media (max-width: 750px) {
               height: 40px;
               align-items: center;
+          }
+          @media (min-width: 751px) and (max-width:$ar-small-size ) {
+            width: 27%;
           }
         }
       }
@@ -175,17 +243,41 @@
     border-color: #053e8a;
     border-width: thin;
     color: $ar-color-white-1;
+    div{
+      @media (max-width: $ar-small-size) {
+        height: 80px;
+      }
+      @media (min-width: $ar-small-size) and (max-width: $ar-big-size) {
+        display: flex;
+        justify-content: space-between;
+        width: 75%;
+      }
+      @media (min-width: $ar-big-size) {
+        display: flex;
+        justify-content: space-between;
+        width: 75%;
+      }
+    }
     p{
       font-size: 0.8rem;
       margin-top: 15px;
     }
+    img{
+      width: 150px;
+    }
     @media (max-width: $ar-small-size) {
       height: 80px;
+      display: flex;
+      justify-content: center;
       p {
         font-size: 0.6rem;
         margin: 0 35px;
       }
-  }
+    }
+    @media (min-width: $ar-small-size) {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 

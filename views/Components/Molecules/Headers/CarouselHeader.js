@@ -8,13 +8,6 @@ class CarouselHeader extends React.Component {
     return (
       <>
         <Carousels items={items} translate={translate} isMobile={isMobile} />
-        {!isMobile ? (
-          <div className="ar-carousel-header-border">
-            <div className="ar-carousel-border-left" />
-            <div className="ar-carousel-border-center" />
-            <div className="ar-carousel-border-right" />
-          </div>
-        ) : null}
       </>
     );
   }

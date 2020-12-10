@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, CardBody, Container, FormGroup, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap';
+import { Button, Card, CardBody, FormGroup, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ClientTypeDropdown from '../../Molecules/dropdowns/ClientTypeDropdown';
@@ -13,8 +13,8 @@ class ClientType extends React.Component {
       clientType: '',
       agencyCodeFocus: false,
       corporationCodeFocus: false,
-      agencyCode: '',
-      corporationCode: '',
+      agencyCode: '', //AG8112MX1
+      corporationCode: '', //CO4772MX2
       error: {
         clientType: false,
       },
@@ -102,9 +102,6 @@ class ClientType extends React.Component {
                 handleOnSelectClientType={this.handleOnSelect}
               />
             </div>
-            {this.state.clientType === translate('step2.clientType.passenger') ? (
-              <img className="fade-in" src={this.props.customerDiscount.image} alt="" />
-            ) : null}
             {this.state.clientType === translate('step2.clientType.agency') ? (
               <FormGroup
                 className={
@@ -186,6 +183,9 @@ class ClientType extends React.Component {
               </FormGroup>
             ) : null}
           </Row>
+          {this.state.clientType === translate('step2.clientType.passenger') ? (
+            <img className="fade-in" src={this.props.customerDiscount.image} alt="" />
+          ) : null}
         </CardBody>
       </Card>
     );

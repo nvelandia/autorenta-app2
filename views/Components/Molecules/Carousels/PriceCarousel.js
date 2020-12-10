@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Row, Carousel, CarouselControl, CarouselItem } from 'reactstrap';
+import { Row, Carousel, CarouselItem } from 'reactstrap';
 
 class PriceCarousel extends React.Component {
   constructor(props) {

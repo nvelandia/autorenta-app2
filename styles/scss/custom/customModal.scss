@@ -1,5 +1,9 @@
 .ar-modal-details-information{
   max-width: 360px;
+  margin: auto;
+  @media (max-width: $ar-mobile-size) {
+    width: calc(100% - 50px) !important;
+  }
 }
 
 .ar-modal-navbar{
@@ -11,20 +15,64 @@
 
 .ar-modal-aditional-information{
   max-width: 950px;
+  margin: 1.5rem auto;
   h2{
     font-size: 1.1em;
+    @media (max-width: $ar-mobile-size) {
+      font-size: 1rem;
+      margin: 0 !important;
+    }
+    @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size) {
+      font-size: 1.1rem;
+      margin: 0 !important;
+    }
   }
-  .ar-modal-body-aditional-information{
+  @media (max-width: $ar-small-size) {
+    width: calc(100% - 50px) !important;
+  }
+    .ar-modal-body-aditional-information{
     position: relative;
     flex: 1 1 auto;
     padding: 1em 2em;
+    @media (max-width: $ar-mobile-size){
+      .card{
+        max-width: 430px;
+      }
+      .card-title{
+        font-size: .9rem;
+      }
+      i{
+        font-size: 1.3rem;
+      }
+    }
+    @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size) {
+      .card{
+        max-width: 430px;
+      }
+      .card-title{
+        font-size: 1.1rem;
+      }
+      i{
+        font-size: 1.5rem;
+      }
+    }
+  }
+  .ar-last-row-make-your-reservation{
+    padding: .2em 1.7em !important;
   }
 }
 
 .ar-modal-change-plan{
-  max-width: 480px;
+  max-width: 520px;
   @media (min-width: $ar-big-size){
-    max-width: 480px;
+    max-width: 600px;
+  }
+  .modal-header{
+    padding: 2rem 2rem 0 2rem;
+    .modal-title{
+      font-size: 1.2rem;
+      margin-top: 0;
+    }
   }
 }
 
@@ -33,6 +81,10 @@
   @media (max-width: $ar-mobile-size) {
     margin: 25px !important;
     width: calc(100% - 50px) !important;
+    .ar-dropdown-menu-car-type{
+      width: 90vw;
+      transform: translate3d(-4vw, 50px, 0px) !important;
+    }
   }
   @media (min-width: $ar-big-size){
     max-width: 900px;
@@ -127,15 +179,30 @@
   }
 }
 
-
 .ar-modal-cancel-reservation{
   max-width: 500px;
-
+  @media (max-width: $ar-mobile-size){
+    max-width: calc(100% - 50px);
+    margin: auto;
+    .modal-content{
+      padding: 1.5rem;
+    }
+    .modal-body{
+      padding: 0;
+    }
+    .modal-header{
+      padding: 1rem 0;
+    }
+  }
   @media (min-width: $ar-big-size){
     max-width: 600px;
   }
   .ar-modal-cancel-reservation-title{
     margin: 1rem 0 1rem 1.5rem;
+    @media (max-width: $ar-mobile-size){
+      margin: 0;
+      font-size: 1rem;
+    }
     @media (min-width: $ar-big-size){
       font-size: 1.2rem;
     }
@@ -145,6 +212,9 @@
     margin-left: .8rem;
     padding-right: 2rem;
     margin-bottom: 1rem;
+    @media (max-width: $ar-mobile-size){
+      margin-left: 0;
+    }
     @media (min-width: $ar-big-size){
       font-size: 0.9rem;
     }
@@ -154,6 +224,9 @@
     color: $ar-color-blue-2;
     padding: 0 0.5rem;
     margin-bottom: 1rem;
+    @media (max-width: $ar-mobile-size){
+      padding: 0;
+    }
     .ar-cancel-reservation-input-left{
       padding-left: 0.5rem;
       @media (min-width: $ar-big-size){
@@ -178,6 +251,10 @@
       padding: 0.6rem 1.5rem 0.6rem 0;
       height: auto;
       color: $ar-color-red-0;
+      @media (max-width: $ar-mobile-size){
+        text-align: left;
+        padding-left: 1rem;
+      }
       @media (min-width: $ar-big-size){
         font-size: 0.9rem;
         padding: 0.7rem 1.5rem;
@@ -190,10 +267,17 @@
     display: flex;
     justify-content: flex-end;
     margin: 1.5rem 0 1rem 0;
+    @media (max-width: $ar-mobile-size){
+      padding: 0;
+      margin: 0;
+    }
     .ar-cancel-button{
       padding: 0.6rem 1rem;
       font-size: 0.7rem;
       font-weight: 700;
+      @media (max-width: $ar-mobile-size){
+        width: 100%;
+      }
       @media (min-width: $ar-big-size){
         font-size: 0.9rem;
         padding: 0.7rem 0.95rem;
@@ -203,12 +287,18 @@
 }
 
 .ar-google-modal{
-  @media (max-width: $ar-mobile-size) {
+  @media (max-width: $ar-small-size) {
+    width: 88%;
+    margin: auto;
     .map-canvas{
       height: 100% !important;
     }
   }
   max-width: 1155px;
+  @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size){
+    max-width: 900px;
+    width: 88%;
+  }
   h5{
     font-size: 0.9rem;
     font-weight: bold;
@@ -220,11 +310,11 @@
     align-items: center;
     padding: 0.8rem 1.5rem;
     border-bottom: solid;
-    border-bottom-color: #dee2e6;
+    border-bottom-color: $ar-color-white-4;
     border-bottom-width: thin;
     margin: 0;
     min-height: 80px;
-    @media (max-width: $ar-mobile-size) {
+    @media (max-width: $ar-small-size) {
       h5{
         margin: 0.3rem 0;
       }
@@ -241,7 +331,7 @@
       height: 28rem;
       direction: rtl;
       overflow: auto;
-      @media (max-width: $ar-mobile-size){
+      @media (max-width: $ar-small-size){
         padding: 0.8rem;
         display: flex;
         overflow: auto;
@@ -291,7 +381,7 @@
     letter-spacing: 0.1em;
     width: 98%;
     margin: 1rem 1rem 1.5rem 1.5rem;
-    @media (max-width: $ar-mobile-size) {
+    @media (max-width: $ar-small-size) {
       width: calc(100% - 2rem);
       margin: 1rem;
     }
@@ -301,12 +391,12 @@
     width: 100%;
     padding: 1.5rem 0 1rem 0.8rem;
     border-bottom: solid;
-    border-bottom-color: #dee2e6;
+    border-bottom-color: $ar-color-white-4;
     border-bottom-width: thin;
-    @media (max-width: $ar-mobile-size){
+    @media (max-width: $ar-small-size){
       border-bottom: none;
       border-top: solid;
-      border-top-color: #dee2e6;
+      border-top-color: $ar-color-white-4;
       border-top-width: thin;
       padding: 1rem;
       p{
@@ -322,14 +412,20 @@
     div{
       display: flex;
       width: 55vw;
+      @media (min-width: $ar-mobile-size) and (max-width: 750px) {
+        width: 35vw;
+      }
+      @media (min-width: 751px) and (max-width: $ar-small-size) {
+        width: 25vw;
+      }
     }
   }
   .ar-google-modal-company-info:last-child{
     border: none;
-    @media (max-width: $ar-mobile-size){
+    @media (max-width: $ar-small-size){
       border-bottom: none;
       border-top: solid;
-      border-top-color: #dee2e6;
+      border-top-color: $ar-color-white-4;
       border-top-width: thin;
     }
   }
@@ -337,7 +433,7 @@
     margin-bottom: 0.4rem;
     font-size: 0.8rem;
     font-weight: 500;
-    color: #32325d;
+    color: $ar-color-blue-0;
     text-transform: capitalize;
     .ar-icon-location{
       margin-right: 0.2rem;
@@ -347,7 +443,7 @@
     height: 100%;
     display: flex;
   }
-  @media (max-width: $ar-mobile-size){
+  @media (max-width: $ar-small-size){
     .ar-companies-info-container{
       margin: 1rem;
       display: flex;

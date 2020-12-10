@@ -1,11 +1,11 @@
-import Step3 from '../../views/Containers/Step3';
+import Step3 from '../views/Containers/Step3';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { withTranslate } from 'react-redux-multilingual';
 
 const Step3WithParams = ({ translate }) => {
   const router = useRouter();
-  const { params } = router.query;
+  const params = router.query;
 
   return (
     <>

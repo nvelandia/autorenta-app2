@@ -1,26 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-
-import {
-  Badge,
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  Col,
-  Collapse,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  ListGroup,
-  ListGroupItem,
-  Row,
-} from 'reactstrap';
+import { Badge, CardBody, CardHeader, Collapse } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Sliders from '../../Atoms/Sliders';

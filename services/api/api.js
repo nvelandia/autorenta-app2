@@ -7,7 +7,8 @@ import { config } from '../../config/configuration';
 class ApiFetch {
   constructor() {
     this.apiUrl = () => {
-      return 'https://backoffice.autorenta.greenflame.com.ar/api/';
+      return 'https://backoffice.autorenta.com/api/';
+      // return 'https://backoffice.autorenta.greenflame.com.ar/api/';
     };
   }
 

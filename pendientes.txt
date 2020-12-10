@@ -1,15 +1,26 @@
-reservationState
- ->numero de telefono del "comunicate telefonicamente al 954.237.4737"
+NavBar
+* Ver que en el modal de buscar, para buscar reservas generadas por agencias o empresas, debería tener que enviar
+junto el código de la agencia o empresa (para eso está el checkbox y el input adicional), pero actualmente
+no son necesarios ya que devuelve de igual manera una reserva si existe
 
- ->el monto que s einforma que fue cobrado al pagar con tarjeta de credito
- ->la frase final que indica que se aplico un descuento de tanto
- ->los ultimos numeros de la tarjeta con que pago
+Páginas estáticas
+* Faltan los contenidos
 
-Payment
- ->el descuento de 50 USD
+FAQ
+* Faltan las preguntas y respuestas definitivas
 
- ->el porcentaje de descuento o comision
+Promotion
+* Ver los cuerpos de las promotions en mobile y revisar la de desktop
 
-ReservationDetails
- ->Que valores debo colocar en cada card
+Step1
+* Revisar los autos que no vienen con category (cuando hay un filtro con el titulo de Zzz)
+
+Step2
+* Funcionalidad del equipamiento adicional
+
+Step3
+* Caracteristicas del auto
+* Mapas
+* Datos del banco
+* Definir si se va a dejar la ocpion de PayPal o que directamente aparezca la opcion de Tarjeta de crédito (si es posible)
 

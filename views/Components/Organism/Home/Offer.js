@@ -1,7 +1,5 @@
 import React from 'react';
-import classnames from 'classnames';
-
-import { Button, Card, CardBody, CardImg, CardTitle, CardText, CardHeader, Col, Container, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardTitle, Col, Row } from 'reactstrap';
 import Pagination from '../../Atoms/Pagination';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -29,15 +27,15 @@ class Offer extends React.Component {
   };
 
   handleSelectPromotion = (id) => {
-    redirectTo(`${pages.promotion}/${id}`);
+    redirectTo(`${pages.promotion}?id=${id}`);
   };
 
   renderCards = () => {
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isTablet, isSmallTablet } = this.props;
 
     const cards = this.props.offers.map((offer, index) => {
       return (
-        <Col key={index} className="justify-content-center d-flex ar-offer-card" xl="3" lg="5" md="5" sm="10" xs="12">
+        <Col key={index} className="justify-content-center d-flex ar-offer-card">
           <Card className="w-auto m-0 ar-border-round">
             <div className="ar-card-image">
               <img className="ar-image" src={offer.thumb} />
@@ -63,12 +61,21 @@ class Offer extends React.Component {
       );
     });
 
-    let iterations = isMobile ? cards.length : Math.ceil(cards.length / 3);
+    let iterations = 0;
+    if (isMobile) {
+      iterations = cards.length;
+    } else if (isTablet || isSmallTablet) {
+      iterations = Math.ceil(cards.length / 2);
+    } else {
+      iterations = Math.ceil(cards.length / 3);
+    }
     const cleanedCards = [];
 
     for (let i = 0; i < iterations; i++) {
       if (isMobile) {
         cleanedCards.push(cards.slice(i * 1, i * 1 + 1));
+      } else if (isTablet || isSmallTablet) {
+        cleanedCards.push(cards.slice(i * 2, i * 2 + 2));
       } else {
         cleanedCards.push(cards.slice(i * 4, i * 4 + 4));
       }
@@ -78,39 +85,45 @@ class Offer extends React.Component {
   };
 
   render() {
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isTablet, isSmallTablet } = this.props;
     return (
-      <div>
+      <>
         <Row className="justify-content-center ml-0 mr-0">
-          <div className="justify-content-center ar-central-container">
+          <div className="d-flex flex-column align-items-center justify-content-center ar-central-container ">
             <Row className="mb--3 ml-0 mr-0">
               <Col className="justify-content-center text-center">
                 {!isMobile ? (
-                  <h2>{translate('home.offers.mainTitle')}</h2>
+                  <h2 className="ar-offer-title">{translate('home.offers.mainTitle')}</h2>
                 ) : (
                   <h2>{translate('home.offers.mainTitleMobile')}</h2>
                 )}
               </Col>
             </Row>
-            <Row className=" justify-content-md-around justify-content-sm-center ar-offer-carousel">
+            <Row className="ar-offer-carousel">
               <CustomCarousel
                 activeIndex={this.state.selectedPage - 1}
                 items={this.renderCards()}
                 justify="justify-content-center"
                 isMobile={isMobile}
+                height={'h-auto'}
               />
             </Row>
           </div>
         </Row>
         <div className="ar-pagination-container">
           <Pagination
-            totalPages={isMobile ? this.props.offers.length : Math.ceil(this.props.offers.length / 4)}
-            // totalPages={this.state.totalPages}
+            totalPages={
+              isMobile
+                ? this.props.offers.length
+                : isTablet || isSmallTablet
+                ? Math.ceil(this.props.offers.length / 2)
+                : Math.ceil(this.props.offers.length / 4)
+            }
             selectPage={this.selectPage}
             active={this.state.selectedPage}
           />
         </div>
-      </div>
+      </>
     );
   }
 }

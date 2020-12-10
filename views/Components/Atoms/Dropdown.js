@@ -20,16 +20,16 @@ class Dropdown extends React.Component {
   };
 
   render() {
-    const { items, classes, name, color, actions } = this.props;
+    const { items, classes, name, color, actions, maxWidth } = this.props;
     return (
-      <UncontrolledDropdown group>
+      <UncontrolledDropdown group className={maxWidth}>
         <DropdownToggle color={color} className={`ar-round-button ${classes}`}>
           <Row className="justify-content-between pl-3 pr-3 fs--1 align-items-center">
-            {this.state.value}
+            <span className="tx-overflow-clip ar-dropdown-value">{this.state.value}</span>
             <span className="ar-icon-chevron-down va-middle ar-dropdown-chevron ml-1 fs-i--1" />
           </Row>
         </DropdownToggle>
-        <DropdownMenu>
+        <DropdownMenu className="ar-dropdown">
           {items.map((item, index) => {
             return (
               <DropdownItem

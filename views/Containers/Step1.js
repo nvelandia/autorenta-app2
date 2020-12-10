@@ -12,11 +12,10 @@ import UpToTop from '../Components/Atoms/UpToTop';
 import StepsHeader from '../Components/Molecules/Headers/StepsHeader';
 import ActiveSearch from '../Components/Organism/Step1/ActiveSearch';
 import Result from '../Components/Organism/Step1/Result';
-import { vehicleTypes } from '../../utils/constants/vehicleTypes';
-import { pages, redirectTo } from '../../utils/helpers/redirectTo';
-import { isMobile, isServer } from '../../utils/helpers/isError';
+import { pages } from '../../utils/helpers/redirectTo';
+import { isMobile, isServer, isSmallTablet, isTablet } from '../../utils/helpers/isError';
 import { Row } from 'reactstrap';
-import MakeYourReservation from '../Components/Organism/Home/MakeYourReservation';
+import * as generalAction from '../../actions/generalActions';
 
 class Step1 extends React.Component {
   constructor(props) {
@@ -25,21 +24,23 @@ class Step1 extends React.Component {
       pickup: {},
       dropoff: {},
       isMobile: false,
-      searched: false,
+      isTablet: false,
+      isSmallTablet: false,
     };
     this.dispatch = props.dispatch;
     this.handleOnLoad();
   }
 
   handleOnLoad = async () => {
-    this.dispatch(generalActions.showLoader());
-    if (!isServer()) {
+    if (this.props.history[this.props.history.length - 1] !== '/step2') {
+      this.dispatch(generalActions.showLoader('searching'));
+    }
+    if (!isServer() && this.props.params) {
       let pickup = {};
       let dropoff = {};
       const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ placeId: this.props.params[0] }, (result, status) => {
+      geocoder.geocode({ placeId: this.props.params.pickup_place_id }, (result, status) => {
         pickup = result[0];
-        console.log(pickup);
         for (const component of pickup.address_components) {
           if (component.types.includes('country')) {
             pickup.countryCode = component.short_name;
@@ -47,7 +48,7 @@ class Step1 extends React.Component {
         }
         this.setState({ pickup });
       });
-      geocoder.geocode({ placeId: this.props.params[3] }, (result, status) => {
+      geocoder.geocode({ placeId: this.props.params.dropoff_place_id }, (result, status) => {
         dropoff = result[0];
         for (const component of dropoff.address_components) {
           if (component.types.includes('country')) {
@@ -64,8 +65,33 @@ class Step1 extends React.Component {
   };
 
   componentDidMount() {
-    if (!this.state.isMobile && isMobile()) {
+    if (isMobile()) {
       this.setState({ isMobile: true });
+    }
+    if (isTablet()) {
+      this.setState({ isTablet: true });
+    }
+    if (isSmallTablet()) {
+      this.setState({ isSmallTablet: true });
+    }
+    if (!isServer()) {
+      window.addEventListener('resize', () => {
+        if (isMobile()) {
+          this.setState({ isMobile: true, isTablet: false, isSmallTablet: false });
+        } else if (isTablet()) {
+          this.setState({ isMobile: false, isTablet: true, isSmallTablet: false });
+        } else if (isSmallTablet()) {
+          this.setState({ isMobile: false, isTablet: false, isSmallTablet: true });
+        } else {
+          this.setState({ isMobile: false, isTablet: false, isSmallTablet: false });
+        }
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if (!isServer()) {
+      window.removeEventListener('resize', null);
     }
   }
 
@@ -78,15 +104,17 @@ class Step1 extends React.Component {
       !this.props.filters.bags
     ) {
       const body = {
-        pickup_date: this.props.params[1],
-        pickup_time: this.props.params[2] ? this.props.params[2].slice(0, 5) : this.props.params[2],
-        dropoff_date: this.props.params[4],
-        dropoff_time: this.props.params[5],
-        passenger_country_id: this.props.params[6],
-        passenger_age: this.props.params[7],
-        vehicle_type: this.props.params[8],
-        pickup_location: 'MIA',
-        dropoff_location: 'MIA',
+        pickup_date: this.props.params.pickup_date,
+        pickup_time: this.props.params.pickup_time
+          ? this.props.params.pickup_time.slice(0, 5)
+          : this.props.params.pickup_time,
+        dropoff_date: this.props.params.dropoff_date,
+        dropoff_time: this.props.params.dropoff_time,
+        passenger_country_id: this.props.params.passenger_country_id,
+        passenger_age: this.props.params.passenger_age,
+        vehicle_type: this.props.params.vehicle_type,
+        pickup_location: 'MIA', //Hardcodeado solamente en esta primer llamada
+        dropoff_location: 'MIA', //Hardcodeado solamente en esta primer llamada
         pickup_latitude: this.state.pickup.geometry.location.lat().toString(),
         pickup_longitude: this.state.pickup.geometry.location.lng().toString(),
         dropoff_latitude: this.state.dropoff.geometry.location.lat().toString(),
@@ -95,23 +123,32 @@ class Step1 extends React.Component {
         dropoff_country_code: this.state.dropoff.countryCode,
       };
       const googleLocation = { pickup: this.state.pickup, dropoff: this.state.dropoff };
-      const placesId = { pickup_place_id: this.props.params[0], dropoff_place_id: this.props.params[3] };
+      const placesId = {
+        pickup_place_id: this.props.params.pickup_place_id,
+        dropoff_place_id: this.props.params.dropoff_place_id,
+      };
       this.dispatch(actions.searchFleet(body, googleLocation, placesId));
     }
   };
 
   render() {
     const { params, translate } = this.props;
-    const isMobile = this.state.isMobile;
+    const { isMobile, isSmallTablet, isTablet } = this.state;
     this.handleSearch();
     return (
       <>
-        <CustomNavBar translate={translate} isMobile={isMobile} />
+        <CustomNavBar translate={translate} isMobile={isMobile} isSmallTablet={isSmallTablet} isTablet={isTablet} />
         <StepsHeader
           step={1}
-          step1URL={`${pages.step1}/${params[0]}/${params[1]}/${params[2]}/${params[3]}/${params[4]}/${params[5]}/${params[6]}/${params[7]}/${params[8]}`}
+          step1URL={
+            params
+              ? `${pages.step1}?pickup_place_id=${params.pickup_place_id}&dropoff_place_id=${params.dropoff_place_id}&pickup_date=${params.pickup_date}&dropoff_date=${params.dropoff_date}&pickup_time=${params.pickup_time}&dropoff_time=${params.dropoff_time}&passenger_country_id=${params.passenger_country_id}&passenger_age=${params.passenger_age}&vehicle_type=${params.vehicle_type}`
+              : ''
+          }
           translate={translate}
           isMobile={isMobile}
+          isSmallTablet={isSmallTablet}
+          isTablet={isTablet}
           showLoader={() => this.dispatch(generalActions.showLoader())}
         />
         <ActiveSearch
@@ -120,6 +157,8 @@ class Step1 extends React.Component {
           haveToCloseModifyModal={actions.haveToCloseModifyModal}
           translate={translate}
           isMobile={isMobile}
+          isSmallTablet={isSmallTablet}
+          isTablet={isTablet}
           showLoader={generalActions.showLoader}
           loadLocation={homeActions.loadLocations}
         />
@@ -133,25 +172,25 @@ class Step1 extends React.Component {
             showLoader={generalActions.showLoader}
             translate={translate}
             isMobile={isMobile}
+            isSmallTablet={isSmallTablet}
+            isTablet={isTablet}
             seeBaseRateDetails={actions.seeBaseRateDetails}
             closeDetailsModal={actions.closeDetailsModal}
           />
-        ) : this.props.result.carFeatures.length !== 0 ? (
-          <Row className="m-4 justify-content-center">
-            <div className="ar-central-container d-flex justify-content-center">
-              <h1>{translate('step1.resultMessage')}</h1>
-            </div>
-          </Row>
         ) : (
           <Row className="m-4 justify-content-center">
-            <div className="ar-central-container d-flex justify-content-center mb-4">
-              <h1>{translate('common.loader.text')}</h1>
-            </div>
+            <div className="ar-central-container h-800" />
           </Row>
         )}
-        {!isMobile ? <Banner translate={translate} /> : <></>}
-        <CustomFooter translate={translate} isMobile={isMobile} />
-        <UpToTop />
+        {!isMobile && !isTablet && !isSmallTablet ? <Banner translate={translate} /> : <></>}
+        <CustomFooter
+          subscribeToNewsletter={generalAction.subscribeNewsletter}
+          translate={translate}
+          isMobile={isMobile}
+          isTablet={isTablet}
+          isSmallTablet={isSmallTablet}
+        />
+        {!isMobile && !isTablet && !isSmallTablet ? <UpToTop /> : null}
         <AutorentaLoader translate={translate} isMobile={isMobile} />
       </>
     );

@@ -1,0 +1,15 @@
+.ar-card-details{
+  @media (max-width: $ar-small-size){
+    .alert{
+      width: 100% !important;
+    }
+  }
+}
+
+* {
+  @media (max-width: $ar-small-size){
+    .alert{
+      width: 100% !important;
+    }
+  }
+}

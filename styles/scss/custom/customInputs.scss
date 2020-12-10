@@ -10,7 +10,7 @@
 }
 
 .ar-round-input-right{
-  color: #32325d !important;
+  color: $ar-color-blue-0 !important;
   background-color: inherit;
   border-top-right-radius: 2rem;
   border-bottom-right-radius: 2rem;
@@ -23,8 +23,21 @@
   }
   @media(max-width: $ar-mobile-size){
     font-size: 0.7rem;
-    padding: 0;
+    padding: 0 1rem 0 0;
     height: 38px;
+    &.ar-date{
+      &:disabled, &:read-only{
+        background-color: inherit;
+        &:focus{
+          background-color: $ar-color-white-0;
+        }
+      }
+    }
+  }
+  @media(min-width: $ar-mobile-size) and (max-width: $ar-small-size){
+    font-size: 0.7rem;
+    padding: 0 1rem 0 0;
+    height: 45px;
     &.ar-date{
       &:disabled, &:read-only{
         background-color: inherit;
@@ -84,7 +97,16 @@
       border: none !important;
       white-space: pre;
       text-align: center;
-      @media (max-width: $ar-mobile-size){
+      align-items: center;
+      .ar-list-group-icon-container{
+        display: flex;
+        align-items: center;
+        padding: 0.4rem 0.6rem 0.4rem 0.4rem;
+        img{
+          width: 1rem;
+        }
+      }
+      @media (max-width: $ar-small-size){
         white-space: unset;
         text-align: left;
       }
@@ -138,7 +160,8 @@
 }
 
 .ar-date-container {
+  width: 100%;
   @media (max-width: $ar-mobile-size) {
-    padding: 0 .3rem;
+    padding: 0;
   }
 }

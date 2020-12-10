@@ -36,6 +36,8 @@ import * as actions from '../../../../actions/generalActions';
 import * as homeActions from '../../../../actions/homeActions';
 import NewSearchModal from '../Modals/NewSearchModal';
 import { pages } from '../../../../utils/helpers/redirectTo';
+import MakeYourReservation from '../../Organism/Home/MakeYourReservation';
+import * as generalAction from '../../../../actions/generalActions';
 
 class CustomNavbar extends React.Component {
   constructor(props) {
@@ -58,7 +60,7 @@ class CustomNavbar extends React.Component {
     this.setState({ showSearchReservationModal: false, showNewSearchModal: false });
   };
   render() {
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isTablet, isSmallTablet } = this.props;
     return (
       <Navbar className="sticky-top navbar-horizontal navbar-main bg-ar-navbar p-2" expand="xl" id="navbar-main">
         <Container className="ar-container-navbar">
@@ -106,7 +108,7 @@ class CustomNavbar extends React.Component {
             <Nav className="d-flex justify-content-between ml-4 w-100" navbar>
               <NavItem className="m-0">
                 <NavLink className="ar-nav-link ar-nav-link-blue " href={pages.home}>
-                  {!isMobile ? (
+                  {!isMobile && !isSmallTablet && !isTablet ? (
                     <span className="ar-icon-home" />
                   ) : (
                     <span className="nav-link-inner--text ar-nav-link-blue">
@@ -116,7 +118,7 @@ class CustomNavbar extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem className="m-0">
-                <NavLink className="ar-nav-link" href={pages.promotion + '/0'}>
+                <NavLink className="ar-nav-link" href={pages.promotion}>
                   <span className="nav-link-inner--text ar-nav-link-blue">
                     <strong>{translate('common.navbar.links.promotions')}</strong>
                   </span>
@@ -150,7 +152,7 @@ class CustomNavbar extends React.Component {
                   </span>
                 </NavLink>
               </NavItem>
-              {!isMobile ? (
+              {!isMobile && !isSmallTablet && !isTablet ? (
                 <>
                   <NavItem className="d-none d-lg-block ar-nav-button-link ml-3 mr-0">
                     <Button
@@ -204,6 +206,8 @@ class CustomNavbar extends React.Component {
           hideModal={this.hideModal}
           translate={translate}
           isMobile={isMobile}
+          loadLocation={homeActions.loadLocations}
+          showLoader={actions.showLoader}
         />
       </Navbar>
     );

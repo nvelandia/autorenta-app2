@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Row, Carousel, CarouselControl, CarouselItem } from 'reactstrap';
+import { Row, Carousel, CarouselItem } from 'reactstrap';
 
 class CustomCarousel extends React.Component {
   constructor(props) {
@@ -55,7 +55,7 @@ class CustomCarousel extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <style>{`.custom-tag { max-width: 100%; height: 25vw; }`}</style>
         <Carousel
           activeIndex={this.props.activeIndex}
@@ -67,7 +67,7 @@ class CustomCarousel extends React.Component {
         >
           {this.renderSlides()}
         </Carousel>
-      </div>
+      </>
     );
   }
 }

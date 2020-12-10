@@ -1,23 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  ListGroup,
-  ListGroupItem,
-  Row,
-} from 'reactstrap';
+import { Button, Card, CardBody, Col, FormGroup, Input, InputGroup, InputGroupAddon, Row } from 'reactstrap';
 import classnames from 'classnames';
 import ClientTypeDropdown from '../../Molecules/dropdowns/ClientTypeDropdown';
 import NotificationAlert from 'react-notification-alert';
@@ -76,15 +60,7 @@ class AgencyOrCorporation extends React.Component {
 
   handleValidateClick = (type) => {
     const body = {
-      pickup_location: this.props.searchParams.pickup_location,
-      pickup_date: this.props.searchParams.pickup_date,
-      pickup_time: this.props.searchParams.pickup_time,
-      dropoff_location: this.props.searchParams.dropoff_location,
-      dropoff_date: this.props.searchParams.dropoff_date,
-      dropoff_time: this.props.searchParams.dropoff_time,
-      passenger_country_id: this.props.searchParams.passenger_country_id,
-      passenger_age: this.props.searchParams.passenger_age,
-      vehicle_type: this.props.searchParams.vehicle_type,
+      ...this.props.searchParams,
       vendor: this.props.carSelected.company.code,
       sipp: this.props.carSelected.typeAlias,
       rate: this.props.carSelected.rates[this.props.rateSelected].rate_code,
@@ -135,7 +111,7 @@ class AgencyOrCorporation extends React.Component {
   };
 
   render() {
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isTablet, isSmallTablet } = this.props;
     const error = this.props.error;
     if (error.validationPromotion) {
       this.notify('autorenta', this.props.translate('common.error.couponORCodeInvalid'));
@@ -149,7 +125,7 @@ class AgencyOrCorporation extends React.Component {
     airlines = airlines.concat(this.props.airlines);
     this.prepareErrors(error);
 
-    if (!isMobile) {
+    if (!isMobile && !isSmallTablet) {
       return (
         <Card className="card-frame ar-passenger-card fade-in">
           <div className="rna-wrapper">

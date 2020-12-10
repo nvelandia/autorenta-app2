@@ -76,10 +76,12 @@ export function* searchFleet(action) {
   const state = yield select();
   body.language = state.Intl.locale;
 
-  yield put(generalActions.showLoader());
+  yield put(generalActions.showLoader('searching'));
   const res = yield call(homeService.searchFleet, body);
   if (res.error) {
     yield all([put(res), put(generalActions.hideLoader())]);
+  } else if (res.cars.length === 0) {
+    redirectTo(`${pages.error}?code=1`);
   } else {
     res.searchParams = body;
     res.searchParams.pickup_place_id = placesId.pickup_place_id;

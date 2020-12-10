@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // reactstrap components
-import { DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown, Row } from 'reactstrap';
+import { DropdownToggle, DropdownMenu, DropdownItem, UncontrolledDropdown } from 'reactstrap';
 
 class CountryDropdown extends React.Component {
   constructor(props) {

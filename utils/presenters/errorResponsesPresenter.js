@@ -8,12 +8,10 @@ class errorResponsesPresenter {
   };
 
   formError = (data, type) => {
-    console.log(data);
     if (Object.keys(data).length !== 1) {
       let fullMessage = '';
       for (const field in data) {
         for (const message of data[field]) {
-          console.log(fullMessage);
           fullMessage = fullMessage ? `${fullMessage}\n${message}` : message;
         }
       }
@@ -23,7 +21,6 @@ class errorResponsesPresenter {
         error: true,
       };
     }
-    console.log(data.message);
     return {
       message: data.message,
       type,
@@ -36,6 +33,15 @@ class errorResponsesPresenter {
       type,
       message,
       error: true,
+    };
+  };
+
+  onlyMessageAndCode = (message, type, code) => {
+    return {
+      type,
+      message,
+      error: true,
+      code,
     };
   };
 }

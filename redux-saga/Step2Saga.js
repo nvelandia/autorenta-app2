@@ -47,10 +47,12 @@ export function* confirmReservation(action) {
       reservation: res.reservation.reservation_code,
       passenger_lastname: body.passenger_lastname,
     };
-    if (body.agencyOrCorporationId) {
-      redirectTo(`${pages.step3}/${body2.passenger_lastname}/${body2.reservation}/${body.agencyOrCorporationId}`);
+    if (body.partner_code) {
+      redirectTo(
+        `${pages.step3}?lastname=${body2.passenger_lastname}&code=${body2.reservation}&partner_code=${body.partner_code}`,
+      );
     } else {
-      redirectTo(`${pages.step3}/${body2.passenger_lastname}/${body2.reservation}`);
+      redirectTo(`${pages.step3}?lastname=${body2.passenger_lastname}&code=${body2.reservation}`);
     }
   }
 }
@@ -67,6 +69,7 @@ export function* validatePromotion(action) {
     yield all([put(res), put(generalActions.hideLoader())]);
   } else {
     res.searchParams = body;
+
     let value;
     if (body.coupon) {
       value = 'couponNumberSuccess';
@@ -120,5 +123,20 @@ export function* loadDiscount(action) {
     yield all([put(res)]);
   } else {
     yield all([put(res)]);
+  }
+}
+
+export function* addExtra(action) {
+  const { body } = action;
+  const state = yield select();
+  body.language = state.Intl.locale;
+
+  yield put(generalActions.showLoader());
+
+  const res = yield call(step2service.addExtra, body);
+  if (res.error) {
+    yield all([put(res), put(generalActions.hideLoader()), put(generalActions.showNotification(res.message, true))]);
+  } else {
+    yield all([putResolve(res), put(generalActions.hideLoader())]);
   }
 }

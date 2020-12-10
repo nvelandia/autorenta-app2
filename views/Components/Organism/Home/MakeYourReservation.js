@@ -1,13 +1,11 @@
 import React from 'react';
 import classnames from 'classnames';
-
 import {
   Button,
   Card,
   CardBody,
   CardHeader,
   Col,
-  Container,
   Form,
   FormGroup,
   Input,
@@ -67,7 +65,6 @@ class MakeYourReservation extends React.Component {
       const geocoder = new google.maps.Geocoder();
       if (event.target.name === 'placeToPickUp') {
         geocoder.geocode({ placeId: place.place_id }, (result, status) => {
-          console.log(result);
           const latitude = result[0].geometry.location.lat();
           const longitude = result[0].geometry.location.lng();
           this.setState({
@@ -232,7 +229,7 @@ class MakeYourReservation extends React.Component {
     });
   };
 
-  handleSearchClick = () => {
+  handleSearchClick = (types) => {
     const body = {
       pickup_date: this.state.dateToPickUp,
       pickup_time: this.state.timeToPickUp,
@@ -240,7 +237,7 @@ class MakeYourReservation extends React.Component {
       dropoff_time: this.state.timeToDropOff,
       passenger_country_id: this.state.passenger_country_id,
       passenger_age: this.state.ageSelected,
-      vehicle_type: vehicleTypes.indexOf(this.state.vehicleType) + 1,
+      vehicle_type: types.indexOf(this.state.vehicleType) + 1,
       pickup_place_id: this.state.pickup_place_id,
       dropoff_place_id: this.state.dropoff_place_id,
     };
@@ -254,9 +251,9 @@ class MakeYourReservation extends React.Component {
       this.setState({ error: error });
       this.notify('autorenta');
     } else {
-      this.dispatch(this.props.showLoader());
+      this.dispatch(this.props.showLoader('searching'));
       redirectTo(
-        `${pages.step1}/${body.pickup_place_id}/${body.pickup_date}/${body.pickup_time}/${body.dropoff_place_id}/${body.dropoff_date}/${body.dropoff_time}/${body.passenger_country_id}/${body.passenger_age}/${body.vehicle_type}`,
+        `${pages.step1}?pickup_place_id=${body.pickup_place_id}&dropoff_place_id=${body.dropoff_place_id}&pickup_date=${body.pickup_date}&dropoff_date=${body.dropoff_date}&pickup_time=${body.pickup_time}&dropoff_time=${body.dropoff_time}&passenger_country_id=${body.passenger_country_id}&passenger_age=${body.passenger_age}&vehicle_type=${body.vehicle_type}`,
       );
     }
   };
@@ -266,6 +263,17 @@ class MakeYourReservation extends React.Component {
     const placesOptions = this.props.locations;
     if (placesOptions) {
       if (placesOptions.length !== 0) {
+        {
+          placesOptions.sort((a, b) => {
+            if (!a.types.includes('airport') && b.types.includes('airport')) {
+              return 1;
+            }
+            if (a.types.includes('airport') && !b.types.includes('airport')) {
+              return -1;
+            }
+            return 0;
+          });
+        }
         return (
           <ListGroup className="ar-list-group zi-1200">
             {placesOptions.map((option, index) => {
@@ -277,7 +285,13 @@ class MakeYourReservation extends React.Component {
                     value={option.description}
                     onMouseDown={(e) => this.handleOnSelect(e, option)}
                   >
-                    <span className="ar-icon-location ar-light-blue-1-text fs-2" />
+                    {option.types.includes('airport') ? (
+                      <div className="ar-list-group-icon-container">
+                        <img src={'/svg/airplane.svg'} alt={''} />
+                      </div>
+                    ) : (
+                      <span className="ar-icon-location ar-light-blue-1-text fs-2" />
+                    )}
                     {option.description}
                   </Button>
                 </ListGroupItem>
@@ -343,11 +357,34 @@ class MakeYourReservation extends React.Component {
     }
   };
 
+  PrepareTypes = (translate) => {
+    return [
+      translate('home.makeYourReservation.types.0'),
+      translate('home.makeYourReservation.types.1'),
+      translate('home.makeYourReservation.types.2'),
+      translate('home.makeYourReservation.types.3'),
+      translate('home.makeYourReservation.types.4'),
+      translate('home.makeYourReservation.types.5'),
+      translate('home.makeYourReservation.types.6'),
+      translate('home.makeYourReservation.types.7'),
+      translate('home.makeYourReservation.types.8'),
+      translate('home.makeYourReservation.types.9'),
+      translate('home.makeYourReservation.types.10'),
+      translate('home.makeYourReservation.types.11'),
+      translate('home.makeYourReservation.types.12'),
+      translate('home.makeYourReservation.types.13'),
+      translate('home.makeYourReservation.types.14'),
+      translate('home.makeYourReservation.types.15'),
+    ];
+  };
+
   render() {
     const error = this.state.error;
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isSmallTablet, isTablet } = this.props;
+    const types = this.PrepareTypes(translate);
+
     return (
-      <Container className={`mt--10 ${!isMobile ? 'pb-5' : 'pb-45'}`}>
+      <div className={`mt--10 ${!isMobile ? 'pb-5' : 'pb-45'} mx-auto px-15`}>
         <GoogleModal
           showModal={this.state.showGoogleModal}
           translate={translate}
@@ -359,6 +396,8 @@ class MakeYourReservation extends React.Component {
           renderListGroup={this.renderListGroup}
           handleOnSelect={this.handleOnSelect}
           isMobile={isMobile}
+          isTablet={isTablet}
+          isSmallTablet={isSmallTablet}
           searchLocation={this.props.searchLocation}
           location={
             this.state.showGoogleModal === 'placeToPickUp'
@@ -371,10 +410,10 @@ class MakeYourReservation extends React.Component {
           <NotificationAlert ref="notificationAlert" />
         </div>
         <Row className="justify-content-center mx-0">
-          <Col lg="9" md="10">
-            {!isMobile ? (
+          <Col className="ar-widget-container">
+            {!isMobile && !isSmallTablet ? (
               <Row className="justify-content-center">
-                <Col lg="7" md="8" sm="8" xs="11" className="ar-card-header">
+                <Col sm="7" className="ar-card-header">
                   <CardHeader className=" p-3 ar-border-round">
                     <Row className="text-muted text-center mb-0 justify-content-center">
                       <h2 className="mb-0">{translate('home.makeYourReservation.doYourReservationIn')}&nbsp;</h2>
@@ -385,19 +424,24 @@ class MakeYourReservation extends React.Component {
               </Row>
             ) : null}
             <Card className=" border-0 mb-0 ar-border-round">
-              <CardBody className="px-lg-5 py-lg-5">
+              <CardBody className="px-sm-5 py-sm-5">
                 {isMobile ? (
                   <Row className="text-muted text-center mb-0 justify-content-center">
                     <h4 className="mb-0">{translate('home.makeYourReservation.doYourReservationIn')}&nbsp;</h4>
                     <h4 className="mb-0 ar-red-text">{translate('home.makeYourReservation.only3Steps')}</h4>
                   </Row>
+                ) : isSmallTablet ? (
+                  <Row className="text-muted text-center mb-3 justify-content-center">
+                    <h3 className="mb-0">{translate('home.makeYourReservation.doYourReservationIn')}&nbsp;</h3>
+                    <h3 className="mb-0 ar-red-text">{translate('home.makeYourReservation.only3Steps')}</h3>
+                  </Row>
                 ) : null}
                 <div className="text-center ar-steps-bar">
-                  <ProgressBar step={0} translate={translate} isMobile={isMobile} />
+                  <ProgressBar step={0} translate={translate} isMobile={isMobile} isSmallTablet={isSmallTablet} />
                 </div>
                 <Form role="form">
-                  <Row>
-                    <Col lg="6" md="6">
+                  <Row className="mx-0">
+                    <Col lg="6" md="6" className="px-0 pr-md-2">
                       <FormGroup
                         className={classnames({
                           focused: this.state.placeToPickUpFocus,
@@ -457,17 +501,20 @@ class MakeYourReservation extends React.Component {
                         {this.state.placeToDropOffFocus ? this.renderListGroup('placeToDropOff') : null}
                       </FormGroup>
                     </Col>
-                    <Col lg="6" md="6">
+                    <Col lg="6" md="6" className="px-0 pl-md-2">
                       <RangeDatePicker
                         error={error}
                         handleDate={this.handleDate}
                         translate={translate}
                         isMobile={isMobile}
+                        isTablet={isTablet}
+                        isSmallTablet={isSmallTablet}
+                        locale={this.props.locale}
                       />
                     </Col>
                   </Row>
-                  <Row>
-                    <Col lg="4" md="6" className="ar-col-country">
+                  <Row className="justify-content-center mx-0">
+                    <Col md="4" sm="5" className="ar-col-country">
                       <FormGroup
                         className={classnames(
                           {
@@ -486,7 +533,7 @@ class MakeYourReservation extends React.Component {
                         />
                       </FormGroup>
                     </Col>
-                    <Col lg="2" md="6" xs="5" className="pl-lg-0 ar-col-age">
+                    <Col md="2" sm="3" xs="5" className="pl-sm-0 ar-col-age">
                       <FormGroup
                         className={classnames(
                           {
@@ -504,9 +551,6 @@ class MakeYourReservation extends React.Component {
                             { name: `23 ${translate('home.makeYourReservation.years')}`, id: '23' },
                             { name: `22 ${translate('home.makeYourReservation.years')}`, id: '22' },
                             { name: `21 ${translate('home.makeYourReservation.years')}`, id: '21' },
-                            { name: `20 ${translate('home.makeYourReservation.years')}`, id: '20' },
-                            { name: `19 ${translate('home.makeYourReservation.years')}`, id: '19' },
-                            { name: `18 ${translate('home.makeYourReservation.years')}`, id: '18' },
                           ]}
                           classes={'ar-dropdown-menu-age'}
                           handleSelect={this.handleOnSelect}
@@ -514,7 +558,7 @@ class MakeYourReservation extends React.Component {
                         />
                       </FormGroup>
                     </Col>
-                    <Col lg="4" md="6" xs="7" className="pl-1">
+                    <Col md="4" sm="4" xs="7" className="pl-1 ar-col-type">
                       <FormGroup
                         className={classnames(
                           {
@@ -526,19 +570,19 @@ class MakeYourReservation extends React.Component {
                         <CustomDropDown
                           name={'vehicleType'}
                           title={translate('home.makeYourReservation.carType')}
-                          items={vehicleTypes}
+                          items={types}
                           classes={'ar-dropdown-menu-car-type ar-dropdown-menu-overflow'}
                           handleSelect={this.handleOnSelect}
                           error={error}
                         />
                       </FormGroup>
                     </Col>
-                    <Col lg="2" md="6" className="p-0 ar-make-your-reservation-button-container">
+                    <Col md="2" className="p-0 ar-make-your-reservation-button-container">
                       <Button
                         className=" btn-icon ar-round-button ar-blue-button ar-last-row-make-your-reservation fs--1 h-100 "
                         color="default"
                         type="button"
-                        onClick={this.handleSearchClick}
+                        onClick={() => this.handleSearchClick(types)}
                       >
                         {!isMobile ? (
                           <span className="nav-link-inner--text text-sm d-flex align-items-center">
@@ -558,7 +602,7 @@ class MakeYourReservation extends React.Component {
             </Card>
           </Col>
         </Row>
-      </Container>
+      </div>
     );
   }
 }
@@ -572,7 +616,7 @@ MakeYourReservation.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return state.homeReducer;
+  return { ...state.homeReducer, ...state.Intl };
 };
 
 export default connect(mapStateToProps)(MakeYourReservation);

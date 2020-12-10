@@ -38,20 +38,18 @@ const Carousels = (props) => {
   });
 
   return (
-    <div style={{ height: '25vw' }} className="fade-in">
+    <div className="fade-in ar-carousel-header-container">
       <style>{`.custom-tag { max-width: 100%; height: 25vw; }`}</style>
       <Carousel activeIndex={activeIndex} next={next} previous={previous}>
         {slides}
         <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
         <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
       </Carousel>
-      {props.isMobile ? (
-        <div className="ar-carousel-header-border">
-          <div className="ar-carousel-border-left" />
-          <div className="ar-carousel-border-center" />
-          <div className="ar-carousel-border-right" />
-        </div>
-      ) : null}
+      <div className="ar-carousel-header-border">
+        <div className="ar-carousel-border-left" />
+        <div className="ar-carousel-border-center" />
+        <div className="ar-carousel-border-right" />
+      </div>
     </div>
   );
 };

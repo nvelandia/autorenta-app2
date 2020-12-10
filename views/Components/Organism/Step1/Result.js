@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, CardBody, Col, Modal, Row } from 'reactstrap';
+import { Col, Modal, Row, Card } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CarsResult from './CarsResult';
@@ -49,7 +49,9 @@ class Result extends React.Component {
       body.sipp = car.type;
       body.rate = rate.rate_code;
       body.pickup_location = car.pickup_office.location;
+      body.pickup_extended_location = car.pickup_office.extended_location;
       body.dropoff_location = car.dropoff_office.location;
+      body.dropoff_extended_location = car.dropoff_office.extended_location;
       this.dispatch(this.props.seeBaseRateDetails(body));
     } else {
       this.setState({ showDetailModal: true, rate });
@@ -116,6 +118,8 @@ class Result extends React.Component {
               showAditionalModal={this.showAditionalModal}
               showLoader={this.props.showLoader}
               isMobile={this.props.isMobile}
+              isTablet={this.props.isTablet}
+              isSmallTablet={this.props.isSmallTablet}
             />
           </div>
         );
@@ -142,34 +146,36 @@ class Result extends React.Component {
     if (this.state.rate !== this.props.detailsBaseRate && this.props.detailsBaseRate.rate_code) {
       this.setState({ rate: this.props.detailsBaseRate });
     }
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isSmallTablet, isTablet } = this.props;
     return (
-      <Row className={`${!isMobile ? 'm-4' : 'm-3'} justify-content-center`}>
+      <Row className="result-container">
         <ModalDetailInformation
           rate={this.state.rate}
           showModal={this.state.showDetailModal || this.props.showDetailsModal}
           hideModal={this.hideModal}
           translate={translate}
           seeBaseRateDetails={this.props.seeBaseRateDetails}
+          isMobile={isMobile}
         />
         <ModalAditionalInformation
           translate={translate}
           showModal={this.state.showAditionalModal}
           hideModal={this.hideModal}
+          isMobile={isMobile}
         />
         <div className="ar-central-container">
-          {!isMobile ? (
+          {!isMobile && !isSmallTablet && !isTablet ? (
             <Row className="justify-content-end m-0 mb-3">
               <div className="d-flex align-items-center">
                 <div className="custom-control custom-checkbox mr-3">
                   <input
                     className="custom-control-input"
-                    id="customCheck1"
+                    id="featured"
                     type="checkbox"
                     defaultChecked={this.props.showFeaturedFirst}
                     onClick={this.showFeaturedFirst}
                   />
-                  <label className="custom-control-label ws-pre tx-bold mr-xl-4 mr-lg-4" htmlFor="customCheck1">
+                  <label className="custom-control-label ws-pre tx-bold mr-xl-4 mr-lg-4" htmlFor="featured">
                     {translate('step1.result.showFirst')}
                   </label>
                 </div>
@@ -193,18 +199,18 @@ class Result extends React.Component {
                 pr={'pr-0'}
                 fontSize={'fs--2'}
                 name={'ar-filter-button'}
-                width={'d-flex justify-content-center mt-2'}
+                width={'d-flex justify-content-center'}
               />
               <div className="ar-step1-mobile-search-container">
                 <div className="custom-control custom-checkbox ">
                   <input
                     className="custom-control-input"
-                    id="customCheck1"
+                    id="featured"
                     type="checkbox"
                     defaultChecked={this.props.showFeaturedFirst}
                     onClick={this.showFeaturedFirst}
                   />
-                  <label className="custom-control-label tx-bold mr-xl-4 mr-lg-4" htmlFor="customCheck1">
+                  <label className="custom-control-label tx-bold mr-xl-4 mr-lg-4" htmlFor="featured">
                     {translate('step1.result.showFirst')}
                   </label>
                 </div>
@@ -212,15 +218,16 @@ class Result extends React.Component {
                   items={[translate('step1.result.minToMax'), translate('step1.result.maxToMin')]}
                   title={translate('step1.result.orderBy')}
                   color={'white-3'}
-                  classes={'ar-order-by-button'}
+                  classes={'ar-order-by-button mb-0 w-100'}
                   actions={[this.props.orderByMinToMax, this.props.orderByMaxToMin]}
                   dispatch={this.props.dispatch}
+                  maxWidth={'mw-50'}
                 />
               </div>
             </div>
           )}
           <Row className="mx-0">
-            {!isMobile ? (
+            {!isMobile && !isSmallTablet && !isTablet ? (
               <div className="ar-card-filters">
                 {Object.entries(this.props.filters).length !== 0 ? (
                   <FilterList
@@ -247,13 +254,24 @@ class Result extends React.Component {
                       addFitlter={this.props.addFitlter}
                       priceRange={priceRange}
                       isMobile={isMobile}
+                      isTablet={isTablet}
+                      isSmallTablet={isSmallTablet}
                       handleClose={() => this.setState({ showFilter: false })}
                     />
                   ) : null}
                 </div>
               </Modal>
             )}
-            <Col className={`pr-0 ${this.props.isMobile ? 'pl-0' : 'pl-3'}`}>
+            <Col className={`pr-0 ${isMobile || isTablet || isSmallTablet ? 'pl-0' : 'pl-3'}`}>
+              {this.props.result.locations.dropoff.formated_address !==
+              this.props.result.locations.pickup.formated_address ? (
+                <Card className="ar-dropoff-add w-auto p-3">
+                  <div className="d-flex align-items-center">
+                    <i className="ar-icon-info mr-2" />
+                    <h6>{translate('step1.result.dropoff')}</h6>
+                  </div>
+                </Card>
+              ) : null}
               {this.props.result.cars.length !== 0 ? this.renderCarsResult() : null}
             </Col>
           </Row>

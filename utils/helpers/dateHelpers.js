@@ -15,10 +15,10 @@ export const isoStringToStringTime = (date) => {
 export const isoStringToDateWithTimeInText = (date, time, language) => {
   const fullDate = date + ' ' + time;
   let message = moment(fullDate).locale(language).format('LLL');
-  return message + ' hs.';
+  return message + ' h';
 };
 
-export const isoStringToDateTime = (date, time) => {
+export const isoStringToDateTime = (date, time, language) => {
   const fullDate = date + ':' + time;
-  return moment(fullDate, 'YYYY-MM-DD:HH:mm');
+  return moment(fullDate, 'YYYY-MM-DD:HH:mm').locale(language);
 };

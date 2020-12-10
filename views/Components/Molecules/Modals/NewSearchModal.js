@@ -8,7 +8,6 @@ import {
   Input,
   Button,
   FormGroup,
-  Container,
   CardHeader,
   Card,
   Form,
@@ -27,19 +26,32 @@ import RangeDatePicker from '../../Atoms/RangeDatePicker';
 import CustomDropDown from '../../Atoms/CustomDropDown';
 import ProgressBar from '../../Atoms/ProgressBar';
 import { isoStringToString, isoStringToStringTime } from '../../../../utils/helpers/dateHelpers';
+import GoogleModal from './GoogleModal';
 
 class NewSearchModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      surname: '',
-      reservationNumber: '',
-      surnameFocus: false,
-      reservationNumberFocus: false,
-      agencyOrCorporationId: '',
-      agencyOrCorporationIdFocus: false,
-      isAgencyOrCorporation: false,
+      placeToPickUp: '',
+      placeToPickUpFocus: false,
+      placeToDropOff: '',
+      placeToDropOffFocus: false,
+      dateToPickUp: '',
+      dateToDropOff: '',
+      passenger_country_id: '',
+      ageSelected: '',
+      carTypeSelected: '',
+      pickup_place_id: '',
+      pickup_latitude: '',
+      pickup_longitude: '',
+      dropoff_place_id: '',
+      dropoff_latitude: '',
+      dropoff_longitude: '',
+      timeToDropOff: '',
+      timeToPickUp: '',
+      vehicleType: '',
       error: {},
+      showGoogleModal: false,
     };
     this.dispatch = props.dispatch;
   }
@@ -48,17 +60,124 @@ class NewSearchModal extends React.Component {
     this.dispatch(this.props.loadCountries());
   };
 
-  handleOnSelect = (event, iata = null) => {
-    if (iata) {
+  handleOnSelect = (event, place = null) => {
+    if (place) {
+      const geocoder = new google.maps.Geocoder();
       if (event.target.name === 'placeToPickUp') {
-        this.setState({ [event.target.name]: event.target.value, iataToPickUp: iata });
+        geocoder.geocode({ placeId: place.place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            pickup_latitude: latitude,
+            pickup_longitude: longitude,
+            placeToPickUp: place.description,
+            pickup_place_id: place.place_id,
+            dropoff_place_id: place.place_id,
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: place.description,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
       } else {
-        this.setState({ [event.target.name]: event.target.value, iataToDropOff: iata });
+        geocoder.geocode({ placeId: place.place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: place.description,
+            dropoff_place_id: place.place_id,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
       }
     }
     this.setState({
       [event.target.name]: event.target.value,
       error: { ...this.state.error, [event.target.name]: false },
+    });
+  };
+
+  showGoogleModal = (name) => {
+    this.setState({ showGoogleModal: name });
+
+    if (name === 'placeToPickUp') {
+      if (this.state.pickup_latitude) {
+        this.dispatch(
+          this.props.searchLocation({
+            latitude: this.state.pickup_latitude.toString(),
+            longitude: this.state.pickup_longitude.toString(),
+          }),
+        );
+      } else {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ placeId: this.props.locations[0].place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            pickup_latitude: latitude,
+            pickup_longitude: longitude,
+            placeToPickUp: this.props.locations[0].description,
+            pickup_place_id: this.props.locations[0].place_id,
+            dropoff_place_id: this.props.locations[0].place_id,
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: this.props.locations[0].description,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
+      }
+    } else {
+      if (this.state.dropoff_latitude) {
+        this.dispatch(
+          this.props.searchLocation({
+            latitude: this.state.dropoff_latitude.toString(),
+            longitude: this.state.dropoff_longitude.toString(),
+          }),
+        );
+      } else {
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ placeId: this.props.locations[0].place_id }, (result, status) => {
+          const latitude = result[0].geometry.location.lat();
+          const longitude = result[0].geometry.location.lng();
+          this.setState({
+            dropoff_place_id: this.props.locations[0].place_id,
+            dropoff_latitude: latitude,
+            dropoff_longitude: longitude,
+            placeToDropOff: this.props.locations[0].description,
+          });
+          this.dispatch(
+            this.props.searchLocation({
+              latitude: latitude.toString(),
+              longitude: longitude.toString(),
+            }),
+          );
+        });
+      }
+    }
+  };
+
+  hideGoogleModal = () => {
+    this.setState({
+      showGoogleModal: false,
+      placeToPickUpFocus: false,
+      placeToDropOffFocus: false,
     });
   };
 
@@ -88,8 +207,20 @@ class NewSearchModal extends React.Component {
   };
 
   handleOnChange = (event) => {
-    if (this.state.placeToPickUpFocus || this.state.placeToDropOffFocus) {
-      this.dispatch(this.props.searchLocation(event.target.value));
+    if (
+      this.state.placeToPickUpFocus ||
+      this.state.placeToDropOffFocus ||
+      event.target.name === 'placeToPickUp' ||
+      event.target.name === 'placeToDropOff'
+    ) {
+      // you can create autocompleteService as variable outside the function as well
+      const autocompleteService = new google.maps.places.AutocompleteService();
+
+      if (event.target.value !== '') {
+        autocompleteService.getPlacePredictions({ input: event.target.value }, (predictions, status) => {
+          this.dispatch(this.props.loadLocation(predictions));
+        });
+      }
       this.setState({ [event.target.name]: event.target.value });
     }
     this.setState({
@@ -98,17 +229,17 @@ class NewSearchModal extends React.Component {
     });
   };
 
-  handleSearchClick = () => {
+  handleSearchClick = (types) => {
     const body = {
-      pickup_location: this.state.iataToPickUp,
       pickup_date: this.state.dateToPickUp,
       pickup_time: this.state.timeToPickUp,
-      dropoff_location: this.state.iataToDropOff,
       dropoff_date: this.state.dateToDropOff,
       dropoff_time: this.state.timeToDropOff,
       passenger_country_id: this.state.passenger_country_id,
       passenger_age: this.state.ageSelected,
-      vehicle_type: vehicleTypes.indexOf(this.state.vehicleType) + 1,
+      vehicle_type: types.indexOf(this.state.vehicleType) + 1,
+      pickup_place_id: this.state.pickup_place_id,
+      dropoff_place_id: this.state.dropoff_place_id,
     };
     if (Object.values(body).includes('') || Object.values(body).includes(0)) {
       const error = {};
@@ -120,47 +251,53 @@ class NewSearchModal extends React.Component {
       this.setState({ error: error });
       this.notify('autorenta');
     } else {
-      this.dispatch(this.props.nextStep(body));
+      this.dispatch(this.props.showLoader('searching'));
       redirectTo(
-        `${pages.step1}/${body.pickup_location}/${body.pickup_date}/${body.pickup_time}/${body.dropoff_location}/${body.dropoff_date}/${body.dropoff_time}/${body.passenger_country_id}/${body.passenger_age}/${body.vehicle_type}`,
+        `${pages.step1}?pickup_place_id=${body.pickup_place_id}&dropoff_place_id=${body.dropoff_place_id}&pickup_date=${body.pickup_date}&dropoff_date=${body.dropoff_date}&pickup_time=${body.pickup_time}&dropoff_time=${body.dropoff_time}&passenger_country_id=${body.passenger_country_id}&passenger_age=${body.passenger_age}&vehicle_type=${body.vehicle_type}`,
       );
     }
   };
 
   renderListGroup = (name) => {
+    const { translate } = this.props;
     const placesOptions = this.props.locations;
-    if (Array.isArray(placesOptions)) {
-      return (
-        <ListGroup className="ar-list-group">
-          {placesOptions.map((option, index) => {
-            return (
-              <ListGroupItem key={index} className="p-0 ar-list-item" action>
-                <Button
-                  className="ar-list-item d-flex align-items-center p-3 w-100 ws-pre"
-                  name={name}
-                  value={option.label}
-                  onMouseDown={(e) => this.handleOnSelect(e, option.iata)}
-                >
-                  {option.airport ? (
-                    <>
-                      <span className="ar-icon-plane ar-red-text fs-2" />
-                      &nbsp;{option.label}
-                    </>
-                  ) : (
-                    <>
-                      <span className="ar-icon-office ar-red-text fs-2" />
-                      &nbsp;{option.label}
-                    </>
-                  )}
-                </Button>
-              </ListGroupItem>
-            );
-          })}
-        </ListGroup>
-      );
-    } else {
-      return null;
+    if (placesOptions) {
+      if (placesOptions.length !== 0) {
+        return (
+          <ListGroup className="ar-list-group zi-1200">
+            {placesOptions.map((option, index) => {
+              return (
+                <ListGroupItem key={index} className="p-0 ar-list-item" action>
+                  <Button
+                    className="ar-list-item-button d-flex  w-100 "
+                    name={name}
+                    value={option.description}
+                    onMouseDown={(e) => this.handleOnSelect(e, option)}
+                  >
+                    <span className="ar-icon-location ar-light-blue-1-text fs-2" />
+                    {option.description}
+                  </Button>
+                </ListGroupItem>
+              );
+            })}
+            <ListGroupItem key={10} className="p-0 ar-list-item" action>
+              <Button
+                className="ar-list-item-button d-flex w-100 ar-red-text"
+                name={name}
+                value={1}
+                onMouseDown={() => this.showGoogleModal(name)}
+              >
+                <span className="ar-icon-location ar-red-text fs-2" />
+                {translate('home.makeYourReservation.findOnMap')}
+              </Button>
+            </ListGroupItem>
+          </ListGroup>
+        );
+      } else {
+        return null;
+      }
     }
+    return null;
   };
 
   notify = (type) => {
@@ -169,10 +306,9 @@ class NewSearchModal extends React.Component {
       message: (
         <div className="alert-text">
           <span className="alert-title" data-notify="title">
-            {' '}
             {this.props.translate('common.error.attention')}
           </span>
-          <span data-notify="message">Todos los campos son requeridos</span>
+          <span data-notify="message">{this.props.translate('common.error.completeAllFields')}</span>
         </div>
       ),
       type: type,
@@ -182,15 +318,79 @@ class NewSearchModal extends React.Component {
     this.refs.notificationAlert.notificationAlert(options);
   };
 
+  handleSetLocation = (latitude, longitude, showModal, place, place_id) => {
+    if (showModal === 'placeToPickUp') {
+      this.setState({
+        pickup_latitude: latitude,
+        pickup_longitude: longitude,
+        pickup_place_id: place_id,
+        placeToPickUp: place,
+        dropoff_latitude: latitude,
+        dropoff_longitude: longitude,
+        dropoff_place_id: place_id,
+        placeToDropOff: place,
+      });
+    } else {
+      this.setState({
+        dropoff_latitude: latitude,
+        dropoff_longitude: longitude,
+        dropoff_place_id: place_id,
+        placeToDropOff: place,
+      });
+    }
+  };
+
+  PrepareTypes = (translate) => {
+    return [
+      translate('home.makeYourReservation.types.0'),
+      translate('home.makeYourReservation.types.1'),
+      translate('home.makeYourReservation.types.2'),
+      translate('home.makeYourReservation.types.3'),
+      translate('home.makeYourReservation.types.4'),
+      translate('home.makeYourReservation.types.5'),
+      translate('home.makeYourReservation.types.6'),
+      translate('home.makeYourReservation.types.7'),
+      translate('home.makeYourReservation.types.8'),
+      translate('home.makeYourReservation.types.9'),
+      translate('home.makeYourReservation.types.10'),
+      translate('home.makeYourReservation.types.11'),
+      translate('home.makeYourReservation.types.12'),
+      translate('home.makeYourReservation.types.13'),
+      translate('home.makeYourReservation.types.14'),
+      translate('home.makeYourReservation.types.15'),
+    ];
+  };
+
   render() {
     const error = this.state.error;
     const { translate, isMobile } = this.props;
+    const types = this.PrepareTypes(translate);
+
     return (
       <Modal
         className="modal-dialog-centered ar-modal-new-search"
         isOpen={this.props.showModal}
         toggle={() => this.props.hideModal()}
       >
+        <GoogleModal
+          showModal={this.state.showGoogleModal}
+          translate={translate}
+          place={this.state.showGoogleModal === 'placeToPickUp' ? this.state.placeToPickUp : this.state.placeToDropOff}
+          error={this.state.error}
+          loadLocation={this.props.loadLocation}
+          hideModal={this.hideGoogleModal}
+          onChange={this.handleOnChange}
+          renderListGroup={this.renderListGroup}
+          handleOnSelect={this.handleOnSelect}
+          isMobile={isMobile}
+          searchLocation={this.props.searchLocation}
+          location={
+            this.state.showGoogleModal === 'placeToPickUp'
+              ? { lat: this.state.pickup_latitude, lng: this.state.pickup_longitude }
+              : { lat: this.state.dropoff_latitude, lng: this.state.dropoff_longitude }
+          }
+          onSetLocation={this.handleSetLocation}
+        />
         <div className="rna-wrapper">
           <NotificationAlert ref="notificationAlert" />
         </div>
@@ -317,7 +517,16 @@ class NewSearchModal extends React.Component {
                         <CustomDropDown
                           name={'ageSelected'}
                           title={translate('home.makeYourReservation.age')}
-                          items={['+25', '24', '23', '22', '21', '20', '19', '18']}
+                          items={[
+                            { name: `+25 ${translate('home.makeYourReservation.years')}`, id: '+25' },
+                            { name: `24 ${translate('home.makeYourReservation.years')}`, id: '24' },
+                            { name: `23 ${translate('home.makeYourReservation.years')}`, id: '23' },
+                            { name: `22 ${translate('home.makeYourReservation.years')}`, id: '22' },
+                            { name: `21 ${translate('home.makeYourReservation.years')}`, id: '21' },
+                            { name: `20 ${translate('home.makeYourReservation.years')}`, id: '20' },
+                            { name: `19 ${translate('home.makeYourReservation.years')}`, id: '19' },
+                            { name: `18 ${translate('home.makeYourReservation.years')}`, id: '18' },
+                          ]}
                           classes={'ar-dropdown-menu-age'}
                           handleSelect={this.handleOnSelect}
                           error={error}
@@ -336,7 +545,7 @@ class NewSearchModal extends React.Component {
                         <CustomDropDown
                           name={'vehicleType'}
                           title={translate('home.makeYourReservation.carType')}
-                          items={vehicleTypes}
+                          items={types}
                           classes={'ar-dropdown-menu-car-type ar-dropdown-menu-overflow'}
                           handleSelect={this.handleOnSelect}
                           error={error}
@@ -348,7 +557,7 @@ class NewSearchModal extends React.Component {
                         className=" btn-icon ar-round-button ar-blue-button ar-last-row-make-your-reservation fs--1 h-100"
                         color="default"
                         type="button"
-                        onClick={this.handleSearchClick}
+                        onClick={() => this.handleSearchClick(types)}
                       >
                         {!isMobile ? (
                           <span className="nav-link-inner--text text-sm d-flex align-items-center">
@@ -375,12 +584,10 @@ class NewSearchModal extends React.Component {
 
 NewSearchModal.propTypes = {
   dispatch: PropTypes.func,
-  showModal: PropTypes.bool,
-  hideModal: PropTypes.func,
-  searchReservation: PropTypes.func,
   searchLocation: PropTypes.func,
   loadCountries: PropTypes.func,
-  nextStep: PropTypes.func,
+  showLoader: PropTypes.func,
+  loadLocation: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {

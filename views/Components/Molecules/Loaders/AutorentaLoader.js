@@ -21,9 +21,13 @@ class AutorentaLoader extends React.Component {
           <div className="ar-text ar-blue-3-text">
             {this.props.loaderMessage === 'cancel' ? (
               <p>{translate('common.loader.cancel')}</p>
-            ) : (
-              <p>{translate('common.loader.text')}</p>
-            )}
+            ) : this.props.loaderMessage === 'searching' ? (
+              <p>{translate('common.loader.searching')}</p>
+            ) : this.props.loaderMessage === 'creating' ? (
+              <p>{translate('common.loader.creating')}</p>
+            ) : this.props.loaderMessage === 'paying' ? (
+              <p>{translate('common.loader.paying')}</p>
+            ) : null}
           </div>
         </div>
       );

@@ -1,25 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  Modal,
-  Row,
-  InputGroup,
-  Input,
-  Button,
-  FormGroup,
-  Container,
-  InputGroupAddon,
-  InputGroupText,
-} from 'reactstrap';
+import { Modal, InputGroup, Input, Button, FormGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import * as classnames from 'classnames';
 
 class CancelReservationModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      passenger_lastname: this.props.car.passenger_last_name,
-      reservation: this.props.reservation.code,
+      passenger_lastname: '',
+      reservation: '',
       passenger_email: '',
       partner_code: '',
       passenger_emailFocus: false,
@@ -63,7 +53,7 @@ class CancelReservationModal extends React.Component {
   };
 
   render() {
-    const { translate } = this.props;
+    const { translate, isMobile } = this.props;
     const error = this.state.error;
     return (
       <Modal
@@ -102,11 +92,13 @@ class CancelReservationModal extends React.Component {
                 error.passenger_lastname ? ' ar-error-border' : null
               }`}
             >
-              <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
-                <InputGroupText className="ar-round-input-left">
-                  <h6>{translate('step3.reservationState.cancelReservationModal.lastname')}</h6>
-                </InputGroupText>
-              </InputGroupAddon>
+              {!isMobile ? (
+                <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
+                  <InputGroupText className="ar-round-input-left">
+                    <h6>{translate('step3.reservationState.cancelReservationModal.lastname')}</h6>
+                  </InputGroupText>
+                </InputGroupAddon>
+              ) : null}
               <Input
                 name="passenger_lastname"
                 onChange={this.handleOnChange}
@@ -133,11 +125,13 @@ class CancelReservationModal extends React.Component {
                 error.reservation ? ' ar-error-border' : null
               }`}
             >
-              <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
-                <InputGroupText className="ar-round-input-left">
-                  <h6>{translate('step3.reservationState.cancelReservationModal.reservationNumber')}</h6>
-                </InputGroupText>
-              </InputGroupAddon>
+              {!isMobile ? (
+                <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
+                  <InputGroupText className="ar-round-input-left">
+                    <h6>{translate('step3.reservationState.cancelReservationModal.reservationNumber')}</h6>
+                  </InputGroupText>
+                </InputGroupAddon>
+              ) : null}
               <Input
                 name="reservation"
                 onChange={this.handleOnChange}
@@ -166,11 +160,13 @@ class CancelReservationModal extends React.Component {
                   error.passenger_email ? ' ar-error-border' : null
                 }`}
               >
-                <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
-                  <InputGroupText className="ar-round-input-left">
-                    <h6>{translate('step3.reservationState.cancelReservationModal.email')}</h6>
-                  </InputGroupText>
-                </InputGroupAddon>
+                {!isMobile ? (
+                  <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
+                    <InputGroupText className="ar-round-input-left">
+                      <h6>{translate('step3.reservationState.cancelReservationModal.email')}</h6>
+                    </InputGroupText>
+                  </InputGroupAddon>
+                ) : null}
                 <Input
                   name="passenger_email"
                   onChange={this.handleOnChange}
@@ -198,11 +194,13 @@ class CancelReservationModal extends React.Component {
                   error.partner_code ? ' ar-error-border' : null
                 }`}
               >
-                <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
-                  <InputGroupText className="ar-round-input-left">
-                    <h6>{translate('step3.reservationState.cancelReservationModal.agency')}</h6>
-                  </InputGroupText>
-                </InputGroupAddon>
+                {!isMobile ? (
+                  <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
+                    <InputGroupText className="ar-round-input-left">
+                      <h6>{translate('step3.reservationState.cancelReservationModal.agency')}</h6>
+                    </InputGroupText>
+                  </InputGroupAddon>
+                ) : null}
                 <Input
                   name="partner_code"
                   onChange={this.handleOnChange}
@@ -230,11 +228,13 @@ class CancelReservationModal extends React.Component {
                   error.partner_code ? ' ar-error-border' : null
                 }`}
               >
-                <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
-                  <InputGroupText className="ar-round-input-left">
-                    <h6>{translate('step3.reservationState.cancelReservationModal.corporation')}</h6>
-                  </InputGroupText>
-                </InputGroupAddon>
+                {!isMobile ? (
+                  <InputGroupAddon addonType="prepend" className="ar-cancel-reservation-input-left">
+                    <InputGroupText className="ar-round-input-left">
+                      <h6>{translate('step3.reservationState.cancelReservationModal.corporation')}</h6>
+                    </InputGroupText>
+                  </InputGroupAddon>
+                ) : null}
                 <Input
                   name="partner_code"
                   onChange={this.handleOnChange}
@@ -253,11 +253,15 @@ class CancelReservationModal extends React.Component {
           <div className="ar-cancel-button-container">
             <Button className=" btn-icon ar-round-button ar-cancel-button" color="red-0" onClick={this.handleOnClick}>
               <span className="nav-link-inner--text ml-3">
-                {translate('step3.reservationState.cancelReservationModal.cancel')}
+                {!isMobile
+                  ? translate('step3.reservationState.cancelReservationModal.cancel')
+                  : translate('step3.reservationState.cancelReservationModal.cancel').toUpperCase()}
               </span>
-              <span className="btn-inner--icon">
-                <span className="ar-icon-chevron-right va-middle ml-2 fs-i--1" />
-              </span>
+              {!isMobile ? (
+                <span className="btn-inner--icon">
+                  <span className="ar-icon-chevron-right va-middle ml-2 fs-i--1" />
+                </span>
+              ) : null}
             </Button>
           </div>
         </div>

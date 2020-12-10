@@ -4,9 +4,28 @@ export const en = {
   locale: 'en',
   messages: {
     common: {
+      error: {
+        attention: '¡Atención!',
+        idInvalid: 'El número de ID ingresado no es válido.',
+        couponORCodeInvalid: 'El número de cupón o código promocional no es valido.',
+        clientType: 'No se ha seleccionado el tipo de cliente.',
+        formStep2: 'Los campos marcados en rojo son obligatorios.',
+        reservationNotFound: 'No se ha encontrado ninguna reserva con esos datos.',
+        airlineIata: 'Debes seleccionar una compañía aérea.',
+        airlineFlight: 'Debes completar el número de vuelo.',
+        completeAllFields: 'Todos los campos son requeridos.',
+        invalidEmail: 'La direccion de E-mail no es válida.',
+        canNotPay: 'No se pudo abonar la reserva.',
+      },
+      validationMessages: {
+        codePromotionalSuccess: 'El código promocional ingresado se aplicó correctamente a su reserva.',
+        couponNumberSuccess: 'El número de cupón ingresado se aplicó correctamente a su reserva.',
+        reservationCancelled: 'Su reserva ha sido cancelada',
+        subscriptionSuccess: 'Te suscribiste correctamente a nuestra base de datos.',
+      },
       navbar: {
         button: {
-          reserve: 'Reserve',
+          reserve: 'Reservar',
         },
         links: {
           promotions: 'Promociones',
@@ -43,15 +62,34 @@ export const en = {
         copyRight: 'Copyright © 2020 autorenta.com es una marca registrada de GMS. Todos los derechos reservados',
       },
       loader: {
-        text: 'Estamos buscando las mejores ofertas de autos para las fechas escogidas.',
+        searching: 'Estamos buscando las mejores ofertas de autos para las fechas escogidas.',
+        cancel: 'Estamos cancelando tu reservación, por favor no cierres esta ventana.',
+        creating: 'Estamos creando tu reserva, aguarda un instante.',
+        booking: 'Estamos buscando tu reservación.',
+        paying: 'Estamos procesando el pago de tu reservación, por favor no cierres esta ventana.',
       },
       progressBar: {
         startYourSearch: 'Inicia tu búsqueda',
         chooseYourPlan: 'Selecciona tu plan',
         confirmYourSearch: 'Confirma tu reserva',
       },
+      searchReservationModal: {
+        title: 'Buscar una reserva',
+        id: 'ID de Agencia o Corporativo',
+        checkbox: 'Soy una Agencia de viajes o Cliente corporativo',
+      },
     },
     home: {
+      googleModal: {
+        title: 'Encontrar una oficina o ubicación',
+        button: 'BUSCAR EN EL ÁREA',
+        notFoundTitle: '¡Atención!',
+        notFound1: 'No se han encontrado rentadoras en la ubicación seleccionada.',
+        notFound2: 'Por favor inténtalo nuevamente modificando los parámetros de la búsqueda.',
+        distance: 'Distancia: ',
+        officeCode: 'Código de oficina: ',
+        extendedOfficeCode: 'Código extendido: ',
+      },
       makeYourReservation: {
         doYourReservationIn: 'Haz tu reserva en',
         only3Steps: 'sólo 3 pasos',
@@ -61,15 +99,20 @@ export const en = {
         age: 'Edad',
         carType: 'Tipo de vehículo',
         search: 'Buscar',
+        dateToPickUp: 'Fecha y hora de retiro',
+        dateToDropOff: 'Fecha y hora de entrega',
+        findOnMap: 'Encontrar una oficina o ubicación en el mapa',
+        years: 'años',
       },
       offers: {
         mainTitle: 'Descubre todas las ofertas y promociones',
-        mainTitleMobile: 'Ofertas y Promociones',
+        mainTitleMobile: 'Ofertas y promociones',
         button: 'Más información',
       },
     },
     step1: {
-      resultMessage: 'No se encontraron autos para la búsqueda especificada',
+      resultMessage:
+        'Lo sentimos, no encontramos resultados para la búsqueda solicitada. Por favor inténtalo nuevamente.',
       activeSearch: {
         title: 'Búsqueda activa',
         age: 'Edad: ',
@@ -149,7 +192,9 @@ export const en = {
     },
     step2: {
       details: {
-        baseFee: 'Tarfia base',
+        optionalEquipment: 'Total de equipamiento opcional',
+        baseFee: 'Tarifa base',
+        totalFee: 'Total de impuestos y cargos',
         title: 'Detalles de la reserva',
         selectedPlan: 'PLAN SELECCIONADO',
         changePlan: 'Cambiar plan',
@@ -201,7 +246,7 @@ export const en = {
         subtitle: 'Información personal del titular de la renta',
         name: 'Nombre',
         surname: 'Apellido',
-        phone: 'Teléfono',
+        phone: 'Teléfono (opcional)',
         flyCompany: 'Compañía aérea (opcional)',
         flyNumber: 'Número de vuelo (opcional)',
         additionalInformation: 'Información adicional',
@@ -210,17 +255,29 @@ export const en = {
       },
       optionalEquipment: {
         title: 'Agrega equipamiento opcional a tu renta',
+        titleMobile: 'Agrega equipamiento opcional',
         text:
-          'El equipamietno opcional puede ser reservado, sólo quedará requerido a la compañía rentadora y será ' +
-          'confirmado y abonado en la oficina al inicio de la renta. Su costo no estincluido en el precio prepago de ' +
+          'El equipamiento opcional puede ser reservado, sólo quedará requerido a la compañía rentadora y será ' +
+          'confirmado y abonado en la oficina al inicio de la renta. Su costo no está incluido en el precio prepago de ' +
           'esta reserva y se mostrará un precio estimado a modo orientativo pudiendo variar sin previo aviso.',
         perDay: '(por día)',
+        GPS: 'Navegador satelital',
+        babySeat: 'Asiento para bebés',
+        childrenSeat: 'Asiento para niños',
+        elevatorSeat: 'Asiento elevador para niños',
+        elevatorSeatMobile: 'Asiento elevador',
+      },
+      changePlan: {
+        title: 'Cambiar plan de tarifa',
+        quoteFee: 'Cotizar esta tarifa',
+        selectedFee: 'Tarifa seleccionada',
       },
     },
     step3: {
       agencyOrOrganizationPayment: {
         reservationValue: 'Valor total de la renta:',
         discount: 'Descuento AutoRenta (sólo prepago):',
+        commission: 'Comisión de la Agencia (sólo prepago):',
         neto: 'Neto a pagar (sólo prepago):',
         titleReservation1: 'Pagar esta reserva con tarjeta de crédito',
         titleReservation2: 'El voucher y la factura se enviarán por E-mail y se cargarán en su perfil de usuario.',
@@ -236,9 +293,9 @@ export const en = {
         message: 'Luego, envía el comprobante electrónico por E-mail a:',
       },
       payment: {
-        titleReservation: 'Paga esta reserva con tu tarjeta de crédito',
+        titleReservation: 'Paga esta reserva con la tarjeta de crédito',
         subtitleReservation1: '¡Paga ahora y obtén un descuento de ',
-        subtitleReservation2: ' en el precio total de esta reserva!',
+        subtitleReservation2: ' en la tarifa base de esta reserva!',
         choose: 'Por favor selecciona el método de pago para esta reserva:',
         creditCard: 'Pagar con Tarjeta de Crédito / Débito',
         next: 'Siguiente',
@@ -282,13 +339,17 @@ export const en = {
         textReservation:
           'Consulta más abajo las opciones de pago que te ofrecemos para esta reserva o comunicate \n' +
           'telefónicamente al: ',
-        titlePayment: '¡Pagaste tu reserva correctamente!',
+        titlePayment: '¡Pagaste la reserva correctamente!',
         textPayment1: 'Cobramos ',
-        textPayment2: ' a tu tarjeta finalizada en ',
+        textPayment2: ' a la tarjeta finalizada en ',
+        textPayment25:
+          'Recuerda que los impuestos y cargos así como el equipamiento adicional requerido deberás abonarlos en destino en las oficinas de la compañía rentadora al inicio de tu renta.',
         textPayment3: '. ¡Obtuviste un descuento de ',
         textPayment4: 'En breve te enviaremos la factura y el voucher correspondiente',
-        subtitle: 'Para gestionar tu reserva en Autorenta utiliza el número:',
-        emailText: 'Tu reserva será enviada al E-mail:',
+        subtitle: 'Para gestionar la reserva en Autorenta utiliza el número:',
+        emailText: 'La reserva será enviada al E-mail:',
+        agencyText: 'Número ID de Agencia de Viajes',
+        organizationText: 'Número de ID Corporativo',
         cancel: 'Cancelar',
         print: 'Imprimir',
       },
@@ -346,6 +407,15 @@ export const en = {
     },
     promotion: {
       home: 'Inicio',
+    },
+    faq: {
+      title: 'Preguntas frecuentes',
+      subtitle:
+        'Resolvemos tus dudas a las preguntas más frecuentes que tienen nuestros clientes al alquilar un coche.',
+    },
+    error: {
+      message: 'Lo sentimos, ocurrió un error inesperado. Por favor inténtalo nuevamente.',
+      goHome: 'Volver al inicio',
     },
   },
 };

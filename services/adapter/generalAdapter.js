@@ -11,7 +11,7 @@ class generalAdapter {
       return successfullyResponsesPresenter.withOnlyMessage(actionNames.subscribedSuccessfully, 'subscriptionSuccess');
     }
 
-    return errorResponsesPresenter.onlyMessage('Error', actionNames.subscribedUnsuccessfully);
+    return errorResponsesPresenter.formError(data.response, actionNames.subscribedUnsuccessfully);
   };
 
   searchReservation = (response) => {
@@ -26,7 +26,20 @@ class generalAdapter {
     if (!data.response || data.code === 500) {
       return errorResponsesPresenter.formError(500, actionNames.searchReservationUnsuccessfully);
     }
-
+    if (data.code === 409) {
+      return errorResponsesPresenter.onlyMessageAndCode(
+        data.response,
+        actionNames.searchReservationUnsuccessfully,
+        data.code,
+      );
+    }
+    if (data.code === 404) {
+      return errorResponsesPresenter.onlyMessageAndCode(
+        data.response,
+        actionNames.searchReservationUnsuccessfully,
+        data.code,
+      );
+    }
     return errorResponsesPresenter.onlyMessage(data.response, actionNames.searchReservationUnsuccessfully);
   };
 }

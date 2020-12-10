@@ -179,6 +179,7 @@
   transition: all .15s ease;
   text-align: center;
   border: none;
+  text-transform: capitalize;
 }
 .rdtPicker th.rdtNext,
 .rdtPicker th.rdtPrev {
@@ -199,6 +200,7 @@
   th.rdtPrev,
   .rdtTimeToggle {
     color: $gray-700;
+    text-transform: capitalize;
   }
 }
 

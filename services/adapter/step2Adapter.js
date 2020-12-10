@@ -55,11 +55,11 @@ class step2Adapter {
         'Promotion applied',
       );
     }
-    if (data.response.cars.length === 0) {
+    if (data.response.cars) {
       return errorResponsesPresenter.onlyMessage('Error', actionNames.validatePromotionUnsuccessfully);
     }
 
-    return errorResponsesPresenter.formError(data, actionNames.validatePromotionUnsuccessfully);
+    return errorResponsesPresenter.formError(data.response, actionNames.validatePromotionUnsuccessfully);
   };
 
   loadDiscount = (response) => {
@@ -74,6 +74,19 @@ class step2Adapter {
     }
 
     return errorResponsesPresenter.onlyMessage('', actionNames.loadDiscountUnsuccessfully);
+  };
+
+  addExtra = (response) => {
+    const { data } = response;
+    if (data.success) {
+      return successfullyResponsesPresenter.fleetResponse(
+        actionNames.addExtraSuccessfully,
+        data.response,
+        'Fleet found',
+      );
+    }
+
+    return errorResponsesPresenter.listError(data, actionNames.addExtraUnsuccessfully);
   };
 }
 export default new step2Adapter();

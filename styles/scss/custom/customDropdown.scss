@@ -1,5 +1,5 @@
 .ar-dropdown-menu-overflow{
-  height: 300px;
+  max-height: 300px;
   overflow-y: scroll;
   @media (max-width: $ar-mobile-size){
     width: 90vw;
@@ -37,15 +37,30 @@
 
 .ar-dropdown-age-height{
   height: 47px;
+  @media (max-width: $ar-mobile-size) {
+    height: 38px;
+  }
 }
 
 .ar-order-by-button{
   margin-bottom: 10px;
-  @media (max-width: $ar-small-size){
+  @media (max-width: $ar-mobile-size){
       div {
         font-size: .8em;
         text-align: center;
       }
+    .ar-dropdown-value{
+      max-width: calc(100% - 1.5rem);
+      padding-right: 0.5rem;
+    }
+    ~ .ar-dropdown{
+      transform: translate3d(-45vw, 50px, 0px) !important;
+    }
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size){
+    ~ .ar-dropdown{
+      transform: translate3d(-33%, 50px, 0px) !important;
+    }
   }
 }
 
@@ -71,5 +86,12 @@
       font-size: .7rem;
       font-weight: 500;
     }
+  }
+}
+
+.ar-dropdown{
+  @media (max-width: $ar-mobile-size){
+    width: 80vw;
+    transform: translate3d(-50vw, 50px, 0px) !important;
   }
 }

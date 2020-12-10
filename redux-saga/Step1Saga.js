@@ -10,7 +10,7 @@ export function* modifySearchFleet(action) {
   const state = yield select();
   body.language = state.Intl.locale;
 
-  yield put(generalActions.showLoader());
+  yield put(generalActions.showLoader('searching'));
   const res = yield call(homeService.searchFleet, body);
   if (res.error) {
     yield all([put(res), put(generalActions.hideLoader())]);
@@ -27,6 +27,7 @@ export function* selectCar(action) {
 
   yield put(generalActions.showLoader());
 
+  let oldRates = car.rates;
   let newRates = [];
   for (const rate of car.rates) {
     const { includes } = rate;
@@ -34,6 +35,9 @@ export function* selectCar(action) {
       searchParams.rate = rate.rate_code;
       const res = yield call(homeService.searchFleet, searchParams);
       newRates.push(res.cars[0].rates[0]);
+      car.extras = res.cars[0].extras;
+      res.cars[0].pickup_office.latitude ? (car.pickup_office = res.cars[0].pickup_office) : null;
+      res.cars[0].dropoff_office.longitude ? (car.dropoff_office = res.cars[0].dropoff_office) : null;
     } else {
       newRates.push(rate);
     }
@@ -41,9 +45,8 @@ export function* selectCar(action) {
 
   car.rates = newRates;
 
-  yield all([put({ type: actionNames.selectCarSuccessfully, car, searchParams, location, rateSelected })]);
+  yield all([put({ type: actionNames.selectCarSuccessfully, car, searchParams, location, rateSelected, oldRates })]);
   redirectTo(pages.step2);
-  window.scrollTo(0, 0);
 }
 
 export function* seeBaseRateDetails(action) {

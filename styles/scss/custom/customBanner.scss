@@ -87,8 +87,12 @@
 .ar-search-banner{
   background-color: $ar-color-white-0;
   box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
-  @media (max-width: $ar-small-size) {
-    padding-top: 0 !important;
+  padding: 1.5rem;
+  @media (max-width: $ar-mobile-size){
+    padding: 0 1rem 1.5rem 1rem !important;
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size) {
+    padding: 0 0 1.5rem 0 !important;
   }
   @media (min-width: $ar-big-size) {
     h3{
@@ -98,12 +102,13 @@
   }
   .ar-modify-button{
     font-size: 0.7rem;
-    @media (max-width:$ar-mobile-size) {
+    @media (max-width:$ar-small-size) {
       font-size: 0.7rem;
       text-transform: uppercase;
       font-weight: bold;
       letter-spacing: 0.02em;
-      width: 90%;
+      width: 100%;
+      max-width: 900px;
     }
     @media (min-width:$ar-big-size) {
       font-size: 0.9rem;
@@ -115,13 +120,26 @@
       text-align: center;
       padding-bottom: 30px;
       margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h3{
+        margin-bottom: 15px;
+      }
+    }
+    .ar-divider{
+      border-bottom: solid;
+      border-width: thin;
+      border-bottom-color: $ar-color-white-7;
+      height: 1px;
+      width: 80%;
     }
   }
   .ar-search-date-and-place{
     margin: 5px;
     display: flex;
     align-items: center;
-    @media (max-width: $ar-small-size){
+    @media (max-width: $ar-mobile-size){
       width: 100%;
       justify-content: center;
       padding-bottom: 20px;
@@ -134,7 +152,21 @@
         background-color: lightgray;
       }
     }
-    @media (min-width: $ar-normal-size){
+    @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size){
+      width: 100%;
+      max-width: 900px;
+      justify-content: flex-start;
+      padding-bottom: 20px;
+      .ar-pseudo-arrow {
+        width: 5px;
+        margin-top: 4px;
+        margin-left: 9px;
+        height: 36px;
+        position: absolute;
+        background-color: lightgray;
+      }
+    }
+    @media (min-width: $ar-small-size){
       max-width: 27%;
     }
     .ar-search-icon{
@@ -154,6 +186,18 @@
       font-size: 0.6rem;
       margin:0;
       font-weight: 600;
+    }
+    @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size){
+      .ar-search-date{
+        font-size: 0.9rem;
+        margin:0;
+        font-weight: 600;
+      }
+      .ar-search-place{
+        font-size: 0.7rem;
+        margin:0;
+        font-weight: 600;
+      }
     }
     @media (min-width: $ar-big-size){
       .ar-search-icon{

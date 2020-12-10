@@ -9,33 +9,66 @@ import UpToTop from '../Components/Atoms/UpToTop';
 import ImageHeader from '../Components/Molecules/Headers/ImageHeader';
 import Breadcrumbs from '../Components/Atoms/Breadcrumbs';
 import CardPromotion from '../Components/Organism/Promotion/CardPromotion';
-import { isServer } from '../../utils/helpers/isError';
-import * as actions from '../../actions/promotionActions';
+import { isMobile, isServer, isSmallTablet, isTablet } from '../../utils/helpers/isError';
 import * as homeActions from '../../actions/homeActions';
-import { pages, redirectTo } from '../../utils/helpers/redirectTo';
 import AutorentaLoader from '../Components/Molecules/Loaders/AutorentaLoader';
+import GridPromotion from '../Components/Organism/Promotion/GridPromotion';
 
 class Promotion extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      isMobile: false,
+      isTablet: false,
+      isSmallTablet: false,
+    };
     this.dispatch = props.dispatch;
     this.handleOnLoad();
   }
 
   handleOnLoad = () => {
-    if (this.props.params) {
-      this.dispatch(homeActions.loadOffers(this.props.params[0]));
-    } else {
-      redirectTo(pages.home);
-    }
     if (!isServer()) {
       window.scrollTo(0, 0);
+      if (this.props.params) {
+        this.dispatch(homeActions.loadOffers(this.props.params.id));
+      }
     }
   };
 
+  componentDidMount() {
+    if (isMobile()) {
+      this.setState({ isMobile: true });
+    }
+    if (isTablet()) {
+      this.setState({ isTablet: true });
+    }
+    if (isSmallTablet()) {
+      this.setState({ isSmallTablet: true });
+    }
+    if (!isServer()) {
+      window.addEventListener('resize', () => {
+        if (isMobile()) {
+          this.setState({ isMobile: true, isTablet: false, isSmallTablet: false });
+        } else if (isTablet()) {
+          this.setState({ isMobile: false, isTablet: true, isSmallTablet: false });
+        } else if (isSmallTablet()) {
+          this.setState({ isMobile: false, isTablet: false, isSmallTablet: true });
+        } else {
+          this.setState({ isMobile: false, isTablet: false, isSmallTablet: false });
+        }
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    if (!isServer()) {
+      window.removeEventListener('resize', null);
+    }
+  }
+
   render() {
     const { translate } = this.props;
+    const { isMobile, isSmallTablet, isTablet } = this.state;
     if (this.props.offers.length !== 0) {
       const items = [
         {
@@ -48,17 +81,65 @@ class Promotion extends React.Component {
       ];
       return (
         <>
-          <CustomNavBar translate={translate} />
-          <ImageHeader items={items} translate={translate} />
-          <Breadcrumbs translate={translate} title={this.props.offers[0].title} />
-          <CardPromotion translate={translate} />
-          <Banner translate={translate} />
-          <CustomFooter subscribeToNewsletter={generalAction.subscribeNewsletter} translate={translate} />
-          <UpToTop />
+          <CustomNavBar translate={translate} isMobile={isMobile} isSmallTablet={isSmallTablet} isTablet={isTablet} />
+          <ImageHeader
+            items={items}
+            translate={translate}
+            isMobile={isMobile}
+            isSmallTablet={isSmallTablet}
+            isTablet={isTablet}
+          />
+          {this.props.offers.length === 1 ? (
+            <>
+              <Breadcrumbs
+                translate={translate}
+                title={this.props.offers[0].title}
+                isMobile={isMobile}
+                isSmallTablet={isSmallTablet}
+                isTablet={isTablet}
+              />
+              <CardPromotion
+                translate={translate}
+                isMobile={isMobile}
+                isSmallTablet={isSmallTablet}
+                isTablet={isTablet}
+              />
+            </>
+          ) : (
+            <>
+              <Breadcrumbs
+                translate={translate}
+                title={translate('promotion.title')}
+                isMobile={isMobile}
+                isSmallTablet={isSmallTablet}
+                isTablet={isTablet}
+              />
+              <GridPromotion
+                translate={translate}
+                isMobile={isMobile}
+                isSmallTablet={isSmallTablet}
+                isTablet={isTablet}
+              />
+            </>
+          )}
+          {!isMobile && !isTablet && !isSmallTablet ? <Banner translate={translate} /> : <></>}
+          <CustomFooter
+            subscribeToNewsletter={generalAction.subscribeNewsletter}
+            translate={translate}
+            isMobile={isMobile}
+            isTablet={isTablet}
+            isSmallTablet={isSmallTablet}
+          />
+          {!isMobile && !isTablet && !isSmallTablet ? <UpToTop /> : null}
+          <AutorentaLoader translate={translate} />
         </>
       );
     } else {
-      return <AutorentaLoader translate={translate} />;
+      return (
+        <div>
+          <AutorentaLoader translate={translate} />
+        </div>
+      );
     }
   }
 }

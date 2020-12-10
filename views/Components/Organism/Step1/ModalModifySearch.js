@@ -14,20 +14,13 @@ import {
   Button,
   ListGroup,
   ListGroupItem,
-  Container,
 } from 'reactstrap';
 import classnames from 'classnames';
 import RangeDatePicker from '../../Atoms/RangeDatePicker';
 import CustomDropDown from '../../Atoms/CustomDropDown';
-import {
-  isoStringToDateTime,
-  isoStringToDateWithTimeInText,
-  isoStringToString,
-  isoStringToStringTime,
-} from '../../../../utils/helpers/dateHelpers';
+import { isoStringToDateTime, isoStringToString, isoStringToStringTime } from '../../../../utils/helpers/dateHelpers';
 import NotificationAlert from 'react-notification-alert';
-import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
-import { vehicleTypes } from '../../../../utils/constants/vehicleTypes';
+import { pages } from '../../../../utils/helpers/redirectTo';
 import GoogleModal from '../../Molecules/Modals/GoogleModal';
 
 class ModalModifySearch extends React.Component {
@@ -47,8 +40,6 @@ class ModalModifySearch extends React.Component {
       dateToPickUp: '',
       dateToDropOff: '',
       ageSelected: '',
-      iataToPickUp: '',
-      iataToDropOff: '',
       timeToDropOff: '',
       timeToPickUp: '',
       hydrated: false,
@@ -250,9 +241,7 @@ class ModalModifySearch extends React.Component {
       this.notify('autorenta');
     } else {
       this.dispatch(this.props.showLoader());
-      redirectTo(
-        `${pages.step1}/${body.pickup_place_id}/${body.pickup_date}/${body.pickup_time}/${body.dropoff_place_id}/${body.dropoff_date}/${body.dropoff_time}/${body.passenger_country_id}/${body.passenger_age}/${body.vehicle_type}`,
-      );
+      window.location.href = `${pages.step1}?pickup_place_id=${body.pickup_place_id}&dropoff_place_id=${body.dropoff_place_id}&pickup_date=${body.pickup_date}&dropoff_date=${body.dropoff_date}&pickup_time=${body.pickup_time}&dropoff_time=${body.dropoff_time}&passenger_country_id=${body.passenger_country_id}&passenger_age=${body.passenger_age}&vehicle_type=${body.vehicle_type}`;
     }
   };
 
@@ -261,6 +250,17 @@ class ModalModifySearch extends React.Component {
     const placesOptions = this.props.locations;
     if (placesOptions) {
       if (placesOptions.length !== 0) {
+        {
+          placesOptions.sort((a, b) => {
+            if (!a.types.includes('airport') && b.types.includes('airport')) {
+              return 1;
+            }
+            if (a.types.includes('airport') && !b.types.includes('airport')) {
+              return -1;
+            }
+            return 0;
+          });
+        }
         return (
           <ListGroup className="ar-list-group zi-1200">
             {placesOptions.map((option, index) => {
@@ -272,7 +272,13 @@ class ModalModifySearch extends React.Component {
                     value={option.description}
                     onMouseDown={(e) => this.handleOnSelect(e, option)}
                   >
-                    <span className="ar-icon-location ar-light-blue-1-text fs-2" />
+                    {option.types.includes('airport') ? (
+                      <div className="ar-list-group-icon-container">
+                        <img src="svg/airplane.svg" />
+                      </div>
+                    ) : (
+                      <span className="ar-icon-location ar-light-blue-1-text fs-2" />
+                    )}
                     {option.description}
                   </Button>
                 </ListGroupItem>
@@ -339,7 +345,7 @@ class ModalModifySearch extends React.Component {
   };
   render() {
     const error = this.state.error;
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isTablet, isSmallTablet } = this.props;
     if (!this.state.hydrated && this.props.result.locations.pickup) {
       this.setState({
         placeToPickUp: this.props.result.locations.pickup.formated_address,
@@ -350,11 +356,13 @@ class ModalModifySearch extends React.Component {
         timeToPickUp: this.props.result.locations.pickup.time,
         dateToDropOff: this.props.result.locations.dropoff.date,
         timeToDropOff: this.props.result.locations.dropoff.time,
-        ageSelected: this.props.searchParams.passenger_age,
+        ageSelected: this.props.searchParams.passenger_age[0] === ' ' ? '+25' : this.props.searchParams.passenger_age,
         pickup_latitude: this.props.searchParams.pickup_latitude,
         pickup_longitude: this.props.searchParams.pickup_longitude,
         dropoff_latitude: this.props.searchParams.dropoff_latitude,
         dropoff_longitude: this.props.searchParams.dropoff_longitude,
+        pickup_place_id: this.props.searchParams.pickup_place_id,
+        dropoff_place_id: this.props.searchParams.dropoff_place_id,
         hydrated: true,
       });
     }
@@ -374,6 +382,8 @@ class ModalModifySearch extends React.Component {
           hideModal={this.hideGoogleModal}
           onChange={this.handleOnChange}
           isMobile={isMobile}
+          isTablet={isTablet}
+          isSmallTablet={isSmallTablet}
           renderListGroup={this.renderListGroup}
           handleOnSelect={this.handleOnSelect}
           searchLocation={this.props.searchLocation}
@@ -404,7 +414,7 @@ class ModalModifySearch extends React.Component {
         <div className="modal-body">
           <Form role="form">
             <Row>
-              <Col lg="5" md="5">
+              <Col lg="5" md="4">
                 <FormGroup
                   className={classnames({
                     focused: this.state.placeToPickUpFocus,
@@ -468,13 +478,24 @@ class ModalModifySearch extends React.Component {
                 <RangeDatePicker
                   error={error}
                   handleDate={this.handleDate}
-                  defaultStartDate={isoStringToDateTime(this.state.dateToPickUp, this.state.timeToPickUp)}
-                  defaultEndDate={isoStringToDateTime(this.state.dateToDropOff, this.state.timeToDropOff)}
+                  defaultStartDate={isoStringToDateTime(
+                    this.state.dateToPickUp,
+                    this.state.timeToPickUp,
+                    this.props.locale,
+                  )}
+                  defaultEndDate={isoStringToDateTime(
+                    this.state.dateToDropOff,
+                    this.state.timeToDropOff,
+                    this.props.locale,
+                  )}
                   translate={translate}
                   isMobile={isMobile}
+                  isTablet={isTablet}
+                  isSmallTablet={isSmallTablet}
+                  locale={this.props.locale}
                 />
               </Col>
-              <Col lg="2" md="6">
+              <Col lg="2" md="3">
                 <FormGroup
                   className={classnames({
                     focused: this.state.ageSelected,
@@ -482,8 +503,16 @@ class ModalModifySearch extends React.Component {
                 >
                   <CustomDropDown
                     name={'ageSelected'}
-                    title={this.props.searchParams.passenger_age}
-                    items={['+25', '24', '23', '22', '21', '20', '19', '18']}
+                    title={`${
+                      this.props.searchParams.passenger_age[0] === ' ' ? '+25' : this.props.searchParams.passenger_age
+                    } ${translate('home.makeYourReservation.years')}`}
+                    items={[
+                      { name: `+25 ${translate('home.makeYourReservation.years')}`, id: '+25' },
+                      { name: `24 ${translate('home.makeYourReservation.years')}`, id: '24' },
+                      { name: `23 ${translate('home.makeYourReservation.years')}`, id: '23' },
+                      { name: `22 ${translate('home.makeYourReservation.years')}`, id: '22' },
+                      { name: `21 ${translate('home.makeYourReservation.years')}`, id: '21' },
+                    ]}
                     classes={'ar-dropdown-menu-age'}
                     handleSelect={this.handleOnSelect}
                     height={'ar-dropdown-age-height'}
@@ -521,7 +550,7 @@ ModalModifySearch.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return { ...state.searchReducer, ...state.homeReducer };
+  return { ...state.searchReducer, ...state.homeReducer, ...state.Intl };
 };
 
 export default connect(mapStateToProps)(ModalModifySearch);

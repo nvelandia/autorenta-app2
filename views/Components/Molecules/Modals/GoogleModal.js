@@ -127,7 +127,7 @@ class GoogleModal extends React.Component {
           key={index}
           position={{ lat: parseFloat(company.latitude), lng: parseFloat(company.longitude) }}
           icon={company.company.icon}
-          zIndex={index === this.state.showFirst ? index + 60 : 50 + index}
+          zIndex={index === this.state.showFirst || company.company.name === 'Avis' ? index + 60 : 50 + index}
         />
       );
     });
@@ -135,7 +135,17 @@ class GoogleModal extends React.Component {
 
   render() {
     const error = this.state.error;
-    const { isMobile, onChange, place, translate, hideModal, showModal, location } = this.props;
+    const {
+      isMobile,
+      onChange,
+      place,
+      translate,
+      hideModal,
+      showModal,
+      location,
+      isTablet,
+      isSmallTablet,
+    } = this.props;
     let markers = [];
     if (this.props.companiesLocations.length !== 0 && this.props.showModal) {
       markers = this.handleSetMarkers(this.props.companiesLocations);
@@ -184,7 +194,7 @@ class GoogleModal extends React.Component {
               {this.state.placeFocus ? this.renderListGroup(showModal) : null}
             </FormGroup>
           </Row>
-          {!isMobile ? (
+          {!isMobile && !isTablet && !isSmallTablet ? (
             <Row className="second-row pr-0">
               <div className="pl-0 pr-4 w-31">
                 <div className="ar-containter">

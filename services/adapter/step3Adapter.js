@@ -27,10 +27,7 @@ class step3Adapter {
       );
     }
 
-    return errorResponsesPresenter.onlyMessage(
-      'No se pudo abonar la reserva',
-      actionNames.payReservationUnsuccessfully,
-    );
+    return errorResponsesPresenter.onlyMessage('canNotPay', actionNames.payReservationUnsuccessfully);
   };
 }
 export default new step3Adapter();

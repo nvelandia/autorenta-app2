@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Modal, Row, Col, Card, CardBody, CardTitle, CardHeader, Button } from 'reactstrap';
+import { Modal, Row, Card, CardBody, CardHeader, Button } from 'reactstrap';
 import CustomCarousel from '../../Molecules/Carousels/CustomCarousel';
 
 class ModalChangePlan extends React.Component {
@@ -48,29 +48,31 @@ class ModalChangePlan extends React.Component {
     const cards = this.props.carSelected.rates.map((rate) => {
       return (
         <Card className="mb-0 shadow m-3">
-          <CardHeader className="pb-1">
-            <Row>
-              <div className="col">
-                <span className="ar-card-change-plan-title">{rate.name}</span>
-              </div>
+          <CardHeader className="">
+            <Row className="mx-0">
+              <span className="ar-card-change-plan-title">{rate.name}</span>
             </Row>
           </CardHeader>
-          <CardBody className="py-2 zi-1200">
+          <CardBody className="zi-1200">
             {rate.includes.map((item, index) => {
               return (
-                <p key={index} className="mb-1">
-                  <i className="ar-icon-check-solid ar-green-text" />
-                  {'  ' + item}
-                </p>
+                <div className="d-flex" key={index}>
+                  <p className="mb-1">
+                    <i className="ar-icon-check-solid ar-green-text" />
+                  </p>
+                  <p className="mb-1">{'  ' + item}</p>
+                </div>
               );
             })}
             {rate.not_includes
               ? rate.not_includes.map((item, index) => {
                   return (
-                    <p key={index} className="mb-1">
-                      <i className="ar-icon-close-solid ar-red-text" />
-                      {'  ' + item}
-                    </p>
+                    <div className="d-flex" key={index}>
+                      <p className="mb-1">
+                        <i className="ar-icon-close-solid ar-red-text" />
+                      </p>
+                      <p className="mb-1">{'  ' + item}</p>
+                    </div>
                   );
                 })
               : null}
@@ -111,9 +113,9 @@ class ModalChangePlan extends React.Component {
         isOpen={this.props.showModal}
         toggle={() => this.props.hideModal()}
       >
-        <div className="modal-header pb-0">
-          <h6 className="modal-title mt-3" id="exampleModalLabel">
-            Cambiar plan de tarifa
+        <div className="modal-header">
+          <h6 className="modal-title" id="exampleModalLabel">
+            {translate('step2.changePlan.title')}
           </h6>
           <button
             aria-label="Close"

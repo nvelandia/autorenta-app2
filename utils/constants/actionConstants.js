@@ -25,13 +25,15 @@ export const actionNames = {
   loadLocationsSuccessfully: 'LOCATIONS_LOADED_SUCCESSFULLY',
   //General
   showLoader: 'SHOW_LOADER',
-  hideLoader: 'HIDE-LOADER',
+  hideLoader: 'HIDE_LOADER',
   subscribeNewsletter: 'SUBSCRIBE_TO_NEWSLETTER',
   searchReservation: 'SEARCH_RESERVATION',
   closeNotification: 'CLOSE_NOTIFICATION',
   addPageToHistory: 'ADD_PAGE_TO_HISTORY',
   showNotification: 'SHOW_NOTIFICATION',
   hideNotification: 'HIDE_NOTIFICATION',
+  createError: 'CREATE_ERROR',
+  deleteError: 'DELETE_ERROR',
   //General-Service
   subscribedSuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_SUCCESSFULLY',
   subscribedUnsuccessfully: 'SUBSCRIBED_TO_NEWSLETTER_UNSUCCESSFULLY',
@@ -65,6 +67,7 @@ export const actionNames = {
   validatePromotion: 'VALIDATE_PROMOTION',
   setErrorsStep2: 'SET_ERRORS_STEP2',
   loadDiscount: 'LOAD_DISCOUNT',
+  addExtra: 'ADD_EXTRA',
   //Step2-Service
   loadAirlinesSuccessfully: 'LOAD_AIRLINES_SUCCESSFULLY',
   loadAirlinesUnsuccessfully: 'LOAD_AIRLINES_UNSUCCESSFULLY',
@@ -76,6 +79,8 @@ export const actionNames = {
   validatePromotionUnsuccessfully: 'VALIDATE_PROMOTION_UNSUCCESSFULLY',
   loadDiscountSuccessfully: 'LOAD_DISCOUNT_SUCCESSFULLY',
   loadDiscountUnsuccessfully: 'LOAD_DISCOUNT_UNSUCCESSFULLY',
+  addExtraSuccessfully: 'ADD_EXTRA_SUCCESSFULLY',
+  addExtraUnsuccessfully: 'ADD_EXTRA_UNSUCCESSFULLY',
   //Step3
   cancelReservation: 'CANCEL-RESERVATION',
   payReservation: 'PAY_RESERVATION',
@@ -84,4 +89,6 @@ export const actionNames = {
   cancelReservationUnsuccessfully: 'CANCEL_RESERVATION_UNSUCCESSFULLY',
   payReservationSuccessfully: 'PAY_RESERVATION_SUCCESSFULLY',
   payReservationUnsuccessfully: 'PAY_RESERVATION_UNSUCCESSFULLY',
+  //Intl
+  setLocale: 'SET_LOCALE',
 };

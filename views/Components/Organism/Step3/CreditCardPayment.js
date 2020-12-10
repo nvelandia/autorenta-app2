@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  Button,
-  Card,
-  Container,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Row,
-} from 'reactstrap';
+import { Button, Card, FormGroup, Input, InputGroup, Row } from 'reactstrap';
 import * as classnames from 'classnames';
 import CountryDropdown from '../../Molecules/dropdowns/CountryDropdown';
 import PropTypes from 'prop-types';
@@ -17,7 +7,6 @@ import { connect } from 'react-redux';
 import { CardCvcElement, CardExpiryElement, CardNumberElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { isServer } from '../../../../utils/helpers/isError';
 import NotificationAlert from 'react-notification-alert';
-import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
 
 class CreditCardPaymentForm extends React.Component {
   constructor(props) {
@@ -86,6 +75,7 @@ class CreditCardPaymentForm extends React.Component {
         payment_method_id: payload.paymentMethod.id,
         passenger_lastname: this.props.reservation.passenger_lastname,
         reservation: this.props.reservation.code,
+        last4: payload.paymentMethod.card.last4,
       };
       this.dispatch(this.props.payReservation(body));
     } else {
@@ -170,17 +160,23 @@ class CreditCardPaymentForm extends React.Component {
   render() {
     const error = this.state.error;
     const style = this.makeStyle();
-    const { translate } = this.props;
+    const { translate, isMobile, isTablet, isSmallTablet } = this.props;
     if (this.props.elements) {
-      if (this.props.reservation.organization) {
+      if (
+        (this.props.reservation.organization && !isMobile && !isSmallTablet && !isTablet) ||
+        isMobile ||
+        isSmallTablet
+      ) {
         return (
           <Card className="ar-payment-options-card ar-red-border shadow-none fade-in">
             <div className="rna-wrapper">
               <NotificationAlert ref="notificationAlert" />
             </div>
             <div className="ar-payment-option-card-header">
-              <i className="ar-icon-online-payment ar-red-text" />
-              <h5 className="ar-red-text">{translate('step3.agencyOrOrganizationPayment.titleReservation1')}</h5>
+              <div className="d-flex align-items-start">
+                <i className="ar-icon-online-payment ar-red-text" />
+                <h5 className="ar-red-text">{translate('step3.agencyOrOrganizationPayment.titleReservation1')}</h5>
+              </div>
               <h6>{translate('step3.agencyOrOrganizationPayment.titleReservation2')}</h6>
             </div>
             <div className="ar-payment-option-card-body bg-ar-white-0 p-0 mt-0 mb-0 fade-in">
@@ -220,7 +216,7 @@ class CreditCardPaymentForm extends React.Component {
                       onFocus={() => this.setState({ securityCodeFocus: true })}
                       onBlur={() => this.setState({ securityCodeFocus: false })}
                       options={{
-                        placeholder: translate('step3.payment.creditCardPayment.cvc'),
+                        placeholder: translate('step3.payment.creditCardPayment.cvcMobile'),
                         style,
                       }}
                     />
@@ -301,7 +297,155 @@ class CreditCardPaymentForm extends React.Component {
                   type="button"
                   onClick={this.handleOnClick}
                 >
-                  {translate('step3.payment.creditCardPayment.payNow')}
+                  {!isMobile
+                    ? translate('step3.payment.creditCardPayment.payNow')
+                    : translate('step3.payment.creditCardPayment.payNow2').toUpperCase()}
+                </Button>
+                <Button
+                  className="btn-icon ar-round-button ar-payment-button-back-2 shadow-none"
+                  color="white-0"
+                  type="button"
+                  onClick={() => this.props.handleBackClick()}
+                >
+                  <i className="ar-icon-return" />
+                  {translate('step3.payment.creditCardPayment.back')}
+                </Button>
+              </div>
+            </div>
+          </Card>
+        );
+      } else if (this.props.reservation.organization && isTablet) {
+        return (
+          <Card className="ar-payment-options-card ar-red-border shadow-none fade-in">
+            <div className="rna-wrapper">
+              <NotificationAlert ref="notificationAlert" />
+            </div>
+            <div className="ar-payment-option-card-header">
+              <div className="d-flex align-items-start">
+                <i className="ar-icon-online-payment ar-red-text" />
+                <h5 className="ar-red-text">{translate('step3.agencyOrOrganizationPayment.titleReservation1')}</h5>
+              </div>
+              <h6>{translate('step3.agencyOrOrganizationPayment.titleReservation2')}</h6>
+            </div>
+            <div className="ar-payment-option-card-body bg-ar-white-0 p-0 mt-0 mb-0 fade-in">
+              <div className="ar-payment-form-credit-card-2">
+                <Row className="mx-3 mb-3">
+                  <FormGroup
+                    className={classnames(
+                      {
+                        focused: this.state.cardNumberFocus,
+                      },
+                      'ar-card-form-input-container w-60 pr-2 m-0',
+                    )}
+                  >
+                    <CardNumberElement
+                      className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 pr-3 ar-card-form-input w-100"
+                      name="cardNumber"
+                      onFocus={() => this.setState({ cardNumberFocus: true })}
+                      onBlur={() => this.setState({ cardNumberFocus: false })}
+                      options={{
+                        placeholder: translate('step3.payment.creditCardPayment.cardNumber'),
+                        style,
+                        showIcon: true,
+                      }}
+                    />
+                  </FormGroup>
+                  <FormGroup
+                    className={classnames(
+                      {
+                        focused: this.state.countrySelected,
+                      },
+                      'ar-select-country-container w-40 pl-2 m-0',
+                    )}
+                  >
+                    <CountryDropdown
+                      items={this.props.countries}
+                      title={translate('step3.payment.creditCardPayment.country')}
+                      color={'white-0'}
+                      name={'countrySelected'}
+                      classes={'ar-select-country'}
+                      handleOnSelect={this.handleOnSelect}
+                      error={error}
+                    />
+                  </FormGroup>
+                </Row>
+                <Row className="mx-3 mb-3">
+                  <FormGroup
+                    className={classnames(
+                      {
+                        focused: this.state.securityCodeFocus,
+                      },
+                      'ar-payment-security-code w-34 pr-2 m-0',
+                    )}
+                  >
+                    <CardCvcElement
+                      className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 pr-2  ar-card-form-input w-100"
+                      name="securityCode"
+                      onFocus={() => this.setState({ securityCodeFocus: true })}
+                      onBlur={() => this.setState({ securityCodeFocus: false })}
+                      options={{
+                        placeholder: translate('step3.payment.creditCardPayment.cvcMobile'),
+                        style,
+                      }}
+                    />
+                  </FormGroup>
+                  <FormGroup
+                    className={classnames(
+                      {
+                        focused: this.state.expirationDateFocus,
+                      },
+                      'ar-payment-expiration-date w-26 px-2 m-0',
+                    )}
+                  >
+                    <CardExpiryElement
+                      name="expirationDate"
+                      className="input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 px-3 ar-card-form-input w-100 "
+                      onFocus={() => this.setState({ expirationDateFocus: true })}
+                      onBlur={() => this.setState({ expirationDateFocus: false })}
+                      options={{
+                        placeholder: translate('step3.payment.creditCardPayment.expirationDate'),
+                        style,
+                      }}
+                    />
+                  </FormGroup>
+                  <FormGroup
+                    className={classnames(
+                      {
+                        focused: this.state.postalCodeFocus,
+                      },
+                      'ar-payment-postal-code w-40 pl-2 m-0',
+                    )}
+                  >
+                    <InputGroup
+                      className={`input-group-merge input-group-alternative shadow-none ar-round-input bg-ar-white-1 ${
+                        error.postalCode ? ' ar-error-border' : null
+                      }`}
+                    >
+                      <Input
+                        name="postalCode"
+                        onChange={this.handleOnChange}
+                        className=" ar-round-input ar-card-form-input"
+                        placeholder={translate('step3.payment.creditCardPayment.postalCode')}
+                        value={this.state.postalCode}
+                        type="text"
+                        autoComplete="off"
+                        onFocus={() => this.setState({ postalCodeFocus: true })}
+                        onBlur={() => this.setState({ postalCodeFocus: false })}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Row>
+              </div>
+            </div>
+            <div className="ar-payment-option-card-footer">
+              <div className="ar-payment-next-back-2">
+                <Button
+                  className="btn-icon ar-round-button ar-payment-button-now box-shadow"
+                  color="red-0"
+                  type="button"
+                  onClick={this.handleOnClick}
+                >
+                  {translate('step3.payment.creditCardPayment.payNow').toUpperCase()}
                 </Button>
                 <Button
                   className="btn-icon ar-round-button ar-payment-button-back-2 shadow-none"
@@ -438,7 +582,7 @@ class CreditCardPaymentForm extends React.Component {
                 onClick={this.handleOnClick}
               >
                 {translate('step3.payment.creditCardPayment.payNow')}
-                <i className="ar-icon-chevron-right" />
+                {!isTablet ? <i className="ar-icon-chevron-right" /> : null}
               </Button>
               <Button
                 className="btn-icon ar-round-button ar-payment-button-back-2 shadow-none fade-in"

@@ -57,6 +57,17 @@ class step2Service {
 
     return step2Adapter.loadDiscount(loadResponse);
   };
+
+  addExtra = async (body) => {
+    let addResponse;
+    try {
+      addResponse = await Api.post('fleet/addextra', body);
+    } catch (err) {
+      addResponse = err;
+    }
+
+    return step2Adapter.addExtra(addResponse);
+  };
 }
 
 export default new step2Service();

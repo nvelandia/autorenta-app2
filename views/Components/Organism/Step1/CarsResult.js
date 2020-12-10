@@ -1,11 +1,9 @@
 import React from 'react';
-import { Button, Card, CardBody, CardHeader, CardText, Col, Row } from 'reactstrap';
+import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomButton from '../../Atoms/CustomButton';
-import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
 import PriceCarousel from '../../Molecules/Carousels/PriceCarousel';
-import { Collections } from '@material-ui/icons';
 
 class CarsResult extends React.Component {
   constructor(props) {
@@ -46,15 +44,17 @@ class CarsResult extends React.Component {
       sipp: car.type,
     };
     body.pickup_location = car.pickup_office.location;
+    body.pickup_extended_location = car.pickup_office.extended_location;
     body.dropoff_location = car.dropoff_office.location;
+    body.dropoff_extended_location = car.dropoff_office.extended_location;
     this.props.dispatch(this.props.selectCar(car, this.props.result.locations, body, selectedRate));
   };
 
   renderPrice = (car) => {
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isTablet, isSmallTablet } = this.props;
     const prices = car.rates.map((rate, index) => {
       return (
-        <Col xs="12" xl="6" lg="6" className="ar-car-price" key={index}>
+        <Col sm="6" className="ar-car-price" key={index}>
           <Card className="text-center  shadow mb-0">
             <CardHeader className="bg-transparent ar-car-price-title">
               <h4 className="mb-0">{rate.name}</h4>
@@ -69,11 +69,15 @@ class CarsResult extends React.Component {
                 <h1 className="ar-car-price-price">{parseFloat(rate.price).toFixed(2)}</h1>
               </div>
               <CustomButton
-                text={translate('step1.result.carsResult.reserveNow')}
+                text={
+                  !isMobile && !isTablet && !isSmallTablet
+                    ? translate('step1.result.carsResult.reserveNow')
+                    : translate('step1.result.carsResult.reserveNow').toUpperCase()
+                }
                 event={() => this.handleOnClick(car, index)}
                 color={'red-0'}
                 name={'ar-car-price-button'}
-                icon={'ar-icon-chevron-right'}
+                icon={!isMobile && !isTablet && !isSmallTablet ? 'ar-icon-chevron-right' : ''}
                 pl={'pl-3'}
                 pr={'pr-2'}
                 justify={'justify-content-around'}
@@ -99,10 +103,10 @@ class CarsResult extends React.Component {
   };
 
   render() {
-    const { car, translate, isMobile } = this.props;
+    const { car, translate, isMobile, isSmallTablet, isTablet } = this.props;
     return (
       <Card className="card-frame ar-car-result mb-3">
-        {!isMobile ? (
+        {!isMobile && !isSmallTablet && !isTablet ? (
           <CardBody className="p-0">
             <Row className="ar-car-top">
               <div className="ar-car-top-left">
@@ -119,7 +123,7 @@ class CarsResult extends React.Component {
                 </div>
               </div>
               <Row className="m-0 h-100 ar-car-features">
-                <div className="ar-car-features-group pl-0">
+                <div className="ar-car-features-group px-0">
                   <div className="ar-car-feature-item">
                     <i className="ar-icon-passenger ar-light-blue-3-text" />
                     <h6>
@@ -133,7 +137,7 @@ class CarsResult extends React.Component {
                     </h6>
                   </div>
                 </div>
-                <div className="ar-car-features-group">
+                <div className="ar-car-features-group px-0">
                   <div className="ar-car-feature-item">
                     <i className="ar-icon-luggage ar-light-blue-3-text" />
                     <h6>
@@ -147,7 +151,7 @@ class CarsResult extends React.Component {
                     </h6>
                   </div>
                 </div>
-                <div className="ar-car-features-group pr-0">
+                <div className="ar-car-features-group px-0">
                   <div className="ar-car-feature-item">
                     <i className="ar-icon-transmission ar-light-blue-3-text" />
                     <h6>{car.gear.name}</h6>
@@ -195,7 +199,10 @@ class CarsResult extends React.Component {
                         </h6>
                       </div>
                       <div className="ar-icon-info d-flex fs--1">
-                        <h6 className="mt--1 ml-2">{translate('step1.result.carsResult.advise')}</h6>
+                        <h6 className="mt--1 ml-2">
+                          {translate('step1.result.carsResult.adviseThin')}
+                          <strong>{translate('step1.result.carsResult.adviseStrong')}</strong>
+                        </h6>
                       </div>
                     </div>
                     <div className="ar-car-data-button-container">
@@ -236,13 +243,13 @@ class CarsResult extends React.Component {
           </CardBody>
         ) : (
           <CardBody className="p-0 m-0 card">
-            <Row className="ar-car-top pt-4">
-              <Col xs="7" className="p-0 left-3">
+            <Row className="ar-car-top pt-4 px-4">
+              <Col xs="7" className="p-0">
                 <div className="p-0 ar-car-company-logo-mobile">
                   <img src={car.company.logo} alt={'Company logo'} />
                 </div>
               </Col>
-              <Col xs="5" className="p-0">
+              <Col xs="5" className="p-0 left-4">
                 {car.featured ? (
                   <div className="ar-car-featured-mobile">
                     <div className="ar-car-featured-label">
@@ -255,21 +262,21 @@ class CarsResult extends React.Component {
                 )}
               </Col>
             </Row>
-            <div className="w-100 d-flex justify-content-center">
-              <span className="ar-divider" />
+            <div className="w-100 d-flex justify-content-center px-4">
+              <span className="ar-divider w-100" />
             </div>
             <Row className="ar-car-middle-mobile">
               <div className="ar-car-middle-mobile-left">
                 <div className="ar-car-rate-mobile p-0 top-3">{this.renderRating(car.rating)}</div>
               </div>
-              <Col xs="7">
+              <Col xs="7" className="px-0">
                 <div className="ar-car-image-container-mobile">
                   <img src={car.image} alt="Car image" />
                 </div>
               </Col>
             </Row>
-            <Row className="ar-car-middle-information-mobile">
-              <Col xs="12" className="pl-3">
+            <Row className="ar-car-middle-information-mobile px-4">
+              <Col xs="12" className="px-0">
                 <div className="ar-car-type">
                   <h6 className="mb-0">
                     {car.name} <b>({translate('step1.result.carsResult.orSimilar')})</b>
@@ -280,76 +287,131 @@ class CarsResult extends React.Component {
                 </div>
               </Col>
             </Row>
-            <Row className="justify-content-start ar-car-feature-item-row-mobile">
-              <div className="ar-car-features">
-                <Row className="m-0 h-100 justify-content-around">
-                  <div className="ar-car-features-group">
-                    <div className="ar-car-feature-item">
-                      <i className="ar-icon-passenger ar-light-blue-3-text" />
-                      <h6>
-                        {car.seats} {translate('step2.carSelected.seats')}
-                      </h6>
+            {isMobile ? (
+              <Row className="justify-content-start ar-car-feature-item-row-mobile">
+                <div className="ar-car-features w-100">
+                  <Row className="m-0 h-100 w-100 justify-content-between">
+                    <div className="ar-car-features-group">
+                      <div className="ar-car-feature-item">
+                        <i className="ar-icon-passenger ar-light-blue-3-text" />
+                        <h6>
+                          {car.seats} {translate('step2.carSelected.seats')}
+                        </h6>
+                      </div>
+                      <div className="ar-car-feature-item">
+                        <i className="ar-icon-doors ar-light-blue-3-text" />
+                        <h6>
+                          {car.doors} {translate('step2.carSelected.doors')}
+                        </h6>
+                      </div>
+                      <div className="ar-car-feature-item">
+                        <i className="ar-icon-luggage ar-light-blue-3-text" />
+                        <h6>
+                          {car.bags_big} {translate('step2.carSelected.bigBags')}
+                        </h6>
+                      </div>
                     </div>
-                    <div className="ar-car-feature-item">
-                      <i className="ar-icon-doors ar-light-blue-3-text" />
-                      <h6>
-                        {car.doors} {translate('step2.carSelected.doors')}
-                      </h6>
+                    <div className="ar-car-features-group">
+                      <div className="ar-car-feature-item">
+                        <i className="ar-icon-carry-on ar-light-blue-3-text" />
+                        <h6>
+                          {car.bags_small} {translate('step2.carSelected.smallBags')}
+                        </h6>
+                      </div>
+                      <div className="ar-car-feature-item">
+                        <i className="ar-icon-transmission ar-light-blue-3-text" />
+                        <h6>{car.gear.name}</h6>
+                      </div>
+                      <div className="ar-car-feature-item">
+                        {car.air.code !== 'N' ? (
+                          <>
+                            <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
+                            <h6>{car.air.name}</h6>
+                          </>
+                        ) : (
+                          <>
+                            <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
+                            <h6> - </h6>
+                          </>
+                        )}
+                      </div>
                     </div>
-                    <div className="ar-car-feature-item">
-                      <i className="ar-icon-luggage ar-light-blue-3-text" />
-                      <h6>
-                        {car.bags_big} {translate('step2.carSelected.bigBags')}
-                      </h6>
-                    </div>
+                  </Row>
+                </div>
+              </Row>
+            ) : (
+              <Row className="m-0 h-100 ar-car-features">
+                <div className="ar-car-features-group p-0">
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-passenger ar-light-blue-3-text" />
+                    <h6>
+                      {car.seats} {translate('step1.result.carsResult.seats')}
+                    </h6>
                   </div>
-                  <div className="ar-car-features-group">
-                    <div className="ar-car-feature-item">
-                      <i className="ar-icon-carry-on ar-light-blue-3-text" />
-                      <h6>
-                        {car.bags_small} {translate('step2.carSelected.smallBags')}
-                      </h6>
-                    </div>
-                    <div className="ar-car-feature-item">
-                      <i className="ar-icon-transmission ar-light-blue-3-text" />
-                      <h6>{car.gear.name}</h6>
-                    </div>
-                    <div className="ar-car-feature-item">
-                      {car.air.code !== 'N' ? (
-                        <>
-                          <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
-                          <h6>{car.air.name}</h6>
-                        </>
-                      ) : (
-                        <>
-                          <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
-                          <h6> - </h6>
-                        </>
-                      )}
-                    </div>
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-doors ar-light-blue-3-text" />
+                    <h6>
+                      {car.doors} {translate('step1.result.carsResult.doors')}
+                    </h6>
                   </div>
-                </Row>
-              </div>
-            </Row>
-            <div className="w-100 d-flex justify-content-center mt-3">
-              <span className="ar-divider" />
+                </div>
+                <div className="ar-car-features-group p-0">
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-luggage ar-light-blue-3-text" />
+                    <h6>
+                      {car.bags_big} {translate('step1.result.carsResult.bigBags')}
+                    </h6>
+                  </div>
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-carry-on ar-light-blue-3-text" />
+                    <h6>
+                      {car.bags_small} {translate('step1.result.carsResult.smallBags')}
+                    </h6>
+                  </div>
+                </div>
+                <div className="ar-car-features-group p-0">
+                  <div className="ar-car-feature-item">
+                    <i className="ar-icon-transmission ar-light-blue-3-text" />
+                    <h6>{car.gear.name}</h6>
+                  </div>
+                  <div className="ar-car-feature-item">
+                    {car.air.code !== 'N' ? (
+                      <>
+                        <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
+                        <h6>{car.air.name}</h6>
+                      </>
+                    ) : (
+                      <>
+                        <i className="ar-icon-air-conditioning ar-light-blue-3-text" />
+                        <h6> - </h6>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </Row>
+            )}
+            <div className="w-100 d-flex justify-content-center mt-3 px-4">
+              <span className="ar-divider w-100" />
             </div>
             <Row className="pt-3 ar-car-bottom-mobile mt-2 mx-0">
               <div className="ar-car-bottom">
-                <div className="ar-car-data-text mb-3">
+                <div className={`ar-car-data-text ${isMobile ? 'mb-3' : ''} `}>
                   <div className="ar-icon-check-solid ar-data-icon ar-green-text">
                     <p className="ml-2 ar-blue-0-text">{translate('step2.carSelected.cancel')}</p>
                   </div>
                 </div>
                 <div className="ar-car-data-text">
                   <div className="ar-icon-info ar-data-icon ">
-                    <p className="ml-2 ">{translate('step2.carSelected.advise')}</p>
+                    <p className="ml-2 ">
+                      {translate('step2.carSelected.adviseThin')}
+                      <strong>{translate('step2.carSelected.adviseStrong')}</strong>
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className="ar-car-data pt-3 pb-3">
+              <div className="ar-car-data pt-3 pb-3 w-100">
                 <CustomButton
-                  text={translate('step1.result.carsResult.additionalInformation')}
+                  text={translate('step1.result.carsResult.additionalInformation').toUpperCase()}
                   event={this.props.showAditionalModal}
                   color={'white-0'}
                   fontSize={'fs--2'}
@@ -357,27 +419,48 @@ class CarsResult extends React.Component {
                 />
               </div>
             </Row>
-            <div className="ar-car-bottom">
+            <div className="ar-car-bottom pb-2">
               <div className="ar-car-right">
                 <div className=" ar-car-price-container">
                   <PriceCarousel activeIndex={this.state.page - 1} items={this.renderPrice(car)} isMobile={isMobile} />
-                  <div className="ar-car-chevron">
-                    <span
-                      onClick={() => (this.state.page > 0 ? this.setState({ page: this.state.page - 1 }) : null)}
-                      className={
-                        'ar-icon-chevron-left ' +
-                        (this.state.page > 1 && car.rates.length > 5 ? ' ar-price-enabled' : null)
-                      }
-                    />
-                    <span
-                      onClick={() =>
-                        car.rates.length > this.state.page ? this.setState({ page: this.state.page + 1 }) : null
-                      }
-                      className={
-                        'ar-icon-chevron-right ' + (this.state.page < car.rates.length ? ' ar-price-enabled' : null)
-                      }
-                    />
-                  </div>
+                  {isMobile ? (
+                    <div className="ar-car-chevron">
+                      <span
+                        onClick={() => (this.state.page > 0 ? this.setState({ page: this.state.page - 1 }) : null)}
+                        className={
+                          'ar-icon-chevron-left ' +
+                          (this.state.page > 1 && car.rates.length > 5 ? ' ar-price-enabled' : null)
+                        }
+                      />
+                      <span
+                        onClick={() =>
+                          car.rates.length > this.state.page ? this.setState({ page: this.state.page + 1 }) : null
+                        }
+                        className={
+                          'ar-icon-chevron-right ' + (this.state.page < car.rates.length ? ' ar-price-enabled' : null)
+                        }
+                      />
+                    </div>
+                  ) : (
+                    <div className="ar-car-chevron">
+                      <span
+                        onClick={() => (this.state.page > 1 ? this.setState({ page: this.state.page - 1 }) : null)}
+                        className={
+                          'ar-icon-chevron-left ' +
+                          (this.state.page > 1 && car.rates.length > 2 ? ' ar-price-enabled' : null)
+                        }
+                      />
+                      <span
+                        onClick={() =>
+                          car.rates.length / 2 > this.state.page ? this.setState({ page: this.state.page + 1 }) : null
+                        }
+                        className={
+                          'ar-icon-chevron-right ' +
+                          (this.state.page < car.rates.length / 2 ? ' ar-price-enabled' : null)
+                        }
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

@@ -13,6 +13,7 @@ import {
   validatePromotion,
   changePlan,
   loadDiscount,
+  addExtra,
 } from './redux-saga/Step2Saga';
 import { cancelReservation, payReservation } from './redux-saga/Step3Saga';
 
@@ -39,6 +40,7 @@ const saga = [
   takeLatest(actionNames.validatePromotion, validatePromotion),
   takeLatest(actionNames.changePlan, changePlan),
   takeLatest(actionNames.loadDiscount, loadDiscount),
+  takeLatest(actionNames.addExtra, addExtra),
   //Step3
   takeLatest(actionNames.cancelReservation, cancelReservation),
   takeLatest(actionNames.payReservation, payReservation),

@@ -1,7 +1,7 @@
 import React from 'react';
 // reactstrap components
 import { Progress, Row, Col } from 'reactstrap';
-import { redirectTo, pages } from '../../../utils/helpers/redirectTo';
+import { redirectTo, pages, redirectBack } from '../../../utils/helpers/redirectTo';
 
 class ProgressBar extends React.Component {
   constructor(props) {
@@ -15,8 +15,7 @@ class ProgressBar extends React.Component {
         this.props.showLoader();
         return redirectTo(pages.home);
       case 2:
-        this.props.showLoader();
-        return redirectTo(this.props.step1URL);
+        return redirectBack();
       case 3:
         this.props.showLoader();
         return redirectTo(pages.step2);
@@ -26,8 +25,8 @@ class ProgressBar extends React.Component {
   };
 
   render() {
-    const { classes, step, translate, isMobile } = this.props;
-    if (!isMobile) {
+    const { classes, step, translate, isMobile, isSmallTablet } = this.props;
+    if (!isMobile && !isSmallTablet) {
       return (
         <>
           {step === 0 ? (

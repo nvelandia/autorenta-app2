@@ -88,3 +88,10 @@ export const loadDiscount = () => {
     type: actionNames.loadDiscount,
   };
 };
+
+export const addExtra = (body) => {
+  return {
+    type: actionNames.addExtra,
+    body,
+  };
+};

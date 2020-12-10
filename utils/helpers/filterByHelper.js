@@ -1,5 +1,3 @@
-import { isServer } from './isError';
-
 export const filterByType = (filtersSelected, sippCar, filters) => {
   let appear = false;
   for (const filterSelected of filtersSelected) {

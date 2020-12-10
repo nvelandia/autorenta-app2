@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Modal, Row, InputGroup, Input, Button, FormGroup, Container, Navbar } from 'reactstrap';
+import { Modal, Row, InputGroup, Input, Button, FormGroup } from 'reactstrap';
 import * as classnames from 'classnames';
-import { vehicleTypes } from '../../../../utils/constants/vehicleTypes';
 import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
 import NotificationAlert from 'react-notification-alert';
 
@@ -52,9 +51,11 @@ class SearchReservationModal extends React.Component {
       this.setState({ error: error });
     } else {
       if (body.partner_code) {
-        redirectTo(`${pages.step3}/${body.passenger_lastname}/${body.reservation}/${body.partner_code}`);
+        redirectTo(
+          `${pages.step3}?lastname=${body.passenger_lastname}&code=${body.reservation}&partner_code=${body.partner_code}`,
+        );
       } else {
-        redirectTo(`${pages.step3}/${body.passenger_lastname}/${body.reservation}`);
+        redirectTo(`${pages.step3}?lastname=${body.passenger_lastname}&code=${body.reservation}`);
       }
     }
   };
@@ -68,7 +69,7 @@ class SearchReservationModal extends React.Component {
             {' '}
             {this.props.translate('common.error.attention')}
           </span>
-          <span data-notify="message">Todos los campos son requeridos</span>
+          <span data-notify="message">{this.props.translate('common.error.completeAllFields')}</span>
         </div>
       ),
       type: type,
@@ -80,7 +81,7 @@ class SearchReservationModal extends React.Component {
 
   render() {
     const error = this.state.error;
-    const { isMobile } = this.props;
+    const { isMobile, translate } = this.props;
     if (this.props.error && this.props.actionWithError === 'searchReservation') {
       this.notify('autorenta');
     }
@@ -97,7 +98,7 @@ class SearchReservationModal extends React.Component {
         </div>
         <div className="modal-header pb-0">
           <h6 className="modal-title ar-modal-search-reservation-title" id="exampleModalLabel">
-            Buscar una reserva
+            {translate('common.searchReservationModal.title')}
           </h6>
           <button
             aria-label="Close"
@@ -128,7 +129,7 @@ class SearchReservationModal extends React.Component {
                   name="passenger_lastname"
                   onChange={this.handleOnChange}
                   className=" ar-round-input ar-search-reservation-form-input"
-                  placeholder="Apellido del pasajero"
+                  placeholder={translate('step3.reservationState.cancelReservationModal.lastname')}
                   value={this.state.passenger_lastname}
                   type="text"
                   autoComplete="off"
@@ -154,7 +155,7 @@ class SearchReservationModal extends React.Component {
                   name="reservation"
                   onChange={this.handleOnChange}
                   className=" ar-round-input ar-search-reservation-form-input"
-                  placeholder="Número de reserva Autorenta"
+                  placeholder={translate('step3.reservationState.cancelReservationModal.reservationNumber')}
                   value={this.state.reservation}
                   type="text"
                   autoComplete="off"
@@ -181,7 +182,7 @@ class SearchReservationModal extends React.Component {
                     name="partner_code"
                     onChange={this.handleOnChange}
                     className=" ar-round-input ar-search-reservation-form-input"
-                    placeholder="ID de Agencia o Corporativo"
+                    placeholder={translate('common.searchReservationModal.id')}
                     value={this.state.partner_code}
                     type="text"
                     autoComplete="off"
@@ -193,7 +194,7 @@ class SearchReservationModal extends React.Component {
             ) : null}
             <div className="ar-search-button-container">
               <Button className=" btn-icon ar-round-button ar-search-button" color="red-0" onClick={this.handleOnClick}>
-                <span className="nav-link-inner--text ml-3">Buscar </span>
+                <span className="nav-link-inner--text ml-3">{translate('home.makeYourReservation.search')}</span>
                 <span className="btn-inner--icon">
                   <span className="ar-icon-chevron-right va-middle ml-2 fs-i--1" />
                 </span>
@@ -203,14 +204,14 @@ class SearchReservationModal extends React.Component {
           <div className="custom-control custom-checkbox">
             <input
               className="custom-control-input"
-              id="customCheck1"
+              id="searchModalCheckbox"
               type="checkbox"
               name="conditionsAndTerms"
               checked={this.state.isAgencyOrCorporation}
               onChange={this.handleCheckbox}
             />
-            <label className="custom-control-label ar-search-reservation-checkbox" htmlFor="customCheck1">
-              Soy una Agencia de viajes o Cliente corporativo
+            <label className="custom-control-label ar-search-reservation-checkbox" htmlFor="searchModalCheckbox">
+              {translate('common.searchReservationModal.checkbox')}
             </label>
           </div>
           {this.state.isAgencyOrCorporation && !isMobile ? (
@@ -232,7 +233,7 @@ class SearchReservationModal extends React.Component {
                     name="partner_code"
                     onChange={this.handleOnChange}
                     className=" ar-round-input ar-search-reservation-form-input"
-                    placeholder="ID de Agencia o Corporativo"
+                    placeholder={translate('common.searchReservationModal.id')}
                     value={this.state.partner_code}
                     type="text"
                     autoComplete="off"

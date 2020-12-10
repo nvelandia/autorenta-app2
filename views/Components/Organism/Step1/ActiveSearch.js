@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Button, Col, Row } from 'reactstrap';
+import { Row } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Label from '../../Atoms/Label';
@@ -39,7 +38,7 @@ class ActiveSearch extends React.Component {
   };
 
   render() {
-    const { translate, isMobile } = this.props;
+    const { translate, isMobile, isSmallTablet, isTablet } = this.props;
     if (this.props.needToCloseModifyModal) {
       this.hideModal();
       this.props.dispatch(this.props.haveToCloseModifyModal(false));
@@ -54,63 +53,67 @@ class ActiveSearch extends React.Component {
           translate={translate}
           showLoader={this.props.showLoader}
           loadLocation={this.props.loadLocation}
+          isMobile={isMobile}
+          isTablet={isTablet}
+          isSmallTablet={isSmallTablet}
         />
-        <Row className="justify-content-center ar-search-banner p-4 mx-0">
-          <div className="ar-central-container">
-            <Row className="justify-content-between bg-ar-white-0 align-items-center ">
-              <div className="ar-step1-active-search-title-container">
-                <h3>{translate('step1.activeSearch.title')}</h3>
-              </div>
-              <div className="ar-search-date-and-place">
-                <div className="ar-search-icon">
-                  <i className="ar-icon-calendar" />
-                  {isMobile ? <div className="ar-pseudo-arrow"></div> : null}
+        <Row className="justify-content-center ar-search-banner mx-0">
+          {!isMobile && !isSmallTablet && !isTablet ? (
+            <div className="ar-central-container">
+              <Row className={`justify-content-between bg-ar-white-0 align-items-center mx-0`}>
+                <div className="ar-step1-active-search-title-container">
+                  <h3>{translate('step1.activeSearch.title')}</h3>
                 </div>
-                <div>
-                  {this.props.result.locations.pickup ? (
-                    <>
-                      <p className="ar-search-date">
-                        {isoStringToDateWithTimeInText(
-                          this.props.result.locations.pickup.date,
-                          this.props.result.locations.pickup.time,
-                          this.props.locale,
-                        )}
-                      </p>
-                      <p className="ar-search-place">{this.props.result.locations.pickup.formated_address}</p>{' '}
-                    </>
-                  ) : null}
+                <div className="ar-search-date-and-place">
+                  <div className="ar-search-icon">
+                    <i className="ar-icon-calendar" />
+                  </div>
+                  <div>
+                    {this.props.result.locations.pickup ? (
+                      <>
+                        <p className="ar-search-date">
+                          {isoStringToDateWithTimeInText(
+                            this.props.result.locations.pickup.date,
+                            this.props.result.locations.pickup.time,
+                            this.props.locale,
+                          )}
+                        </p>
+                        <p className="ar-search-place">{this.props.result.locations.pickup.formated_address}</p>{' '}
+                      </>
+                    ) : null}
+                  </div>
                 </div>
-              </div>
-              {!isMobile ? (
                 <div className="mr--4 ml--4">
                   <img src={'/svg/searchView/next-arrow.svg'} width={'20px'} />
                 </div>
-              ) : null}
-              <div className="ar-search-date-and-place">
-                <div className="ar-search-icon">
-                  <i className="ar-icon-calendar" />
+                <div className="ar-search-date-and-place">
+                  <div className="ar-search-icon">
+                    <i className="ar-icon-calendar" />
+                  </div>
+                  <div>
+                    {this.props.result.locations.dropoff ? (
+                      <>
+                        <p className="ar-search-date">
+                          {isoStringToDateWithTimeInText(
+                            this.props.result.locations.dropoff.date,
+                            this.props.result.locations.dropoff.time,
+                            this.props.locale,
+                          )}
+                        </p>
+                        <p className="ar-search-place">{this.props.result.locations.dropoff.formated_address}</p>
+                      </>
+                    ) : null}
+                  </div>
                 </div>
-                <div>
-                  {this.props.result.locations.dropoff ? (
-                    <>
-                      <p className="ar-search-date">
-                        {isoStringToDateWithTimeInText(
-                          this.props.result.locations.dropoff.date,
-                          this.props.result.locations.dropoff.time,
-                          this.props.locale,
-                        )}
-                      </p>
-                      <p className="ar-search-place">{this.props.result.locations.dropoff.formated_address}</p>
-                    </>
-                  ) : null}
-                </div>
-              </div>
-              {!isMobile ? (
-                <div className="d-flex justify-content-between pr-3 ar-step1-custom-button-modify-container">
+                <div className="d-flex justify-content-between ar-step1-custom-button-modify-container">
                   <Label
                     classes={'ar-label-common fs--15 mr-3'}
                     title={translate('step1.activeSearch.age')}
-                    value={this.props.searchParams.passenger_age + translate('step1.activeSearch.years')}
+                    value={
+                      (this.props.searchParams.passenger_age[0] === ' '
+                        ? '+25'
+                        : this.props.searchParams.passenger_age) + translate('step1.activeSearch.years')
+                    }
                   />
                   <CustomButton
                     text={translate('step1.activeSearch.modify')}
@@ -121,18 +124,65 @@ class ActiveSearch extends React.Component {
                     name={'ar-modify-button'}
                   />
                 </div>
-              ) : (
+              </Row>
+            </div>
+          ) : (
+            <div className="ar-central-container active-search-container">
+              <Row className={`justify-content-center bg-ar-white-0 align-items-center mx-0`}>
+                <div className="ar-step1-active-search-title-container">
+                  <h3>{translate('step1.activeSearch.title')}</h3>
+                  <div className="ar-divider" />
+                </div>
+                <div className="ar-search-date-and-place">
+                  <div className="ar-search-icon">
+                    <i className="ar-icon-calendar" />
+                    <div className="ar-pseudo-arrow" />
+                  </div>
+                  <div>
+                    {this.props.result.locations.pickup ? (
+                      <>
+                        <p className="ar-search-date">
+                          {isoStringToDateWithTimeInText(
+                            this.props.result.locations.pickup.date,
+                            this.props.result.locations.pickup.time,
+                            this.props.locale,
+                          )}
+                        </p>
+                        <p className="ar-search-place">{this.props.result.locations.pickup.formated_address}</p>{' '}
+                      </>
+                    ) : null}
+                  </div>
+                </div>
+                <div className="ar-search-date-and-place">
+                  <div className="ar-search-icon">
+                    <i className="ar-icon-calendar" />
+                  </div>
+                  <div>
+                    {this.props.result.locations.dropoff ? (
+                      <>
+                        <p className="ar-search-date">
+                          {isoStringToDateWithTimeInText(
+                            this.props.result.locations.dropoff.date,
+                            this.props.result.locations.dropoff.time,
+                            this.props.locale,
+                          )}
+                        </p>
+                        <p className="ar-search-place">{this.props.result.locations.dropoff.formated_address}</p>
+                      </>
+                    ) : null}
+                  </div>
+                </div>
                 <CustomButton
                   text={translate('step1.activeSearch.modify')}
                   event={this.showModifyModal}
                   color={'red-0'}
                   fontSize={'fs--15'}
                   name={'ar-modify-button'}
-                  width={'d-flex justify-content-center w-100 mb-25'}
+                  width={'d-flex justify-content-center w-100'}
                 />
-              )}
-            </Row>
-          </div>
+              </Row>
+            </div>
+          )}
         </Row>
       </>
     );

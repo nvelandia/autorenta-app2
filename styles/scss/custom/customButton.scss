@@ -35,6 +35,7 @@
   white-space: pre;
   height: 45px;
   padding-top: 8px;
+  font-weight: 600;
   &:hover{
     color: $ar-color-white-0;
   }
@@ -58,22 +59,33 @@
   }
 
   //Mobile
-  @media (max-width: 451px){
-    font-size: 0.9rem;
+  @media (max-width: $ar-mobile-size){
+    font-size: .9rem;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: $ar-mobile-size)and (max-width: 750px) {
+    font-size: .8rem;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 751px)and (max-width: $ar-small-size) {
+    font-size: 1rem;
+    text-transform: uppercase;
   }
 
   //Small Monitor
-  @media (min-width: 1200px) and (max-width: 1471px) {
+  @media (min-width: $ar-small-size) and (max-width: $ar-normal-size) {
     font-size: 0.82em;
   }
 
   //Normal Monitor
-  @media (min-width: 1490px) and (max-width: 1750px) {
+  @media (min-width: $ar-normal-size) and (max-width: $ar-big-size) {
     font-size: 0.85em;
   }
 
   //Big Monitor
-  @media (min-width: 1751px){
+  @media (min-width: $ar-big-size){
     font-size: .95em;
   }
 }

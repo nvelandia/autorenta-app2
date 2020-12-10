@@ -152,7 +152,7 @@
 
   &.active,
   &:active {
-    color: #012e68;
+    color: $ar-color-blue-4;
     text-decoration: none;
     @include gradient-bg($dropdown-link-active-bg);
   }

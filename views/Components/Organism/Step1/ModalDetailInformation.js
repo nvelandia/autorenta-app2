@@ -77,17 +77,21 @@ class ModalDetailInformation extends React.Component {
                 ? rate.not_includes.map((item, index) => {
                     if (rate.not_includes.length - 1 !== index) {
                       return (
-                        <p key={index} className="fs--1 mb-1">
-                          <i className="ar-icon-close-solid ar-red-text" />
-                          {'  ' + item}
-                        </p>
+                        <div className="d-flex">
+                          <i className="ar-icon-close-solid ar-red-text fs--1 mt-i-1-1 mr-i-1" />
+                          <p key={index} className="fs--1 mb-1">
+                            {item}
+                          </p>
+                        </div>
                       );
                     } else {
                       return (
-                        <p key={index} className="fs--1 mb-0">
-                          <i className="ar-icon-close-solid ar-red-text" />
-                          {'  ' + item}
-                        </p>
+                        <div className="d-flex">
+                          <i className="ar-icon-close-solid ar-red-text fs--1 mt-i-1-1 mr-i-1" />
+                          <p key={index} className="fs--1 mb-0">
+                            {item}
+                          </p>
+                        </div>
                       );
                     }
                   })
