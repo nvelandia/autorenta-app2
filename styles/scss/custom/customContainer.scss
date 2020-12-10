@@ -1,0 +1,274 @@
+.ar-border-round{
+  box-shadow: $card-box-shadow;
+  border-radius: 10px !important;
+  @media (max-width: $ar-mobile-size){
+    margin-top: -10vh;
+  }
+  @media (max-width: $ar-small-size) {
+    border-radius: 1.2rem !important;
+  }
+}
+
+.ar-make-your-reservation-button-container{
+  display: flex;
+  height: 45px;
+  .ar-blue-button{
+    width: 100%;
+    font-weight: 700;
+  }
+  @media (max-width: $ar-mobile-size) {
+    justify-content: center;
+    height: 40px;
+    span{
+      text-transform: uppercase;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: 768px){
+    justify-content: center;
+    height: 45px;
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin-top: 1.2em;
+    span{
+      text-transform: uppercase;
+      text-align: center;
+      justify-content: center;
+      i{
+        display: none !important;
+      }
+    }
+  }
+  @media (min-width: 768px) and (max-width: 900px){
+    justify-content: center;
+    height: 45px;
+    max-width: 100%;
+    flex: 0 0 100%;
+    margin-top: 1.2em;
+    span{
+      text-transform: uppercase;
+      text-align: center;
+      justify-content: center;
+      i{
+        display: none !important;
+      }
+    }
+  }
+  @media (min-width: 1200px) {
+    align-items: start;
+    justify-content: center;
+  }
+}
+
+.ar-central-container{
+  width: 1150px;
+  @media (max-width: $ar-small-size){
+    width: 100%;
+  }
+  @media (min-width: $ar-big-size){
+    width: 75%;
+  }
+}
+
+.ar-error-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  margin: 5rem 0;
+  img{
+    width: 230px;
+    margin-bottom: 2rem;
+  }
+  h1{
+    color: $ar-color-red-0;
+    margin-bottom: 0.5rem;
+  }
+  h3{
+    font-weight: 500;
+    @media (max-width: $ar-small-size){
+      text-align: center;
+      padding: 0 1rem;
+    }
+  }
+  .ar-register-button-container{
+    button{
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
+.ar-step1-mobile-search-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1rem 0;
+  .custom-checkbox{
+    max-width: 50%;
+    label{
+      font-size: .7em !important;
+    }
+  }
+}
+
+.ar-col-country{
+  @media(max-width: $ar-mobile-size){
+    max-width: 100%;
+    flex: 0 0 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: 768px){
+    max-width: 100%;
+    flex: 0 0 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 1.2em;
+  }
+  @media (min-width: 768px) and (max-width: 900px){
+    max-width: 37%;
+    flex: 0 0 37%;
+    padding-left: 0;
+  }
+  @media(min-width: 901px){
+    max-width: 30.3333%;
+    flex: 0 0 30.3333%;
+    padding-left: 0;
+  }
+}
+
+.ar-col-age{
+  @media(max-width: $ar-mobile-size){
+    max-width: 35%;
+    flex: 0 0 35%;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: 768px){
+    max-width: 35%;
+    flex: 0 0 35%;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  @media (min-width: 768px) and (max-width: 900px){
+    max-width: 26%;
+    flex: 0 0 26%;
+    padding-right: 0;
+    padding-left: 0;
+  }
+  @media(min-width: 901px){
+    max-width: 19.66667%;
+    flex: 0 0 19.66667%;
+    padding-right: 0.5rem !important;
+  }
+}
+
+.ar-col-type{
+  padding-left: 0.5rem !important;
+  @media(max-width: $ar-mobile-size){
+    max-width: 65%;
+    flex: 0 0 65%;
+    padding-right: 0;
+    padding-left: 15px !important;
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: 768px){
+    max-width: 65%;
+    flex: 0 0 65%;
+    padding-right: 0;
+    padding-left: 15px !important;
+  }
+  @media (min-width: 768px) and (max-width: 900px){
+    max-width: 37%;
+    flex: 0 0 37%;
+    padding-right: 0 !important;
+    padding-left: 10px !important;
+  }
+}
+
+.ar-widget-container{
+  @media (min-width: $ar-mobile-size) and (max-width: 900px){
+    width: 90%;
+    max-width: 90%;
+  }
+  @media (min-width: 900px) {
+    width: 850px;
+    max-width: 850px;
+  }
+}
+
+.result-container{
+  display: flex;
+  justify-content: center;
+  @media (max-width: $ar-mobile-size){
+    margin: 1.5rem 1rem 1rem 1rem;
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size){
+    margin: 1.5rem 0;
+    .ar-central-container{
+      width: 88%;
+      max-width: 870px;
+    }
+  }
+  @media (min-width: $ar-small-size){
+    margin: 1.5rem
+  }
+}
+
+.active-search-container{
+  display: flex;
+  justify-content: center;
+  @media (max-width: $ar-mobile-size){
+    max-width: 870px;
+    width: 100%;
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size){
+    max-width: 870px;
+    width: 88%;
+  }
+}
+
+.step2-container{
+  @media (min-width: $ar-mobile-size) and (max-width: 750px){
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-grow: unset;
+    flex-basis: unset;
+    width: 88%;
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: $ar-small-size){
+    width: 88%;
+    max-width: 870px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    flex-grow: unset;
+    flex-basis: unset;
+  }
+}
+
+.ar-promotion-grid-container{
+  @media (max-width: 750px){
+    width: 88%;
+    .ar-offer-card{
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+  }
+  @media (min-width: 751px) and (max-width: $ar-small-size){
+    width: 88%;
+    .ar-offer-card{
+      margin-bottom: 2.4rem;
+    }
+  }
+  @media (min-width: $ar-small-size) and (max-width: $ar-big-size){
+    width: 1200px;
+  }
+  @media (min-width: $ar-big-size){
+    width: 75%;
+  }
+}

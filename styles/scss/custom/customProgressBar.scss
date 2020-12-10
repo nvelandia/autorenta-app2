@@ -1,0 +1,65 @@
+.ar-circle{
+  font-size: 0.9rem;
+  color: $ar-color-white-0;
+  font-weight: bolder;
+  text-align: center;
+  border-radius: 50px;
+  border: 0.45rem solid $ar-color-white-3;
+  width: 2.3rem;
+  height: 2.3rem;
+  display: block;
+  &.ar-done{
+    background-color: $ar-color-blue-2 !important;
+  }
+  &.ar-active{
+    background-color: $ar-color-red-0 !important;
+  }
+  &.ar-pendant{
+    background-color: $ar-color-light-blue-0 !important;
+  }
+  @media (max-width: $ar-mobile-size){
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 0.29rem solid $ar-color-white-3;
+    font-size: 0.6rem;
+    font-weight: 800;
+    padding-top: .05rem;
+  }
+}
+
+.ar-bar{
+  margin-top: -1.9rem;
+  margin-bottom: 2.3rem;
+  @media (max-width: $ar-mobile-size){
+    margin-top: -1.4rem;
+    margin-bottom: 1.8rem;
+  }
+}
+
+.ar-title-bar{
+  margin-bottom: 2px;
+  padding-left: 12%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  &.ar-steps-header{
+    margin-bottom: -8px;
+  }
+  @media (max-width: $ar-mobile-size) {
+    font-size: 0.7rem;
+    text-align: center;
+    padding-left: 30%;
+    padding-right: 6%;
+  }
+  @media (min-width: $ar-mobile-size) and (max-width: 750px) {
+    display: none;
+  }
+}
+
+.ar-steps-bar{
+  margin-bottom: 1.5rem;
+  @media (max-width: 575px) {
+    margin-top: 15px;
+    margin-bottom: 1rem;
+  }
+}
