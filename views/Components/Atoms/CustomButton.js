@@ -31,7 +31,7 @@ class CustomButton extends React.Component {
         <div className={`${width}`}>
           <Button className={`btn-icon ar-round-button ${name}`} type="button" color={color} onClick={event}>
             <Row className={`${justify} ${pl} ${pr} ws-nowrap align-items-center`}>
-              {text}
+              <p style={{margin: 0, fontSize: '0.5rem'}}>{text}</p>
               <span className={`${icon} va-middle mt-i-1 ml-1 fs-i--1`} />
             </Row>
           </Button>
