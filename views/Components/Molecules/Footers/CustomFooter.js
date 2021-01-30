@@ -273,7 +273,7 @@ class CustomFooter extends React.Component {
                         <a className="ar-link">{translate('common.footer.suite')}</a>
                       </div>
                       <div>
-                        <a className="ar-link">{translate('common.footer.info')}</a>
+                        <a className="ar-link" href={`mailto:${translate('common.footer.info')}`}>{translate('common.footer.info')}</a>
                       </div>
                     </Col>
                     <Col xs="12" lg="" className="ar-group-links">

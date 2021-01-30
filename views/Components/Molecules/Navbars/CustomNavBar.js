@@ -145,13 +145,13 @@ class CustomNavbar extends React.Component {
                   </span>
                 </NavLink>
               </NavItem>
-              <NavItem className="m-0">
+              {/* <NavItem className="m-0">
                 <NavLink className="ar-nav-link" href={pages.onTheGo}>
                   <span className="nav-link-inner--text ar-nav-link-red">
                     <strong>{translate('common.navbar.links.AutoRentaOnTheGo')}</strong>
                   </span>
                 </NavLink>
-              </NavItem>
+              </NavItem> */}
               {!isMobile && !isSmallTablet && !isTablet ? (
                 <>
                   <NavItem className="d-none d-lg-block ar-nav-button-link ml-3 mr-0">

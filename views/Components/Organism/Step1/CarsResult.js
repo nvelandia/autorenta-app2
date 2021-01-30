@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CustomButton from '../../Atoms/CustomButton';
 import PriceCarousel from '../../Molecules/Carousels/PriceCarousel';
+import PriceCarouselMobile from '../../Molecules/Carousels/PriceCarousel.mobile';
 
 class CarsResult extends React.Component {
   constructor(props) {
@@ -422,8 +423,20 @@ class CarsResult extends React.Component {
             <div className="ar-car-bottom pb-2">
               <div className="ar-car-right">
                 <div className=" ar-car-price-container">
-                  <PriceCarousel activeIndex={this.state.page - 1} items={this.renderPrice(car)} isMobile={isMobile} />
                   {isMobile ? (
+                    <PriceCarouselMobile 
+                    activeIndex={this.state.page - 1}
+                    items={this.renderPrice(car)}
+                    isMobile={isMobile} 
+                  />
+                  ) : (
+                  <PriceCarousel 
+                    activeIndex={this.state.page - 1}
+                    items={this.renderPrice(car)}
+                    isMobile={isMobile} 
+                  />
+                  )}
+                  {/* {false ? (
                     <div className="ar-car-chevron">
                       <span
                         onClick={() => (this.state.page > 0 ? this.setState({ page: this.state.page - 1 }) : null)}
@@ -460,7 +473,7 @@ class CarsResult extends React.Component {
                         }
                       />
                     </div>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

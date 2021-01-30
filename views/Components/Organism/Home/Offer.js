@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { pages, redirectTo } from '../../../../utils/helpers/redirectTo';
 import CustomCarousel from '../../Molecules/Carousels/CustomCarousel';
+import CustomCarouselMobile from '../../Molecules/Carousels/CustomCarousel.mobile';
 
 class Offer extends React.Component {
   constructor(props) {
@@ -86,6 +87,9 @@ class Offer extends React.Component {
 
   render() {
     const { translate, isMobile, isTablet, isSmallTablet } = this.props;
+    const isMobileDevice = isMobile || isTablet || isSmallTablet
+
+    console.log(this.state.selectedPage)
     return (
       <>
         <Row className="justify-content-center ml-0 mr-0">
@@ -100,17 +104,27 @@ class Offer extends React.Component {
               </Col>
             </Row>
             <Row className="ar-offer-carousel">
-              <CustomCarousel
-                activeIndex={this.state.selectedPage - 1}
-                items={this.renderCards()}
-                justify="justify-content-center"
-                isMobile={isMobile}
-                height={'h-auto'}
+              {isMobileDevice ? (
+                <CustomCarouselMobile
+                  activeIndex={this.state.selectedPage - 1}
+                  items={this.renderCards()}
+                  justify="justify-content-center"
+                  isMobile={true}
+                  height={'h-auto'}
+                />
+              ) : (
+                <CustomCarousel
+                  activeIndex={this.state.selectedPage - 1}
+                  items={this.renderCards()}
+                  justify="justify-content-center"
+                  isMobile={isMobile}
+                  height={'h-auto'}
               />
+              )}
             </Row>
           </div>
         </Row>
-        <div className="ar-pagination-container">
+        {!isMobileDevice && <div className="ar-pagination-container">
           <Pagination
             totalPages={
               isMobile
@@ -122,7 +136,7 @@ class Offer extends React.Component {
             selectPage={this.selectPage}
             active={this.state.selectedPage}
           />
-        </div>
+        </div>}
       </>
     );
   }

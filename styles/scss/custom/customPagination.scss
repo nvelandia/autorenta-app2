@@ -17,3 +17,30 @@
     border-color: $ar-color-white-6;
   }
 }
+
+.rec .rec-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.rec.rec-dot {
+  background: $ar-color-white-6;
+  border-color: $ar-color-white-6;
+  border-radius: 5;
+  height: 15px;
+  width: 15px;
+  box-shadow: none;
+  outline: none;
+}
+
+button.rec-dot:hover, button.rec-dot:active, button.rec-dot:focus  {
+  background-color: $ar-color-blue-9;
+  border-color: $ar-color-blue-9;
+  box-shadow: none;
+  height: 15px;
+  width: 15px;
+  outline: none;
+}
+

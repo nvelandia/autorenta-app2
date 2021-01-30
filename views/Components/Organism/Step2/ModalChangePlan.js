@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Modal, Row, Card, CardBody, CardHeader, Button } from 'reactstrap';
 import CustomCarousel from '../../Molecules/Carousels/CustomCarousel';
+import CustomCarouselMobile from '../../Molecules/Carousels/CustomCarousel.mobile';
 
 class ModalChangePlan extends React.Component {
   constructor(props) {
@@ -128,6 +129,15 @@ class ModalChangePlan extends React.Component {
           </button>
         </div>
         <div className="modal-body ar-card-change-plan">
+          {false ? (
+            <CustomCarouselMobile
+              activeIndex={this.state.page}
+              items={this.renderCardPlan()}
+              justify="justify-content-center"
+              isMobile={isMobile}
+              height={'h-450'}
+            />
+          ) : (
           <CustomCarousel
             activeIndex={this.state.page}
             items={this.renderCardPlan()}
@@ -135,6 +145,7 @@ class ModalChangePlan extends React.Component {
             isMobile={isMobile}
             height={'h-450'}
           />
+          )}
           <div className="ar-car-chevron">
             <span onClick={() => this.changePage(this.state.page - 1)} className={'ar-icon-chevron-left zi-1'} />
             <span onClick={() => this.changePage(this.state.page + 1)} className={'ar-icon-chevron-right zi-1'} />
