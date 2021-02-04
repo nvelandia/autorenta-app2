@@ -60,7 +60,7 @@ class LocationSelected extends React.Component {
             </div>
           </Row>
           <Row className="ar-location-bottom">
-            {officeLocation ? (
+            {officeLocation?.latitude && officeLocation?.longitude ? (
               <Google lat={parseFloat(officeLocation.latitude)} lng={parseFloat(officeLocation.longitude)} />
             ) : (
               <Google lat={parseFloat(location.latitude)} lng={parseFloat(location.longitude)} />
