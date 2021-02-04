@@ -590,7 +590,7 @@ class MakeYourReservation extends React.Component {
                             <i className="ar-icon-chevron-right va-middle fs-i--1 mt-i-1 d-flex" />
                           </span>
                         ) : (
-                          <span className="nav-link-inner--text text-sm">
+                          <span className="nav-link-inner--text text-xs">
                             {translate('home.makeYourReservation.search')}
                           </span>
                         )}

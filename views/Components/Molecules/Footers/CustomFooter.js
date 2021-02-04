@@ -276,56 +276,6 @@ class CustomFooter extends React.Component {
                         <a className="ar-link" href={`mailto:${translate('common.footer.info')}`}>{translate('common.footer.info')}</a>
                       </div>
                     </Col>
-                    <Col xs="12" lg="" className="ar-group-links">
-                      <h3 className="ar-blue-6-text">{translate('common.footer.clientAttention')}</h3>
-                      <div>
-                        <a className="ar-link">{translate('common.footer.adviser')}</a>
-                      </div>
-                      <div>
-                        <a href={pages.faq} className="ar-link">
-                          {translate('common.footer.faq')}
-                        </a>
-                      </div>
-                      <div>
-                        <a onClick={this.showSearchReservationModal} className="ar-link">
-                          {translate('common.footer.searchReservation')}
-                        </a>
-                      </div>
-                    </Col>
-                    <Col xs="12" lg="" className="ar-group-links">
-                      <h3 className="ar-blue-6-text">{translate('common.footer.affiliates')}</h3>
-                      <div>
-                        <a className="ar-link" href={pages.access}>
-                          {translate('common.footer.access')}
-                        </a>
-                      </div>
-                      <div>
-                        <a className="ar-link" href={pages.register}>
-                          {translate('common.footer.registerAccount')}
-                        </a>
-                      </div>
-                      <div>
-                        <a className="ar-link">{translate('common.footer.promotions')}</a>
-                      </div>
-                    </Col>
-                    <Col xs="12" lg="" className="ar-group-links">
-                      <h3 className="ar-blue-6-text">{translate('common.footer.aboutUs')}</h3>
-                      <div>
-                        <a href={pages.cancellationPolicy} className="ar-link">
-                          {translate('common.footer.politics')}
-                        </a>
-                      </div>
-                      <div>
-                        <a href={pages.cookies} className="ar-link">
-                          {translate('common.footer.cookies')}
-                        </a>
-                      </div>
-                      <div>
-                        <a href={pages.privacyPolicy} className="ar-link">
-                          {translate('common.footer.privacy')}
-                        </a>
-                      </div>
-                    </Col>
                   </Row>
                 ) : isTablet ? (
                   <Row className="justify-content-between ar-links mx-0">

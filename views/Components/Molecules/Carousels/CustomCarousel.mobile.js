@@ -64,7 +64,7 @@ class CustomCarouselMobile extends React.Component {
           onPrevEnd={this.previous}
           className="zi-10"
           showArrows={false}
-          pagination={true}
+          pagination={false}
         >
           {this.renderSlides()}
         </Carousel>
